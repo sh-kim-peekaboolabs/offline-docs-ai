@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain } from "lucide-react";
+import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 
 const formSchema = z.object({
@@ -248,17 +248,142 @@ const Comparison = () => <section className="section" aria-labelledby="compariso
       </div>
     </div>
   </section>;
-const Scenarios = () => <section id="scenarios" className="section" aria-labelledby="scenarios-heading">
-    <div className="container">
-      <h2 id="scenarios-heading" className="text-2xl md:text-3xl font-semibold mb-4">이런 환경에서 효과적입니다</h2>
-      <ul className="grid md:grid-cols-2 gap-4">
-        <li className="feature-card relative overflow-hidden" style={{backgroundImage: `url(/lovable-uploads/3098a8d7-6b45-47dc-abc4-9946c5c83a10.png)`, backgroundSize: 'cover', backgroundPosition: 'center'}}><div className="absolute inset-0 bg-white/30"></div><div className="relative z-10"><strong>엔터프라이즈 기업</strong><br />수백 페이지의 기술 표준 문서나 R&D 자료에서 필요한 스펙과 정보를 즉시 검색하여 개발 시간을 단축합니다.</div></li>
-        <li className="feature-card relative overflow-hidden" style={{backgroundImage: `url(/lovable-uploads/964e7f8b-0bcd-47ff-972d-4595b6bebcd0.png)`, backgroundSize: 'cover', backgroundPosition: 'center'}}><div className="absolute inset-0 bg-white/40"></div><div className="relative z-10"><strong>법무법인</strong><br />수만 페이지에 달하는 증거 자료와 판례 더미 속에서 사건의 핵심 쟁점과 인용할 근거를 빠르게 찾아내 소송 전략을 수립합니다.</div></li>
-        <li className="feature-card relative overflow-hidden" style={{backgroundImage: `url(/lovable-uploads/9bd95de7-d285-4dd7-ac4a-8fcc6ab83d7d.png)`, backgroundSize: 'cover', backgroundPosition: 'center'}}><div className="absolute inset-0 bg-white/40"></div><div className="relative z-10"><strong>투자사 및 금융권</strong><br />수십 개의 투자 보고서와 실사 데이터에서 핵심 성장 동력이나 잠재적 리스크를 신속하게 식별하여 투자 결정을 내립니다.</div></li>
-        <li className="feature-card relative overflow-hidden" style={{backgroundImage: `url(/lovable-uploads/ebf98bf4-9354-4eca-b2a5-310ff4a6c967.png)`, backgroundSize: 'cover', backgroundPosition: 'center'}}><div className="absolute inset-0 bg-white/40"></div><div className="relative z-10"><strong>국방 및 공공기관</strong><br />인터넷이 차단된 폐쇄망 PC에서 대외비 보고서 및 정책 자료의 핵심 내용을 요약하고, 보안 유출 없이 신속하게 업무를 처리합니다.</div></li>
-      </ul>
-    </div>
-  </section>;
+const Scenarios = () => {
+  const environments = [
+    {
+      id: 1,
+      title: "엔터프라이즈 기업",
+      description: "수백 페이지의 기술 표준 문서나 R&D 자료에서 필요한 스펙과 정보를 즉시 검색하여 개발 시간을 단축합니다.",
+      icon: Building2,
+      gradient: "from-blue-600 via-blue-700 to-indigo-800",
+      overlayGradient: "from-blue-900/80 to-indigo-900/60",
+      image: "/lovable-uploads/3098a8d7-6b45-47dc-abc4-9946c5c83a10.png"
+    },
+    {
+      id: 2,
+      title: "법무법인",
+      description: "수만 페이지에 달하는 증거 자료와 판례 더미 속에서 사건의 핵심 쟁점과 인용할 근거를 빠르게 찾아내 소송 전략을 수립합니다.",
+      icon: Scale,
+      gradient: "from-amber-600 via-orange-700 to-red-800",
+      overlayGradient: "from-amber-900/80 to-red-900/60",
+      image: "/lovable-uploads/964e7f8b-0bcd-47ff-972d-4595b6bebcd0.png"
+    },
+    {
+      id: 3,
+      title: "투자사 및 금융권",
+      description: "수십 개의 투자 보고서와 실사 데이터에서 핵심 성장 동력이나 잠재적 리스크를 신속하게 식별하여 투자 결정을 내립니다.",
+      icon: TrendingUp,
+      gradient: "from-emerald-600 via-teal-700 to-cyan-800",
+      overlayGradient: "from-emerald-900/80 to-cyan-900/60",
+      image: "/lovable-uploads/9bd95de7-d285-4dd7-ac4a-8fcc6ab83d7d.png"
+    },
+    {
+      id: 4,
+      title: "국방 및 공공기관",
+      description: "인터넷이 차단된 폐쇄망 PC에서 대외비 보고서 및 정책 자료의 핵심 내용을 요약하고, 보안 유출 없이 신속하게 업무를 처리합니다.",
+      icon: Shield,
+      gradient: "from-slate-600 via-gray-700 to-zinc-800",
+      overlayGradient: "from-slate-900/80 to-zinc-900/60",
+      image: "/lovable-uploads/ebf98bf4-9354-4eca-b2a5-310ff4a6c967.png"
+    }
+  ];
+
+  return (
+    <section id="scenarios" className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black" aria-labelledby="scenarios-heading">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 id="scenarios-heading" className="text-4xl md:text-5xl font-bold text-white mb-6">
+            이런 환경에서 
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              {" "}효과적입니다
+            </span>
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            대용량 문서 처리가 필요한 전문 분야에서 AI의 힘으로 업무 효율성을 극대화하세요
+          </p>
+        </div>
+
+        {/* Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {environments.map((env, index) => {
+            const IconComponent = env.icon;
+            return (
+              <div
+                key={env.id}
+                className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${env.gradient} 
+                           hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 
+                           hover:scale-[1.02] h-80`}
+              >
+                {/* Background Image with Overlay */}
+                <div 
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${env.image})` }}
+                />
+                <div className={`absolute inset-0 bg-gradient-to-br ${env.overlayGradient}`} />
+                
+                {/* Animated Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.1),rgba(255,255,255,0.02))]" />
+                </div>
+
+                {/* Content */}
+                <div className="relative h-full p-8 flex flex-col justify-between">
+                  {/* Icon and Title */}
+                  <div>
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl group-hover:bg-white/30 transition-all duration-300">
+                        <IconComponent className="w-8 h-8 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-white group-hover:text-blue-100 transition-colors duration-300">
+                        {env.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <div className="flex-1">
+                    <p className="text-gray-100 leading-relaxed text-lg group-hover:text-white transition-colors duration-300">
+                      {env.description}
+                    </p>
+                  </div>
+
+                  {/* Bottom Accent */}
+                  <div className="mt-6">
+                    <div className="w-full h-1 bg-gradient-to-r from-white/30 to-transparent rounded-full group-hover:from-white/50 transition-all duration-300" />
+                  </div>
+                </div>
+
+                {/* Hover Effect Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center mt-16">
+          <div className="inline-flex flex-col items-center gap-4">
+            <p className="text-gray-300 text-lg">
+              당신의 업무 환경에 맞는 AI 솔루션을 경험해보세요
+            </p>
+            <a href="#cta">
+              <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold overflow-hidden hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300">
+                <span className="relative z-10 flex items-center gap-2">
+                  무료 체험 시작하기
+                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 const Security = () => <section id="security" className="section bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden" aria-labelledby="security-heading">
     <div className="absolute inset-0 bg-gradient-to-r from-blue-100/50 to-indigo-100/50"></div>
     <div className="absolute top-10 right-10 w-32 h-32 bg-blue-200/30 rounded-full blur-2xl"></div>

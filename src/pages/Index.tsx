@@ -199,7 +199,7 @@ const Comparison = () => <section className="section" aria-labelledby="compariso
                 </td>
               </tr>
               <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="p-6 font-medium">한국어 최적화 요약</td>
+                <td className="p-6 font-medium">한국어 최적화 모델 탑재</td>
                 <td className="text-center p-6">
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-yellow-100 text-yellow-700">
                     일반 수준

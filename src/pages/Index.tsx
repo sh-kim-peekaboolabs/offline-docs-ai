@@ -50,12 +50,6 @@ const Hero = () => <section className="relative overflow-hidden">
       </div>
     </div>
   </section>;
-const Trust = () => <section className="section relative overflow-hidden" aria-labelledby="trust-heading">
-    <div className="container relative">
-      <h2 id="trust-heading" className="sr-only">신뢰 맥락</h2>
-      
-    </div>
-  </section>;
 const Problem = () => <section className="section pt-8" aria-labelledby="problem-heading">
     <div className="container">
       <h2 id="problem-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">왜 오프라인에서 LocalDocs가 필요한가요?</h2>
@@ -515,7 +509,7 @@ const Index = () => {
       <Nav />
       <main>
         <Hero />
-        <Trust />
+        
         <Problem />
         <Solution />
         <Features />

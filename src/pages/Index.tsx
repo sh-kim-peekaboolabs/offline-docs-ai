@@ -52,7 +52,7 @@ const Hero = () => <section className="relative overflow-hidden">
   </section>;
 const Problem = () => <section className="section pt-8" aria-labelledby="problem-heading">
     <div className="container">
-      <h2 id="problem-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">왜 오프라인에서 LocalDocs가 필요한가요?</h2>
+      <h2 id="problem-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">Localdocs를 써야하는 이유</h2>
       <div className="grid md:grid-cols-3 gap-6">
         <div className="feature-card flex flex-col items-center text-center p-6 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-red-100 opacity-30"></div>

@@ -157,7 +157,7 @@ const Features = () => <section id="features" className="section bg-secondary-li
   </section>;
 const Comparison = () => <section className="section" aria-labelledby="comparison-heading">
     <div className="container">
-      <h2 id="comparison-heading" className="text-2xl md:text-3xl font-semibold mb-6 text-center">클라우드 AI와 무엇이 다른가요</h2>
+      <h2 id="comparison-heading" className="text-2xl md:text-3xl font-semibold mb-6 text-center">다른 AI와 무엇이 다른가요?</h2>
       <div className="overflow-x-auto">
         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
           <table className="w-full">

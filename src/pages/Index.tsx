@@ -644,19 +644,19 @@ const CTA = () => {
               <Input id="email" type="email" placeholder="you@example.com" {...register("email")} />
               {errors.email && <p className="text-sm text-destructive mt-1">{errors.email.message}</p>}
             </div>
+            <div className="flex items-center gap-2">
+              <Checkbox 
+                id="consent" 
+                checked={watch("consent")}
+                onCheckedChange={(checked) => setValue("consent", !!checked)}
+              />
+              <Label htmlFor="consent" className="text-sm text-muted-foreground">개인정보 수집 및 알림 수신에 동의합니다.</Label>
+            </div>
+            {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}
             <div>
               <Button type="submit" variant="hero" size="lg" disabled={isSubmitting} className="w-full">알림 신청하기</Button>
             </div>
           </div>
-          <div className="flex items-center gap-2 mt-4">
-            <Checkbox 
-              id="consent" 
-              checked={watch("consent")}
-              onCheckedChange={(checked) => setValue("consent", !!checked)}
-            />
-            <Label htmlFor="consent" className="text-sm text-muted-foreground">개인정보 수집 및 알림 수신에 동의합니다.</Label>
-          </div>
-          {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}
           <p className="text-xs text-muted-foreground text-center mt-4">제출하신 이메일은 베타 알림과 안내 외 용도로 사용하지 않습니다.</p>
         </form>
       </div>

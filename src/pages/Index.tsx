@@ -301,57 +301,119 @@ const Security = () => <section id="security" className="section bg-gradient-to-
       </div>
     </div>
   </section>;
-const HowItWorks = () => <section className="section bg-secondary-lighter/30" aria-labelledby="how-heading">
-    <div className="container">
-      <h2 id="how-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">사용 방법</h2>
-      <div className="grid md:grid-cols-4 gap-8">
-        <div className="text-center group">
-          <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white text-base font-bold mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">1</div>
-          <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/60"></div>
-            <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg mx-auto mb-4">
-              <Download className="w-6 h-6 text-primary" />
-            </div>
-            <h3 className="font-semibold mb-3 text-gray-900">앱 다운로드 및 설치</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">PC에 앱을 설치하세요</p>
-          </div>
+const HowItWorks = () => {
+  const steps = [
+    {
+      id: 1,
+      icon: Download,
+      title: "앱 다운로드 및 설치",
+      description: "PC에 앱을 설치하세요",
+      color: "from-blue-500 to-blue-600",
+      bgColor: "bg-blue-50",
+      iconColor: "text-blue-600"
+    },
+    {
+      id: 2,
+      icon: FileText,
+      title: "나만의 AI 지식 베이스 만들기",
+      description: "분석하고 싶은 파일들을 드래그 앤 드롭으로 간편하게 추가하세요",
+      color: "from-indigo-500 to-indigo-600",
+      bgColor: "bg-indigo-50",
+      iconColor: "text-indigo-600"
+    },
+    {
+      id: 3,
+      icon: Search,
+      title: "AI에게 질문하고 핵심 요약받기",
+      description: "\"이 계약서의 핵심 독소 조항은 뭐야?\"처럼 채팅하듯 질문하면 AI가 즉시 답변합니다",
+      color: "from-green-500 to-green-600",
+      bgColor: "bg-green-50",
+      iconColor: "text-green-600"
+    },
+    {
+      id: 4,
+      icon: Quote,
+      title: "클릭 한 번으로 출처 확인",
+      description: "AI 답변의 출처 위치를 원 클릭으로 찾고, 사실 여부를 파악하세요.",
+      color: "from-purple-500 to-purple-600",
+      bgColor: "bg-purple-50",
+      iconColor: "text-purple-600"
+    }
+  ];
+
+  return (
+    <section className="py-16 px-6 bg-gradient-to-br from-gray-50 to-white" aria-labelledby="how-heading">
+      <div className="container max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 id="how-heading" className="text-4xl font-bold text-gray-900 mb-4">
+            사용 방법
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            몇 분만에 AI 지식 베이스를 구축하고 스마트한 답변을 받아보세요
+          </p>
         </div>
-        <div className="text-center group">
-          <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white text-base font-bold mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">2</div>
-          <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/60"></div>
-            <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mx-auto mb-4">
-              <FileText className="w-6 h-6 text-blue-600" />
-            </div>
-            <h3 className="font-semibold mb-3 text-gray-900">나만의 AI 지식 베이스 만들기</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">분석하고 싶은 파일들을 드래그 앤 드롭으로 간편하게 추가하세요</p>
-          </div>
+
+        {/* Steps Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {steps.map((step, index) => {
+            const IconComponent = step.icon;
+            return (
+              <div
+                key={step.id}
+                className="relative group"
+              >
+                {/* Connection Line - only show between steps */}
+                {index < steps.length - 1 && (
+                  <div className="hidden lg:block absolute top-12 left-full w-full h-0.5 bg-gradient-to-r from-gray-300 to-transparent z-0" 
+                       style={{ transform: 'translateX(-50%)' }} />
+                )}
+                
+                {/* Card */}
+                <div className="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2 border border-gray-100 h-full">
+                  {/* Step Number */}
+                  <div className={`absolute -top-4 left-6 w-8 h-8 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center shadow-lg`}>
+                    <span className="text-white font-bold text-sm">{step.id}</span>
+                  </div>
+
+                  {/* Icon */}
+                  <div className={`w-16 h-16 ${step.bgColor} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <IconComponent className={`w-8 h-8 ${step.iconColor}`} />
+                  </div>
+
+                  {/* Content */}
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4 leading-tight">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed text-sm">
+                      {step.description}
+                    </p>
+                  </div>
+
+                  {/* Hover Effect Border */}
+                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${step.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                </div>
+              </div>
+            );
+          })}
         </div>
-        <div className="text-center group">
-          <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white text-base font-bold mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">3</div>
-          <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/60"></div>
-            <div className="flex items-center justify-center w-12 h-12 bg-green-100 rounded-lg mx-auto mb-4">
-              <Search className="w-6 h-6 text-green-600" />
+
+        {/* Bottom CTA */}
+        <div className="text-center mt-16">
+          <a href="#cta">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105">
+              <span>지금 시작하기</span>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
             </div>
-            <h3 className="font-semibold mb-3 text-gray-900">AI에게 질문하고 핵심 요약받기</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">"이 계약서의 핵심 독소 조항은 뭐야?"처럼 채팅하듯 질문하면 AI가 즉시 답변합니다</p>
-          </div>
-        </div>
-        <div className="text-center group">
-          <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white text-base font-bold mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">4</div>
-          <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/60"></div>
-            <div className="flex items-center justify-center w-12 h-12 bg-purple-100 rounded-lg mx-auto mb-4">
-              <Quote className="w-6 h-6 text-purple-600" />
-            </div>
-            <h3 className="font-semibold mb-3 text-gray-900">클릭 한 번으로 출처 확인</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">AI 답변의 출처 위치를 원 클릭으로 찾고, 사실 여부를 파악하세요.</p>
-          </div>
+          </a>
         </div>
       </div>
-    </div>
-  </section>;
+    </section>
+  );
+};
 const Pricing = () => <section id="pricing" className="section" aria-labelledby="pricing-heading">
     <div className="container">
       <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4">나에게 맞는 요금제를 선택하세요</h2>

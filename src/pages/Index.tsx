@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
+
 const formSchema = z.object({
   email: z.string().email("유효한 이메일을 입력해 주세요."),
   consent: z.literal(true, {
@@ -251,7 +252,7 @@ const Scenarios = () => <section id="scenarios" className="section" aria-labelle
     <div className="container">
       <h2 id="scenarios-heading" className="text-2xl md:text-3xl font-semibold mb-4">이런 환경에서 효과적입니다</h2>
       <ul className="grid md:grid-cols-2 gap-4">
-        <li className="feature-card"><strong>엔터프라이즈 기업</strong><br />수백 페이지의 기술 표준 문서나 R&D 자료에서 필요한 스펙과 정보를 즉시 검색하여 개발 시간을 단축합니다.</li>
+        <li className="feature-card relative overflow-hidden" style={{backgroundImage: `url(/lovable-uploads/3098a8d7-6b45-47dc-abc4-9946c5c83a10.png)`, backgroundSize: 'cover', backgroundPosition: 'center'}}><div className="absolute inset-0 bg-white/85 backdrop-blur-sm"></div><div className="relative z-10"><strong>엔터프라이즈 기업</strong><br />수백 페이지의 기술 표준 문서나 R&D 자료에서 필요한 스펙과 정보를 즉시 검색하여 개발 시간을 단축합니다.</div></li>
         <li className="feature-card"><strong>법무법인</strong><br />수만 페이지에 달하는 증거 자료와 판례 더미 속에서 사건의 핵심 쟁점과 인용할 근거를 빠르게 찾아내 소송 전략을 수립합니다.</li>
         <li className="feature-card"><strong>투자사 및 금융권</strong><br />수십 개의 투자 보고서와 실사 데이터에서 핵심 성장 동력이나 잠재적 리스크를 신속하게 식별하여 투자 결정을 내립니다.</li>
         <li className="feature-card"><strong>군사 및 공공기관</strong><br />인터넷이 차단된 폐쇄망 PC에서 대외비 보고서 및 정책 자료의 핵심 내용을 요약하고, 보안 유출 없이 신속하게 업무를 처리합니다.</li>

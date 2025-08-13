@@ -43,7 +43,7 @@ const Hero = () => (
     <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
     <div className="container relative py-20 md:py-28 text-center">
       <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">오프라인 실행 · HWP 지원 · 한국어 특화 요약 · 인용 제공</div>
-      <h1 className="mx-auto max-w-3xl text-4xl md:text-5xl font-bold leading-tight">
+      <h1 className="mx-auto max-w-3xl text-4xl md:text-5xl font-bold leading-tight whitespace-nowrap">
         인터넷 없이, 문서를 요약, 정리, 검색하세요.
       </h1>
       <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -75,27 +75,30 @@ const Trust = () => (
 const Problem = () => (
   <section className="section" aria-labelledby="problem-heading">
     <div className="container">
-      <h2 id="problem-heading" className="text-2xl md:text-3xl font-semibold mb-6">왜 오프라인에서 요약 AI가 필요한가요</h2>
-      <ul className="grid gap-4 md:gap-6">
-        <li className="feature-card flex items-start gap-4">
-          <div className="p-3 rounded-lg bg-destructive/10 text-destructive">
-            <ShieldCheck className="w-6 h-6" />
+      <h2 id="problem-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">왜 오프라인에서 LocalDocs가 필요한가요</h2>
+      <div className="grid md:grid-cols-3 gap-6">
+        <div className="feature-card flex flex-col items-center text-center p-6">
+          <div className="p-4 rounded-2xl bg-destructive/10 text-destructive mb-4">
+            <ShieldCheck className="w-8 h-8" />
           </div>
-          <p>기밀 문서는 클라우드 기반 AI 서비스(ChatGPT, Gemini 등)를 사용할 수 없습니다.</p>
-        </li>
-        <li className="feature-card flex items-start gap-4">
-          <div className="p-3 rounded-lg bg-orange-100 text-orange-600">
-            <WifiOff className="w-6 h-6" />
+          <h3 className="font-semibold mb-2">기밀 문서 보안</h3>
+          <p className="text-sm text-muted-foreground">기밀 문서는 클라우드 기반 AI 서비스(ChatGPT, Gemini 등)를 사용할 수 없습니다.</p>
+        </div>
+        <div className="feature-card flex flex-col items-center text-center p-6">
+          <div className="p-4 rounded-2xl bg-orange-100 text-orange-600 mb-4">
+            <WifiOff className="w-8 h-8" />
           </div>
-          <p>인터넷 연결이 불안정하거나 폐쇄망으로 운용되는 환경에서는 AI를 아예 사용할 수 없습니다.</p>
-        </li>
-        <li className="feature-card flex items-start gap-4">
-          <div className="p-3 rounded-lg bg-red-100 text-red-600">
-            <X className="w-6 h-6" />
+          <h3 className="font-semibold mb-2">네트워크 제약</h3>
+          <p className="text-sm text-muted-foreground">인터넷 연결이 불안정하거나 폐쇄망으로 운용되는 환경에서는 AI를 아예 사용할 수 없습니다.</p>
+        </div>
+        <div className="feature-card flex flex-col items-center text-center p-6">
+          <div className="p-4 rounded-2xl bg-red-100 text-red-600 mb-4">
+            <X className="w-8 h-8" />
           </div>
-          <p>한글 HWP 파일은 다수의 AI 도구(ChatGPT, Gemini, NotebookLM, Grok 등)에서 정상적으로 업로드할 수 없습니다.</p>
-        </li>
-      </ul>
+          <h3 className="font-semibold mb-2">HWP 파일 미지원</h3>
+          <p className="text-sm text-muted-foreground">한글 HWP 파일은 다수의 AI 도구(ChatGPT, Gemini, NotebookLM, Grok 등)에서 정상적으로 업로드할 수 없습니다.</p>
+        </div>
+      </div>
     </div>
   </section>
 );
@@ -145,7 +148,7 @@ const Features = () => (
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
             <Quote className="w-8 h-8" />
           </div>
-          <h3 className="text-xl font-semibold mb-2">인용 제공</h3>
+          <h3 className="text-xl font-semibold mb-2">출처 확인</h3>
           <p className="text-muted-foreground">각 답변에 출처 링크 또는 문서 위치 인용 자동 부착.</p>
         </div>
         <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
@@ -291,15 +294,39 @@ const Security = () => (
 );
 
 const HowItWorks = () => (
-  <section className="section" aria-labelledby="how-heading">
+  <section className="section bg-secondary-lighter/30" aria-labelledby="how-heading">
     <div className="container">
-      <h2 id="how-heading" className="text-2xl md:text-3xl font-semibold mb-6">사용 방법</h2>
-      <ol className="grid md:grid-cols-2 gap-4 list-decimal pl-6">
-        <li className="feature-card">PC 앱을 설치합니다.</li>
-        <li className="feature-card">문서 업로드 또는 링크·텍스트 추가로 지식 소스 풀을 만듭니다.</li>
-        <li className="feature-card">채팅창을 통해 유용한 정보를 빠르게 확인하세요.</li>
-        <li className="feature-card">질문 검색으로 근거 기반 답변과 문서 위치를 바로 확인하세요.</li>
-      </ol>
+      <h2 id="how-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">사용 방법</h2>
+      <div className="grid md:grid-cols-4 gap-6">
+        <div className="text-center group">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-white text-xl font-bold mb-4 group-hover:scale-110 transition-transform duration-300">1</div>
+          <div className="feature-card p-4">
+            <h3 className="font-semibold mb-2">PC 앱 설치</h3>
+            <p className="text-sm text-muted-foreground">PC 앱을 설치합니다.</p>
+          </div>
+        </div>
+        <div className="text-center group">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-white text-xl font-bold mb-4 group-hover:scale-110 transition-transform duration-300">2</div>
+          <div className="feature-card p-4">
+            <h3 className="font-semibold mb-2">지식 소스 추가</h3>
+            <p className="text-sm text-muted-foreground">문서 업로드 또는 링크·텍스트 추가로 지식 소스 풀을 만듭니다.</p>
+          </div>
+        </div>
+        <div className="text-center group">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-white text-xl font-bold mb-4 group-hover:scale-110 transition-transform duration-300">3</div>
+          <div className="feature-card p-4">
+            <h3 className="font-semibold mb-2">채팅으로 확인</h3>
+            <p className="text-sm text-muted-foreground">채팅창을 통해 유용한 정보를 빠르게 확인하세요.</p>
+          </div>
+        </div>
+        <div className="text-center group">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-white text-xl font-bold mb-4 group-hover:scale-110 transition-transform duration-300">4</div>
+          <div className="feature-card p-4">
+            <h3 className="font-semibold mb-2">근거 기반 답변</h3>
+            <p className="text-sm text-muted-foreground">질문 검색으로 근거 기반 답변과 문서 위치를 바로 확인하세요.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 );
@@ -321,7 +348,7 @@ const Pricing = () => (
             <li>최대 10개의 지식 베이스 생성</li>
             <li>(지식 베이스 당 최대 10개 문서)</li>
           </ul>
-          <a href="#cta" className="mt-6 inline-block"><Button variant="hero" size="lg">출시 알림 신청하기</Button></a>
+          <a href="#cta" className="mt-6 inline-block w-full"><Button variant="hero" size="lg" className="w-full">출시 알림 신청하기</Button></a>
         </div>
         <div className="pricing-card featured">
           <h3 className="text-xl font-semibold">Pro</h3>
@@ -335,7 +362,7 @@ const Pricing = () => (
             <li>무제한 지식 베이스 및 무제한 문서</li>
             <li>이메일 우선 지원</li>
           </ul>
-          <a href="#cta" className="mt-6 inline-block"><Button variant="hero" size="lg">출시 알림 신청하기</Button></a>
+          <a href="#cta" className="mt-6 inline-block w-full"><Button variant="hero" size="lg" className="w-full">출시 알림 신청하기</Button></a>
         </div>
         <div className="pricing-card">
           <h3 className="text-xl font-semibold">Enterprise</h3>
@@ -348,7 +375,7 @@ const Pricing = () => (
             <li>전담 기술 지원 매니저 및 SLA</li>
             <li>맞춤형 기능 개발 및 연동(협의)</li>
           </ul>
-          <a href="#cta" className="mt-6 inline-block"><Button variant="hero" size="lg">출시 알림 신청하기</Button></a>
+          <a href="#cta" className="mt-6 inline-block w-full"><Button variant="hero" size="lg" className="w-full">출시 알림 신청하기</Button></a>
         </div>
       </div>
     </div>
@@ -367,23 +394,25 @@ const CTA = () => {
   return (
     <section id="cta" className="section" aria-labelledby="cta-heading">
       <div className="container">
-        <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3">출시 알림을 받아보시겠습니까</h2>
-        <p className="text-muted-foreground mb-6">출시 소식을 가장 먼저 전해 드립니다. 사내 파일로 실제 테스트할 수 있는 환경을 준비 중입니다.</p>
-        <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl mx-auto grid gap-4">
-          <div className="grid gap-2">
-            <Label htmlFor="email">이메일 주소</Label>
-            <Input id="email" type="email" placeholder="you@example.com" {...register("email")} />
-            {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
+        <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">출시 알림을 신청하세요.</h2>
+        <p className="text-muted-foreground mb-6 text-center">출시 소식을 가장 먼저 전해 드립니다. 사내 파일로 실제 테스트할 수 있는 환경을 준비 중입니다.</p>
+        <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-4 items-end">
+            <div className="md:col-span-2">
+              <Label htmlFor="email">이메일 주소</Label>
+              <Input id="email" type="email" placeholder="you@example.com" {...register("email")} />
+              {errors.email && <p className="text-sm text-destructive mt-1">{errors.email.message}</p>}
+            </div>
+            <div>
+              <Button type="submit" variant="hero" size="lg" disabled={isSubmitting} className="w-full">알림 신청하기</Button>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 mt-4">
             <Checkbox id="consent" {...register("consent")} />
             <Label htmlFor="consent" className="text-sm text-muted-foreground">개인정보 수집 및 알림 수신에 동의합니다.</Label>
           </div>
           {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}
-          <div>
-            <Button type="submit" variant="hero" size="lg" disabled={isSubmitting}>알림 신청하기</Button>
-          </div>
-          <p className="text-xs text-muted-foreground">제출하신 이메일은 베타 알림과 안내 외 용도로 사용하지 않습니다.</p>
+          <p className="text-xs text-muted-foreground text-center mt-4">제출하신 이메일은 베타 알림과 안내 외 용도로 사용하지 않습니다.</p>
         </form>
       </div>
     </section>

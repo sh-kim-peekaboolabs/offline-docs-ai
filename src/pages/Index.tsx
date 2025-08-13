@@ -365,7 +365,7 @@ const Scenarios = () => {
         <div className="text-center mt-16">
           <div className="inline-flex flex-col items-center gap-4">
             <p className="text-gray-300 text-lg">
-              당신의 업무 환경에 맞는 AI 솔루션을 경험해보세요
+              당신의 업무 환경에 AI를 지금 바로 도입하세요
             </p>
             <a href="#cta">
               <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold overflow-hidden hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300">

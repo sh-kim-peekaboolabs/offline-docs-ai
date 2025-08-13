@@ -51,11 +51,6 @@ const Hero = () => <section className="relative overflow-hidden">
     </div>
   </section>;
 const Trust = () => <section className="section relative overflow-hidden" aria-labelledby="trust-heading">
-    <div className="absolute inset-0 opacity-5">
-      
-      <div className="absolute top-0 left-1/4 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
-      
-    </div>
     <div className="container relative">
       <h2 id="trust-heading" className="sr-only">신뢰 맥락</h2>
       

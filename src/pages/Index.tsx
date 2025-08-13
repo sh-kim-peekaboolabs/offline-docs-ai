@@ -313,7 +313,7 @@ const HowItWorks = () => <section className="section bg-secondary-lighter/30" ar
               <Download className="w-6 h-6 text-primary" />
             </div>
             <h3 className="font-semibold mb-3 text-gray-900">앱 다운로드 및 설치</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">복잡한 과정 없이, 몇 번의 클릭만으로 설치가 완료됩니다</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">PC에 앱을 설치하세요</p>
           </div>
         </div>
         <div className="text-center group">

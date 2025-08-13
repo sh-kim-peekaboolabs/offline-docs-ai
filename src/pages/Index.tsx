@@ -57,7 +57,7 @@ const Problem = () => <section className="section pt-8" aria-labelledby="problem
         <div className="feature-card flex flex-col items-center text-center p-6 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-red-100 opacity-30"></div>
           <div className="relative z-10">
-            <div className="p-4 rounded-2xl bg-destructive/10 text-destructive mb-4">
+            <div className="p-4 rounded-2xl bg-destructive/10 text-destructive mb-4 flex items-center justify-center">
               <ShieldCheck className="w-8 h-8" />
             </div>
             <h3 className="font-semibold mb-2">기밀 문서 보안 때문에 ChatGPT를 사용할 수 없어요</h3>

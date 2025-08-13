@@ -312,8 +312,8 @@ const HowItWorks = () => <section className="section bg-secondary-lighter/30" ar
             <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg mx-auto mb-4">
               <Download className="w-6 h-6 text-primary" />
             </div>
-            <h3 className="font-semibold mb-3 text-gray-900">PC 앱 설치</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">간단한 설치로 바로 시작하세요</p>
+            <h3 className="font-semibold mb-3 text-gray-900">앱 다운로드 및 설치</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">복잡한 과정 없이, 몇 번의 클릭만으로 설치가 완료됩니다</p>
           </div>
         </div>
         <div className="text-center group">
@@ -323,8 +323,8 @@ const HowItWorks = () => <section className="section bg-secondary-lighter/30" ar
             <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mx-auto mb-4">
               <FileText className="w-6 h-6 text-blue-600" />
             </div>
-            <h3 className="font-semibold mb-3 text-gray-900">문서를 업로드하세요</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">지식 베이스를 만듭니다</p>
+            <h3 className="font-semibold mb-3 text-gray-900">나만의 AI 지식 베이스 만들기</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">분석하고 싶은 파일들을 드래그 앤 드롭으로 간편하게 추가하세요</p>
           </div>
         </div>
         <div className="text-center group">
@@ -334,8 +334,8 @@ const HowItWorks = () => <section className="section bg-secondary-lighter/30" ar
             <div className="flex items-center justify-center w-12 h-12 bg-green-100 rounded-lg mx-auto mb-4">
               <Search className="w-6 h-6 text-green-600" />
             </div>
-            <h3 className="font-semibold mb-3 text-gray-900">채팅으로 확인</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">채팅창을 통해 유용한 정보를 빠르게 확인하세요</p>
+            <h3 className="font-semibold mb-3 text-gray-900">AI에게 질문하고 핵심 요약받기</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">"이 계약서의 핵심 독소 조항은 뭐야?"처럼 채팅하듯 질문하면 AI가 즉시 답변합니다</p>
           </div>
         </div>
         <div className="text-center group">
@@ -345,8 +345,8 @@ const HowItWorks = () => <section className="section bg-secondary-lighter/30" ar
             <div className="flex items-center justify-center w-12 h-12 bg-purple-100 rounded-lg mx-auto mb-4">
               <Quote className="w-6 h-6 text-purple-600" />
             </div>
-            <h3 className="font-semibold mb-3 text-gray-900">출처 기반 답변</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">질문 검색으로 근거 기반 답변과 문서 위치를 바로 확인하세요</p>
+            <h3 className="font-semibold mb-3 text-gray-900">클릭 한 번으로 출처 확인</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">AI 답변의 근거가 된 원문 위치를 클릭 한 번으로 찾아, 사실 여부를 즉시 검증할 수 있습니다</p>
           </div>
         </div>
       </div>

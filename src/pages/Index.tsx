@@ -65,9 +65,8 @@ const Trust = () => (
     </div>
     <div className="container relative">
       <h2 id="trust-heading" className="sr-only">신뢰 맥락</h2>
-      <p className="text-center text-lg text-muted-foreground max-w-4xl mx-auto">
-        클라우드 업로드가 불가능한 환경에서도 AI를 활용할 수 있도록 설계했습니다. 내부망, 인터넷 음영 지역, 강력한 보안 규정을 준수해야 하는 조직을 위한 선택입니다.
-        <span className="ml-2 font-medium text-primary">로컬 실행 · 오프라인 · 데이터 유출 없음</span>
+      <p className="text-center text-lg font-medium text-primary max-w-2xl mx-auto">
+        로컬 실행 · 오프라인 · 데이터 유출 없음
       </p>
     </div>
   </section>

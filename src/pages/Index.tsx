@@ -345,7 +345,7 @@ const HowItWorks = () => <section className="section bg-secondary-lighter/30" ar
             <div className="flex items-center justify-center w-12 h-12 bg-purple-100 rounded-lg mx-auto mb-4">
               <Quote className="w-6 h-6 text-purple-600" />
             </div>
-            <h3 className="font-semibold mb-3 text-gray-900">근거 기반 답변</h3>
+            <h3 className="font-semibold mb-3 text-gray-900">출처 기반 답변</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">질문 검색으로 근거 기반 답변과 문서 위치를 바로 확인하세요</p>
           </div>
         </div>

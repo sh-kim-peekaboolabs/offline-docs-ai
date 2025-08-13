@@ -164,7 +164,7 @@ const Comparison = () => <section className="section" aria-labelledby="compariso
             <thead className="bg-gradient-to-r from-primary/5 to-primary/10">
               <tr>
                 <th className="text-left p-6 font-semibold text-lg">항목</th>
-                <th className="text-center p-6 font-semibold text-lg text-gray-600">일반 클라우드 AI</th>
+                <th className="text-center p-6 font-semibold text-lg text-gray-600">AI 서비스</th>
                 <th className="text-center p-6 font-semibold text-lg text-primary">Localdocs</th>
               </tr>
             </thead>

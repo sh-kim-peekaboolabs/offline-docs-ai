@@ -12,10 +12,8 @@ import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 
 const formSchema = z.object({
   email: z.string().email("유효한 이메일을 입력해 주세요."),
-  consent: z.literal(true, {
-    errorMap: () => ({
-      message: "동의가 필요합니다."
-    })
+  consent: z.boolean().refine(val => val === true, {
+    message: "동의가 필요합니다."
   })
 });
 type FormValues = z.infer<typeof formSchema>;
@@ -599,6 +597,8 @@ const CTA = () => {
     register,
     handleSubmit,
     reset,
+    watch,
+    setValue,
     formState: {
       errors,
       isSubmitting
@@ -649,7 +649,11 @@ const CTA = () => {
             </div>
           </div>
           <div className="flex items-center gap-2 mt-4">
-            <Checkbox id="consent" {...register("consent")} />
+            <Checkbox 
+              id="consent" 
+              checked={watch("consent")}
+              onCheckedChange={(checked) => setValue("consent", !!checked)}
+            />
             <Label htmlFor="consent" className="text-sm text-muted-foreground">개인정보 수집 및 알림 수신에 동의합니다.</Label>
           </div>
           {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}

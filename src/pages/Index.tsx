@@ -63,7 +63,7 @@ const Problem = () => <section className="section pt-8" aria-labelledby="problem
           </div>
           <div className="relative z-10">
             <h3 className="font-semibold mb-2">기밀 문서라 ChatGPT를 사용할 수 없어요</h3>
-            <p className="text-sm text-muted-foreground">기밀 문서는 클라우드 기반 ChatGPT를 사용할 수 없습니다.</p>
+            <p className="text-sm text-muted-foreground">보안 문서라 외부에 유출되면 안돼요</p>
           </div>
         </div>
         <div className="feature-card flex items-start gap-4 p-6 relative overflow-hidden">

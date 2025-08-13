@@ -75,8 +75,7 @@ const Problem = () => <section className="section pt-8" aria-labelledby="problem
           </div>
           <div className="relative z-10">
             <h3 className="font-semibold mb-2">인터넷이 안되는 폐쇄망이에요</h3>
-            <p className="text-sm text-muted-foreground">인터넷 연결이 불안정하거나 
-폐쇄망으로 운용되는 환경에서는 AI를 사용할 수 없습니다.</p>
+            <p className="text-sm text-muted-foreground">AI를 쓰고 싶어도 못 쓰는 상황이에요</p>
           </div>
         </div>
         <div className="feature-card flex items-start gap-4 p-6 relative overflow-hidden">

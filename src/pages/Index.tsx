@@ -528,7 +528,7 @@ const HowItWorks = () => {
         <div className="text-center mt-16">
           <a href="#cta">
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105">
-              <span>지금 시작하기</span>
+              <span>바로 시작하기</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>

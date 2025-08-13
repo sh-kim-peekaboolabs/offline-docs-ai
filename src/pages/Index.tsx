@@ -69,8 +69,8 @@ const Problem = () => <section className="section" aria-labelledby="problem-head
           <div className="p-4 rounded-2xl bg-destructive/10 text-destructive mb-4">
             <ShieldCheck className="w-8 h-8" />
           </div>
-          <h3 className="font-semibold mb-2">기밀 문서 보안 때문에 AI서비스를 사용할 수 없어요</h3>
-          <p className="text-sm text-muted-foreground">기밀 문서는 클라우드 기반 AI 서비스(ChatGPT, Gemini 등)를 사용할 수 없습니다.</p>
+          <h3 className="font-semibold mb-2">기밀 문서 보안 때문에 ChatGPT를 사용할 수 없어요</h3>
+          <p className="text-sm text-muted-foreground">기밀 문서는 클라우드 기반 ChatGPT를 사용할 수 없습니다.</p>
         </div>
         <div className="feature-card flex flex-col items-center text-center p-6">
           <div className="p-4 rounded-2xl bg-orange-100 text-orange-600 mb-4">
@@ -85,7 +85,8 @@ const Problem = () => <section className="section" aria-labelledby="problem-head
             <X className="w-8 h-8" />
           </div>
           <h3 className="font-semibold mb-2">HWP 파일 미지원</h3>
-          <p className="text-sm text-muted-foreground">HWP 파일은 AI 도구(ChatGPT, Gemini, NotebookLM, Grok 등)에서 지원하지 않습니다. 매번 PDF로 변환해야 해요.</p>
+          <p className="text-sm text-muted-foreground">HWP 파일은 ChatGPT 같은 서비스에서도 지원하지 않아서 
+매번 PDF로 변환해야 해요.</p>
         </div>
       </div>
     </div>
@@ -111,35 +112,35 @@ const Features = () => <section id="features" className="section bg-secondary-li
             <WifiOff className="w-8 h-8" />
           </div>
           <h3 className="text-xl font-semibold mb-2">오프라인 요약 AI</h3>
-          <p className="text-muted-foreground">인터넷 없이 대용량 문서를 빠르게 요약합니다.</p>
+          <p className="text-muted-foreground">인터넷 없이 대용량 문서를 빠르게 요약해줘요.</p>
         </div>
         <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
             <Brain className="w-8 h-8" />
           </div>
           <h3 className="text-xl font-semibold mb-2">한국어 특화 AI</h3>
-          <p className="text-muted-foreground">한국어 문맥·문체에 최적화된 요약 결과 제공.</p>
+          <p className="text-muted-foreground">한국어 문맥·문체에 최적화된 AI를 탑재했어요.</p>
         </div>
         <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
             <FileText className="w-8 h-8" />
           </div>
           <h3 className="text-xl font-semibold mb-2">HWP 지원</h3>
-          <p className="text-muted-foreground">HWP/HWPX 문서를 직접 읽을 수 있습니다.</p>
+          <p className="text-muted-foreground">HWP/HWPX 문서를 직접 읽을 수 있어요.</p>
         </div>
         <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
             <Quote className="w-8 h-8" />
           </div>
           <h3 className="text-xl font-semibold mb-2">출처 확인</h3>
-          <p className="text-muted-foreground">각 답변에 출처 링크 또는 문서 위치 인용 자동 부착.</p>
+          <p className="text-muted-foreground">모든 답변에 문서 위치를 자동으로 파악해줘요.</p>
         </div>
         <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
             <LinkIcon className="w-8 h-8" />
           </div>
           <h3 className="text-xl font-semibold mb-2">문서·링크·텍스트 통합</h3>
-          <p className="text-muted-foreground">하나의 지식 베이스로 통합 분석.</p>
+          <p className="text-muted-foreground">하나의 지식 베이스에서 문서를 검색해요.</p>
         </div>
         <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">

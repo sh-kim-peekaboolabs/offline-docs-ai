@@ -346,7 +346,7 @@ const HowItWorks = () => <section className="section bg-secondary-lighter/30" ar
               <Quote className="w-6 h-6 text-purple-600" />
             </div>
             <h3 className="font-semibold mb-3 text-gray-900">클릭 한 번으로 출처 확인</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">AI 답변의 근거가 된 원문 위치를 클릭 한 번으로 찾아, 사실 여부를 즉시 검증할 수 있습니다</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">AI 답변의 출처 위치를 원 클릭으로 찾고, 사실 여부를 파악하세요.</p>
           </div>
         </div>
       </div>

@@ -61,32 +61,41 @@ const Trust = () => <section className="section relative overflow-hidden" aria-l
       
     </div>
   </section>;
-const Problem = () => <section className="section" aria-labelledby="problem-heading">
+const Problem = () => <section className="section pt-8" aria-labelledby="problem-heading">
     <div className="container">
       <h2 id="problem-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">왜 오프라인에서 LocalDocs가 필요한가요?</h2>
       <div className="grid md:grid-cols-3 gap-6">
-        <div className="feature-card flex flex-col items-center text-center p-6">
-          <div className="p-4 rounded-2xl bg-destructive/10 text-destructive mb-4">
-            <ShieldCheck className="w-8 h-8" />
+        <div className="feature-card flex flex-col items-center text-center p-6 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-red-100 opacity-30"></div>
+          <div className="relative z-10">
+            <div className="p-4 rounded-2xl bg-destructive/10 text-destructive mb-4">
+              <ShieldCheck className="w-8 h-8" />
+            </div>
+            <h3 className="font-semibold mb-2">기밀 문서 보안 때문에 ChatGPT를 사용할 수 없어요</h3>
+            <p className="text-sm text-muted-foreground">기밀 문서는 클라우드 기반 ChatGPT를 사용할 수 없습니다.</p>
           </div>
-          <h3 className="font-semibold mb-2">기밀 문서 보안 때문에 ChatGPT를 사용할 수 없어요</h3>
-          <p className="text-sm text-muted-foreground">기밀 문서는 클라우드 기반 ChatGPT를 사용할 수 없습니다.</p>
         </div>
-        <div className="feature-card flex flex-col items-center text-center p-6">
-          <div className="p-4 rounded-2xl bg-orange-100 text-orange-600 mb-4">
-            <WifiOff className="w-8 h-8" />
-          </div>
-          <h3 className="font-semibold mb-2">인터넷이 안되는 폐쇄망이에요</h3>
-          <p className="text-sm text-muted-foreground">인터넷 연결이 불안정하거나 
+        <div className="feature-card flex flex-col items-center text-center p-6 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-orange-100 opacity-30"></div>
+          <div className="relative z-10">
+            <div className="p-4 rounded-2xl bg-orange-100 text-orange-600 mb-4">
+              <WifiOff className="w-8 h-8" />
+            </div>
+            <h3 className="font-semibold mb-2">인터넷이 안되는 폐쇄망이에요</h3>
+            <p className="text-sm text-muted-foreground">인터넷 연결이 불안정하거나 
 폐쇄망으로 운용되는 환경에서는 AI를 사용할 수 없습니다.</p>
-        </div>
-        <div className="feature-card flex flex-col items-center text-center p-6">
-          <div className="p-4 rounded-2xl bg-red-100 text-red-600 mb-4">
-            <X className="w-8 h-8" />
           </div>
-          <h3 className="font-semibold mb-2">HWP 파일 미지원</h3>
-          <p className="text-sm text-muted-foreground">HWP 파일은 ChatGPT 같은 서비스에서도 지원하지 않아서 
+        </div>
+        <div className="feature-card flex flex-col items-center text-center p-6 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-red-100 opacity-30"></div>
+          <div className="relative z-10">
+            <div className="p-4 rounded-2xl bg-red-100 text-red-600 mb-4">
+              <X className="w-8 h-8" />
+            </div>
+            <h3 className="font-semibold mb-2">HWP 파일 미지원</h3>
+            <p className="text-sm text-muted-foreground">HWP 파일은 ChatGPT 같은 서비스에서도 지원하지 않아서 
 매번 PDF로 변환해야 해요.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -256,14 +265,46 @@ const Scenarios = () => <section id="scenarios" className="section" aria-labelle
       </ul>
     </div>
   </section>;
-const Security = () => <section id="security" className="section" aria-labelledby="security-heading">
-    <div className="container">
-      <h2 id="security-heading" className="text-2xl md:text-3xl font-semibold mb-4">보안을 최우선으로 고려합니다</h2>
-      <ul className="grid gap-4">
-        <li className="feature-card">모든 처리는 사용자의 개인 컴퓨터 환경에서 처리됩니다.</li>
-        <li className="feature-card">인터넷 연결이 없는 상태에서도 완벽하게 동작합니다.</li>
-        <li className="feature-card">PC 앱 다운로드 후 사용 가능합니다.</li>
-      </ul>
+const Security = () => <section id="security" className="section bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden" aria-labelledby="security-heading">
+    <div className="absolute inset-0 bg-gradient-to-r from-blue-100/50 to-indigo-100/50"></div>
+    <div className="absolute top-10 right-10 w-32 h-32 bg-blue-200/30 rounded-full blur-2xl"></div>
+    <div className="absolute bottom-10 left-10 w-24 h-24 bg-indigo-200/30 rounded-full blur-xl"></div>
+    <div className="container relative z-10">
+      <div className="text-center mb-8">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-600 text-white mb-4">
+          <Lock className="w-8 h-8" />
+        </div>
+        <h2 id="security-heading" className="text-2xl md:text-3xl font-semibold mb-4">보안을 최우선으로 고려합니다</h2>
+      </div>
+      <div className="grid md:grid-cols-3 gap-6">
+        <div className="feature-card bg-white/80 backdrop-blur-sm border border-blue-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="p-2 rounded-lg bg-blue-100 text-blue-600">
+              <Lock className="w-5 h-5" />
+            </div>
+            <h3 className="font-semibold">로컬 처리</h3>
+          </div>
+          <p className="text-sm text-muted-foreground">모든 처리는 사용자의 개인 컴퓨터 환경에서 처리됩니다.</p>
+        </div>
+        <div className="feature-card bg-white/80 backdrop-blur-sm border border-blue-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="p-2 rounded-lg bg-green-100 text-green-600">
+              <WifiOff className="w-5 h-5" />
+            </div>
+            <h3 className="font-semibold">오프라인 동작</h3>
+          </div>
+          <p className="text-sm text-muted-foreground">인터넷 연결이 없는 상태에서도 완벽하게 동작합니다.</p>
+        </div>
+        <div className="feature-card bg-white/80 backdrop-blur-sm border border-blue-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="p-2 rounded-lg bg-purple-100 text-purple-600">
+              <Download className="w-5 h-5" />
+            </div>
+            <h3 className="font-semibold">간편 설치</h3>
+          </div>
+          <p className="text-sm text-muted-foreground">PC 앱 다운로드 후 바로 사용 가능합니다.</p>
+        </div>
+      </div>
     </div>
   </section>;
 const HowItWorks = () => <section className="section bg-secondary-lighter/30" aria-labelledby="how-heading">
@@ -271,28 +312,28 @@ const HowItWorks = () => <section className="section bg-secondary-lighter/30" ar
       <h2 id="how-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">사용 방법</h2>
       <div className="grid md:grid-cols-4 gap-6">
         <div className="text-center group">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-white text-xl font-bold mb-4 group-hover:scale-110 transition-transform duration-300">1</div>
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white text-lg font-bold mb-4 group-hover:scale-110 transition-transform duration-300">1</div>
           <div className="feature-card p-4">
             <h3 className="font-semibold mb-2">PC 앱 설치</h3>
             <p className="text-sm text-muted-foreground">PC 앱을 설치합니다.</p>
           </div>
         </div>
         <div className="text-center group">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-white text-xl font-bold mb-4 group-hover:scale-110 transition-transform duration-300">2</div>
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white text-lg font-bold mb-4 group-hover:scale-110 transition-transform duration-300">2</div>
           <div className="feature-card p-4">
-            <h3 className="font-semibold mb-2">지식 소스 추가</h3>
-            <p className="text-sm text-muted-foreground">문서 업로드 또는 링크·텍스트 추가로 지식 소스 풀을 만듭니다.</p>
+            <h3 className="font-semibold mb-2">문서를 업로드하세요</h3>
+            <p className="text-sm text-muted-foreground">지식 베이스를 만듭니다</p>
           </div>
         </div>
         <div className="text-center group">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-white text-xl font-bold mb-4 group-hover:scale-110 transition-transform duration-300">3</div>
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white text-lg font-bold mb-4 group-hover:scale-110 transition-transform duration-300">3</div>
           <div className="feature-card p-4">
             <h3 className="font-semibold mb-2">채팅으로 확인</h3>
             <p className="text-sm text-muted-foreground">채팅창을 통해 유용한 정보를 빠르게 확인하세요.</p>
           </div>
         </div>
         <div className="text-center group">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-white text-xl font-bold mb-4 group-hover:scale-110 transition-transform duration-300">4</div>
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white text-lg font-bold mb-4 group-hover:scale-110 transition-transform duration-300">4</div>
           <div className="feature-card p-4">
             <h3 className="font-semibold mb-2">근거 기반 답변</h3>
             <p className="text-sm text-muted-foreground">질문 검색으로 근거 기반 답변과 문서 위치를 바로 확인하세요.</p>
@@ -317,7 +358,9 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             <li>최대 10개의 지식 베이스 생성</li>
             <li>(지식 베이스 당 최대 10개 문서)</li>
           </ul>
-          <a href="#cta" className="mt-6 inline-block w-full"><Button variant="hero" size="lg" className="w-full">출시 알림 신청하기</Button></a>
+          <div className="mt-6 text-center">
+            <a href="#cta"><Button variant="hero" size="lg" className="w-full">출시 알림 신청하기</Button></a>
+          </div>
         </div>
         <div className="pricing-card featured">
           <h3 className="text-xl font-semibold">Pro</h3>
@@ -331,7 +374,9 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             <li>무제한 지식 베이스 및 무제한 문서</li>
             <li>이메일 우선 지원</li>
           </ul>
-          <a href="#cta" className="mt-6 inline-block w-full"><Button variant="hero" size="lg" className="w-full">출시 알림 신청하기</Button></a>
+          <div className="mt-6 text-center">
+            <a href="#cta"><Button variant="hero" size="lg" className="w-full">출시 알림 신청하기</Button></a>
+          </div>
         </div>
         <div className="pricing-card">
           <h3 className="text-xl font-semibold">Enterprise</h3>
@@ -344,7 +389,9 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             <li>전담 기술 지원 매니저 및 SLA</li>
             <li>맞춤형 기능 개발 및 연동(협의)</li>
           </ul>
-          <a href="#cta" className="mt-6 inline-block w-full"><Button variant="hero" size="lg" className="w-full">출시 알림 신청하기</Button></a>
+          <div className="mt-6 text-center">
+            <a href="#cta"><Button variant="hero" size="lg" className="w-full">출시 알림 신청하기</Button></a>
+          </div>
         </div>
       </div>
     </div>
@@ -370,9 +417,9 @@ const CTA = () => {
       <div className="container">
         <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">출시 알림을 신청하세요.</h2>
         <p className="text-muted-foreground mb-6 text-center">출시 소식을 가장 먼저 전해 드립니다. 사내 파일로 실제 테스트할 수 있는 환경을 준비 중입니다.</p>
-        <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-4 items-end">
-            <div className="md:col-span-2">
+        <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto">
+          <div className="space-y-4">
+            <div>
               <Label htmlFor="email">이메일 주소</Label>
               <Input id="email" type="email" placeholder="you@example.com" {...register("email")} />
               {errors.email && <p className="text-sm text-destructive mt-1">{errors.email.message}</p>}
@@ -400,42 +447,42 @@ const FAQ = () => {
       name: '인터넷 없이 정말 동작하나요?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: '예. 온디바이스 실행을 기본 전제로 설계합니다. 설치 후 오프라인 상태에서도 핵심 기능을 쓰실 수 있도록 준비 중입니다.'
+        text: '네, PC앱만 설치하면 인터넷 없이 동작합니다. 문서가 외부에 유출될 일이 전혀 없습니다.'
       }
     }, {
       '@type': 'Question',
       name: '어떤 파일 형식을 지원하나요?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'HWP/HWPX, PDF, PPTX, DOCX 등을 우선 지원 대상으로 고려합니다. 상세 목록과 제약 조건은 베타 공지에서 안내드리겠습니다.'
+        text: 'HWP/HWPX, PDF, PPTX, DOCX 등을 지원합니다. 다만, 순차적으로 적용될 수 있습니다.'
       }
     }, {
       '@type': 'Question',
-      name: '결과에 인용은 어떻게 제공되나요?',
+      name: '결과 출처는 어떻게 제공되나요?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: '문서 출처 링크 또는 문서 내 위치(페이지, 문단 등)를 결과와 함께 표시합니다. 인용 형식은 데이터 소스에 따라 달라질 수 있습니다.'
+        text: 'Localdocs는 모든 결과를 문서 기반으로 제공합니다. 그래서 모든 답변엔 문서 출처 링크 또는 문서 내 위치(페이지, 문단 등)를 결과와 함께 표시합니다. 인용 형식은 데이터 소스에 따라 달라질 수 있습니다.'
       }
     }, {
       '@type': 'Question',
       name: '클라우드로 데이터가 전송되나요?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: '로컬 처리 방식을 지향합니다. 데이터는 PC 내에서만 처리되며 클라우드로 일절 전송되지 않습니다. 불안하시면, 인터넷을 끄고 실행하셔도 됩니다.'
+        text: '절대 전송되지 않습니다. 데이터는 PC 내에서만 처리되며 클라우드로 일절 전송되지 않습니다. 불안하시면, 인터넷을 끄고 실행하셔도 됩니다.'
       }
     }, {
       '@type': 'Question',
       name: '기업용 배포 모델이 있나요?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: '네, Enterprise 플랜을 통해 대규모 팀을 위한 중앙 라이선스 관리 및 폐쇄망 환경을 위한 오프라인 설치/배포를 지원합니다.'
+        text: '네, Enterprise 플랜을 통해 대규모 팀을 위한 중앙 라이선스 관리 및 폐쇄망 환경을 위한 오프라인 설치/배포를 지원합니다. 별도 문의를 통해 귀사의 환경에 맞는 최적의 솔루션을 상담해 드립니다.'
       }
     }, {
       '@type': 'Question',
       name: '한국어 특화 요약 정확도는 어느 정도인가요?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: '자체 개발한 한국어 특화 온디바이스 LLM을 기반으로 최고의 요약 성능을 목표로 하고 있습니다. 구체적인 성능 지표는 출시와 함께 공개 예정입니다.'
+        text: '자체 개발한 한국어 특화 온디바이스 LLM을 기반으로, 국내 업무 환경의 보고서, 논문, 법률 문서 등에서 최고의 요약 성능을 목표로 하고 있습니다. 구체적인 성능 지표는 출시와 함께 투명하게 공개할 예정입니다.'
       }
     }]
   };
@@ -443,12 +490,12 @@ const FAQ = () => {
       <div className="container">
         <h2 id="faq-heading" className="text-2xl md:text-3xl font-semibold mb-6">FAQ</h2>
         <div className="grid gap-4">
-          <details className="feature-card"><summary className="font-medium">인터넷 없이 정말 동작하나요?</summary><p className="mt-2 text-muted-foreground">예. 온디바이스 실행을 기본 전제로 설계합니다. 설치 후 오프라인 상태에서도 핵심 기능을 쓰실 수 있도록 준비 중입니다.</p></details>
-          <details className="feature-card"><summary className="font-medium">어떤 파일 형식을 지원하나요?</summary><p className="mt-2 text-muted-foreground">HWP/HWPX, PDF, PPTX, DOCX 등을 우선 지원 대상으로 고려합니다. 상세 목록과 제약 조건은 베타 공지에서 안내드리겠습니다.</p></details>
-          <details className="feature-card"><summary className="font-medium">결과에 인용은 어떻게 제공되나요?</summary><p className="mt-2 text-muted-foreground">문서 출처 링크 또는 문서 내 위치(페이지, 문단 등)를 결과와 함께 표시합니다.</p></details>
-          <details className="feature-card"><summary className="font-medium">클라우드로 데이터가 전송되나요?</summary><p className="mt-2 text-muted-foreground">로컬 처리 방식을 지향합니다. 데이터는 PC 내에서만 처리되며 클라우드로 일절 전송되지 않습니다.</p></details>
-          <details className="feature-card"><summary className="font-medium">기업용 배포 모델이 있나요?</summary><p className="mt-2 text-muted-foreground">네, Enterprise 플랜을 통해 중앙 라이선스 관리 및 오프라인 설치/배포를 지원합니다.</p></details>
-          <details className="feature-card"><summary className="font-medium">한국어 특화 요약 정확도는 어느 정도인가요?</summary><p className="mt-2 text-muted-foreground">국내 업무 환경의 문서에서 최고의 요약 성능을 목표로 하고 있습니다. 성능 지표는 출시와 함께 공개 예정입니다.</p></details>
+          <details className="feature-card"><summary className="font-medium">인터넷 없이 정말 동작하나요?</summary><p className="mt-2 text-muted-foreground">네, PC앱만 설치하면 인터넷 없이 동작합니다. 문서가 외부에 유출될 일이 전혀 없습니다.</p></details>
+          <details className="feature-card"><summary className="font-medium">어떤 파일 형식을 지원하나요?</summary><p className="mt-2 text-muted-foreground">HWP/HWPX, PDF, PPTX, DOCX 등을 지원합니다. 다만, 순차적으로 적용될 수 있습니다.</p></details>
+          <details className="feature-card"><summary className="font-medium">결과 출처는 어떻게 제공되나요?</summary><p className="mt-2 text-muted-foreground">Localdocs는 모든 결과를 문서 기반으로 제공합니다. 그래서 모든 답변엔 문서 출처 링크 또는 문서 내 위치(페이지, 문단 등)를 결과와 함께 표시합니다. 인용 형식은 데이터 소스에 따라 달라질 수 있습니다.</p></details>
+          <details className="feature-card"><summary className="font-medium">클라우드로 데이터가 전송되나요?</summary><p className="mt-2 text-muted-foreground">절대 전송되지 않습니다. 데이터는 PC 내에서만 처리되며 클라우드로 일절 전송되지 않습니다. 불안하시면, 인터넷을 끄고 실행하셔도 됩니다.</p></details>
+          <details className="feature-card"><summary className="font-medium">기업용 배포 모델이 있나요?</summary><p className="mt-2 text-muted-foreground">네, Enterprise 플랜을 통해 대규모 팀을 위한 중앙 라이선스 관리 및 폐쇄망 환경을 위한 오프라인 설치/배포를 지원합니다. '별도 문의'를 통해 귀사의 환경에 맞는 최적의 솔루션을 상담해 드립니다.</p></details>
+          <details className="feature-card"><summary className="font-medium">한국어 특화 요약 정확도는 어느 정도인가요?</summary><p className="mt-2 text-muted-foreground">자체 개발한 한국어 특화 온디바이스 LLM을 기반으로, 국내 업무 환경의 보고서, 논문, 법률 문서 등에서 최고의 요약 성능을 목표로 하고 있습니다. 구체적인 성능 지표는 출시와 함께 투명하게 공개할 예정입니다.</p></details>
         </div>
         <script type="application/ld+json" dangerouslySetInnerHTML={{
         __html: JSON.stringify(faqJsonLd)

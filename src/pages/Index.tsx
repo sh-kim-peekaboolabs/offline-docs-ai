@@ -97,7 +97,7 @@ const Solution = () => <section className="section" aria-labelledby="solution-he
     <div className="container">
       <h2 id="solution-heading" className="text-2xl md:text-3xl font-semibold mb-8">이젠 localdocs 하나로 끝내세요.</h2>
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="feature-card flex items-start gap-4"><WifiOff className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">인터넷 없이 PC에서 실행되는 한국어 특화 요약 AI</h3></div></div>
+        <div className="feature-card flex items-start gap-4"><WifiOff className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">한국어를 정말 잘하는 AI에게 맡기세요</h3><p className="text-sm text-muted-foreground">인터넷 없이 PC에서 실행되는 한국어 특화 요약 AI</p></div></div>
         <div className="feature-card flex items-start gap-4"><FileText className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">다양한 포맷 지원</h3><p className="text-sm text-muted-foreground">HWP, PPTX, PDF, DOCX, XLSX/CSV, 스캔 PDF(OCR) 등</p></div></div>
         <div className="feature-card flex items-start gap-4"><Quote className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">모든 답변에 인용 제공</h3><p className="text-sm text-muted-foreground">출처를 즉시 검증할 수 있습니다.</p></div></div>
         <div className="feature-card flex items-start gap-4"><Lock className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">모든 문서는 로컬에서만 처리</h3><p className="text-sm text-muted-foreground">외부 유출 없이 안전합니다.</p></div></div>

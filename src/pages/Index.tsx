@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download } from "lucide-react";
-import logo from "/lovable-uploads/5726b51d-1973-4f73-9b73-62db08774f61.png";
+import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain } from "lucide-react";
+import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 
 const formSchema = z.object({
   email: z.string().email("유효한 이메일을 입력해 주세요."),
@@ -21,7 +21,7 @@ const Nav = () => (
     <div className="container flex items-center justify-between py-4">
       <div className="flex items-center gap-3">
         <img src={logo} alt="localdocs 3D 문서 스택 로고" width={40} height={40} className="logo-interactive" loading="lazy" />
-        <div className="text-sm">by <span className="font-medium" style={{ color: "hsl(var(--brand-purple))" }}>PeekabooLabs</span></div>
+        <div className="text-xl font-bold text-primary">Localdocs</div>
       </div>
       <nav className="hidden md:flex items-center gap-6 text-sm">
         <a href="#features" className="story-link">제품 특징</a>
@@ -44,10 +44,10 @@ const Hero = () => (
     <div className="container relative py-20 md:py-28 text-center">
       <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">오프라인 실행 · HWP 지원 · 한국어 특화 요약 · 인용 제공</div>
       <h1 className="mx-auto max-w-3xl text-4xl md:text-5xl font-bold leading-tight">
-        인터넷 없이, 보안 문서를 AI가 요약, 정리, 검색해 드립니다
+        인터넷 없이, 문서를 요약, 정리, 검색하세요.
       </h1>
       <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-        한국어 특화·HWP를 지원하는 온디바이스 요약 AI. PC에서 오프라인으로 실행되며, 모든 결과에 인용을 제공합니다.
+        나만의 AI 리서치 파트너, Localdocs
       </p>
       <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
         <a href="#cta"><Button variant="hero" size="xl">출시 알림 신청하기</Button></a>
@@ -57,8 +57,13 @@ const Hero = () => (
 );
 
 const Trust = () => (
-  <section className="section" aria-labelledby="trust-heading">
-    <div className="container">
+  <section className="section relative overflow-hidden" aria-labelledby="trust-heading">
+    <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-primary/20"></div>
+      <div className="absolute top-0 left-1/4 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-primary/10 rounded-full blur-3xl"></div>
+    </div>
+    <div className="container relative">
       <h2 id="trust-heading" className="sr-only">신뢰 맥락</h2>
       <p className="text-center text-lg text-muted-foreground max-w-4xl mx-auto">
         클라우드 업로드가 불가능한 환경에서도 AI를 활용할 수 있도록 설계했습니다. 내부망, 인터넷 음영 지역, 강력한 보안 규정을 준수해야 하는 조직을 위한 선택입니다.
@@ -73,9 +78,24 @@ const Problem = () => (
     <div className="container">
       <h2 id="problem-heading" className="text-2xl md:text-3xl font-semibold mb-6">왜 오프라인에서 요약 AI가 필요한가요</h2>
       <ul className="grid gap-4 md:gap-6">
-        <li className="feature-card"><p>기밀 문서는 클라우드 기반 AI 서비스(ChatGPT, Gemini 등)를 사용할 수 없습니다.</p></li>
-        <li className="feature-card"><p>인터넷 연결이 불안정하거나 폐쇄망으로 운용되는 환경에서는 AI를 아예 사용할 수 없습니다.</p></li>
-        <li className="feature-card"><p>한글 HWP 파일은 다수의 AI 도구에서 정상적으로 처리되지 않습니다.</p></li>
+        <li className="feature-card flex items-start gap-4">
+          <div className="p-3 rounded-lg bg-destructive/10 text-destructive">
+            <ShieldCheck className="w-6 h-6" />
+          </div>
+          <p>기밀 문서는 클라우드 기반 AI 서비스(ChatGPT, Gemini 등)를 사용할 수 없습니다.</p>
+        </li>
+        <li className="feature-card flex items-start gap-4">
+          <div className="p-3 rounded-lg bg-orange-100 text-orange-600">
+            <WifiOff className="w-6 h-6" />
+          </div>
+          <p>인터넷 연결이 불안정하거나 폐쇄망으로 운용되는 환경에서는 AI를 아예 사용할 수 없습니다.</p>
+        </li>
+        <li className="feature-card flex items-start gap-4">
+          <div className="p-3 rounded-lg bg-red-100 text-red-600">
+            <X className="w-6 h-6" />
+          </div>
+          <p>한글 HWP 파일은 다수의 AI 도구(ChatGPT, Gemini, NotebookLM, Grok 등)에서 정상적으로 업로드할 수 없습니다.</p>
+        </li>
       </ul>
     </div>
   </section>
@@ -97,16 +117,52 @@ const Solution = () => (
 );
 
 const Features = () => (
-  <section id="features" className="section" aria-labelledby="features-heading">
+  <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
-      <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8">핵심 기능</h2>
+      <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">핵심 기능</h2>
       <div className="grid md:grid-cols-3 gap-6">
-        <div className="feature-card"><h3 className="text-xl font-semibold mb-2">오프라인 요약 AI</h3><p className="text-muted-foreground">인터넷 없이 대용량 문서를 빠르게 요약합니다.</p></div>
-        <div className="feature-card"><h3 className="text-xl font-semibold mb-2">한국어 특화 AI</h3><p className="text-muted-foreground">한국어 문맥·문체에 최적화된 요약 결과 제공.</p></div>
-        <div className="feature-card"><h3 className="text-xl font-semibold mb-2">HWP 지원</h3><p className="text-muted-foreground">HWP/HWPX 문서를 직접 읽을 수 있습니다.</p></div>
-        <div className="feature-card"><h3 className="text-xl font-semibold mb-2">인용 제공</h3><p className="text-muted-foreground">각 답변에 출처 링크 또는 문서 위치 인용 자동 부착.</p></div>
-        <div className="feature-card"><h3 className="text-xl font-semibold mb-2">문서·링크·텍스트 통합</h3><p className="text-muted-foreground">하나의 지식 베이스로 통합 분석.</p></div>
-        <div className="feature-card"><h3 className="text-xl font-semibold mb-2">오프라인 지식 검색</h3><p className="text-muted-foreground">선택한 문서 내 키워드·질문 기반 검색.</p></div>
+        <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
+          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+            <WifiOff className="w-8 h-8" />
+          </div>
+          <h3 className="text-xl font-semibold mb-2">오프라인 요약 AI</h3>
+          <p className="text-muted-foreground">인터넷 없이 대용량 문서를 빠르게 요약합니다.</p>
+        </div>
+        <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
+          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+            <Brain className="w-8 h-8" />
+          </div>
+          <h3 className="text-xl font-semibold mb-2">한국어 특화 AI</h3>
+          <p className="text-muted-foreground">한국어 문맥·문체에 최적화된 요약 결과 제공.</p>
+        </div>
+        <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
+          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+            <FileText className="w-8 h-8" />
+          </div>
+          <h3 className="text-xl font-semibold mb-2">HWP 지원</h3>
+          <p className="text-muted-foreground">HWP/HWPX 문서를 직접 읽을 수 있습니다.</p>
+        </div>
+        <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
+          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+            <Quote className="w-8 h-8" />
+          </div>
+          <h3 className="text-xl font-semibold mb-2">인용 제공</h3>
+          <p className="text-muted-foreground">각 답변에 출처 링크 또는 문서 위치 인용 자동 부착.</p>
+        </div>
+        <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
+          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+            <LinkIcon className="w-8 h-8" />
+          </div>
+          <h3 className="text-xl font-semibold mb-2">문서·링크·텍스트 통합</h3>
+          <p className="text-muted-foreground">하나의 지식 베이스로 통합 분석.</p>
+        </div>
+        <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
+          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+            <Search className="w-8 h-8" />
+          </div>
+          <h3 className="text-xl font-semibold mb-2">오프라인 지식 검색</h3>
+          <p className="text-muted-foreground">선택한 문서 내 키워드·질문 기반 검색.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -115,24 +171,94 @@ const Features = () => (
 const Comparison = () => (
   <section className="section" aria-labelledby="comparison-heading">
     <div className="container">
-      <h2 id="comparison-heading" className="text-2xl md:text-3xl font-semibold mb-6">클라우드 AI와 무엇이 다른가요</h2>
+      <h2 id="comparison-heading" className="text-2xl md:text-3xl font-semibold mb-6 text-center">클라우드 AI와 무엇이 다른가요</h2>
       <div className="overflow-x-auto">
-        <table className="w-full comparison-table">
-          <thead>
-            <tr>
-              <th>항목</th>
-              <th>일반 클라우드 AI</th>
-              <th>localdocs</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>인터넷 없이 실행</td><td>제한적</td><td>가능</td></tr>
-            <tr><td>HWP 지원</td><td>미지원 또는 불안정</td><td>기본 지원</td></tr>
-            <tr><td>한국어 최적화 요약</td><td>일반 수준</td><td>한국어 특화</td></tr>
-            <tr><td>인용 제공</td><td>제한적</td><td>기본 제공</td></tr>
-            <tr><td>데이터 이동</td><td>외부 전송</td><td>로컬 유지</td></tr>
-          </tbody>
-        </table>
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+          <table className="w-full">
+            <thead className="bg-gradient-to-r from-primary/5 to-primary/10">
+              <tr>
+                <th className="text-left p-6 font-semibold text-lg">항목</th>
+                <th className="text-center p-6 font-semibold text-lg text-gray-600">일반 클라우드 AI</th>
+                <th className="text-center p-6 font-semibold text-lg text-primary">Localdocs</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              <tr className="hover:bg-gray-50/50 transition-colors">
+                <td className="p-6 font-medium">인터넷 없이 실행</td>
+                <td className="text-center p-6">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-red-100 text-red-700">
+                    <X className="w-4 h-4 mr-1" />
+                    제한적
+                  </span>
+                </td>
+                <td className="text-center p-6">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-700">
+                    <CheckCircle className="w-4 h-4 mr-1" />
+                    가능
+                  </span>
+                </td>
+              </tr>
+              <tr className="hover:bg-gray-50/50 transition-colors">
+                <td className="p-6 font-medium">HWP 지원</td>
+                <td className="text-center p-6">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-red-100 text-red-700">
+                    <X className="w-4 h-4 mr-1" />
+                    미지원 또는 불안정
+                  </span>
+                </td>
+                <td className="text-center p-6">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-700">
+                    <CheckCircle className="w-4 h-4 mr-1" />
+                    기본 지원
+                  </span>
+                </td>
+              </tr>
+              <tr className="hover:bg-gray-50/50 transition-colors">
+                <td className="p-6 font-medium">한국어 최적화 요약</td>
+                <td className="text-center p-6">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-yellow-100 text-yellow-700">
+                    일반 수준
+                  </span>
+                </td>
+                <td className="text-center p-6">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-700">
+                    <Zap className="w-4 h-4 mr-1" />
+                    한국어 특화
+                  </span>
+                </td>
+              </tr>
+              <tr className="hover:bg-gray-50/50 transition-colors">
+                <td className="p-6 font-medium">인용 제공</td>
+                <td className="text-center p-6">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-yellow-100 text-yellow-700">
+                    제한적
+                  </span>
+                </td>
+                <td className="text-center p-6">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-700">
+                    <CheckCircle className="w-4 h-4 mr-1" />
+                    기본 제공
+                  </span>
+                </td>
+              </tr>
+              <tr className="hover:bg-gray-50/50 transition-colors">
+                <td className="p-6 font-medium">데이터 이동</td>
+                <td className="text-center p-6">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-red-100 text-red-700">
+                    <Cloud className="w-4 h-4 mr-1" />
+                    외부 전송
+                  </span>
+                </td>
+                <td className="text-center p-6">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-700">
+                    <Lock className="w-4 h-4 mr-1" />
+                    로컬 유지
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </section>

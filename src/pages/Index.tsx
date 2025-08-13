@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 
@@ -606,9 +607,31 @@ const CTA = () => {
     resolver: zodResolver(formSchema)
   });
   const onSubmit = async (values: FormValues) => {
-    // TODO: wire to Supabase or email service if needed
-    toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
-    reset();
+    try {
+      const { error } = await supabase
+        .from('email_signups')
+        .insert([
+          { 
+            email: values.email,
+            consent: values.consent 
+          }
+        ]);
+
+      if (error) {
+        if (error.code === '23505') { // Unique constraint violation
+          toast.error("이미 등록된 이메일입니다.");
+        } else {
+          toast.error("등록 중 오류가 발생했습니다. 다시 시도해 주세요.");
+        }
+        return;
+      }
+
+      toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
+      reset();
+    } catch (error) {
+      console.error('Email signup error:', error);
+      toast.error("등록 중 오류가 발생했습니다. 다시 시도해 주세요.");
+    }
   };
   return <section id="cta" className="section" aria-labelledby="cta-heading">
       <div className="container">

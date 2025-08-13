@@ -1,12 +1,336 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
+import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download } from "lucide-react";
+import logo from "/lovable-uploads/5726b51d-1973-4f73-9b73-62db08774f61.png";
+
+const formSchema = z.object({
+  email: z.string().email("유효한 이메일을 입력해 주세요."),
+  consent: z.literal(true, { errorMap: () => ({ message: "동의가 필요합니다." }) }),
+});
+
+type FormValues = z.infer<typeof formSchema>;
+
+const Nav = () => (
+  <header className="sticky top-0 z-40 bg-background/80 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b">
+    <div className="container flex items-center justify-between py-4">
+      <div className="flex items-center gap-3">
+        <img src={logo} alt="localdocs 3D 문서 스택 로고" width={40} height={40} className="logo-interactive" loading="lazy" />
+        <div className="text-sm">by <span className="font-medium" style={{ color: "hsl(var(--brand-purple))" }}>PeekabooLabs</span></div>
+      </div>
+      <nav className="hidden md:flex items-center gap-6 text-sm">
+        <a href="#features" className="story-link">제품 특징</a>
+        <a href="#scenarios" className="story-link">사용 시나리오</a>
+        <a href="#security" className="story-link">보안</a>
+        <a href="#pricing" className="story-link">요금제</a>
+        <a href="#faq" className="story-link">FAQ</a>
+        <a href="#cta" className="story-link">알림 신청</a>
+      </nav>
+      <div className="hidden md:block">
+        <a href="#cta"><Button variant="hero" size="lg">알림 신청하기</Button></a>
+      </div>
+    </div>
+  </header>
+);
+
+const Hero = () => (
+  <section className="relative overflow-hidden">
+    <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
+    <div className="container relative py-20 md:py-28 text-center">
+      <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">오프라인 실행 · HWP 지원 · 한국어 특화 요약 · 인용 제공</div>
+      <h1 className="mx-auto max-w-3xl text-4xl md:text-5xl font-bold leading-tight">
+        인터넷 없이, 보안 문서를 AI가 요약, 정리, 검색해 드립니다
+      </h1>
+      <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+        한국어 특화·HWP를 지원하는 온디바이스 요약 AI. PC에서 오프라인으로 실행되며, 모든 결과에 인용을 제공합니다.
+      </p>
+      <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#cta"><Button variant="hero" size="xl">출시 알림 신청하기</Button></a>
+      </div>
+    </div>
+  </section>
+);
+
+const Trust = () => (
+  <section className="section" aria-labelledby="trust-heading">
+    <div className="container">
+      <h2 id="trust-heading" className="sr-only">신뢰 맥락</h2>
+      <p className="text-center text-lg text-muted-foreground max-w-4xl mx-auto">
+        클라우드 업로드가 불가능한 환경에서도 AI를 활용할 수 있도록 설계했습니다. 내부망, 인터넷 음영 지역, 강력한 보안 규정을 준수해야 하는 조직을 위한 선택입니다.
+        <span className="ml-2 font-medium text-primary">로컬 실행 · 오프라인 · 데이터 유출 없음</span>
+      </p>
+    </div>
+  </section>
+);
+
+const Problem = () => (
+  <section className="section" aria-labelledby="problem-heading">
+    <div className="container">
+      <h2 id="problem-heading" className="text-2xl md:text-3xl font-semibold mb-6">왜 오프라인에서 요약 AI가 필요한가요</h2>
+      <ul className="grid gap-4 md:gap-6">
+        <li className="feature-card"><p>기밀 문서는 클라우드 기반 AI 서비스(ChatGPT, Gemini 등)를 사용할 수 없습니다.</p></li>
+        <li className="feature-card"><p>인터넷 연결이 불안정하거나 폐쇄망으로 운용되는 환경에서는 AI를 아예 사용할 수 없습니다.</p></li>
+        <li className="feature-card"><p>한글 HWP 파일은 다수의 AI 도구에서 정상적으로 처리되지 않습니다.</p></li>
+      </ul>
+    </div>
+  </section>
+);
+
+const Solution = () => (
+  <section className="section" aria-labelledby="solution-heading">
+    <div className="container">
+      <h2 id="solution-heading" className="text-2xl md:text-3xl font-semibold mb-8">localdocs 하나로 끝내세요.</h2>
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="feature-card flex items-start gap-4"><WifiOff className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">인터넷 없이 PC에서 실행되는 한국어 특화 요약 AI</h3></div></div>
+        <div className="feature-card flex items-start gap-4"><FileText className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">다양한 포맷 지원</h3><p className="text-sm text-muted-foreground">HWP, PPTX, PDF, DOCX, XLSX/CSV, 스캔 PDF(OCR) 등</p></div></div>
+        <div className="feature-card flex items-start gap-4"><Quote className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">모든 답변에 인용 제공</h3><p className="text-sm text-muted-foreground">출처를 즉시 검증할 수 있습니다.</p></div></div>
+        <div className="feature-card flex items-start gap-4"><Lock className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">모든 문서는 로컬에서만 처리</h3><p className="text-sm text-muted-foreground">외부 유출 없이 안전합니다.</p></div></div>
+      </div>
+      <div className="text-center mt-8"><a href="#cta"><Button variant="hero" size="lg">출시 알림 신청하기</Button></a></div>
+    </div>
+  </section>
+);
+
+const Features = () => (
+  <section id="features" className="section" aria-labelledby="features-heading">
+    <div className="container">
+      <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8">핵심 기능</h2>
+      <div className="grid md:grid-cols-3 gap-6">
+        <div className="feature-card"><h3 className="text-xl font-semibold mb-2">오프라인 요약 AI</h3><p className="text-muted-foreground">인터넷 없이 대용량 문서를 빠르게 요약합니다.</p></div>
+        <div className="feature-card"><h3 className="text-xl font-semibold mb-2">한국어 특화 AI</h3><p className="text-muted-foreground">한국어 문맥·문체에 최적화된 요약 결과 제공.</p></div>
+        <div className="feature-card"><h3 className="text-xl font-semibold mb-2">HWP 지원</h3><p className="text-muted-foreground">HWP/HWPX 문서를 직접 읽을 수 있습니다.</p></div>
+        <div className="feature-card"><h3 className="text-xl font-semibold mb-2">인용 제공</h3><p className="text-muted-foreground">각 답변에 출처 링크 또는 문서 위치 인용 자동 부착.</p></div>
+        <div className="feature-card"><h3 className="text-xl font-semibold mb-2">문서·링크·텍스트 통합</h3><p className="text-muted-foreground">하나의 지식 베이스로 통합 분석.</p></div>
+        <div className="feature-card"><h3 className="text-xl font-semibold mb-2">오프라인 지식 검색</h3><p className="text-muted-foreground">선택한 문서 내 키워드·질문 기반 검색.</p></div>
+      </div>
+    </div>
+  </section>
+);
+
+const Comparison = () => (
+  <section className="section" aria-labelledby="comparison-heading">
+    <div className="container">
+      <h2 id="comparison-heading" className="text-2xl md:text-3xl font-semibold mb-6">클라우드 AI와 무엇이 다른가요</h2>
+      <div className="overflow-x-auto">
+        <table className="w-full comparison-table">
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th>일반 클라우드 AI</th>
+              <th>localdocs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>인터넷 없이 실행</td><td>제한적</td><td>가능</td></tr>
+            <tr><td>HWP 지원</td><td>미지원 또는 불안정</td><td>기본 지원</td></tr>
+            <tr><td>한국어 최적화 요약</td><td>일반 수준</td><td>한국어 특화</td></tr>
+            <tr><td>인용 제공</td><td>제한적</td><td>기본 제공</td></tr>
+            <tr><td>데이터 이동</td><td>외부 전송</td><td>로컬 유지</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+);
+
+const Scenarios = () => (
+  <section id="scenarios" className="section" aria-labelledby="scenarios-heading">
+    <div className="container">
+      <h2 id="scenarios-heading" className="text-2xl md:text-3xl font-semibold mb-4">이런 환경에서 효과적입니다</h2>
+      <ul className="grid md:grid-cols-2 gap-4">
+        <li className="feature-card"><strong>엔터프라이즈 기업</strong>: 반도체, 차량 등 NDA 문서 혹은 사내 표준서를 요약·검색</li>
+        <li className="feature-card"><strong>법무법인</strong>: 방대한 소송 자료, 계약서, 판례의 핵심 쟁점 추출</li>
+        <li className="feature-card"><strong>투자사 및 금융권</strong>: 기업 리포트, 실사 자료 핵심 자료 분석 및 정리</li>
+        <li className="feature-card"><strong>군사 및 공공기관</strong>: 폐쇄망 환경에서 한글파일 분석 지원</li>
+      </ul>
+    </div>
+  </section>
+);
+
+const Security = () => (
+  <section id="security" className="section" aria-labelledby="security-heading">
+    <div className="container">
+      <h2 id="security-heading" className="text-2xl md:text-3xl font-semibold mb-4">보안을 최우선으로 고려합니다</h2>
+      <ul className="grid gap-4">
+        <li className="feature-card">모든 처리는 사용자의 개인 컴퓨터 환경에서 처리됩니다.</li>
+        <li className="feature-card">인터넷 연결이 없는 상태에서도 완벽하게 동작합니다.</li>
+        <li className="feature-card">PC 앱 다운로드 후 사용 가능합니다.</li>
+      </ul>
+    </div>
+  </section>
+);
+
+const HowItWorks = () => (
+  <section className="section" aria-labelledby="how-heading">
+    <div className="container">
+      <h2 id="how-heading" className="text-2xl md:text-3xl font-semibold mb-6">사용 방법</h2>
+      <ol className="grid md:grid-cols-2 gap-4 list-decimal pl-6">
+        <li className="feature-card">PC 앱을 설치합니다.</li>
+        <li className="feature-card">문서 업로드 또는 링크·텍스트 추가로 지식 소스 풀을 만듭니다.</li>
+        <li className="feature-card">채팅창을 통해 유용한 정보를 빠르게 확인하세요.</li>
+        <li className="feature-card">질문 검색으로 근거 기반 답변과 문서 위치를 바로 확인하세요.</li>
+      </ol>
+    </div>
+  </section>
+);
+
+const Pricing = () => (
+  <section id="pricing" className="section" aria-labelledby="pricing-heading">
+    <div className="container">
+      <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4">나에게 맞는 요금제를 선택하세요</h2>
+      <p className="text-muted-foreground mb-8">개인적인 문서 탐색은 무료로 시작하세요. 데이터 분석, 보고서 작성 등 전문가 수준의 생산성이 필요하다면 Pro를, 조직을 위한 보안과 관리가 필요하다면 Enterprise를 선택하세요.</p>
+      <div className="grid md:grid-cols-3 gap-6">
+        <div className="pricing-card">
+          <h3 className="text-xl font-semibold">Free</h3>
+          <p className="mt-1 text-muted-foreground">핵심 기능을 경험하는 가장 좋은 방법</p>
+          <p className="mt-4 text-2xl font-bold">₩0 <span className="text-sm font-medium text-muted-foreground">/ 평생</span></p>
+          <ul className="mt-4 space-y-2 text-sm">
+            <li>오프라인 AI 요약·검색</li>
+            <li>기본 문서 지원(HWP, PDF, PPTX, DOCX)</li>
+            <li>답변 내 인용 제공</li>
+            <li>최대 10개의 지식 베이스 생성</li>
+            <li>(지식 베이스 당 최대 10개 문서)</li>
+          </ul>
+          <a href="#cta" className="mt-6 inline-block"><Button variant="hero" size="lg">출시 알림 신청하기</Button></a>
+        </div>
+        <div className="pricing-card featured">
+          <h3 className="text-xl font-semibold">Pro</h3>
+          <p className="mt-1 text-muted-foreground">데이터 분석부터 보고서 작성까지, 전문가를 위한 생산성 도구</p>
+          <p className="mt-4 text-2xl font-bold">$19 <span className="text-sm font-medium text-muted-foreground">/ 사용자 / 월</span></p>
+          <ul className="mt-4 space-y-2 text-sm">
+            <li>Free의 모든 기능 포함</li>
+            <li>고급 문서 지원(XLSX/CSV, 스캔 PDF OCR)</li>
+            <li>요약 결과 내보내기(Word, PPTX, Markdown)</li>
+            <li>커스텀 요약 템플릿(지원 예정)</li>
+            <li>무제한 지식 베이스 및 무제한 문서</li>
+            <li>이메일 우선 지원</li>
+          </ul>
+          <a href="#cta" className="mt-6 inline-block"><Button variant="hero" size="lg">출시 알림 신청하기</Button></a>
+        </div>
+        <div className="pricing-card">
+          <h3 className="text-xl font-semibold">Enterprise</h3>
+          <p className="mt-1 text-muted-foreground">보안, 배포, 중앙 관리가 중요한 조직을 위한 맞춤형 솔루션</p>
+          <p className="mt-4 text-2xl font-bold">별도 문의</p>
+          <ul className="mt-4 space-y-2 text-sm">
+            <li>Pro의 모든 기능 포함</li>
+            <li>대규모 팀을 위한 중앙 라이선스 관리</li>
+            <li>폐쇄망 환경을 위한 오프라인 설치 지원</li>
+            <li>전담 기술 지원 매니저 및 SLA</li>
+            <li>맞춤형 기능 개발 및 연동(협의)</li>
+          </ul>
+          <a href="#cta" className="mt-6 inline-block"><Button variant="hero" size="lg">출시 알림 신청하기</Button></a>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+const CTA = () => {
+  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormValues>({ resolver: zodResolver(formSchema) });
+
+  const onSubmit = async (values: FormValues) => {
+    // TODO: wire to Supabase or email service if needed
+    toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
+    reset();
+  };
+
+  return (
+    <section id="cta" className="section" aria-labelledby="cta-heading">
+      <div className="container">
+        <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3">출시 알림을 받아보시겠습니까</h2>
+        <p className="text-muted-foreground mb-6">출시 소식을 가장 먼저 전해 드립니다. 사내 파일로 실제 테스트할 수 있는 환경을 준비 중입니다.</p>
+        <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl mx-auto grid gap-4">
+          <div className="grid gap-2">
+            <Label htmlFor="email">이메일 주소</Label>
+            <Input id="email" type="email" placeholder="you@example.com" {...register("email")} />
+            {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
+          </div>
+          <div className="flex items-center gap-2">
+            <Checkbox id="consent" {...register("consent")} />
+            <Label htmlFor="consent" className="text-sm text-muted-foreground">개인정보 수집 및 알림 수신에 동의합니다.</Label>
+          </div>
+          {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}
+          <div>
+            <Button type="submit" variant="hero" size="lg" disabled={isSubmitting}>알림 신청하기</Button>
+          </div>
+          <p className="text-xs text-muted-foreground">제출하신 이메일은 베타 알림과 안내 외 용도로 사용하지 않습니다.</p>
+        </form>
+      </div>
+    </section>
+  );
+};
+
+const FAQ = () => {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: '인터넷 없이 정말 동작하나요?', acceptedAnswer: { '@type': 'Answer', text: '예. 온디바이스 실행을 기본 전제로 설계합니다. 설치 후 오프라인 상태에서도 핵심 기능을 쓰실 수 있도록 준비 중입니다.' } },
+      { '@type': 'Question', name: '어떤 파일 형식을 지원하나요?', acceptedAnswer: { '@type': 'Answer', text: 'HWP/HWPX, PDF, PPTX, DOCX 등을 우선 지원 대상으로 고려합니다. 상세 목록과 제약 조건은 베타 공지에서 안내드리겠습니다.' } },
+      { '@type': 'Question', name: '결과에 인용은 어떻게 제공되나요?', acceptedAnswer: { '@type': 'Answer', text: '문서 출처 링크 또는 문서 내 위치(페이지, 문단 등)를 결과와 함께 표시합니다. 인용 형식은 데이터 소스에 따라 달라질 수 있습니다.' } },
+      { '@type': 'Question', name: '클라우드로 데이터가 전송되나요?', acceptedAnswer: { '@type': 'Answer', text: '로컬 처리 방식을 지향합니다. 데이터는 PC 내에서만 처리되며 클라우드로 일절 전송되지 않습니다. 불안하시면, 인터넷을 끄고 실행하셔도 됩니다.' } },
+      { '@type': 'Question', name: '기업용 배포 모델이 있나요?', acceptedAnswer: { '@type': 'Answer', text: '네, Enterprise 플랜을 통해 대규모 팀을 위한 중앙 라이선스 관리 및 폐쇄망 환경을 위한 오프라인 설치/배포를 지원합니다.' } },
+      { '@type': 'Question', name: '한국어 특화 요약 정확도는 어느 정도인가요?', acceptedAnswer: { '@type': 'Answer', text: '자체 개발한 한국어 특화 온디바이스 LLM을 기반으로 최고의 요약 성능을 목표로 하고 있습니다. 구체적인 성능 지표는 출시와 함께 공개 예정입니다.' } }
+    ]
+  };
+
+  return (
+    <section id="faq" className="section" aria-labelledby="faq-heading">
+      <div className="container">
+        <h2 id="faq-heading" className="text-2xl md:text-3xl font-semibold mb-6">FAQ</h2>
+        <div className="grid gap-4">
+          <details className="feature-card"><summary className="font-medium">인터넷 없이 정말 동작하나요?</summary><p className="mt-2 text-muted-foreground">예. 온디바이스 실행을 기본 전제로 설계합니다. 설치 후 오프라인 상태에서도 핵심 기능을 쓰실 수 있도록 준비 중입니다.</p></details>
+          <details className="feature-card"><summary className="font-medium">어떤 파일 형식을 지원하나요?</summary><p className="mt-2 text-muted-foreground">HWP/HWPX, PDF, PPTX, DOCX 등을 우선 지원 대상으로 고려합니다. 상세 목록과 제약 조건은 베타 공지에서 안내드리겠습니다.</p></details>
+          <details className="feature-card"><summary className="font-medium">결과에 인용은 어떻게 제공되나요?</summary><p className="mt-2 text-muted-foreground">문서 출처 링크 또는 문서 내 위치(페이지, 문단 등)를 결과와 함께 표시합니다.</p></details>
+          <details className="feature-card"><summary className="font-medium">클라우드로 데이터가 전송되나요?</summary><p className="mt-2 text-muted-foreground">로컬 처리 방식을 지향합니다. 데이터는 PC 내에서만 처리되며 클라우드로 일절 전송되지 않습니다.</p></details>
+          <details className="feature-card"><summary className="font-medium">기업용 배포 모델이 있나요?</summary><p className="mt-2 text-muted-foreground">네, Enterprise 플랜을 통해 중앙 라이선스 관리 및 오프라인 설치/배포를 지원합니다.</p></details>
+          <details className="feature-card"><summary className="font-medium">한국어 특화 요약 정확도는 어느 정도인가요?</summary><p className="mt-2 text-muted-foreground">국내 업무 환경의 문서에서 최고의 요약 성능을 목표로 하고 있습니다. 성능 지표는 출시와 함께 공개 예정입니다.</p></details>
+        </div>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      </div>
+    </section>
+  );
+};
+
+const Footer = () => (
+  <footer className="border-t">
+    <div className="container py-8 text-sm">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="text-muted-foreground">© PeekabooLabs. All rights reserved. 2025</div>
+        <nav className="flex items-center gap-4">
+          <a href="#" className="story-link">개인정보처리방침</a>
+          <a href="#" className="story-link">이용약관</a>
+          <a href="#cta" className="story-link">문의</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+);
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div>
+      <Nav />
+      <main>
+        <Hero />
+        <Trust />
+        <Problem />
+        <Solution />
+        <Features />
+        <Comparison />
+        <Scenarios />
+        <Security />
+        <HowItWorks />
+        <Pricing />
+        <CTA />
+        <FAQ />
+      </main>
+      <Footer />
     </div>
   );
 };

@@ -2,22 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Design System - HSL only */
+/* Fonts */
+@import url("https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/pretendard.css");
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core palette */
+    --background: 210 20% 98%; /* #F9FAFB */
+    --foreground: 222.2 47.4% 11.2%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222.2 47.4% 11.2%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222.2 47.4% 11.2%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 221.2 83.2% 53.3%; /* #2563EB */
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -26,7 +27,7 @@ All colors MUST be HSL.
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 214.3 94.1% 92.2%; /* blue-100 for soft badges */
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -34,25 +35,30 @@ All colors MUST be HSL.
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 221.2 83.2% 53.3%;
 
     --radius: 0.5rem;
 
+    /* Sidebar (kept for shadcn) */
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
+    --sidebar-primary: 224.3 76.3% 48%;
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Brand additions */
+    --brand-purple: 309 23% 57%; /* #a575af */
+    --brand-pink: 329 67% 55%;   /* #d84190 */
+
+    /* Gradients & shadows */
+    --gradient-primary: linear-gradient(135deg, hsl(226.5 72.7% 40.2%) 0%, hsl(221.2 83.2% 53.3%) 100%);
+    --gradient-subtle: linear-gradient(135deg, hsl(214.3 94.1% 92.2%) 0%, hsl(210 20% 98%) 100%);
+
+    --shadow-elegant: 0 10px 30px -10px hsl(221.2 83.2% 53.3% / 0.25);
+    --shadow-glow: 0 0 40px hsl(221.2 83.2% 53.3% / 0.35);
   }
 
   .dark {
@@ -83,6 +89,7 @@ All colors MUST be HSL.
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -95,11 +102,41 @@ All colors MUST be HSL.
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-  }
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; font-family: 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, sans-serif; }
 }
+
+@layer utilities {
+  .bg-gradient-primary { background-image: var(--gradient-primary); }
+  .bg-gradient-subtle { background-image: var(--gradient-subtle); }
+  .shadow-elevated { box-shadow: var(--shadow-elegant); }
+
+  /* Interactive underline */
+  .story-link { position: relative; display: inline-block; }
+  .story-link::after { content: ""; position: absolute; left: 0; bottom: -2px; width: 100%; height: 2px; background: hsl(var(--primary)); transform: scaleX(0); transform-origin: bottom right; transition: transform .3s; }
+  .story-link:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+
+  /* Sections */
+  .section { padding: 80px 0; }
+  .section-sm { padding: 60px 0; }
+  .section-lg { padding: 120px 0; }
+
+  /* Cards */
+  .feature-card { background: hsl(var(--card)); border: 1px solid hsl(var(--border)); border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px hsl(var(--foreground) / 0.05); transition: transform .2s ease, box-shadow .2s ease; }
+  .feature-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px hsl(var(--foreground) / 0.08); }
+
+  .pricing-card { background: hsl(var(--card)); border: 2px solid hsl(var(--border)); border-radius: 16px; padding: 32px; position: relative; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+  .pricing-card.featured { border-color: hsl(var(--primary)); box-shadow: 0 10px 40px hsl(var(--primary) / 0.10); }
+  .pricing-card.featured::before { content: "인기"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); padding: 6px 16px; border-radius: 12px; font-size: 12px; font-weight: 500; }
+
+  /* Comparison table */
+  .comparison-table { width: 100%; border-collapse: collapse; background: hsl(var(--card)); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px hsl(var(--foreground) / 0.05); }
+  .comparison-table th { background: hsl(var(--secondary)); padding: 20px; text-align: left; font-weight: 600; color: hsl(var(--foreground)); border-bottom: 1px solid hsl(var(--border)); }
+  .comparison-table td { padding: 16px 20px; border-bottom: 1px solid hsl(var(--border)); vertical-align: middle; }
+
+  /* Logo interactions */
+  .logo-interactive { transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), filter .3s cubic-bezier(0.4, 0, 0.2, 1); filter: drop-shadow(0 4px 8px hsl(var(--primary) / 0.25)); }
+  .logo-interactive:hover { transform: translateY(-2px) scale(1.02); filter: drop-shadow(0 12px 24px hsl(var(--primary) / 0.25)); }
+  .logo-interactive:active { transform: translateY(0) scale(0.98); filter: drop-shadow(0 4px 8px hsl(var(--primary) / 0.25)); }
+}
+

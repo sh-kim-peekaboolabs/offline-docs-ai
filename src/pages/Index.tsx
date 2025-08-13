@@ -276,7 +276,7 @@ const Security = () => <section id="security" className="section bg-gradient-to-
             <div className="p-2 rounded-lg bg-blue-100 text-blue-600">
               <Lock className="w-5 h-5" />
             </div>
-            <h3 className="font-semibold">로컬 처리</h3>
+            <h3 className="font-semibold">내 PC에서 수행</h3>
           </div>
           <p className="text-sm text-muted-foreground">모든 처리는 사용자의 개인 컴퓨터 환경에서 처리됩니다.</p>
         </div>

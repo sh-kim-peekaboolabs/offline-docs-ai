@@ -87,8 +87,7 @@ const Problem = () => <section className="section pt-8" aria-labelledby="problem
           </div>
           <div className="relative z-10">
             <h3 className="font-semibold mb-2">HWP 파일 미지원</h3>
-            <p className="text-sm text-muted-foreground">HWP 파일은 ChatGPT 같은 서비스에서도 지원하지 않아서 
-매번 PDF로 변환해야 해요.</p>
+            <p className="text-sm text-muted-foreground">ChatGPT도 HWP파일을 지원하지 않아 매번 PDF로 변환해야 해요.</p>
           </div>
         </div>
       </div>

@@ -54,33 +54,39 @@ const Problem = () => <section className="section pt-8" aria-labelledby="problem
     <div className="container">
       <h2 id="problem-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">Localdocs를 써야하는 이유</h2>
       <div className="grid md:grid-cols-3 gap-6">
-        <div className="feature-card flex flex-col items-center text-center p-6 relative overflow-hidden">
+        <div className="feature-card flex items-start gap-4 p-6 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-red-100 opacity-30"></div>
-          <div className="relative z-10">
-            <div className="p-4 rounded-2xl bg-destructive/10 text-destructive mb-4 flex items-center justify-center">
-              <ShieldCheck className="w-8 h-8" />
+          <div className="relative z-10 flex-shrink-0">
+            <div className="p-3 rounded-xl bg-destructive/10 text-destructive">
+              <ShieldCheck className="w-6 h-6" />
             </div>
+          </div>
+          <div className="relative z-10">
             <h3 className="font-semibold mb-2">기밀 문서 보안 때문에 ChatGPT를 사용할 수 없어요</h3>
             <p className="text-sm text-muted-foreground">기밀 문서는 클라우드 기반 ChatGPT를 사용할 수 없습니다.</p>
           </div>
         </div>
-        <div className="feature-card flex flex-col items-center text-center p-6 relative overflow-hidden">
+        <div className="feature-card flex items-start gap-4 p-6 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-orange-100 opacity-30"></div>
-          <div className="relative z-10">
-            <div className="p-4 rounded-2xl bg-orange-100 text-orange-600 mb-4">
-              <WifiOff className="w-8 h-8" />
+          <div className="relative z-10 flex-shrink-0">
+            <div className="p-3 rounded-xl bg-orange-100 text-orange-600">
+              <WifiOff className="w-6 h-6" />
             </div>
+          </div>
+          <div className="relative z-10">
             <h3 className="font-semibold mb-2">인터넷이 안되는 폐쇄망이에요</h3>
             <p className="text-sm text-muted-foreground">인터넷 연결이 불안정하거나 
 폐쇄망으로 운용되는 환경에서는 AI를 사용할 수 없습니다.</p>
           </div>
         </div>
-        <div className="feature-card flex flex-col items-center text-center p-6 relative overflow-hidden">
+        <div className="feature-card flex items-start gap-4 p-6 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-red-100 opacity-30"></div>
-          <div className="relative z-10">
-            <div className="p-4 rounded-2xl bg-red-100 text-red-600 mb-4">
-              <X className="w-8 h-8" />
+          <div className="relative z-10 flex-shrink-0">
+            <div className="p-3 rounded-xl bg-red-100 text-red-600">
+              <X className="w-6 h-6" />
             </div>
+          </div>
+          <div className="relative z-10">
             <h3 className="font-semibold mb-2">HWP 파일 미지원</h3>
             <p className="text-sm text-muted-foreground">HWP 파일은 ChatGPT 같은 서비스에서도 지원하지 않아서 
 매번 PDF로 변환해야 해요.</p>
@@ -299,33 +305,49 @@ const Security = () => <section id="security" className="section bg-gradient-to-
 const HowItWorks = () => <section className="section bg-secondary-lighter/30" aria-labelledby="how-heading">
     <div className="container">
       <h2 id="how-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">사용 방법</h2>
-      <div className="grid md:grid-cols-4 gap-6">
+      <div className="grid md:grid-cols-4 gap-8">
         <div className="text-center group">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white text-lg font-bold mb-4 group-hover:scale-110 transition-transform duration-300">1</div>
-          <div className="feature-card p-4">
-            <h3 className="font-semibold mb-2">PC 앱 설치</h3>
-            <p className="text-sm text-muted-foreground">PC 앱을 설치합니다.</p>
+          <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white text-base font-bold mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">1</div>
+          <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/60"></div>
+            <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg mx-auto mb-4">
+              <Download className="w-6 h-6 text-primary" />
+            </div>
+            <h3 className="font-semibold mb-3 text-gray-900">PC 앱 설치</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">간단한 설치로 바로 시작하세요</p>
           </div>
         </div>
         <div className="text-center group">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white text-lg font-bold mb-4 group-hover:scale-110 transition-transform duration-300">2</div>
-          <div className="feature-card p-4">
-            <h3 className="font-semibold mb-2">문서를 업로드하세요</h3>
-            <p className="text-sm text-muted-foreground">지식 베이스를 만듭니다</p>
+          <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white text-base font-bold mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">2</div>
+          <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/60"></div>
+            <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mx-auto mb-4">
+              <FileText className="w-6 h-6 text-blue-600" />
+            </div>
+            <h3 className="font-semibold mb-3 text-gray-900">문서를 업로드하세요</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">지식 베이스를 만듭니다</p>
           </div>
         </div>
         <div className="text-center group">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white text-lg font-bold mb-4 group-hover:scale-110 transition-transform duration-300">3</div>
-          <div className="feature-card p-4">
-            <h3 className="font-semibold mb-2">채팅으로 확인</h3>
-            <p className="text-sm text-muted-foreground">채팅창을 통해 유용한 정보를 빠르게 확인하세요.</p>
+          <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white text-base font-bold mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">3</div>
+          <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/60"></div>
+            <div className="flex items-center justify-center w-12 h-12 bg-green-100 rounded-lg mx-auto mb-4">
+              <Search className="w-6 h-6 text-green-600" />
+            </div>
+            <h3 className="font-semibold mb-3 text-gray-900">채팅으로 확인</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">채팅창을 통해 유용한 정보를 빠르게 확인하세요</p>
           </div>
         </div>
         <div className="text-center group">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white text-lg font-bold mb-4 group-hover:scale-110 transition-transform duration-300">4</div>
-          <div className="feature-card p-4">
-            <h3 className="font-semibold mb-2">근거 기반 답변</h3>
-            <p className="text-sm text-muted-foreground">질문 검색으로 근거 기반 답변과 문서 위치를 바로 확인하세요.</p>
+          <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white text-base font-bold mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">4</div>
+          <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/60"></div>
+            <div className="flex items-center justify-center w-12 h-12 bg-purple-100 rounded-lg mx-auto mb-4">
+              <Quote className="w-6 h-6 text-purple-600" />
+            </div>
+            <h3 className="font-semibold mb-3 text-gray-900">근거 기반 답변</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">질문 검색으로 근거 기반 답변과 문서 위치를 바로 확인하세요</p>
           </div>
         </div>
       </div>

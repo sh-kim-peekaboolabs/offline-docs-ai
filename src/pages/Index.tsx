@@ -613,7 +613,7 @@ const CTA = () => {
   return <section id="cta" className="section" aria-labelledby="cta-heading">
       <div className="container">
         <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">출시 알림을 신청하세요.</h2>
-        <p className="text-muted-foreground mb-6 text-center">출시 소식을 가장 먼저 전해 드립니다. 사내 파일로 실제 테스트할 수 있는 환경을 준비 중입니다.</p>
+        <p className="text-muted-foreground mb-6 text-center">출시 소식을 가장 먼저 전해 드립니다.</p>
         <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto">
           <div className="space-y-4">
             <div>

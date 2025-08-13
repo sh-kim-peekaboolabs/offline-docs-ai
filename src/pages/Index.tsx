@@ -8,16 +8,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
-
 const formSchema = z.object({
   email: z.string().email("유효한 이메일을 입력해 주세요."),
-  consent: z.literal(true, { errorMap: () => ({ message: "동의가 필요합니다." }) }),
+  consent: z.literal(true, {
+    errorMap: () => ({
+      message: "동의가 필요합니다."
+    })
+  })
 });
-
 type FormValues = z.infer<typeof formSchema>;
-
-const Nav = () => (
-  <header className="sticky top-0 z-40 bg-background/80 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b">
+const Nav = () => <header className="sticky top-0 z-40 bg-background/80 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b">
     <div className="container flex items-center justify-between py-4">
       <div className="flex items-center gap-3">
         <img src={logo} alt="localdocs 3D 문서 스택 로고" width={40} height={40} className="logo-interactive" loading="lazy" />
@@ -35,17 +35,13 @@ const Nav = () => (
         <a href="#cta"><Button variant="hero" size="lg">알림 신청하기</Button></a>
       </div>
     </div>
-  </header>
-);
-
-const Hero = () => (
-  <section className="relative overflow-hidden">
+  </header>;
+const Hero = () => <section className="relative overflow-hidden">
     <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
     <div className="container relative py-20 md:py-28 text-center">
       <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">오프라인 실행 · HWP 지원 · 한국어 특화 요약 · 인용 제공</div>
-      <h1 className="mx-auto max-w-3xl text-4xl md:text-5xl font-bold leading-tight whitespace-nowrap">
-        인터넷 없이, 문서를 요약, 정리, 검색하세요.
-      </h1>
+      <h1 className="mx-auto max-w-3xl text-4xl md:text-5xl font-bold leading-tight whitespace-nowrap">인터넷 없이
+문서를 요약, 정리, 검색하세요.</h1>
       <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
         나만의 AI 리서치 파트너, Localdocs
       </p>
@@ -53,60 +49,50 @@ const Hero = () => (
         <a href="#cta"><Button variant="hero" size="xl">출시 알림 신청하기</Button></a>
       </div>
     </div>
-  </section>
-);
-
-const Trust = () => (
-  <section className="section relative overflow-hidden" aria-labelledby="trust-heading">
+  </section>;
+const Trust = () => <section className="section relative overflow-hidden" aria-labelledby="trust-heading">
     <div className="absolute inset-0 opacity-5">
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-primary/20"></div>
+      
       <div className="absolute top-0 left-1/4 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-primary/10 rounded-full blur-3xl"></div>
+      
     </div>
     <div className="container relative">
       <h2 id="trust-heading" className="sr-only">신뢰 맥락</h2>
-      <p className="text-center text-lg font-medium text-primary max-w-2xl mx-auto">
-        로컬 실행 · 오프라인 · 데이터 유출 없음
-      </p>
+      
     </div>
-  </section>
-);
-
-const Problem = () => (
-  <section className="section" aria-labelledby="problem-heading">
+  </section>;
+const Problem = () => <section className="section" aria-labelledby="problem-heading">
     <div className="container">
-      <h2 id="problem-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">왜 오프라인에서 LocalDocs가 필요한가요</h2>
+      <h2 id="problem-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">왜 오프라인에서 LocalDocs가 필요한가요?</h2>
       <div className="grid md:grid-cols-3 gap-6">
         <div className="feature-card flex flex-col items-center text-center p-6">
           <div className="p-4 rounded-2xl bg-destructive/10 text-destructive mb-4">
             <ShieldCheck className="w-8 h-8" />
           </div>
-          <h3 className="font-semibold mb-2">기밀 문서 보안</h3>
+          <h3 className="font-semibold mb-2">기밀 문서 보안 때문에 AI서비스를 사용할 수 없어요</h3>
           <p className="text-sm text-muted-foreground">기밀 문서는 클라우드 기반 AI 서비스(ChatGPT, Gemini 등)를 사용할 수 없습니다.</p>
         </div>
         <div className="feature-card flex flex-col items-center text-center p-6">
           <div className="p-4 rounded-2xl bg-orange-100 text-orange-600 mb-4">
             <WifiOff className="w-8 h-8" />
           </div>
-          <h3 className="font-semibold mb-2">네트워크 제약</h3>
-          <p className="text-sm text-muted-foreground">인터넷 연결이 불안정하거나 폐쇄망으로 운용되는 환경에서는 AI를 아예 사용할 수 없습니다.</p>
+          <h3 className="font-semibold mb-2">인터넷이 안되는 폐쇄망이에요</h3>
+          <p className="text-sm text-muted-foreground">인터넷 연결이 불안정하거나 
+폐쇄망으로 운용되는 환경에서는 AI를 사용할 수 없습니다.</p>
         </div>
         <div className="feature-card flex flex-col items-center text-center p-6">
           <div className="p-4 rounded-2xl bg-red-100 text-red-600 mb-4">
             <X className="w-8 h-8" />
           </div>
           <h3 className="font-semibold mb-2">HWP 파일 미지원</h3>
-          <p className="text-sm text-muted-foreground">한글 HWP 파일은 다수의 AI 도구(ChatGPT, Gemini, NotebookLM, Grok 등)에서 정상적으로 업로드할 수 없습니다.</p>
+          <p className="text-sm text-muted-foreground">HWP 파일은 AI 도구(ChatGPT, Gemini, NotebookLM, Grok 등)에서 지원하지 않습니다. 매번 PDF로 변환해야 해요.</p>
         </div>
       </div>
     </div>
-  </section>
-);
-
-const Solution = () => (
-  <section className="section" aria-labelledby="solution-heading">
+  </section>;
+const Solution = () => <section className="section" aria-labelledby="solution-heading">
     <div className="container">
-      <h2 id="solution-heading" className="text-2xl md:text-3xl font-semibold mb-8">localdocs 하나로 끝내세요.</h2>
+      <h2 id="solution-heading" className="text-2xl md:text-3xl font-semibold mb-8">이젠 localdocs 하나로 끝내세요.</h2>
       <div className="grid md:grid-cols-2 gap-6">
         <div className="feature-card flex items-start gap-4"><WifiOff className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">인터넷 없이 PC에서 실행되는 한국어 특화 요약 AI</h3></div></div>
         <div className="feature-card flex items-start gap-4"><FileText className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">다양한 포맷 지원</h3><p className="text-sm text-muted-foreground">HWP, PPTX, PDF, DOCX, XLSX/CSV, 스캔 PDF(OCR) 등</p></div></div>
@@ -115,11 +101,8 @@ const Solution = () => (
       </div>
       <div className="text-center mt-8"><a href="#cta"><Button variant="hero" size="lg">출시 알림 신청하기</Button></a></div>
     </div>
-  </section>
-);
-
-const Features = () => (
-  <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
+  </section>;
+const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
       <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">핵심 기능</h2>
       <div className="grid md:grid-cols-3 gap-6">
@@ -167,11 +150,8 @@ const Features = () => (
         </div>
       </div>
     </div>
-  </section>
-);
-
-const Comparison = () => (
-  <section className="section" aria-labelledby="comparison-heading">
+  </section>;
+const Comparison = () => <section className="section" aria-labelledby="comparison-heading">
     <div className="container">
       <h2 id="comparison-heading" className="text-2xl md:text-3xl font-semibold mb-6 text-center">클라우드 AI와 무엇이 다른가요</h2>
       <div className="overflow-x-auto">
@@ -263,11 +243,8 @@ const Comparison = () => (
         </div>
       </div>
     </div>
-  </section>
-);
-
-const Scenarios = () => (
-  <section id="scenarios" className="section" aria-labelledby="scenarios-heading">
+  </section>;
+const Scenarios = () => <section id="scenarios" className="section" aria-labelledby="scenarios-heading">
     <div className="container">
       <h2 id="scenarios-heading" className="text-2xl md:text-3xl font-semibold mb-4">이런 환경에서 효과적입니다</h2>
       <ul className="grid md:grid-cols-2 gap-4">
@@ -277,11 +254,8 @@ const Scenarios = () => (
         <li className="feature-card"><strong>군사 및 공공기관</strong>: 폐쇄망 환경에서 한글파일 분석 지원</li>
       </ul>
     </div>
-  </section>
-);
-
-const Security = () => (
-  <section id="security" className="section" aria-labelledby="security-heading">
+  </section>;
+const Security = () => <section id="security" className="section" aria-labelledby="security-heading">
     <div className="container">
       <h2 id="security-heading" className="text-2xl md:text-3xl font-semibold mb-4">보안을 최우선으로 고려합니다</h2>
       <ul className="grid gap-4">
@@ -290,11 +264,8 @@ const Security = () => (
         <li className="feature-card">PC 앱 다운로드 후 사용 가능합니다.</li>
       </ul>
     </div>
-  </section>
-);
-
-const HowItWorks = () => (
-  <section className="section bg-secondary-lighter/30" aria-labelledby="how-heading">
+  </section>;
+const HowItWorks = () => <section className="section bg-secondary-lighter/30" aria-labelledby="how-heading">
     <div className="container">
       <h2 id="how-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">사용 방법</h2>
       <div className="grid md:grid-cols-4 gap-6">
@@ -328,11 +299,8 @@ const HowItWorks = () => (
         </div>
       </div>
     </div>
-  </section>
-);
-
-const Pricing = () => (
-  <section id="pricing" className="section" aria-labelledby="pricing-heading">
+  </section>;
+const Pricing = () => <section id="pricing" className="section" aria-labelledby="pricing-heading">
     <div className="container">
       <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4">나에게 맞는 요금제를 선택하세요</h2>
       <p className="text-muted-foreground mb-8">개인적인 문서 탐색은 무료로 시작하세요. 데이터 분석, 보고서 작성 등 전문가 수준의 생산성이 필요하다면 Pro를, 조직을 위한 보안과 관리가 필요하다면 Enterprise를 선택하세요.</p>
@@ -379,20 +347,25 @@ const Pricing = () => (
         </div>
       </div>
     </div>
-  </section>
-);
-
+  </section>;
 const CTA = () => {
-  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormValues>({ resolver: zodResolver(formSchema) });
-
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: {
+      errors,
+      isSubmitting
+    }
+  } = useForm<FormValues>({
+    resolver: zodResolver(formSchema)
+  });
   const onSubmit = async (values: FormValues) => {
     // TODO: wire to Supabase or email service if needed
     toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
     reset();
   };
-
-  return (
-    <section id="cta" className="section" aria-labelledby="cta-heading">
+  return <section id="cta" className="section" aria-labelledby="cta-heading">
       <div className="container">
         <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">출시 알림을 신청하세요.</h2>
         <p className="text-muted-foreground mb-6 text-center">출시 소식을 가장 먼저 전해 드립니다. 사내 파일로 실제 테스트할 수 있는 환경을 준비 중입니다.</p>
@@ -415,26 +388,57 @@ const CTA = () => {
           <p className="text-xs text-muted-foreground text-center mt-4">제출하신 이메일은 베타 알림과 안내 외 용도로 사용하지 않습니다.</p>
         </form>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 const FAQ = () => {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      { '@type': 'Question', name: '인터넷 없이 정말 동작하나요?', acceptedAnswer: { '@type': 'Answer', text: '예. 온디바이스 실행을 기본 전제로 설계합니다. 설치 후 오프라인 상태에서도 핵심 기능을 쓰실 수 있도록 준비 중입니다.' } },
-      { '@type': 'Question', name: '어떤 파일 형식을 지원하나요?', acceptedAnswer: { '@type': 'Answer', text: 'HWP/HWPX, PDF, PPTX, DOCX 등을 우선 지원 대상으로 고려합니다. 상세 목록과 제약 조건은 베타 공지에서 안내드리겠습니다.' } },
-      { '@type': 'Question', name: '결과에 인용은 어떻게 제공되나요?', acceptedAnswer: { '@type': 'Answer', text: '문서 출처 링크 또는 문서 내 위치(페이지, 문단 등)를 결과와 함께 표시합니다. 인용 형식은 데이터 소스에 따라 달라질 수 있습니다.' } },
-      { '@type': 'Question', name: '클라우드로 데이터가 전송되나요?', acceptedAnswer: { '@type': 'Answer', text: '로컬 처리 방식을 지향합니다. 데이터는 PC 내에서만 처리되며 클라우드로 일절 전송되지 않습니다. 불안하시면, 인터넷을 끄고 실행하셔도 됩니다.' } },
-      { '@type': 'Question', name: '기업용 배포 모델이 있나요?', acceptedAnswer: { '@type': 'Answer', text: '네, Enterprise 플랜을 통해 대규모 팀을 위한 중앙 라이선스 관리 및 폐쇄망 환경을 위한 오프라인 설치/배포를 지원합니다.' } },
-      { '@type': 'Question', name: '한국어 특화 요약 정확도는 어느 정도인가요?', acceptedAnswer: { '@type': 'Answer', text: '자체 개발한 한국어 특화 온디바이스 LLM을 기반으로 최고의 요약 성능을 목표로 하고 있습니다. 구체적인 성능 지표는 출시와 함께 공개 예정입니다.' } }
-    ]
+    mainEntity: [{
+      '@type': 'Question',
+      name: '인터넷 없이 정말 동작하나요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '예. 온디바이스 실행을 기본 전제로 설계합니다. 설치 후 오프라인 상태에서도 핵심 기능을 쓰실 수 있도록 준비 중입니다.'
+      }
+    }, {
+      '@type': 'Question',
+      name: '어떤 파일 형식을 지원하나요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'HWP/HWPX, PDF, PPTX, DOCX 등을 우선 지원 대상으로 고려합니다. 상세 목록과 제약 조건은 베타 공지에서 안내드리겠습니다.'
+      }
+    }, {
+      '@type': 'Question',
+      name: '결과에 인용은 어떻게 제공되나요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '문서 출처 링크 또는 문서 내 위치(페이지, 문단 등)를 결과와 함께 표시합니다. 인용 형식은 데이터 소스에 따라 달라질 수 있습니다.'
+      }
+    }, {
+      '@type': 'Question',
+      name: '클라우드로 데이터가 전송되나요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '로컬 처리 방식을 지향합니다. 데이터는 PC 내에서만 처리되며 클라우드로 일절 전송되지 않습니다. 불안하시면, 인터넷을 끄고 실행하셔도 됩니다.'
+      }
+    }, {
+      '@type': 'Question',
+      name: '기업용 배포 모델이 있나요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '네, Enterprise 플랜을 통해 대규모 팀을 위한 중앙 라이선스 관리 및 폐쇄망 환경을 위한 오프라인 설치/배포를 지원합니다.'
+      }
+    }, {
+      '@type': 'Question',
+      name: '한국어 특화 요약 정확도는 어느 정도인가요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '자체 개발한 한국어 특화 온디바이스 LLM을 기반으로 최고의 요약 성능을 목표로 하고 있습니다. 구체적인 성능 지표는 출시와 함께 공개 예정입니다.'
+      }
+    }]
   };
-
-  return (
-    <section id="faq" className="section" aria-labelledby="faq-heading">
+  return <section id="faq" className="section" aria-labelledby="faq-heading">
       <div className="container">
         <h2 id="faq-heading" className="text-2xl md:text-3xl font-semibold mb-6">FAQ</h2>
         <div className="grid gap-4">
@@ -445,14 +449,13 @@ const FAQ = () => {
           <details className="feature-card"><summary className="font-medium">기업용 배포 모델이 있나요?</summary><p className="mt-2 text-muted-foreground">네, Enterprise 플랜을 통해 중앙 라이선스 관리 및 오프라인 설치/배포를 지원합니다.</p></details>
           <details className="feature-card"><summary className="font-medium">한국어 특화 요약 정확도는 어느 정도인가요?</summary><p className="mt-2 text-muted-foreground">국내 업무 환경의 문서에서 최고의 요약 성능을 목표로 하고 있습니다. 성능 지표는 출시와 함께 공개 예정입니다.</p></details>
         </div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify(faqJsonLd)
+      }} />
       </div>
-    </section>
-  );
+    </section>;
 };
-
-const Footer = () => (
-  <footer className="border-t">
+const Footer = () => <footer className="border-t">
     <div className="container py-8 text-sm">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="text-muted-foreground">© PeekabooLabs. All rights reserved. 2025</div>
@@ -463,12 +466,9 @@ const Footer = () => (
         </nav>
       </div>
     </div>
-  </footer>
-);
-
+  </footer>;
 const Index = () => {
-  return (
-    <div>
+  return <div>
       <Nav />
       <main>
         <Hero />
@@ -485,8 +485,6 @@ const Index = () => {
         <FAQ />
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;

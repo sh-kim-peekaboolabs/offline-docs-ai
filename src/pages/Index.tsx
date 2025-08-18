@@ -731,11 +731,11 @@ const Footer = () => <footer className="border-t">
     <div className="container py-8 text-sm">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="text-muted-foreground">© PeekabooLabs. All rights reserved. 2025</div>
-        <nav className="flex items-center gap-4">
-          <a href="#" className="story-link">개인정보처리방침</a>
-          <a href="#" className="story-link">이용약관</a>
-          <a href="#cta" className="story-link">문의</a>
-        </nav>
+        <div className="text-muted-foreground">
+          <a href="mailto:contact@peekaboolabs.ai" className="hover:text-foreground transition-colors">
+            contact@peekaboolabs.ai
+          </a>
+        </div>
       </div>
     </div>
   </footer>;

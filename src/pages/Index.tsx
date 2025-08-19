@@ -709,7 +709,7 @@ const CTA = () => {
           <div className="space-y-4">
             <div>
               <Label htmlFor="email">이메일 주소</Label>
-              <Input id="email" type="email" placeholder="you@example.com" {...register("email")} />
+              <Input id="email" type="email" placeholder="hello@localdocs.ai" {...register("email")} />
               {errors.email && <p className="text-sm text-destructive mt-1">{errors.email.message}</p>}
             </div>
             <div className="flex items-center gap-2">

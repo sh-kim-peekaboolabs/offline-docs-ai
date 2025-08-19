@@ -704,7 +704,7 @@ const CTA = () => {
   return <section id="cta" className="section" aria-labelledby="cta-heading">
       <div className="container">
         <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">지금 바로 Waitlist에 등록하세요.</h2>
-        <p className="text-muted-foreground mb-6 text-center">출시 소식을 가장 먼저 전해 드립니다.</p>
+        <p className="text-muted-foreground mb-6 text-center">누구보다 빠르게 베타 버전을 사용할 수 있습니다.</p>
         <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto">
           <div className="space-y-4">
             <div>

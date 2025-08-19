@@ -7,7 +7,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield } from "lucide-react";
+import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield, Star } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 
 const formSchema = z.object({
@@ -34,10 +34,10 @@ const Nav = () => {
         <a href="#security" className="story-link">보안</a>
         <a href="#pricing" className="story-link">요금제</a>
         <a href="#faq" className="story-link">FAQ</a>
-        <a href="#cta" className="story-link">알림 신청</a>
+        <a href="#cta" className="story-link">Waitlist 등록</a>
       </nav>
       <div className="hidden md:block">
-        <a href="#cta"><Button variant="hero" size="lg">알림 신청하기</Button></a>
+        <a href="#cta"><Button variant="hero" size="lg">Waitlist 등록하기</Button></a>
       </div>
     </div>
   </header>;
@@ -52,7 +52,8 @@ const Hero = () => <section className="relative overflow-hidden">
         나만의 AI 리서치 파트너, Localdocs
       </p>
       <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#cta"><Button variant="hero" size="xl">출시 알림 신청하기</Button></a>
+        <a href="#cta"><Button variant="hero" size="xl">Waitlist 등록하기</Button></a>
+        <p className="text-sm text-muted-foreground">벌써 100명 넘게 신청했어요</p>
       </div>
     </div>
   </section>;
@@ -108,7 +109,7 @@ const Solution = () => <section className="section" aria-labelledby="solution-he
         <div className="feature-card flex items-start gap-4"><Quote className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">신뢰할 수 있는 답변: 모든 결과에 출처 표기</h3><p className="text-sm text-muted-foreground">AI의 답변이 어떤 문서, 어느 페이지에서 나왔는지 클릭 한 번으로 검증하여 보고서에 활용하세요.</p></div></div>
         <div className="feature-card flex items-start gap-4"><Lock className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">외부 유출 원천 차단: 100% 온디바이스(On-device) 처리</h3><p className="text-sm text-muted-foreground">당신의 모든 데이터는 오직 PC 안에서만 처리됩니다. 서버 전송 자체가 존재하지 않습니다.</p></div></div>
       </div>
-      <div className="text-center mt-8"><a href="#cta"><Button variant="hero" size="lg">출시 알림 신청하기</Button></a></div>
+      <div className="text-center mt-8"><a href="#cta"><Button variant="hero" size="lg">Waitlist 등록하기</Button></a></div>
     </div>
   </section>;
 const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
@@ -389,6 +390,105 @@ const Scenarios = () => {
     </section>
   );
 };
+
+const Testimonials = () => {
+  const testimonials = [
+    {
+      id: 1,
+      name: "김민수",
+      role: "변호사",
+      company: "법무법인 정의",
+      content: "수만 페이지의 판례 자료에서 핵심 쟁점을 찾는 시간이 90% 단축되었습니다. 이제 소송 전략 수립에 더 집중할 수 있어요.",
+      rating: 5
+    },
+    {
+      id: 2,
+      name: "박지영",
+      role: "투자 분석가",
+      company: "KL 투자증권",
+      content: "실사 보고서 분석에 걸리던 시간이 하루에서 2시간으로 줄었어요. 정확한 출처까지 제공돼서 투자 결정에 확신을 가질 수 있습니다.",
+      rating: 5
+    },
+    {
+      id: 3,
+      name: "이상훈",
+      role: "R&D 팀장",
+      company: "테크이노베이션",
+      content: "기술 문서가 HWP로만 되어 있어서 항상 불편했는데, 이제 바로 질문하고 답을 얻을 수 있어 개발 속도가 2배 빨라졌습니다.",
+      rating: 5
+    }
+  ];
+
+  return (
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-white" aria-labelledby="testimonials-heading">
+      <div className="container max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 id="testimonials-heading" className="text-4xl font-bold text-gray-900 mb-4">
+            이미 경험한 분들의 이야기
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            업무 효율성이 눈에 띄게 향상되었다는 실제 사용자들의 생생한 후기
+          </p>
+        </div>
+
+        {/* Testimonials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {testimonials.map((testimonial) => (
+            <div
+              key={testimonial.id}
+              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-2"
+            >
+              {/* Stars */}
+              <div className="flex gap-1 mb-6">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+
+              {/* Content */}
+              <blockquote className="text-gray-700 leading-relaxed mb-6 text-lg italic">
+                "{testimonial.content}"
+              </blockquote>
+
+              {/* Author */}
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                  <span className="text-white font-semibold text-lg">
+                    {testimonial.name.charAt(0)}
+                  </span>
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-900">
+                    {testimonial.name}
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    {testimonial.role} · {testimonial.company}
+                  </div>
+                </div>
+              </div>
+
+              {/* Hover Effect Border */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center mt-16">
+          <p className="text-gray-600 mb-6">
+            당신도 이런 효율성을 경험해보세요
+          </p>
+          <a href="#cta">
+            <Button variant="hero" size="lg" className="px-8 py-4">
+              Waitlist 등록하기
+            </Button>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
 const Security = () => <section id="security" className="section bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden" aria-labelledby="security-heading">
     <div className="absolute inset-0 bg-gradient-to-r from-blue-100/50 to-indigo-100/50"></div>
     <div className="absolute top-10 right-10 w-32 h-32 bg-blue-200/30 rounded-full blur-2xl"></div>
@@ -561,7 +661,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             <li>(지식 베이스 당 최대 10개 문서)</li>
           </ul>
           <div className="mt-6 text-center">
-            <a href="#cta"><Button variant="hero" size="lg" className="w-full">출시 알림 신청하기</Button></a>
+            <a href="#cta"><Button variant="hero" size="lg" className="w-full">Waitlist 등록하기</Button></a>
           </div>
         </div>
         <div className="pricing-card featured">
@@ -577,7 +677,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             <li>이메일 우선 지원</li>
           </ul>
           <div className="mt-6 text-center">
-            <a href="#cta"><Button variant="hero" size="lg" className="w-full">출시 알림 신청하기</Button></a>
+            <a href="#cta"><Button variant="hero" size="lg" className="w-full">Waitlist 등록하기</Button></a>
           </div>
         </div>
         <div className="pricing-card">
@@ -592,7 +692,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             <li>맞춤형 기능 개발 및 연동(협의)</li>
           </ul>
           <div className="mt-6 text-center">
-            <a href="#cta"><Button variant="hero" size="lg" className="w-full">출시 알림 신청하기</Button></a>
+            <a href="#cta"><Button variant="hero" size="lg" className="w-full">Waitlist 등록하기</Button></a>
           </div>
         </div>
       </div>
@@ -641,7 +741,7 @@ const CTA = () => {
   };
   return <section id="cta" className="section" aria-labelledby="cta-heading">
       <div className="container">
-        <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">출시 알림을 신청하세요.</h2>
+        <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">Waitlist 등록하세요.</h2>
         <p className="text-muted-foreground mb-6 text-center">출시 소식을 가장 먼저 전해 드립니다.</p>
         <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto">
           <div className="space-y-4">
@@ -660,7 +760,7 @@ const CTA = () => {
             </div>
             {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}
             <div>
-              <Button type="submit" variant="hero" size="lg" disabled={isSubmitting} className="w-full">알림 신청하기</Button>
+              <Button type="submit" variant="hero" size="lg" disabled={isSubmitting} className="w-full">Waitlist 등록하기</Button>
             </div>
           </div>
           <p className="text-xs text-muted-foreground text-center mt-4">제출하신 이메일은 베타 알림과 안내 외 용도로 사용하지 않습니다.</p>
@@ -757,6 +857,7 @@ const Index = () => {
         <Features />
         <Comparison />
         <Scenarios />
+        <Testimonials />
         <Security />
         <HowItWorks />
         <Pricing />

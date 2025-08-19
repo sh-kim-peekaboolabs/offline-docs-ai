@@ -9,7 +9,6 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield, Star } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
-
 const formSchema = z.object({
   email: z.string().email("유효한 이메일을 입력해 주세요."),
   consent: z.boolean().refine(val => val === true, {
@@ -19,9 +18,11 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 const Nav = () => {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
-
   return <header className="sticky top-0 z-40 bg-background/80 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b">
     <div className="container flex items-center justify-between py-4">
       <div className="flex items-center gap-3 cursor-pointer" onClick={scrollToTop}>
@@ -56,7 +57,9 @@ const Hero = () => <section className="relative overflow-hidden">
         <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
           <span className="text-sm font-medium text-green-700">🔥 벌써 100명+ 신청 완료!</span>
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+          <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{
+          animationDelay: '0.2s'
+        }}></div>
         </div>
         <p className="text-xs text-muted-foreground/70 animate-fade-in">* 한정된 베타 테스터 모집 중 *</p>
       </div>
@@ -260,47 +263,40 @@ const Comparison = () => <section className="section" aria-labelledby="compariso
     </div>
   </section>;
 const Scenarios = () => {
-  const environments = [
-    {
-      id: 1,
-      title: "엔터프라이즈 기업",
-      description: "수백 페이지의 기술 표준 문서나 R&D 자료에서 필요한 스펙과 정보를 즉시 검색하여 개발 시간을 단축합니다.",
-      icon: Building2,
-      gradient: "from-blue-600 via-blue-700 to-indigo-800",
-      overlayGradient: "from-blue-900/80 to-indigo-900/60",
-      image: "/lovable-uploads/3098a8d7-6b45-47dc-abc4-9946c5c83a10.png"
-    },
-    {
-      id: 2,
-      title: "법무법인",
-      description: "수만 페이지에 달하는 증거 자료와 판례 더미 속에서 사건의 핵심 쟁점과 인용할 근거를 빠르게 찾아내 소송 전략을 수립합니다.",
-      icon: Scale,
-      gradient: "from-amber-600 via-orange-700 to-red-800",
-      overlayGradient: "from-amber-900/80 to-red-900/60",
-      image: "/lovable-uploads/964e7f8b-0bcd-47ff-972d-4595b6bebcd0.png"
-    },
-    {
-      id: 3,
-      title: "투자사 및 금융권",
-      description: "수십 개의 투자 보고서와 실사 데이터에서 핵심 성장 동력이나 잠재적 리스크를 신속하게 식별하여 투자 결정을 내립니다.",
-      icon: TrendingUp,
-      gradient: "from-emerald-600 via-teal-700 to-cyan-800",
-      overlayGradient: "from-emerald-900/80 to-cyan-900/60",
-      image: "/lovable-uploads/9bd95de7-d285-4dd7-ac4a-8fcc6ab83d7d.png"
-    },
-    {
-      id: 4,
-      title: "국방 및 공공기관",
-      description: "인터넷이 차단된 폐쇄망 PC에서 대외비 보고서 및 정책 자료의 핵심 내용을 요약하고, 보안 유출 없이 신속하게 업무를 처리합니다.",
-      icon: Shield,
-      gradient: "from-slate-600 via-gray-700 to-zinc-800",
-      overlayGradient: "from-slate-900/80 to-zinc-900/60",
-      image: "/lovable-uploads/ebf98bf4-9354-4eca-b2a5-310ff4a6c967.png"
-    }
-  ];
-
-  return (
-    <section id="scenarios" className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black" aria-labelledby="scenarios-heading">
+  const environments = [{
+    id: 1,
+    title: "엔터프라이즈 기업",
+    description: "수백 페이지의 기술 표준 문서나 R&D 자료에서 필요한 스펙과 정보를 즉시 검색하여 개발 시간을 단축합니다.",
+    icon: Building2,
+    gradient: "from-blue-600 via-blue-700 to-indigo-800",
+    overlayGradient: "from-blue-900/80 to-indigo-900/60",
+    image: "/lovable-uploads/3098a8d7-6b45-47dc-abc4-9946c5c83a10.png"
+  }, {
+    id: 2,
+    title: "법무법인",
+    description: "수만 페이지에 달하는 증거 자료와 판례 더미 속에서 사건의 핵심 쟁점과 인용할 근거를 빠르게 찾아내 소송 전략을 수립합니다.",
+    icon: Scale,
+    gradient: "from-amber-600 via-orange-700 to-red-800",
+    overlayGradient: "from-amber-900/80 to-red-900/60",
+    image: "/lovable-uploads/964e7f8b-0bcd-47ff-972d-4595b6bebcd0.png"
+  }, {
+    id: 3,
+    title: "투자사 및 금융권",
+    description: "수십 개의 투자 보고서와 실사 데이터에서 핵심 성장 동력이나 잠재적 리스크를 신속하게 식별하여 투자 결정을 내립니다.",
+    icon: TrendingUp,
+    gradient: "from-emerald-600 via-teal-700 to-cyan-800",
+    overlayGradient: "from-emerald-900/80 to-cyan-900/60",
+    image: "/lovable-uploads/9bd95de7-d285-4dd7-ac4a-8fcc6ab83d7d.png"
+  }, {
+    id: 4,
+    title: "국방 및 공공기관",
+    description: "인터넷이 차단된 폐쇄망 PC에서 대외비 보고서 및 정책 자료의 핵심 내용을 요약하고, 보안 유출 없이 신속하게 업무를 처리합니다.",
+    icon: Shield,
+    gradient: "from-slate-600 via-gray-700 to-zinc-800",
+    overlayGradient: "from-slate-900/80 to-zinc-900/60",
+    image: "/lovable-uploads/ebf98bf4-9354-4eca-b2a5-310ff4a6c967.png"
+  }];
+  return <section id="scenarios" className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black" aria-labelledby="scenarios-heading">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
@@ -318,19 +314,14 @@ const Scenarios = () => {
         {/* Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {environments.map((env, index) => {
-            const IconComponent = env.icon;
-            return (
-              <div
-                key={env.id}
-                className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${env.gradient} 
+          const IconComponent = env.icon;
+          return <div key={env.id} className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${env.gradient} 
                            hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 
-                           hover:scale-[1.02] h-80`}
-              >
+                           hover:scale-[1.02] h-80`}>
                 {/* Background Image with Overlay */}
-                <div 
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${env.image})` }}
-                />
+                <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style={{
+              backgroundImage: `url(${env.image})`
+            }} />
                 <div className={`absolute inset-0 bg-gradient-to-br ${env.overlayGradient}`} />
                 
                 {/* Animated Background Pattern */}
@@ -367,9 +358,8 @@ const Scenarios = () => {
 
                 {/* Hover Effect Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-            );
-          })}
+              </div>;
+        })}
         </div>
 
         {/* Bottom CTA */}
@@ -392,40 +382,32 @@ const Scenarios = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 const Testimonials = () => {
-  const testimonials = [
-    {
-      id: 1,
-      name: "김민수",
-      role: "변호사",
-      company: "법무법인 정의",
-      content: "수만 페이지의 판례 자료에서 핵심 쟁점을 찾는 시간이 90% 단축되었습니다. 이제 소송 전략 수립에 더 집중할 수 있어요.",
-      rating: 5
-    },
-    {
-      id: 2,
-      name: "박지영",
-      role: "투자 분석가",
-      company: "KL 투자증권",
-      content: "실사 보고서 분석에 걸리던 시간이 하루에서 2시간으로 줄었어요. 정확한 출처까지 제공돼서 투자 결정에 확신을 가질 수 있습니다.",
-      rating: 5
-    },
-    {
-      id: 3,
-      name: "이상훈",
-      role: "R&D 팀장",
-      company: "테크이노베이션",
-      content: "기술 문서가 HWP로만 되어 있어서 항상 불편했는데, 이제 바로 질문하고 답을 얻을 수 있어 개발 속도가 2배 빨라졌습니다.",
-      rating: 5
-    }
-  ];
-
-  return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-white" aria-labelledby="testimonials-heading">
+  const testimonials = [{
+    id: 1,
+    name: "김민수",
+    role: "변호사",
+    company: "법무법인 정의",
+    content: "수만 페이지의 판례 자료에서 핵심 쟁점을 찾는 시간이 90% 단축되었습니다. 이제 소송 전략 수립에 더 집중할 수 있어요.",
+    rating: 5
+  }, {
+    id: 2,
+    name: "박지영",
+    role: "투자 분석가",
+    company: "KL 투자증권",
+    content: "실사 보고서 분석에 걸리던 시간이 하루에서 2시간으로 줄었어요. 정확한 출처까지 제공돼서 투자 결정에 확신을 가질 수 있습니다.",
+    rating: 5
+  }, {
+    id: 3,
+    name: "이상훈",
+    role: "R&D 팀장",
+    company: "테크이노베이션",
+    content: "기술 문서가 HWP로만 되어 있어서 항상 불편했는데, 이제 바로 질문하고 답을 얻을 수 있어 개발 속도가 2배 빨라졌습니다.",
+    rating: 5
+  }];
+  return <section className="py-20 bg-gradient-to-br from-gray-50 to-white" aria-labelledby="testimonials-heading">
       <div className="container max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
@@ -439,16 +421,10 @@ const Testimonials = () => {
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial) => (
-            <div
-              key={testimonial.id}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-2"
-            >
+          {testimonials.map(testimonial => <div key={testimonial.id} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-2">
               {/* Stars */}
               <div className="flex gap-1 mb-6">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                ))}
+                {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />)}
               </div>
 
               {/* Content */}
@@ -475,8 +451,7 @@ const Testimonials = () => {
 
               {/* Hover Effect Border */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-            </div>
-          ))}
+            </div>)}
         </div>
 
         {/* Bottom CTA */}
@@ -491,8 +466,7 @@ const Testimonials = () => {
           </a>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
 const Security = () => <section id="security" className="section bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden" aria-labelledby="security-heading">
     <div className="absolute inset-0 bg-gradient-to-r from-blue-100/50 to-indigo-100/50"></div>
@@ -537,47 +511,40 @@ const Security = () => <section id="security" className="section bg-gradient-to-
     </div>
   </section>;
 const HowItWorks = () => {
-  const steps = [
-    {
-      id: 1,
-      icon: Download,
-      title: "앱 다운로드 및 설치",
-      description: "PC에 앱을 설치하세요",
-      color: "from-blue-500 to-blue-600",
-      bgColor: "bg-blue-50",
-      iconColor: "text-blue-600"
-    },
-    {
-      id: 2,
-      icon: FileText,
-      title: "나만의 AI 지식 베이스 만들기",
-      description: "분석하고 싶은 파일들을 드래그 앤 드롭으로 간편하게 추가하세요",
-      color: "from-indigo-500 to-indigo-600",
-      bgColor: "bg-indigo-50",
-      iconColor: "text-indigo-600"
-    },
-    {
-      id: 3,
-      icon: Search,
-      title: "AI에게 질문하고 핵심 요약받기",
-      description: "\"이 계약서의 핵심 독소 조항은 뭐야?\"처럼 채팅하듯 질문하면 AI가 즉시 답변합니다",
-      color: "from-green-500 to-green-600",
-      bgColor: "bg-green-50",
-      iconColor: "text-green-600"
-    },
-    {
-      id: 4,
-      icon: Quote,
-      title: "클릭 한 번으로 출처 확인",
-      description: "AI 답변의 출처 위치를 원 클릭으로 찾고, 사실 여부를 파악하세요.",
-      color: "from-purple-500 to-purple-600",
-      bgColor: "bg-purple-50",
-      iconColor: "text-purple-600"
-    }
-  ];
-
-  return (
-    <section className="py-16 px-6 bg-gradient-to-br from-gray-50 to-white" aria-labelledby="how-heading">
+  const steps = [{
+    id: 1,
+    icon: Download,
+    title: "앱 다운로드 및 설치",
+    description: "PC에 앱을 설치하세요",
+    color: "from-blue-500 to-blue-600",
+    bgColor: "bg-blue-50",
+    iconColor: "text-blue-600"
+  }, {
+    id: 2,
+    icon: FileText,
+    title: "나만의 AI 지식 베이스 만들기",
+    description: "분석하고 싶은 파일들을 드래그 앤 드롭으로 간편하게 추가하세요",
+    color: "from-indigo-500 to-indigo-600",
+    bgColor: "bg-indigo-50",
+    iconColor: "text-indigo-600"
+  }, {
+    id: 3,
+    icon: Search,
+    title: "AI에게 질문하고 핵심 요약받기",
+    description: "\"이 계약서의 핵심 독소 조항은 뭐야?\"처럼 채팅하듯 질문하면 AI가 즉시 답변합니다",
+    color: "from-green-500 to-green-600",
+    bgColor: "bg-green-50",
+    iconColor: "text-green-600"
+  }, {
+    id: 4,
+    icon: Quote,
+    title: "클릭 한 번으로 출처 확인",
+    description: "AI 답변의 출처 위치를 원 클릭으로 찾고, 사실 여부를 파악하세요.",
+    color: "from-purple-500 to-purple-600",
+    bgColor: "bg-purple-50",
+    iconColor: "text-purple-600"
+  }];
+  return <section className="py-16 px-6 bg-gradient-to-br from-gray-50 to-white" aria-labelledby="how-heading">
       <div className="container max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -592,17 +559,12 @@ const HowItWorks = () => {
         {/* Steps Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => {
-            const IconComponent = step.icon;
-            return (
-              <div
-                key={step.id}
-                className="relative group"
-              >
+          const IconComponent = step.icon;
+          return <div key={step.id} className="relative group">
                 {/* Connection Line - only show between steps */}
-                {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-12 left-full w-full h-0.5 bg-gradient-to-r from-gray-300 to-transparent z-0" 
-                       style={{ transform: 'translateX(-50%)' }} />
-                )}
+                {index < steps.length - 1 && <div className="hidden lg:block absolute top-12 left-full w-full h-0.5 bg-gradient-to-r from-gray-300 to-transparent z-0" style={{
+              transform: 'translateX(-50%)'
+            }} />}
                 
                 {/* Card */}
                 <div className="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2 border border-gray-100 h-full">
@@ -629,9 +591,8 @@ const HowItWorks = () => {
                   {/* Hover Effect Border */}
                   <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${step.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
                 </div>
-              </div>
-            );
-          })}
+              </div>;
+        })}
         </div>
 
         {/* Bottom CTA */}
@@ -646,8 +607,7 @@ const HowItWorks = () => {
           </a>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
 const Pricing = () => <section id="pricing" className="section" aria-labelledby="pricing-heading">
     <div className="container">
@@ -719,24 +679,21 @@ const CTA = () => {
   });
   const onSubmit = async (values: FormValues) => {
     try {
-      const { error } = await supabase
-        .from('email_signups')
-        .insert([
-          { 
-            email: values.email,
-            consent: values.consent 
-          }
-        ]);
-
+      const {
+        error
+      } = await supabase.from('email_signups').insert([{
+        email: values.email,
+        consent: values.consent
+      }]);
       if (error) {
-        if (error.code === '23505') { // Unique constraint violation
+        if (error.code === '23505') {
+          // Unique constraint violation
           toast.error("이미 등록된 이메일입니다.");
         } else {
           toast.error("등록 중 오류가 발생했습니다. 다시 시도해 주세요.");
         }
         return;
       }
-
       toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
       reset();
     } catch (error) {
@@ -746,7 +703,7 @@ const CTA = () => {
   };
   return <section id="cta" className="section" aria-labelledby="cta-heading">
       <div className="container">
-        <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">Waitlist 등록하세요.</h2>
+        <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">지금 바로 Waitlist에 등록하세요.</h2>
         <p className="text-muted-foreground mb-6 text-center">출시 소식을 가장 먼저 전해 드립니다.</p>
         <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto">
           <div className="space-y-4">
@@ -756,11 +713,7 @@ const CTA = () => {
               {errors.email && <p className="text-sm text-destructive mt-1">{errors.email.message}</p>}
             </div>
             <div className="flex items-center gap-2">
-              <Checkbox 
-                id="consent" 
-                checked={watch("consent")}
-                onCheckedChange={(checked) => setValue("consent", !!checked)}
-              />
+              <Checkbox id="consent" checked={watch("consent")} onCheckedChange={checked => setValue("consent", !!checked)} />
               <Label htmlFor="consent" className="text-sm text-muted-foreground">개인정보 수집 및 알림 수신에 동의합니다.</Label>
             </div>
             {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}
@@ -851,8 +804,7 @@ const Footer = () => <footer className="border-t">
     </div>
   </footer>;
 const Index = () => {
-  return (
-    <div>
+  return <div>
       <Nav />
       <main>
         <Hero />
@@ -870,7 +822,6 @@ const Index = () => {
         <FAQ />
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
 export default Index;

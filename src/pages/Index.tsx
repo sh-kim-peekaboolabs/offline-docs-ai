@@ -17,9 +17,14 @@ const formSchema = z.object({
   })
 });
 type FormValues = z.infer<typeof formSchema>;
-const Nav = () => <header className="sticky top-0 z-40 bg-background/80 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b">
+const Nav = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return <header className="sticky top-0 z-40 bg-background/80 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b">
     <div className="container flex items-center justify-between py-4">
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 cursor-pointer" onClick={scrollToTop}>
         <img src={logo} alt="localdocs 3D 문서 스택 로고" width={40} height={40} className="logo-interactive" loading="lazy" />
         <div className="text-xl font-bold text-primary">Localdocs</div>
       </div>
@@ -36,6 +41,7 @@ const Nav = () => <header className="sticky top-0 z-40 bg-background/80 backdrop
       </div>
     </div>
   </header>;
+};
 const Hero = () => <section className="relative overflow-hidden">
     <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
     <div className="container relative py-20 md:py-28 text-center">

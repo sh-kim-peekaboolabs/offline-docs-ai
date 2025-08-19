@@ -746,7 +746,8 @@ const Footer = () => <footer className="border-t">
     </div>
   </footer>;
 const Index = () => {
-  return <div>
+  return (
+    <div>
       <Nav />
       <main>
         <Hero />
@@ -763,6 +764,7 @@ const Index = () => {
         <FAQ />
       </main>
       <Footer />
-    </div>;
+    </div>
+  );
 };
 export default Index;

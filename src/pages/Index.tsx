@@ -51,9 +51,14 @@ const Hero = () => <section className="relative overflow-hidden">
       <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
         나만의 AI 리서치 파트너, Localdocs
       </p>
-      <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div className="mt-8 flex flex-col items-center justify-center gap-4">
         <a href="#cta"><Button variant="hero" size="xl">Waitlist 등록하기</Button></a>
-        <p className="text-sm text-muted-foreground">벌써 100명 넘게 신청했어요</p>
+        <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">
+          <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
+          <span className="text-sm font-medium text-green-700">🔥 벌써 100명+ 신청 완료!</span>
+          <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+        </div>
+        <p className="text-xs text-muted-foreground/70 animate-fade-in">* 한정된 베타 테스터 모집 중 *</p>
       </div>
     </div>
   </section>;

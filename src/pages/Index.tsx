@@ -78,6 +78,7 @@ const Problem = () => <section className="section pt-8" aria-labelledby="problem
           </div>
           <div className="relative z-10 flex-1">
             <h3 className="font-semibold mb-2">기밀 문서라 ChatGPT를 사용할 수 없어요</h3>
+            <div className="w-full h-px bg-gray-300 mb-2"></div>
             <p className="text-sm text-muted-foreground">보안 문서라 외부에 유출되면 안돼요</p>
           </div>
         </div>
@@ -90,6 +91,7 @@ const Problem = () => <section className="section pt-8" aria-labelledby="problem
           </div>
           <div className="relative z-10 flex-1">
             <h3 className="font-semibold mb-2">수백 페이지 문서 처리 한계</h3>
+            <div className="w-full h-px bg-gray-300 mb-2"></div>
             <p className="text-sm text-muted-foreground">문서 개수가 많거나, 용량이 크면 토큰 제한이 걸려요</p>
           </div>
         </div>
@@ -102,6 +104,7 @@ const Problem = () => <section className="section pt-8" aria-labelledby="problem
           </div>
           <div className="relative z-10 flex-1">
             <h3 className="font-semibold mb-2">폐쇄망이라 인터넷을 못 써요</h3>
+            <div className="w-full h-px bg-gray-300 mb-2"></div>
             <p className="text-sm text-muted-foreground">AI를 쓰고 싶어도 못 쓰는 상황이에요</p>
           </div>
         </div>
@@ -114,6 +117,7 @@ const Problem = () => <section className="section pt-8" aria-labelledby="problem
           </div>
           <div className="relative z-10 flex-1">
             <h3 className="font-semibold mb-2">HWP 파일 미지원</h3>
+            <div className="w-full h-px bg-gray-300 mb-2"></div>
             <p className="text-sm text-muted-foreground">ChatGPT도 HWP파일을 지원하지 않아 매번 PDF로 변환해야 해요.</p>
           </div>
         </div>

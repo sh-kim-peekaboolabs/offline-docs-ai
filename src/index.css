@@ -1,10 +1,10 @@
-/* Fonts loaded via preconnect in HTML for better performance */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Design System - HSL only */
+/* Fonts */
+@import url("https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/pretendard.css");
 
 @layer base {
   :root {
@@ -22,7 +22,6 @@
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
-    --secondary-lighter: 210 40% 98.5%; /* Added for bg-secondary-lighter/50 */
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
@@ -58,7 +57,6 @@
     --gradient-primary: linear-gradient(135deg, hsl(226.5 72.7% 40.2%) 0%, hsl(221.2 83.2% 53.3%) 100%);
     --gradient-subtle: linear-gradient(135deg, hsl(214.3 94.1% 92.2%) 0%, hsl(210 20% 98%) 100%);
 
-    --shadow-elevated: 0 10px 30px -10px hsl(221.2 83.2% 53.3% / 0.25);
     --shadow-elegant: 0 10px 30px -10px hsl(221.2 83.2% 53.3% / 0.25);
     --shadow-glow: 0 0 40px hsl(221.2 83.2% 53.3% / 0.35);
   }
@@ -111,7 +109,7 @@
 @layer utilities {
   .bg-gradient-primary { background-image: var(--gradient-primary); }
   .bg-gradient-subtle { background-image: var(--gradient-subtle); }
-  .shadow-elevated { box-shadow: var(--shadow-elevated); }
+  .shadow-elevated { box-shadow: var(--shadow-elegant); }
 
   /* Performance optimizations */
   .gpu-optimized { will-change: transform; transform: translate3d(0, 0, 0); }

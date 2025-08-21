@@ -20,43 +20,13 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Optimize CSS delivery and reduce bundle size
+    // Optimize CSS delivery to reduce render-blocking
     cssCodeSplit: true,
-    minify: 'terser',
-    target: 'esnext',
-    sourcemap: false,
-    // Reduce bundle size significantly
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn']
-      }
-    },
     rollupOptions: {
       output: {
-        // Advanced code splitting for better performance
-        manualChunks: (id) => {
-          // Vendor chunks
-          if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom')) {
-              return 'react-vendor';
-            }
-            if (id.includes('lucide-react')) {
-              return 'icons';
-            }
-            if (id.includes('@radix-ui')) {
-              return 'ui-vendor';
-            }
-            if (id.includes('react-hook-form') || id.includes('zod')) {
-              return 'forms';
-            }
-            return 'vendor';
-          }
-          // Component chunks
-          if (id.includes('src/components/ui')) {
-            return 'ui-components';
-          }
+        // Ensure CSS is loaded asynchronously
+        manualChunks: {
+          vendor: ['react', 'react-dom']
         }
       }
     }

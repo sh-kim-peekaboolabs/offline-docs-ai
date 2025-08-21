@@ -30,7 +30,6 @@ export default {
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
-					lighter: 'hsl(var(--secondary-lighter))', /* Added for bg-secondary-lighter/50 */
 					foreground: 'hsl(var(--secondary-foreground))'
 				},
 				destructive: {

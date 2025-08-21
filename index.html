@@ -20,56 +20,16 @@
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     <meta name="twitter:image:alt" content="localdocs — 오프라인에서 작동하는 한국어 특화 요약 AI" />
     
-    <!-- DNS and resource hints for faster font loading and LCP optimization -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <!-- Preload critical CSS to reduce render-blocking -->
+    <link rel="preload" as="style" href="/src/index.css">
     
-    <!-- Preload critical resources -->
-    <link rel="preload" as="style" href="/src/index.css" fetchpriority="high">
-    <link rel="stylesheet" href="/src/index.css">
-    <link rel="modulepreload" href="/src/main.tsx" fetchpriority="high">
-    
-    <!-- Async load fonts to prevent render blocking -->
-    <link rel="preload" as="font" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/woff2/Pretendard-Regular.woff2" type="font/woff2" crossorigin>
-    <link rel="preload" as="font" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/woff2/Pretendard-Medium.woff2" type="font/woff2" crossorigin>
-    <link rel="preload" as="font" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/woff2/Pretendard-Bold.woff2" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/pretendard.css" media="print" onload="this.media='all'; this.onload=null;">
-    
-    <!-- Critical CSS inlined to prevent render-blocking and optimize LCP -->
+    <!-- Critical CSS inlined to prevent render-blocking -->
     <style>
-      /* Critical above-the-fold styles with font optimization */
-      body { 
-        margin: 0; 
-        font-family: Pretendard, system-ui, -apple-system, sans-serif;
-        font-display: swap;
-      }
+      /* Critical above-the-fold styles */
+      body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
       .min-h-screen { min-height: 100vh; }
-      .bg-background { background-color: hsl(210 20% 98%); }
-      .text-foreground { color: hsl(222.2 47.4% 11.2%); }
-      
-      /* Critical styles for LCP element (H1) and hero section */
-      .hero-title {
-        font-family: Pretendard, system-ui, -apple-system, sans-serif;
-        font-weight: 700;
-        line-height: 1.2;
-        color: hsl(222.2 47.4% 11.2%);
-        font-display: swap;
-      }
-      
-      /* Essential layout styles */
-      .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
-      .relative { position: relative; }
-      .sticky { position: sticky; }
-      .top-0 { top: 0; }
-      .z-40 { z-index: 40; }
-      .flex { display: flex; }
-      .items-center { align-items: center; }
-      .justify-between { justify-content: space-between; }
-      .text-center { text-align: center; }
-      .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
-      .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
-      .bg-primary { background-color: hsl(221.2 83.2% 53.3%); }
-      .text-white { color: white; }
+      .bg-background { background-color: hsl(var(--background)); }
+      .text-foreground { color: hsl(var(--foreground)); }
     </style>
   </head>
 

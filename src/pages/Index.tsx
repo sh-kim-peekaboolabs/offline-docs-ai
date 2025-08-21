@@ -114,7 +114,7 @@ const Problem = () => <section className="section pt-8" aria-labelledby="problem
           </div>
           <div className="relative z-10">
             <h3 className="font-semibold mb-2">수백 페이지 문서 처리 한계</h3>
-            <p className="text-sm text-muted-foreground">대용량 문서는 업로드도 안되고, 토큰 제한으로 일부만 분석돼요</p>
+            <p className="text-sm text-muted-foreground">문서 개수가 많거나, 용량이 크면 토큰 제한이 걸려요</p>
           </div>
         </div>
       </div>

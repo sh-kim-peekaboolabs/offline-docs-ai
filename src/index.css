@@ -1,5 +1,4 @@
-/* Fonts - Must be first for proper CSS cascade */
-@import url("https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/pretendard.css");
+/* Fonts loaded via preconnect in HTML for better performance */
 
 @tailwind base;
 @tailwind components;

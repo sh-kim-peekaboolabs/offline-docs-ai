@@ -20,10 +20,19 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Optimize CSS delivery to reduce render-blocking
+    // Optimize CSS delivery and reduce bundle size
     cssCodeSplit: true,
-    // Enable tree shaking and minification
-    minify: true,
+    minify: 'terser',
+    target: 'esnext',
+    sourcemap: false,
+    // Reduce bundle size significantly
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn']
+      }
+    },
     rollupOptions: {
       output: {
         // Advanced code splitting for better performance

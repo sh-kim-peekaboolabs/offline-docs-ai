@@ -29,8 +29,11 @@
     <link rel="stylesheet" href="/src/index.css">
     <link rel="modulepreload" href="/src/main.tsx" fetchpriority="high">
     
-    <!-- Preload critical font for LCP optimization -->
+    <!-- Async load fonts to prevent render blocking -->
     <link rel="preload" as="font" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/woff2/Pretendard-Regular.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/woff2/Pretendard-Medium.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/woff2/Pretendard-Bold.woff2" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/pretendard.css" media="print" onload="this.media='all'; this.onload=null;">
     
     <!-- Critical CSS inlined to prevent render-blocking and optimize LCP -->
     <style>

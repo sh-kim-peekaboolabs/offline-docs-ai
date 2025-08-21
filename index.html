@@ -24,8 +24,9 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     
-    <!-- Preload critical resources to reduce network dependency chains -->
-    <link rel="preload" as="style" href="/src/index.css" fetchpriority="high">
+    <!-- Preload and async load CSS to prevent render blocking -->
+    <link rel="preload" as="style" href="/src/index.css" fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
     <link rel="modulepreload" href="/src/main.tsx" fetchpriority="high">
     
     <!-- Preload critical font for LCP optimization -->
@@ -43,7 +44,7 @@
       .bg-background { background-color: hsl(210 20% 98%); }
       .text-foreground { color: hsl(222.2 47.4% 11.2%); }
       
-      /* Critical styles for LCP element (H1) */
+      /* Critical styles for LCP element (H1) and hero section */
       .hero-title {
         font-family: Pretendard, system-ui, -apple-system, sans-serif;
         font-weight: 700;
@@ -51,6 +52,21 @@
         color: hsl(222.2 47.4% 11.2%);
         font-display: swap;
       }
+      
+      /* Essential layout styles */
+      .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+      .relative { position: relative; }
+      .sticky { position: sticky; }
+      .top-0 { top: 0; }
+      .z-40 { z-index: 40; }
+      .flex { display: flex; }
+      .items-center { align-items: center; }
+      .justify-between { justify-content: space-between; }
+      .text-center { text-align: center; }
+      .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+      .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+      .bg-primary { background-color: hsl(221.2 83.2% 53.3%); }
+      .text-white { color: white; }
     </style>
   </head>
 

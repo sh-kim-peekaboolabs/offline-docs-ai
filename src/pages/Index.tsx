@@ -76,9 +76,21 @@ const Problem = () => <section className="section pt-8" aria-labelledby="problem
               <ShieldCheck className="w-6 h-6" />
             </div>
           </div>
-          <div className="relative z-10">
+          <div className="relative z-10 flex-1">
             <h3 className="font-semibold mb-2">기밀 문서라 ChatGPT를 사용할 수 없어요</h3>
             <p className="text-sm text-muted-foreground">보안 문서라 외부에 유출되면 안돼요</p>
+          </div>
+        </div>
+        <div className="feature-card flex items-start gap-4 p-6 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100 opacity-30"></div>
+          <div className="relative z-10 flex-shrink-0">
+            <div className="p-3 rounded-xl bg-blue-100 text-blue-600">
+              <AlertTriangle className="w-6 h-6" />
+            </div>
+          </div>
+          <div className="relative z-10 flex-1">
+            <h3 className="font-semibold mb-2">수백 페이지 문서 처리 한계</h3>
+            <p className="text-sm text-muted-foreground">문서 개수가 많거나, 용량이 크면 토큰 제한이 걸려요</p>
           </div>
         </div>
         <div className="feature-card flex items-start gap-4 p-6 relative overflow-hidden">
@@ -88,7 +100,7 @@ const Problem = () => <section className="section pt-8" aria-labelledby="problem
               <WifiOff className="w-6 h-6" />
             </div>
           </div>
-          <div className="relative z-10">
+          <div className="relative z-10 flex-1">
             <h3 className="font-semibold mb-2">폐쇄망이라 인터넷을 못 써요</h3>
             <p className="text-sm text-muted-foreground">AI를 쓰고 싶어도 못 쓰는 상황이에요</p>
           </div>
@@ -100,21 +112,9 @@ const Problem = () => <section className="section pt-8" aria-labelledby="problem
               <X className="w-6 h-6" />
             </div>
           </div>
-          <div className="relative z-10">
+          <div className="relative z-10 flex-1">
             <h3 className="font-semibold mb-2">HWP 파일 미지원</h3>
             <p className="text-sm text-muted-foreground">ChatGPT도 HWP파일을 지원하지 않아 매번 PDF로 변환해야 해요.</p>
-          </div>
-        </div>
-        <div className="feature-card flex items-start gap-4 p-6 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100 opacity-30"></div>
-          <div className="relative z-10 flex-shrink-0">
-            <div className="p-3 rounded-xl bg-blue-100 text-blue-600">
-              <AlertTriangle className="w-6 h-6" />
-            </div>
-          </div>
-          <div className="relative z-10">
-            <h3 className="font-semibold mb-2">수백 페이지 문서 처리 한계</h3>
-            <p className="text-sm text-muted-foreground">문서 개수가 많거나, 용량이 크면 토큰 제한이 걸려요</p>
           </div>
         </div>
       </div>

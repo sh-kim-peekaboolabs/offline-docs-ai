@@ -1,10 +1,11 @@
+/* Fonts - Must be first for proper CSS cascade */
+@import url("https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/pretendard.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Design System - HSL only */
-/* Fonts */
-@import url("https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/pretendard.css");
 
 @layer base {
   :root {

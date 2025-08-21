@@ -22,15 +22,8 @@ export default defineConfig(({ mode }) => ({
   build: {
     // Optimize CSS delivery to reduce render-blocking
     cssCodeSplit: true,
-    // Enable tree shaking
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug']
-      }
-    },
+    // Enable tree shaking and minification
+    minify: true,
     rollupOptions: {
       output: {
         // Advanced code splitting for better performance

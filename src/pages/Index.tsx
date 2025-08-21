@@ -89,7 +89,7 @@ const Problem = () => <section className="section pt-8" aria-labelledby="problem
             </div>
           </div>
           <div className="relative z-10">
-            <h3 className="font-semibold mb-2">인터넷이 안되는 폐쇄망이에요</h3>
+            <h3 className="font-semibold mb-2">폐쇄망이라 인터넷을 못 써요</h3>
             <p className="text-sm text-muted-foreground">AI를 쓰고 싶어도 못 쓰는 상황이에요</p>
           </div>
         </div>

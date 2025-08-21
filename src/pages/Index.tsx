@@ -68,7 +68,7 @@ const Hero = () => <section className="relative overflow-hidden">
 const Problem = () => <section className="section pt-8" aria-labelledby="problem-heading">
     <div className="container">
       <h2 id="problem-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">Localdocs를 써야하는 이유</h2>
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="feature-card flex items-start gap-4 p-6 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-red-100 opacity-30"></div>
           <div className="relative z-10 flex-shrink-0">
@@ -103,6 +103,18 @@ const Problem = () => <section className="section pt-8" aria-labelledby="problem
           <div className="relative z-10">
             <h3 className="font-semibold mb-2">HWP 파일 미지원</h3>
             <p className="text-sm text-muted-foreground">ChatGPT도 HWP파일을 지원하지 않아 매번 PDF로 변환해야 해요.</p>
+          </div>
+        </div>
+        <div className="feature-card flex items-start gap-4 p-6 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100 opacity-30"></div>
+          <div className="relative z-10 flex-shrink-0">
+            <div className="p-3 rounded-xl bg-blue-100 text-blue-600">
+              <AlertTriangle className="w-6 h-6" />
+            </div>
+          </div>
+          <div className="relative z-10">
+            <h3 className="font-semibold mb-2">수백 페이지 문서 처리 한계</h3>
+            <p className="text-sm text-muted-foreground">대용량 문서는 업로드도 안되고, 토큰 제한으로 일부만 분석돼요</p>
           </div>
         </div>
       </div>

@@ -20,8 +20,12 @@
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     <meta name="twitter:image:alt" content="localdocs — 오프라인에서 작동하는 한국어 특화 요약 AI" />
     
-    <!-- Preload critical CSS to reduce render-blocking -->
-    <link rel="preload" as="style" href="/src/index.css">
+    <!-- Resource hints for faster loading -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    
+    <!-- Preload critical resources to reduce network dependency chains -->
+    <link rel="preload" as="style" href="/src/index.css" fetchpriority="high">
+    <link rel="modulepreload" href="/src/main.tsx" fetchpriority="high">
     
     <!-- Critical CSS inlined to prevent render-blocking -->
     <style>

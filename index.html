@@ -24,9 +24,9 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     
-    <!-- Preload and async load CSS to prevent render blocking -->
-    <link rel="preload" as="style" href="/src/index.css" fetchpriority="high" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
+    <!-- Preload critical resources -->
+    <link rel="preload" as="style" href="/src/index.css" fetchpriority="high">
+    <link rel="stylesheet" href="/src/index.css">
     <link rel="modulepreload" href="/src/main.tsx" fetchpriority="high">
     
     <!-- Preload critical font for LCP optimization -->

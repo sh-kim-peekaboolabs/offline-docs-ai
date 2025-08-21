@@ -19,6 +19,18 @@
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     <meta name="twitter:image:alt" content="localdocs — 오프라인에서 작동하는 한국어 특화 요약 AI" />
+    
+    <!-- Preload critical CSS to reduce render-blocking -->
+    <link rel="preload" as="style" href="/src/index.css">
+    
+    <!-- Critical CSS inlined to prevent render-blocking -->
+    <style>
+      /* Critical above-the-fold styles */
+      body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+      .min-h-screen { min-height: 100vh; }
+      .bg-background { background-color: hsl(var(--background)); }
+      .text-foreground { color: hsl(var(--foreground)); }
+    </style>
   </head>
 
   <body>

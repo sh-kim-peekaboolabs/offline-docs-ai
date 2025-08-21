@@ -19,4 +19,16 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Optimize CSS delivery to reduce render-blocking
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        // Ensure CSS is loaded asynchronously
+        manualChunks: {
+          vendor: ['react', 'react-dom']
+        }
+      }
+    }
+  }
 }));

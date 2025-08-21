@@ -111,6 +111,11 @@
   .bg-gradient-subtle { background-image: var(--gradient-subtle); }
   .shadow-elevated { box-shadow: var(--shadow-elegant); }
 
+  /* Performance optimizations */
+  .gpu-optimized { will-change: transform; transform: translate3d(0, 0, 0); }
+  .gpu-scale { transform: scale3d(1, 1, 1) translate3d(0, 0, 0); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
+  .gpu-scale:hover { transform: scale3d(1.05, 1.05, 1) translate3d(0, 0, 0); }
+
   /* Interactive underline */
   .story-link { position: relative; display: inline-block; }
   .story-link::after { content: ""; position: absolute; left: 0; bottom: -2px; width: 100%; height: 2px; background: hsl(var(--primary)); transform: scaleX(0); transform-origin: bottom right; transition: transform .3s; }
@@ -121,11 +126,31 @@
   .section-sm { padding: 60px 0; }
   .section-lg { padding: 120px 0; }
 
-  /* Cards */
-  .feature-card { background: hsl(var(--card)); border: 1px solid hsl(var(--border)); border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px hsl(var(--foreground) / 0.05); transition: transform .2s ease, box-shadow .2s ease; }
-  .feature-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px hsl(var(--foreground) / 0.08); }
+  /* Cards - GPU optimized */
+  .feature-card { 
+    background: hsl(var(--card)); 
+    border: 1px solid hsl(var(--border)); 
+    border-radius: 12px; 
+    padding: 24px; 
+    box-shadow: 0 1px 3px hsl(var(--foreground) / 0.05); 
+    transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow .3s cubic-bezier(0.4, 0, 0.2, 1); 
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    contain: layout style paint;
+  }
+  .feature-card:hover { transform: translate3d(0, -8px, 0); box-shadow: 0 10px 25px hsl(var(--foreground) / 0.08); }
 
-  .pricing-card { background: hsl(var(--card)); border: 2px solid hsl(var(--border)); border-radius: 16px; padding: 32px; position: relative; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+  .pricing-card { 
+    background: hsl(var(--card)); 
+    border: 2px solid hsl(var(--border)); 
+    border-radius: 16px; 
+    padding: 32px; 
+    position: relative; 
+    transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow .3s cubic-bezier(0.4, 0, 0.2, 1), border-color .3s cubic-bezier(0.4, 0, 0.2, 1); 
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    contain: layout style paint;
+  }
   .pricing-card.featured { border-color: hsl(var(--primary)); box-shadow: 0 10px 40px hsl(var(--primary) / 0.10); }
   .pricing-card.featured::before { content: "인기"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); padding: 6px 16px; border-radius: 12px; font-size: 12px; font-weight: 500; }
 
@@ -134,9 +159,14 @@
   .comparison-table th { background: hsl(var(--secondary)); padding: 20px; text-align: left; font-weight: 600; color: hsl(var(--foreground)); border-bottom: 1px solid hsl(var(--border)); }
   .comparison-table td { padding: 16px 20px; border-bottom: 1px solid hsl(var(--border)); vertical-align: middle; }
 
-  /* Logo interactions */
-  .logo-interactive { transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), filter .3s cubic-bezier(0.4, 0, 0.2, 1); filter: drop-shadow(0 4px 8px hsl(var(--primary) / 0.25)); }
-  .logo-interactive:hover { transform: translateY(-2px) scale(1.02); filter: drop-shadow(0 12px 24px hsl(var(--primary) / 0.25)); }
-  .logo-interactive:active { transform: translateY(0) scale(0.98); filter: drop-shadow(0 4px 8px hsl(var(--primary) / 0.25)); }
+  /* Logo interactions - GPU optimized */
+  .logo-interactive { 
+    transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), filter .3s cubic-bezier(0.4, 0, 0.2, 1); 
+    filter: drop-shadow(0 4px 8px hsl(var(--primary) / 0.25)); 
+    will-change: transform;
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+  .logo-interactive:hover { transform: translate3d(0, -2px, 0) scale3d(1.02, 1.02, 1); filter: drop-shadow(0 12px 24px hsl(var(--primary) / 0.25)); }
+  .logo-interactive:active { transform: translate3d(0, 0, 0) scale3d(0.98, 0.98, 1); filter: drop-shadow(0 4px 8px hsl(var(--primary) / 0.25)); }
 }
 

@@ -124,43 +124,43 @@ const Features = () => <section id="features" className="section bg-secondary-li
     <div className="container">
       <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">핵심 기능</h2>
       <div className="grid md:grid-cols-3 gap-6">
-        <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
-          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+        <div className="feature-card text-center group gpu-optimized">
+          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
             <WifiOff className="w-8 h-8" />
           </div>
           <h3 className="text-xl font-semibold mb-2">오프라인 요약 AI</h3>
           <p className="text-muted-foreground">인터넷 없이 대용량 문서를 빠르게 요약해요.</p>
         </div>
-        <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
-          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+        <div className="feature-card text-center group gpu-optimized">
+          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
             <Brain className="w-8 h-8" />
           </div>
           <h3 className="text-xl font-semibold mb-2">한국어 특화 AI</h3>
           <p className="text-muted-foreground">한국어 문맥·문체에 최적화된 AI를 탑재했어요.</p>
         </div>
-        <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
-          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+        <div className="feature-card text-center group gpu-optimized">
+          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
             <FileText className="w-8 h-8" />
           </div>
           <h3 className="text-xl font-semibold mb-2">HWP 지원</h3>
           <p className="text-muted-foreground">HWP/HWPX 문서를 바로 읽을 수 있어요.</p>
         </div>
-        <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
-          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+        <div className="feature-card text-center group gpu-optimized">
+          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
             <Quote className="w-8 h-8" />
           </div>
           <h3 className="text-xl font-semibold mb-2">모든 답변에 출처 제공</h3>
           <p className="text-muted-foreground">문서에서 찾은 출처를 바로 확인할 수 있어요. </p>
         </div>
-        <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
-          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+        <div className="feature-card text-center group gpu-optimized">
+          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
             <LinkIcon className="w-8 h-8" />
           </div>
           <h3 className="text-xl font-semibold mb-2">문서·링크·텍스트 통합</h3>
           <p className="text-muted-foreground">하나의 지식 베이스에서 한번에 통합 분석해요.</p>
         </div>
-        <div className="feature-card text-center group hover:scale-105 transition-transform duration-300">
-          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+        <div className="feature-card text-center group gpu-optimized">
+          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
             <Search className="w-8 h-8" />
           </div>
           <h3 className="text-xl font-semibold mb-2">오프라인 지식 검색</h3>
@@ -316,10 +316,9 @@ const Scenarios = () => {
           {environments.map((env, index) => {
           const IconComponent = env.icon;
           return <div key={env.id} className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${env.gradient} 
-                           hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 
-                           hover:scale-[1.02] h-80`}>
+                           gpu-optimized h-80`}>
                 {/* Background Image with Overlay */}
-                <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style={{
+                <div className="absolute inset-0 bg-cover bg-center gpu-scale" style={{
               backgroundImage: `url(${env.image})`
             }} />
                 <div className={`absolute inset-0 bg-gradient-to-br ${env.overlayGradient}`} />
@@ -421,7 +420,7 @@ const Testimonials = () => {
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map(testimonial => <div key={testimonial.id} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-2">
+          {testimonials.map(testimonial => <div key={testimonial.id} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl gpu-optimized border border-gray-100 group">
               {/* Stars */}
               <div className="flex gap-1 mb-6">
                 {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />)}
@@ -567,14 +566,14 @@ const HowItWorks = () => {
             }} />}
                 
                 {/* Card */}
-                <div className="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2 border border-gray-100 h-full">
+                <div className="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl gpu-optimized border border-gray-100 h-full">
                   {/* Step Number */}
                   <div className={`absolute -top-4 left-6 w-8 h-8 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center shadow-lg`}>
                     <span className="text-white font-bold text-sm">{step.id}</span>
                   </div>
 
                   {/* Icon */}
-                  <div className={`w-16 h-16 ${step.bgColor} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`w-16 h-16 ${step.bgColor} rounded-2xl flex items-center justify-center mb-6 gpu-scale`}>
                     <IconComponent className={`w-8 h-8 ${step.iconColor}`} />
                   </div>
 
@@ -598,7 +597,7 @@ const HowItWorks = () => {
         {/* Bottom CTA */}
         <div className="text-center mt-16">
           <a href="#cta">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold gpu-optimized cursor-pointer">
               <span>바로 시작하기</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />

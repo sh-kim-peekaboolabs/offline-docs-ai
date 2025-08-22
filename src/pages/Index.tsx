@@ -400,7 +400,7 @@ const Testimonials = () => {
     id: 1,
     name: "김민수",
     role: "변호사",
-    company: "법무법인 정의",
+    company: "법무법인 A",
     content: "수만 페이지의 판례 자료에서 핵심 쟁점을 찾는 시간이 90% 단축되었습니다. 이제 소송 전략 수립에 더 집중할 수 있어요.",
     rating: 5
   }, {

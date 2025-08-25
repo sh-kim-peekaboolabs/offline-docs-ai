@@ -151,7 +151,7 @@
     transform: translate3d(0, 0, 0);
     contain: layout style paint;
   }
-  .pricing-card.featured { border-color: hsl(var(--primary)); box-shadow: 0 10px 40px hsl(var(--primary) / 0.10); }
+  .pricing-card.featured { border-color: hsl(var(--primary)); box-shadow: 0 10px 40px hsl(var(--primary) / 0.10); margin-top: 20px; }
   .pricing-card.featured::before { content: "인기"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); padding: 6px 16px; border-radius: 12px; font-size: 12px; font-weight: 500; }
 
   /* Comparison table */

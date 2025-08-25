@@ -624,7 +624,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
     <div className="container">
       <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4">나에게 맞는 요금제를 선택하세요</h2>
       <p className="text-muted-foreground mb-8">개인적인 문서 탐색은 무료로 시작하세요. 데이터 분석, 보고서 작성 등 전문가 수준의 생산성이 필요하다면 Pro를, 조직을 위한 보안과 관리가 필요하다면 Enterprise를 선택하세요.</p>
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-3 gap-6 pt-4">
         <div className="pricing-card">
           <h3 className="text-xl font-semibold">Free</h3>
           <p className="mt-1 text-muted-foreground">핵심 기능을 경험하는 가장 좋은 방법</p>

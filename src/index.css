@@ -150,26 +150,28 @@
     will-change: transform;
     transform: translate3d(0, 0, 0);
     contain: layout style paint;
+    overflow: visible;
   }
   .pricing-card.featured { 
     border-color: hsl(var(--primary)); 
     box-shadow: 0 10px 40px hsl(var(--primary) / 0.10); 
+    margin-top: 24px;
   }
   .pricing-card.featured::before { 
     content: "인기"; 
     position: absolute; 
-    top: -18px; 
+    top: -20px; 
     left: 50%; 
     transform: translateX(-50%); 
     background: hsl(var(--primary)); 
     color: hsl(var(--primary-foreground)); 
-    padding: 8px 20px; 
-    border-radius: 16px; 
-    font-size: 13px; 
-    font-weight: 600; 
+    padding: 10px 24px; 
+    border-radius: 20px; 
+    font-size: 14px; 
+    font-weight: 700; 
     white-space: nowrap; 
-    z-index: 10; 
-    box-shadow: 0 4px 12px hsl(var(--primary) / 0.25);
+    z-index: 20; 
+    box-shadow: 0 4px 16px hsl(var(--primary) / 0.3);
   }
 
   /* Comparison table */

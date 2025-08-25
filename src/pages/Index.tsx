@@ -641,7 +641,10 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
           </div>
         </div>
         <div className="pricing-card featured h-full flex flex-col">
-          <h3 className="text-xl font-semibold">Pro</h3>
+          <div className="flex items-center gap-2">
+            <h3 className="text-xl font-semibold">Pro</h3>
+            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary text-primary-foreground">인기</span>
+          </div>
           <p className="mt-1 text-muted-foreground">데이터 분석부터 보고서 작성까지, 전문가를 위한 생산성 도구</p>
           <p className="mt-4 text-2xl font-bold">$19 <span className="text-sm font-medium text-muted-foreground">/ 사용자 / 월</span></p>
           <ul className="mt-4 space-y-2 text-sm flex-1">

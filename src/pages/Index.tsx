@@ -9,11 +9,17 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield, Star } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
+import { useEffect } from "react";
+
 const formSchema = z.object({
   email: z.string().email("유효한 이메일을 입력해 주세요."),
   consent: z.boolean().refine(val => val === true, {
     message: "동의가 필요합니다."
-  })
+  }),
+  utm_source: z.string().optional(),
+  utm_medium: z.string().optional(),
+  utm_campaign: z.string().optional(),
+  utm_content: z.string().optional()
 });
 type FormValues = z.infer<typeof formSchema>;
 const Nav = () => {
@@ -691,13 +697,31 @@ const CTA = () => {
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema)
   });
+
+  // URL 파라미터에서 UTM 데이터를 읽어서 폼에 자동 설정
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'] as const;
+    
+    utmFields.forEach(fieldName => {
+      const paramValue = params.get(fieldName);
+      if (paramValue) {
+        setValue(fieldName, paramValue);
+      }
+    });
+  }, [setValue]);
+
   const onSubmit = async (values: FormValues) => {
     try {
       const {
         error
       } = await supabase.from('email_signups').insert([{
         email: values.email,
-        consent: values.consent
+        consent: values.consent,
+        utm_source: values.utm_source || null,
+        utm_medium: values.utm_medium || null,
+        utm_campaign: values.utm_campaign || null,
+        utm_content: values.utm_content || null
       }]);
       if (error) {
         if (error.code === '23505') {
@@ -726,6 +750,13 @@ const CTA = () => {
               <Input id="email" type="email" placeholder="hello@localdocs.ai" {...register("email")} />
               {errors.email && <p className="text-sm text-destructive mt-1">{errors.email.message}</p>}
             </div>
+            
+            {/* Hidden UTM 필드들 */}
+            <input type="hidden" {...register("utm_source")} />
+            <input type="hidden" {...register("utm_medium")} />
+            <input type="hidden" {...register("utm_campaign")} />
+            <input type="hidden" {...register("utm_content")} />
+            
             <div className="flex items-center gap-2">
               <Checkbox id="consent" checked={watch("consent")} onCheckedChange={checked => setValue("consent", !!checked)} />
               <Label htmlFor="consent" className="text-sm text-muted-foreground">개인정보 수집 및 알림 수신에 동의합니다.</Label>

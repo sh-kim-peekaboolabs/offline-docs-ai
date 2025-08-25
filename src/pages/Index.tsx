@@ -624,12 +624,12 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
     <div className="container">
       <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4">나에게 맞는 요금제를 선택하세요</h2>
       <p className="text-muted-foreground mb-8">개인적인 문서 탐색은 무료로 시작하세요. 데이터 분석, 보고서 작성 등 전문가 수준의 생산성이 필요하다면 Pro를, 조직을 위한 보안과 관리가 필요하다면 Enterprise를 선택하세요.</p>
-      <div className="grid md:grid-cols-3 gap-6 pt-8">
-        <div className="pricing-card">
+      <div className="grid md:grid-cols-3 gap-6 pt-12 pb-4">
+        <div className="pricing-card h-full flex flex-col">
           <h3 className="text-xl font-semibold">Free</h3>
           <p className="mt-1 text-muted-foreground">핵심 기능을 경험하는 가장 좋은 방법</p>
           <p className="mt-4 text-2xl font-bold">₩0 <span className="text-sm font-medium text-muted-foreground">/ 평생</span></p>
-          <ul className="mt-4 space-y-2 text-sm">
+          <ul className="mt-4 space-y-2 text-sm flex-1">
             <li>오프라인 AI 요약·검색</li>
             <li>기본 문서 지원(HWP, PDF, PPTX, DOCX)</li>
             <li>답변 내 인용 제공</li>
@@ -640,11 +640,11 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             <a href="#cta"><Button variant="hero" size="lg" className="w-full">Waitlist 등록하기</Button></a>
           </div>
         </div>
-        <div className="pricing-card featured">
+        <div className="pricing-card featured h-full flex flex-col">
           <h3 className="text-xl font-semibold">Pro</h3>
           <p className="mt-1 text-muted-foreground">데이터 분석부터 보고서 작성까지, 전문가를 위한 생산성 도구</p>
           <p className="mt-4 text-2xl font-bold">$19 <span className="text-sm font-medium text-muted-foreground">/ 사용자 / 월</span></p>
-          <ul className="mt-4 space-y-2 text-sm">
+          <ul className="mt-4 space-y-2 text-sm flex-1">
             <li>Free의 모든 기능 포함</li>
             <li>고급 문서 지원(XLSX/CSV, 스캔 PDF OCR)</li>
             <li>요약 결과 내보내기(Word, PPTX, Markdown)</li>
@@ -656,11 +656,11 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             <a href="#cta"><Button variant="hero" size="lg" className="w-full">Waitlist 등록하기</Button></a>
           </div>
         </div>
-        <div className="pricing-card">
+        <div className="pricing-card h-full flex flex-col">
           <h3 className="text-xl font-semibold">Enterprise</h3>
           <p className="mt-1 text-muted-foreground">보안, 배포, 중앙 관리가 중요한 조직을 위한 맞춤형 솔루션</p>
           <p className="mt-4 text-2xl font-bold">별도 문의</p>
-          <ul className="mt-4 space-y-2 text-sm">
+          <ul className="mt-4 space-y-2 text-sm flex-1">
             <li>Pro의 모든 기능 포함</li>
             <li>대규모 팀을 위한 중앙 라이선스 관리</li>
             <li>폐쇄망 환경을 위한 오프라인 설치 지원</li>

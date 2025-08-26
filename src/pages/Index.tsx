@@ -57,7 +57,7 @@ const Hero = () => <section className="relative overflow-hidden">
       <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl md:text-5xl font-bold leading-normal">인터넷 없이<br />
 문서를 요약, 정리, 검색하세요.</h1>
       <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-        AI 대량 문서 요약 파트너, Localdocs
+        AI 문서 탐색 도구, Localdocs
       </p>
       <div className="mt-8 flex flex-col items-center justify-center gap-4">
         <a href="#cta"><Button variant="hero" size="xl">Waitlist 등록하기</Button></a>

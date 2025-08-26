@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield, Star } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { useEffect } from "react";
+import { usePageTracking, useSectionTracking } from "@/hooks/useAnalytics";
 
 const formSchema = z.object({
   email: z.string().email("유효한 이메일을 입력해 주세요."),
@@ -880,6 +881,10 @@ const Footer = () => <footer className="border-t">
     </div>
   </footer>;
 const Index = () => {
+  // 페이지뷰와 섹션뷰 자동 추적 활성화
+  usePageTracking();
+  useSectionTracking();
+
   return <div>
       <Nav />
       <main>

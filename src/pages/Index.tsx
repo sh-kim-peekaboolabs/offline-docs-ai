@@ -55,7 +55,7 @@ const Hero = () => <section className="relative overflow-hidden">
       <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">내 PC부터 Notion까지, 흩어진 모든 문서에서</div>
       <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">한 번의 질문으로, 원하는 답을 찾으세요.</h1>
       <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-        빠르고 안전한 사내 AI 문서 탐색기, Localdocs
+        빠르고 안전한 AI 사내 문서 탐색기
       </p>
       <div className="mt-8 flex flex-col items-center justify-center gap-4">
         <a href="#cta"><Button variant="hero" size="xl">Waitlist 등록하기</Button></a>

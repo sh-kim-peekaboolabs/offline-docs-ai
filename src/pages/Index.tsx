@@ -703,15 +703,28 @@ const CTA = () => {
     const params = new URLSearchParams(window.location.search);
     const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'] as const;
     
+    console.log('Current URL:', window.location.href);
+    console.log('URL search params:', window.location.search);
+    
     utmFields.forEach(fieldName => {
       const paramValue = params.get(fieldName);
+      console.log(`UTM ${fieldName}:`, paramValue);
       if (paramValue) {
         setValue(fieldName, paramValue);
+        console.log(`Set ${fieldName} to:`, paramValue);
       }
     });
   }, [setValue]);
 
   const onSubmit = async (values: FormValues) => {
+    console.log('Form submission values:', values);
+    console.log('UTM data being sent:', {
+      utm_source: values.utm_source || null,
+      utm_medium: values.utm_medium || null,
+      utm_campaign: values.utm_campaign || null,
+      utm_content: values.utm_content || null
+    });
+    
     try {
       const {
         error

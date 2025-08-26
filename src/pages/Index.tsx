@@ -52,11 +52,11 @@ const Nav = () => {
 const Hero = () => <section className="relative overflow-hidden">
     <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
     <div className="container relative py-20 md:py-28 text-center">
-      <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">오프라인 실행 · HWP 지원 · 한국어 특화 요약 · 인용 제공</div>
-      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">인터넷 없이<br />
-문서를 요약, 정리, 검색하세요.</h1>
+      <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">내 PC부터 Notion까지, 흩어진 모든 문서에서</div>
+      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">찾고 싶은 정보, 딱 한 번만 물어보세요.<br />
+한번에 찾아드립니다.</h1>
       <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-        AI 문서 탐색 도구, Localdocs
+        가장 빠르고 안전한 사내 AI 문서 탐색기, Localdocs
       </p>
       <div className="mt-8 flex flex-col items-center justify-center gap-4">
         <a href="#cta"><Button variant="hero" size="xl">Waitlist 등록하기</Button></a>

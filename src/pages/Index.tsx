@@ -11,7 +11,6 @@ import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, 
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { useEffect } from "react";
 import { usePageTracking, useSectionTracking } from "@/hooks/useAnalytics";
-
 const formSchema = z.object({
   email: z.string().email("유효한 이메일을 입력해 주세요."),
   consent: z.boolean().refine(val => val === true, {
@@ -53,11 +52,11 @@ const Nav = () => {
 const Hero = () => <section className="relative overflow-hidden">
     <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
     <div className="container relative py-20 md:py-28 text-center">
-      <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">내 PC부터 Notion까지, 흩어진 모든 문서에서</div>
-      <h1 className="mx-auto max-w-3xl text-6xl sm:text-7xl md:text-8xl font-bold leading-[6]">찾고 싶은 정보, 딱 한 번만 물어보세요.<br />
-한번에 찾아드립니다.</h1>
+      <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">오프라인 실행 · HWP 지원 · 한국어 특화 요약 · 인용 제공</div>
+      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">인터넷 없이<br />
+문서를 요약, 정리, 검색하세요.</h1>
       <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-        가장 빠르고 안전한 사내 AI 문서 탐색기, Localdocs
+        AI 문서 탐색 도구, Localdocs
       </p>
       <div className="mt-8 flex flex-col items-center justify-center gap-4">
         <a href="#cta"><Button variant="hero" size="xl">Waitlist 등록하기</Button></a>
@@ -703,10 +702,8 @@ const CTA = () => {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'] as const;
-    
     console.log('Current URL:', window.location.href);
     console.log('URL search params:', window.location.search);
-    
     utmFields.forEach(fieldName => {
       const paramValue = params.get(fieldName);
       console.log(`UTM ${fieldName}:`, paramValue);
@@ -716,7 +713,6 @@ const CTA = () => {
       }
     });
   }, [setValue]);
-
   const onSubmit = async (values: FormValues) => {
     console.log('Form submission values:', values);
     console.log('UTM data being sent:', {
@@ -725,7 +721,6 @@ const CTA = () => {
       utm_campaign: values.utm_campaign || null,
       utm_content: values.utm_content || null
     });
-    
     try {
       const {
         error
@@ -737,13 +732,13 @@ const CTA = () => {
         utm_campaign: values.utm_campaign || null,
         utm_content: values.utm_content || null
       }]);
-      
       if (error) {
         // Analytics: 폼 제출 실패 추적
-        import('@/lib/analytics').then(({ analytics }) => {
+        import('@/lib/analytics').then(({
+          analytics
+        }) => {
           analytics.trackFormSubmit('waitlist', false);
         });
-        
         if (error.code === '23505') {
           // Unique constraint violation
           toast.error("이미 등록된 이메일입니다.");
@@ -752,22 +747,24 @@ const CTA = () => {
         }
         return;
       }
-      
+
       // Analytics: 폼 제출 성공 추적
-      import('@/lib/analytics').then(({ analytics }) => {
+      import('@/lib/analytics').then(({
+        analytics
+      }) => {
         analytics.trackFormSubmit('waitlist', true);
       });
-      
       toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
       reset();
     } catch (error) {
       console.error('Email signup error:', error);
-      
+
       // Analytics: 폼 제출 에러 추적
-      import('@/lib/analytics').then(({ analytics }) => {
+      import('@/lib/analytics').then(({
+        analytics
+      }) => {
         analytics.trackFormSubmit('waitlist', false);
       });
-      
       toast.error("등록 중 오류가 발생했습니다. 다시 시도해 주세요.");
     }
   };
@@ -884,7 +881,6 @@ const Index = () => {
   // 페이지뷰와 섹션뷰 자동 추적 활성화
   usePageTracking();
   useSectionTracking();
-
   return <div>
       <Nav />
       <main>

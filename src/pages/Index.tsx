@@ -54,7 +54,7 @@ const Hero = () => <section className="relative overflow-hidden">
     <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
     <div className="container relative py-20 md:py-28 text-center">
       <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">내 로컬 문서부터 Notion 문서까지</div>
-      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl md:text-5xl font-bold leading-normal">그 정보, 어느 파일에 있었더라?<br />
+      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl md:text-5xl font-bold leading-relaxed">그 정보, 어느 파일에 있었더라?<br />
 일일히 열어보지 말고 1분만에 찾으세요.</h1>
       <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
         가장 빠르고 안전한 AI 문서 탐색기, Localdocs

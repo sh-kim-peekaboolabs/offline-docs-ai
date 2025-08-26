@@ -736,7 +736,13 @@ const CTA = () => {
         utm_campaign: values.utm_campaign || null,
         utm_content: values.utm_content || null
       }]);
+      
       if (error) {
+        // Analytics: 폼 제출 실패 추적
+        import('@/lib/analytics').then(({ analytics }) => {
+          analytics.trackFormSubmit('waitlist', false);
+        });
+        
         if (error.code === '23505') {
           // Unique constraint violation
           toast.error("이미 등록된 이메일입니다.");
@@ -745,10 +751,22 @@ const CTA = () => {
         }
         return;
       }
+      
+      // Analytics: 폼 제출 성공 추적
+      import('@/lib/analytics').then(({ analytics }) => {
+        analytics.trackFormSubmit('waitlist', true);
+      });
+      
       toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
       reset();
     } catch (error) {
       console.error('Email signup error:', error);
+      
+      // Analytics: 폼 제출 에러 추적
+      import('@/lib/analytics').then(({ analytics }) => {
+        analytics.trackFormSubmit('waitlist', false);
+      });
+      
       toast.error("등록 중 오류가 발생했습니다. 다시 시도해 주세요.");
     }
   };

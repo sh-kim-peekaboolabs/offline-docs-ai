@@ -713,6 +713,7 @@ const CTA = () => {
     
     console.log('Current URL:', window.location.href);
     console.log('URL search params:', window.location.search);
+    console.log('All params:', Array.from(params.entries()));
     
     utmFields.forEach(fieldName => {
       const paramValue = params.get(fieldName);
@@ -724,9 +725,9 @@ const CTA = () => {
     });
 
     // LinkedIn 파라미터 매핑 - 실제 LinkedIn 파라미터 이름을 사용
-    const linkedinParamMapping = {
+    const linkedinParamMapping: Record<string, keyof FormValues> = {
       'li_campaign_group_id': 'linkedin_campaign_group_id',
-      'li_campaign_group_name': 'linkedin_campaign_group_name',
+      'li_campaign_group_name': 'linkedin_campaign_group_name', 
       'li_campaign_id': 'linkedin_campaign_id',
       'li_campaign_name': 'linkedin_campaign_name',
       'li_ad_id': 'linkedin_ad_id',
@@ -737,13 +738,14 @@ const CTA = () => {
     Object.entries(linkedinParamMapping).forEach(([liParam, formField]) => {
       const paramValue = params.get(liParam);
       console.log(`LinkedIn ${liParam} -> ${formField}:`, paramValue);
-      if (paramValue) {
-        setValue(formField as keyof FormValues, paramValue);
+      if (paramValue && formField in formSchema.shape) {
+        setValue(formField, paramValue);
         console.log(`Set ${formField} to:`, paramValue);
       }
     });
   }, [setValue]);
   const onSubmit = async (values: FormValues) => {
+    console.log('Form submission started');
     console.log('Form submission values:', values);
     console.log('UTM data being sent:', {
       utm_campaign_id: values.utm_campaign_id || null,
@@ -763,6 +765,7 @@ const CTA = () => {
       linkedin_ad_name: values.linkedin_ad_name || null
     });
     try {
+      console.log('Attempting to insert data to Supabase...');
       const {
         error
       } = await supabase.from('email_signups').insert([{
@@ -782,7 +785,11 @@ const CTA = () => {
         linkedin_ad_id: values.linkedin_ad_id || null,
         linkedin_ad_name: values.linkedin_ad_name || null
       }]);
+      
+      console.log('Supabase insert result - error:', error);
+      
       if (error) {
+        console.error('Supabase insert error details:', error);
         // Analytics: 폼 제출 실패 추적
         import('@/lib/analytics').then(({
           analytics
@@ -798,6 +805,7 @@ const CTA = () => {
         return;
       }
 
+      console.log('Supabase insert successful');
       // Analytics: 폼 제출 성공 추적
       import('@/lib/analytics').then(({
         analytics
@@ -807,7 +815,7 @@ const CTA = () => {
       toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
       reset();
     } catch (error) {
-      console.error('Email signup error:', error);
+      console.error('Email signup catch error:', error);
 
       // Analytics: 폼 제출 에러 추적
       import('@/lib/analytics').then(({

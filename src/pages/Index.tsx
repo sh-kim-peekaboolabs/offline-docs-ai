@@ -711,20 +711,28 @@ const CTA = () => {
     const params = new URLSearchParams(window.location.search);
     const utmFields = ['utm_campaign_id', 'utm_medium', 'utm_campaign', 'utm_adset_id', 'utm_adset_name', 'utm_ad_id', 'utm_ad_name'] as const;
     
+    console.log('=== URL PARAMETER PARSING ===');
     console.log('Current URL:', window.location.href);
     console.log('URL search params:', window.location.search);
     console.log('All params:', Array.from(params.entries()));
     
+    // UTM 파라미터 처리
+    console.log('=== UTM PARAMETERS ===');
     utmFields.forEach(fieldName => {
       const paramValue = params.get(fieldName);
       console.log(`UTM ${fieldName}:`, paramValue);
       if (paramValue) {
-        setValue(fieldName, paramValue);
-        console.log(`Set ${fieldName} to:`, paramValue);
+        try {
+          setValue(fieldName, paramValue);
+          console.log(`✓ Successfully set ${fieldName} to:`, paramValue);
+        } catch (error) {
+          console.error(`✗ Failed to set ${fieldName}:`, error);
+        }
       }
     });
 
     // LinkedIn 파라미터 매핑 - 실제 LinkedIn 파라미터 이름을 사용
+    console.log('=== LINKEDIN PARAMETERS ===');
     const linkedinParamMapping: Record<string, keyof FormValues> = {
       'li_campaign_group_id': 'linkedin_campaign_group_id',
       'li_campaign_group_name': 'linkedin_campaign_group_name', 
@@ -738,37 +746,25 @@ const CTA = () => {
     Object.entries(linkedinParamMapping).forEach(([liParam, formField]) => {
       const paramValue = params.get(liParam);
       console.log(`LinkedIn ${liParam} -> ${formField}:`, paramValue);
-      if (paramValue && formField in formSchema.shape) {
-        setValue(formField, paramValue);
-        console.log(`Set ${formField} to:`, paramValue);
+      if (paramValue) {
+        try {
+          setValue(formField, paramValue);
+          console.log(`✓ Successfully set ${formField} to:`, paramValue);
+        } catch (error) {
+          console.error(`✗ Failed to set ${formField}:`, error);
+        }
       }
     });
+    
+    console.log('=== PARAMETER PARSING COMPLETE ===');
   }, [setValue]);
   const onSubmit = async (values: FormValues) => {
-    console.log('Form submission started');
-    console.log('Form submission values:', values);
-    console.log('UTM data being sent:', {
-      utm_campaign_id: values.utm_campaign_id || null,
-      utm_medium: values.utm_medium || null,
-      utm_campaign: values.utm_campaign || null,
-      utm_adset_id: values.utm_adset_id || null,
-      utm_adset_name: values.utm_adset_name || null,
-      utm_ad_id: values.utm_ad_id || null,
-      utm_ad_name: values.utm_ad_name || null
-    });
-    console.log('LinkedIn data being sent:', {
-      linkedin_campaign_group_id: values.linkedin_campaign_group_id || null,
-      linkedin_campaign_group_name: values.linkedin_campaign_group_name || null,
-      linkedin_campaign_id: values.linkedin_campaign_id || null,
-      linkedin_campaign_name: values.linkedin_campaign_name || null,
-      linkedin_ad_id: values.linkedin_ad_id || null,
-      linkedin_ad_name: values.linkedin_ad_name || null
-    });
+    console.log('=== FORM SUBMISSION STARTED ===');
+    console.log('Form submission values:', JSON.stringify(values, null, 2));
+    
     try {
-      console.log('Attempting to insert data to Supabase...');
-      const {
-        error
-      } = await supabase.from('email_signups').insert([{
+      console.log('=== ATTEMPTING SUPABASE INSERT ===');
+      const insertData = {
         email: values.email,
         consent: values.consent,
         utm_campaign_id: values.utm_campaign_id || null,
@@ -784,28 +780,40 @@ const CTA = () => {
         linkedin_campaign_name: values.linkedin_campaign_name || null,
         linkedin_ad_id: values.linkedin_ad_id || null,
         linkedin_ad_name: values.linkedin_ad_name || null
-      }]);
+      };
       
-      console.log('Supabase insert result - error:', error);
+      console.log('Insert data:', JSON.stringify(insertData, null, 2));
       
-      if (error) {
-        console.error('Supabase insert error details:', error);
+      const result = await supabase.from('email_signups').insert([insertData]);
+      
+      console.log('=== SUPABASE INSERT RESULT ===');
+      console.log('Full result:', JSON.stringify(result, null, 2));
+      console.log('Error:', result.error);
+      console.log('Data:', result.data);
+      
+      if (result.error) {
+        console.error('=== SUPABASE ERROR DETAILS ===');
+        console.error('Error code:', result.error.code);
+        console.error('Error message:', result.error.message);
+        console.error('Error details:', result.error.details);
+        console.error('Error hint:', result.error.hint);
+        
         // Analytics: 폼 제출 실패 추적
         import('@/lib/analytics').then(({
           analytics
         }) => {
           analytics.trackFormSubmit('waitlist', false);
         });
-        if (error.code === '23505') {
-          // Unique constraint violation
+        
+        if (result.error.code === '23505') {
           toast.error("이미 등록된 이메일입니다.");
         } else {
-          toast.error("등록 중 오류가 발생했습니다. 다시 시도해 주세요.");
+          toast.error(`등록 중 오류가 발생했습니다: ${result.error.message}`);
         }
         return;
       }
 
-      console.log('Supabase insert successful');
+      console.log('=== SUCCESS ===');
       // Analytics: 폼 제출 성공 추적
       import('@/lib/analytics').then(({
         analytics
@@ -815,7 +823,11 @@ const CTA = () => {
       toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
       reset();
     } catch (error) {
-      console.error('Email signup catch error:', error);
+      console.error('=== CATCH ERROR ===');
+      console.error('Catch error type:', typeof error);
+      console.error('Catch error:', error);
+      console.error('Error message:', error instanceof Error ? error.message : 'Unknown error');
+      console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
 
       // Analytics: 폼 제출 에러 추적
       import('@/lib/analytics').then(({
@@ -823,7 +835,7 @@ const CTA = () => {
       }) => {
         analytics.trackFormSubmit('waitlist', false);
       });
-      toast.error("등록 중 오류가 발생했습니다. 다시 시도해 주세요.");
+      toast.error(`등록 중 오류가 발생했습니다: ${error instanceof Error ? error.message : '알 수 없는 오류'}`);
     }
   };
   return <section id="cta" className="section" aria-labelledby="cta-heading">

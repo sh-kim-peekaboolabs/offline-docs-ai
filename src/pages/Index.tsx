@@ -737,21 +737,44 @@ const CTA = () => {
       }
     });
 
-    // LinkedIn 파라미터 매핑 - 실제 LinkedIn 파라미터 이름을 사용
+    // LinkedIn 파라미터 매핑 - 실제 LinkedIn 동적 파라미터 사용
     console.log('=== LINKEDIN PARAMETERS ===');
-    const linkedinParamMapping: Record<string, keyof FormValues> = {
-      'li_campaign_group_id': 'linkedin_campaign_group_id',
-      'li_campaign_group_name': 'linkedin_campaign_group_name', 
-      'li_campaign_id': 'linkedin_campaign_id',
-      'li_campaign_name': 'linkedin_campaign_name',
-      'li_ad_id': 'linkedin_ad_id',
-      'li_ad_name': 'linkedin_ad_name',
-      'li_fat_id': 'linkedin_ad_id' // LinkedIn Fat ID를 ad_id로 매핑
+    
+    // LinkedIn 표준 UTM 매핑 (권장 방식)
+    const linkedinUtmMapping: Record<string, keyof FormValues> = {
+      'utm_campaign': 'utm_campaign',  // {{CAMPAIGN_GROUP_NAME}}
+      'utm_term': 'linkedin_campaign_name',  // {{CAMPAIGN_NAME}}
+      'utm_content': 'linkedin_ad_id',  // {{CREATIVE_ID}}
     };
 
-    Object.entries(linkedinParamMapping).forEach(([liParam, formField]) => {
+    // LinkedIn 직접 ID 매핑 (선택적)
+    const linkedinDirectMapping: Record<string, keyof FormValues> = {
+      'campaign_group_id': 'linkedin_campaign_group_id',
+      'campaign_group_name': 'linkedin_campaign_group_name',
+      'campaign_id': 'linkedin_campaign_id', 
+      'campaign_name': 'linkedin_campaign_name',
+      'creative_id': 'linkedin_ad_id',
+      'ad_id': 'linkedin_ad_id',  // 대체 매핑
+    };
+
+    // UTM 기반 LinkedIn 매핑 처리
+    Object.entries(linkedinUtmMapping).forEach(([utmParam, formField]) => {
+      const paramValue = params.get(utmParam);
+      console.log(`LinkedIn UTM ${utmParam} -> ${formField}:`, paramValue);
+      if (paramValue && utmParam !== 'utm_campaign') { // utm_campaign은 이미 UTM에서 처리됨
+        try {
+          setValue(formField, paramValue);
+          console.log(`✓ Successfully set ${formField} to:`, paramValue);
+        } catch (error) {
+          console.error(`✗ Failed to set ${formField}:`, error);
+        }
+      }
+    });
+
+    // 직접 ID 매핑 처리
+    Object.entries(linkedinDirectMapping).forEach(([liParam, formField]) => {
       const paramValue = params.get(liParam);
-      console.log(`LinkedIn ${liParam} -> ${formField}:`, paramValue);
+      console.log(`LinkedIn Direct ${liParam} -> ${formField}:`, paramValue);
       if (paramValue) {
         try {
           setValue(formField, paramValue);

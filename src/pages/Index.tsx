@@ -715,14 +715,19 @@ const CTA = () => {
       params.delete('utm_content');
     }
     
-    const utmFields = ['utm_campaign_id', 'utm_medium', 'utm_campaign', 'utm_adset_id', 'utm_adset_name', 'utm_ad_id', 'utm_ad_name'] as const;
-    
     console.log('=== URL PARAMETER PARSING ===');
     console.log('Current URL:', window.location.href);
     console.log('URL search params:', window.location.search);
     console.log('All params:', Array.from(params.entries()));
     
-    // UTM 파라미터 처리
+    // utm_source 확인
+    const utmSource = params.get('utm_source');
+    const isLinkedIn = utmSource === 'linkedin';
+    
+    console.log('UTM Source:', utmSource, 'Is LinkedIn:', isLinkedIn);
+
+    // UTM 파라미터 처리 
+    const utmFields = ['utm_campaign_id', 'utm_medium'] as const;
     console.log('=== UTM PARAMETERS ===');
     utmFields.forEach(fieldName => {
       const paramValue = params.get(fieldName);
@@ -737,53 +742,60 @@ const CTA = () => {
       }
     });
 
-    // LinkedIn 파라미터 매핑 - 실제 LinkedIn 동적 파라미터 사용
-    console.log('=== LINKEDIN PARAMETERS ===');
-    
-    // LinkedIn 표준 UTM 매핑 (권장 방식)
-    const linkedinUtmMapping: Record<string, keyof FormValues> = {
-      'utm_campaign': 'utm_campaign',  // {{CAMPAIGN_GROUP_NAME}}
-      'utm_term': 'linkedin_campaign_name',  // {{CAMPAIGN_NAME}}
-      'utm_content': 'linkedin_ad_id',  // {{CREATIVE_ID}}
-    };
-
-    // LinkedIn 직접 ID 매핑 (선택적)
-    const linkedinDirectMapping: Record<string, keyof FormValues> = {
-      'campaign_group_id': 'linkedin_campaign_group_id',
-      'campaign_group_name': 'linkedin_campaign_group_name',
-      'campaign_id': 'linkedin_campaign_id', 
-      'campaign_name': 'linkedin_campaign_name',
-      'creative_id': 'linkedin_ad_id',
-      'ad_id': 'linkedin_ad_id',  // 대체 매핑
-    };
-
-    // UTM 기반 LinkedIn 매핑 처리
-    Object.entries(linkedinUtmMapping).forEach(([utmParam, formField]) => {
-      const paramValue = params.get(utmParam);
-      console.log(`LinkedIn UTM ${utmParam} -> ${formField}:`, paramValue);
-      if (paramValue && utmParam !== 'utm_campaign') { // utm_campaign은 이미 UTM에서 처리됨
-        try {
-          setValue(formField, paramValue);
-          console.log(`✓ Successfully set ${formField} to:`, paramValue);
-        } catch (error) {
-          console.error(`✗ Failed to set ${formField}:`, error);
-        }
+    // LinkedIn인 경우 특별 처리
+    if (isLinkedIn) {
+      console.log('=== LINKEDIN SPECIFIC MAPPING ===');
+      
+      // utm_campaign -> linkedin_campaign_name (LinkedIn 캠페인명)
+      const utmCampaign = params.get('utm_campaign');
+      if (utmCampaign) {
+        const decodedCampaign = decodeURIComponent(utmCampaign.replace(/\+/g, ' '));
+        console.log('LinkedIn Campaign Name:', decodedCampaign);
+        setValue('linkedin_campaign_name', decodedCampaign);
       }
-    });
-
-    // 직접 ID 매핑 처리
-    Object.entries(linkedinDirectMapping).forEach(([liParam, formField]) => {
-      const paramValue = params.get(liParam);
-      console.log(`LinkedIn Direct ${liParam} -> ${formField}:`, paramValue);
-      if (paramValue) {
-        try {
-          setValue(formField, paramValue);
-          console.log(`✓ Successfully set ${formField} to:`, paramValue);
-        } catch (error) {
-          console.error(`✗ Failed to set ${formField}:`, error);
-        }
+      
+      // utm_content -> linkedin_ad_id (LinkedIn 광고 ID)
+      const utmContent = params.get('utm_content');
+      if (utmContent) {
+        console.log('LinkedIn Ad ID from utm_content:', utmContent);
+        setValue('linkedin_ad_id', utmContent);
       }
-    });
+      
+      // 직접 LinkedIn 파라미터들도 확인
+      const linkedinDirectParams = {
+        'campaign_group_id': 'linkedin_campaign_group_id',
+        'campaign_group_name': 'linkedin_campaign_group_name',
+        'campaign_id': 'linkedin_campaign_id',
+        'campaign_name': 'linkedin_campaign_name',
+        'creative_id': 'linkedin_ad_id',
+        'ad_id': 'linkedin_ad_id'
+      };
+      
+      Object.entries(linkedinDirectParams).forEach(([paramName, formField]) => {
+        const paramValue = params.get(paramName);
+        if (paramValue) {
+          console.log(`LinkedIn Direct ${paramName} -> ${formField}:`, paramValue);
+          setValue(formField as keyof FormValues, paramValue);
+        }
+      });
+    } else {
+      // 일반 UTM (비 LinkedIn) 처리
+      console.log('=== GENERAL UTM PARAMETERS ===');
+      const generalUtmFields = ['utm_campaign', 'utm_adset_id', 'utm_adset_name', 'utm_ad_id', 'utm_ad_name'] as const;
+      
+      generalUtmFields.forEach(fieldName => {
+        const paramValue = params.get(fieldName);
+        console.log(`General UTM ${fieldName}:`, paramValue);
+        if (paramValue) {
+          try {
+            setValue(fieldName, paramValue);
+            console.log(`✓ Successfully set ${fieldName} to:`, paramValue);
+          } catch (error) {
+            console.error(`✗ Failed to set ${fieldName}:`, error);
+          }
+        }
+      });
+    }
     
     console.log('=== PARAMETER PARSING COMPLETE ===');
   }, [setValue]);

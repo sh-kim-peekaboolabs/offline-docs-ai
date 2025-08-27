@@ -710,11 +710,6 @@ const CTA = () => {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     
-    // utm_content 파라미터가 있다면 제거
-    if (params.has('utm_content')) {
-      params.delete('utm_content');
-    }
-    
     console.log('=== URL PARAMETER PARSING ===');
     console.log('Current URL:', window.location.href);
     console.log('URL search params:', window.location.search);
@@ -759,6 +754,13 @@ const CTA = () => {
       if (utmContent) {
         console.log('LinkedIn Ad ID from utm_content:', utmContent);
         setValue('linkedin_ad_id', utmContent);
+      }
+      
+      // li_fat_id -> linkedin_campaign_id (LinkedIn Fat ID)
+      const liFatId = params.get('li_fat_id');
+      if (liFatId) {
+        console.log('LinkedIn Campaign ID from li_fat_id:', liFatId);
+        setValue('linkedin_campaign_id', liFatId);
       }
       
       // 직접 LinkedIn 파라미터들도 확인

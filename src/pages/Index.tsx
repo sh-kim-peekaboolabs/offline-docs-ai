@@ -709,6 +709,12 @@ const CTA = () => {
   // URL 파라미터에서 UTM 및 LinkedIn 데이터를 읽어서 폼에 자동 설정
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    
+    // utm_content 파라미터가 있다면 제거
+    if (params.has('utm_content')) {
+      params.delete('utm_content');
+    }
+    
     const utmFields = ['utm_campaign_id', 'utm_medium', 'utm_campaign', 'utm_adset_id', 'utm_adset_name', 'utm_ad_id', 'utm_ad_name'] as const;
     
     console.log('=== URL PARAMETER PARSING ===');

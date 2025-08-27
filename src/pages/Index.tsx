@@ -16,10 +16,13 @@ const formSchema = z.object({
   consent: z.boolean().refine(val => val === true, {
     message: "동의가 필요합니다."
   }),
-  utm_source: z.string().optional(),
+  utm_campaign_id: z.string().optional(),
   utm_medium: z.string().optional(),
   utm_campaign: z.string().optional(),
-  utm_content: z.string().optional()
+  utm_adset_id: z.string().optional(),
+  utm_adset_name: z.string().optional(),
+  utm_ad_id: z.string().optional(),
+  utm_ad_name: z.string().optional()
 });
 type FormValues = z.infer<typeof formSchema>;
 const Nav = () => {
@@ -700,7 +703,7 @@ const CTA = () => {
   // URL 파라미터에서 UTM 데이터를 읽어서 폼에 자동 설정
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'] as const;
+    const utmFields = ['utm_campaign_id', 'utm_medium', 'utm_campaign', 'utm_adset_id', 'utm_adset_name', 'utm_ad_id', 'utm_ad_name'] as const;
     console.log('Current URL:', window.location.href);
     console.log('URL search params:', window.location.search);
     utmFields.forEach(fieldName => {
@@ -715,10 +718,13 @@ const CTA = () => {
   const onSubmit = async (values: FormValues) => {
     console.log('Form submission values:', values);
     console.log('UTM data being sent:', {
-      utm_source: values.utm_source || null,
+      utm_campaign_id: values.utm_campaign_id || null,
       utm_medium: values.utm_medium || null,
       utm_campaign: values.utm_campaign || null,
-      utm_content: values.utm_content || null
+      utm_adset_id: values.utm_adset_id || null,
+      utm_adset_name: values.utm_adset_name || null,
+      utm_ad_id: values.utm_ad_id || null,
+      utm_ad_name: values.utm_ad_name || null
     });
     try {
       const {
@@ -726,10 +732,13 @@ const CTA = () => {
       } = await supabase.from('email_signups').insert([{
         email: values.email,
         consent: values.consent,
-        utm_source: values.utm_source || null,
+        utm_campaign_id: values.utm_campaign_id || null,
         utm_medium: values.utm_medium || null,
         utm_campaign: values.utm_campaign || null,
-        utm_content: values.utm_content || null
+        utm_adset_id: values.utm_adset_id || null,
+        utm_adset_name: values.utm_adset_name || null,
+        utm_ad_id: values.utm_ad_id || null,
+        utm_ad_name: values.utm_ad_name || null
       }]);
       if (error) {
         // Analytics: 폼 제출 실패 추적
@@ -780,10 +789,13 @@ const CTA = () => {
             </div>
             
             {/* Hidden UTM 필드들 */}
-            <input type="hidden" {...register("utm_source")} />
+            <input type="hidden" {...register("utm_campaign_id")} />
             <input type="hidden" {...register("utm_medium")} />
             <input type="hidden" {...register("utm_campaign")} />
-            <input type="hidden" {...register("utm_content")} />
+            <input type="hidden" {...register("utm_adset_id")} />
+            <input type="hidden" {...register("utm_adset_name")} />
+            <input type="hidden" {...register("utm_ad_id")} />
+            <input type="hidden" {...register("utm_ad_name")} />
             
             <div className="flex items-center gap-2">
               <Checkbox id="consent" checked={watch("consent")} onCheckedChange={checked => setValue("consent", !!checked)} />

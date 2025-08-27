@@ -18,7 +18,7 @@ const formSchema = z.object({
   }),
   utm_campaign_id: z.string().optional(),
   utm_medium: z.string().optional(),
-  utm_campaign: z.string().optional(),
+  utm_campaign_name: z.string().optional(),
   utm_adset_id: z.string().optional(),
   utm_adset_name: z.string().optional(),
   utm_ad_id: z.string().optional(),
@@ -773,11 +773,13 @@ const CTA = () => {
     } else {
       // 일반 UTM (비 LinkedIn) 처리
       console.log('=== GENERAL UTM PARAMETERS ===');
-      const generalUtmFields = ['utm_campaign', 'utm_adset_id', 'utm_adset_name', 'utm_ad_id', 'utm_ad_name'] as const;
+      const generalUtmFields = ['utm_campaign_name', 'utm_adset_id', 'utm_adset_name', 'utm_ad_id', 'utm_ad_name'] as const;
       
       generalUtmFields.forEach(fieldName => {
-        const paramValue = params.get(fieldName);
-        console.log(`General UTM ${fieldName}:`, paramValue);
+        // For utm_campaign_name, we read from utm_campaign URL parameter
+        const paramName = fieldName === 'utm_campaign_name' ? 'utm_campaign' : fieldName;
+        const paramValue = params.get(paramName);
+        console.log(`General UTM ${paramName} -> ${fieldName}:`, paramValue);
         if (paramValue) {
           try {
             setValue(fieldName, paramValue);
@@ -802,7 +804,7 @@ const CTA = () => {
         consent: values.consent,
         utm_campaign_id: values.utm_campaign_id || null,
         utm_medium: values.utm_medium || null,
-        utm_campaign: values.utm_campaign || null,
+        utm_campaign_name: values.utm_campaign_name || null,
         utm_adset_id: values.utm_adset_id || null,
         utm_adset_name: values.utm_adset_name || null,
         utm_ad_id: values.utm_ad_id || null,
@@ -882,7 +884,7 @@ const CTA = () => {
             {/* Hidden UTM 필드들 */}
             <input type="hidden" {...register("utm_campaign_id")} />
             <input type="hidden" {...register("utm_medium")} />
-            <input type="hidden" {...register("utm_campaign")} />
+            <input type="hidden" {...register("utm_campaign_name")} />
             <input type="hidden" {...register("utm_adset_id")} />
             <input type="hidden" {...register("utm_adset_name")} />
             <input type="hidden" {...register("utm_ad_id")} />

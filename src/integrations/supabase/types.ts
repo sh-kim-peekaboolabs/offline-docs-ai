@@ -26,8 +26,8 @@ export type Database = {
           utm_ad_name: string | null
           utm_adset_id: string | null
           utm_adset_name: string | null
-          utm_campaign: string | null
           utm_campaign_id: string | null
+          utm_campaign_name: string | null
           utm_medium: string | null
         }
         Insert: {
@@ -41,8 +41,8 @@ export type Database = {
           utm_ad_name?: string | null
           utm_adset_id?: string | null
           utm_adset_name?: string | null
-          utm_campaign?: string | null
           utm_campaign_id?: string | null
+          utm_campaign_name?: string | null
           utm_medium?: string | null
         }
         Update: {
@@ -56,8 +56,8 @@ export type Database = {
           utm_ad_name?: string | null
           utm_adset_id?: string | null
           utm_adset_name?: string | null
-          utm_campaign?: string | null
           utm_campaign_id?: string | null
+          utm_campaign_name?: string | null
           utm_medium?: string | null
         }
         Relationships: []

@@ -21,10 +21,6 @@ export type Database = {
           email: string
           id: string
           linkedin_ad_id: string | null
-          linkedin_ad_name: string | null
-          linkedin_campaign_group_id: string | null
-          linkedin_campaign_group_name: string | null
-          linkedin_campaign_id: string | null
           linkedin_campaign_name: string | null
           utm_ad_id: string | null
           utm_ad_name: string | null
@@ -40,10 +36,6 @@ export type Database = {
           email: string
           id?: string
           linkedin_ad_id?: string | null
-          linkedin_ad_name?: string | null
-          linkedin_campaign_group_id?: string | null
-          linkedin_campaign_group_name?: string | null
-          linkedin_campaign_id?: string | null
           linkedin_campaign_name?: string | null
           utm_ad_id?: string | null
           utm_ad_name?: string | null
@@ -59,10 +51,6 @@ export type Database = {
           email?: string
           id?: string
           linkedin_ad_id?: string | null
-          linkedin_ad_name?: string | null
-          linkedin_campaign_group_id?: string | null
-          linkedin_campaign_group_name?: string | null
-          linkedin_campaign_id?: string | null
           linkedin_campaign_name?: string | null
           utm_ad_id?: string | null
           utm_ad_name?: string | null

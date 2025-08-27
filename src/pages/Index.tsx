@@ -23,12 +23,8 @@ const formSchema = z.object({
   utm_adset_name: z.string().optional(),
   utm_ad_id: z.string().optional(),
   utm_ad_name: z.string().optional(),
-  linkedin_campaign_group_id: z.string().optional(),
-  linkedin_campaign_group_name: z.string().optional(),
-  linkedin_campaign_id: z.string().optional(),
   linkedin_campaign_name: z.string().optional(),
-  linkedin_ad_id: z.string().optional(),
-  linkedin_ad_name: z.string().optional()
+  linkedin_ad_id: z.string().optional()
 });
 type FormValues = z.infer<typeof formSchema>;
 const Nav = () => {
@@ -756,12 +752,6 @@ const CTA = () => {
         setValue('linkedin_ad_id', utmContent);
       }
       
-      // li_fat_id -> linkedin_campaign_id (LinkedIn Fat ID)
-      const liFatId = params.get('li_fat_id');
-      if (liFatId) {
-        console.log('LinkedIn Campaign ID from li_fat_id:', liFatId);
-        setValue('linkedin_campaign_id', liFatId);
-      }
       
       // 직접 LinkedIn 파라미터들도 확인
       const linkedinDirectParams = {
@@ -817,12 +807,8 @@ const CTA = () => {
         utm_adset_name: values.utm_adset_name || null,
         utm_ad_id: values.utm_ad_id || null,
         utm_ad_name: values.utm_ad_name || null,
-        linkedin_campaign_group_id: values.linkedin_campaign_group_id || null,
-        linkedin_campaign_group_name: values.linkedin_campaign_group_name || null,
-        linkedin_campaign_id: values.linkedin_campaign_id || null,
         linkedin_campaign_name: values.linkedin_campaign_name || null,
-        linkedin_ad_id: values.linkedin_ad_id || null,
-        linkedin_ad_name: values.linkedin_ad_name || null
+        linkedin_ad_id: values.linkedin_ad_id || null
       };
       
       console.log('Insert data:', JSON.stringify(insertData, null, 2));
@@ -903,12 +889,8 @@ const CTA = () => {
             <input type="hidden" {...register("utm_ad_name")} />
             
             {/* Hidden LinkedIn 필드들 */}
-            <input type="hidden" {...register("linkedin_campaign_group_id")} />
-            <input type="hidden" {...register("linkedin_campaign_group_name")} />
-            <input type="hidden" {...register("linkedin_campaign_id")} />
             <input type="hidden" {...register("linkedin_campaign_name")} />
             <input type="hidden" {...register("linkedin_ad_id")} />
-            <input type="hidden" {...register("linkedin_ad_name")} />
             
             <div className="flex items-center gap-2">
               <Checkbox id="consent" checked={watch("consent")} onCheckedChange={checked => setValue("consent", !!checked)} />

@@ -710,7 +710,6 @@ const CTA = () => {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const utmFields = ['utm_campaign_id', 'utm_medium', 'utm_campaign', 'utm_adset_id', 'utm_adset_name', 'utm_ad_id', 'utm_ad_name'] as const;
-    const linkedinFields = ['linkedin_campaign_group_id', 'linkedin_campaign_group_name', 'linkedin_campaign_id', 'linkedin_campaign_name', 'linkedin_ad_id', 'linkedin_ad_name'] as const;
     
     console.log('Current URL:', window.location.href);
     console.log('URL search params:', window.location.search);
@@ -724,12 +723,23 @@ const CTA = () => {
       }
     });
 
-    linkedinFields.forEach(fieldName => {
-      const paramValue = params.get(fieldName);
-      console.log(`LinkedIn ${fieldName}:`, paramValue);
+    // LinkedIn 파라미터 매핑 - 실제 LinkedIn 파라미터 이름을 사용
+    const linkedinParamMapping = {
+      'li_campaign_group_id': 'linkedin_campaign_group_id',
+      'li_campaign_group_name': 'linkedin_campaign_group_name',
+      'li_campaign_id': 'linkedin_campaign_id',
+      'li_campaign_name': 'linkedin_campaign_name',
+      'li_ad_id': 'linkedin_ad_id',
+      'li_ad_name': 'linkedin_ad_name',
+      'li_fat_id': 'linkedin_ad_id' // LinkedIn Fat ID를 ad_id로 매핑
+    };
+
+    Object.entries(linkedinParamMapping).forEach(([liParam, formField]) => {
+      const paramValue = params.get(liParam);
+      console.log(`LinkedIn ${liParam} -> ${formField}:`, paramValue);
       if (paramValue) {
-        setValue(fieldName, paramValue);
-        console.log(`Set ${fieldName} to:`, paramValue);
+        setValue(formField as keyof FormValues, paramValue);
+        console.log(`Set ${formField} to:`, paramValue);
       }
     });
   }, [setValue]);

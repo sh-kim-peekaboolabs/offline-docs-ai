@@ -16,6 +16,7 @@ const formSchema = z.object({
   consent: z.boolean().refine(val => val === true, {
     message: "동의가 필요합니다."
   }),
+  utm_source: z.string().optional(),
   utm_campaign_id: z.string().optional(),
   utm_medium: z.string().optional(),
   utm_campaign_name: z.string().optional(),
@@ -723,7 +724,7 @@ const CTA = () => {
     console.log('UTM Source:', utmSource, 'Is LinkedIn:', isLinkedIn);
 
     // UTM 파라미터 처리 
-    const utmFields = ['utm_campaign_id', 'utm_medium'] as const;
+    const utmFields = ['utm_source', 'utm_campaign_id', 'utm_medium'] as const;
     console.log('=== UTM PARAMETERS ===');
     utmFields.forEach(fieldName => {
       const paramValue = params.get(fieldName);
@@ -801,6 +802,7 @@ const CTA = () => {
       const insertData = {
         email: values.email,
         consent: values.consent,
+        utm_source: values.utm_source || null,
         utm_campaign_id: values.utm_campaign_id || null,
         utm_medium: values.utm_medium || null,
         utm_campaign_name: values.utm_campaign_name || null,
@@ -885,6 +887,7 @@ const CTA = () => {
             </div>
             
             {/* Hidden UTM 필드들 */}
+            <input type="hidden" {...register("utm_source")} />
             <input type="hidden" {...register("utm_campaign_id")} />
             <input type="hidden" {...register("utm_medium")} />
             <input type="hidden" {...register("utm_campaign_name")} />

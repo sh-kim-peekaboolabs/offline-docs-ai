@@ -33,6 +33,7 @@ export type Database = {
           utm_campaign_id: string | null
           utm_campaign_name: string | null
           utm_medium: string | null
+          utm_source: string | null
         }
         Insert: {
           consent?: boolean
@@ -52,6 +53,7 @@ export type Database = {
           utm_campaign_id?: string | null
           utm_campaign_name?: string | null
           utm_medium?: string | null
+          utm_source?: string | null
         }
         Update: {
           consent?: boolean
@@ -71,6 +73,7 @@ export type Database = {
           utm_campaign_id?: string | null
           utm_campaign_name?: string | null
           utm_medium?: string | null
+          utm_source?: string | null
         }
         Relationships: []
       }

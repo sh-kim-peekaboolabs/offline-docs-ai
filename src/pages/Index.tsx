@@ -430,7 +430,7 @@ const Testimonials = () => {
     name: "이상훈",
     role: "R&D 팀장",
     company: "테크이노베이션",
-    content: "기술 문서가 HWP로만 되어 있어서 항상 불편했는데, 이제 바로 질문하고 답을 얻을 수 있어 개발 속도가 2배 빨라졌습니다.",
+    content: "기술 문서가 방대해서 항상 찾기 어려웠는데, 이제 한번에 찾을 수 있어 생산성이 대폭 향상되었습니다.",
     rating: 5
   }];
   return <section className="py-20 bg-gradient-to-br from-gray-50 to-white" aria-labelledby="testimonials-heading">

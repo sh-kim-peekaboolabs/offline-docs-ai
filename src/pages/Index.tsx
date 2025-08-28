@@ -153,10 +153,10 @@ const Features = () => <section id="features" className="section bg-secondary-li
       <div className="grid md:grid-cols-3 gap-6">
         <div className="feature-card text-center group gpu-optimized">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
-            <Brain className="w-8 h-8" />
+            <Search className="w-8 h-8" />
           </div>
-          <h3 className="text-xl font-semibold mb-2">한국어 특화 AI</h3>
-          <p className="text-muted-foreground">한국어 문맥·문체에 최적화된 AI를 탑재했어요.</p>
+          <h3 className="text-xl font-semibold mb-2">사내 문서 검색 AI</h3>
+          <p className="text-muted-foreground">Notion, Google Drive, 내 PC 등 여러 곳에 흩어져 있는 문서를 한번에 검색하세요.</p>
         </div>
         <div className="feature-card text-center group gpu-optimized">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
@@ -188,10 +188,10 @@ const Features = () => <section id="features" className="section bg-secondary-li
         </div>
         <div className="feature-card text-center group gpu-optimized">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
-            <Search className="w-8 h-8" />
+            <Brain className="w-8 h-8" />
           </div>
-          <h3 className="text-xl font-semibold mb-2">사내 문서 검색 AI</h3>
-          <p className="text-muted-foreground">Notion, Google Drive, 내 PC 등 여러 곳에 흩어져 있는 문서를 한번에 검색하세요.</p>
+          <h3 className="text-xl font-semibold mb-2">한국어 특화 AI</h3>
+          <p className="text-muted-foreground">한국어 문맥·문체에 최적화된 AI를 탑재했어요.</p>
         </div>
       </div>
     </div>

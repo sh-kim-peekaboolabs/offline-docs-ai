@@ -24,7 +24,11 @@ const formSchema = z.object({
   utm_ad_id: z.string().optional(),
   utm_ad_name: z.string().optional(),
   linkedin_campaign_name: z.string().optional(),
-  linkedin_ad_id: z.string().optional()
+  linkedin_ad_id: z.string().optional(),
+  linkedin_campaign_group_id: z.string().optional(),
+  linkedin_campaign_group_name: z.string().optional(),
+  linkedin_campaign_id: z.string().optional(),
+  linkedin_ad_name: z.string().optional()
 });
 type FormValues = z.infer<typeof formSchema>;
 const Nav = () => {
@@ -760,14 +764,31 @@ const CTA = () => {
         'campaign_id': 'linkedin_campaign_id',
         'campaign_name': 'linkedin_campaign_name',
         'creative_id': 'linkedin_ad_id',
+        'creative_name': 'linkedin_ad_name',
         'ad_id': 'linkedin_ad_id'
       };
       
       Object.entries(linkedinDirectParams).forEach(([paramName, formField]) => {
-        const paramValue = params.get(paramName);
+        let paramValue = params.get(paramName);
         if (paramValue) {
+          // URL 디코딩 처리 (이름 파라미터들)
+          if (paramName.includes('_name')) {
+            try {
+              paramValue = decodeURIComponent(paramValue.replace(/\+/g, ' '));
+            } catch (e) {
+              console.error(`Failed to decode LinkedIn parameter [${paramName}]:`, e);
+            }
+          }
+          
           console.log(`LinkedIn Direct ${paramName} -> ${formField}:`, paramValue);
-          setValue(formField as keyof FormValues, paramValue);
+          try {
+            setValue(formField as keyof FormValues, paramValue);
+            console.log(`✓ Successfully set ${formField}:`, paramValue);
+          } catch (error) {
+            console.error(`✗ Failed to set ${formField}:`, error);
+          }
+        } else {
+          console.log(`- LinkedIn parameter [${paramName}] not found in URL`);
         }
       });
     } else {

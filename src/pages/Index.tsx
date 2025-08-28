@@ -680,7 +680,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
           <p className="mt-4 text-2xl font-bold">별도 문의</p>
           <ul className="mt-4 space-y-2 text-sm flex-1">
             <li>Pro의 모든 기능 포함</li>
-            <li>대규모 팀을 위한 중앙 라이선스 관리</li>
+            <li>계정 라이선스 관리</li>
             <li>폐쇄망 환경을 위한 오프라인 설치 지원</li>
             <li>전담 기술 지원 매니저 및 SLA</li>
             <li>맞춤형 기능 개발 및 연동(협의)</li>

@@ -155,8 +155,8 @@ const Features = () => <section id="features" className="section bg-secondary-li
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
             <WifiOff className="w-8 h-8" />
           </div>
-          <h3 className="text-xl font-semibold mb-2">오프라인 요약 AI</h3>
-          <p className="text-muted-foreground">인터넷 없이 대용량 문서를 빠르게 요약해요.</p>
+          <h3 className="text-xl font-semibold mb-2">오프라인 AI</h3>
+          <p className="text-muted-foreground">AI가 내 PC에서 동작해 자료가 외부로 나갈 일이 없어요.</p>
         </div>
         <div className="feature-card text-center group gpu-optimized">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
@@ -169,8 +169,8 @@ const Features = () => <section id="features" className="section bg-secondary-li
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
             <FileText className="w-8 h-8" />
           </div>
-          <h3 className="text-xl font-semibold mb-2">HWP 지원</h3>
-          <p className="text-muted-foreground">HWP/HWPX 문서를 바로 읽을 수 있어요.</p>
+          <h3 className="text-xl font-semibold mb-2">PDF, OCR, HWP 등 지원</h3>
+          <p className="text-muted-foreground">PDF부터 한글까지 다양한 문서를 지원해요.</p>
         </div>
         <div className="feature-card text-center group gpu-optimized">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
@@ -184,14 +184,14 @@ const Features = () => <section id="features" className="section bg-secondary-li
             <LinkIcon className="w-8 h-8" />
           </div>
           <h3 className="text-xl font-semibold mb-2">문서·링크·텍스트 통합</h3>
-          <p className="text-muted-foreground">하나의 지식 베이스에서 한번에 통합 분석해요.</p>
+          <p className="text-muted-foreground">하나의 지식 베이스에서 한번에 분석해요.</p>
         </div>
         <div className="feature-card text-center group gpu-optimized">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
             <Search className="w-8 h-8" />
           </div>
-          <h3 className="text-xl font-semibold mb-2">오프라인 지식 검색</h3>
-          <p className="text-muted-foreground">선택한 문서 내에서 키워드·질문 기반 검색할 수 있어요.</p>
+          <h3 className="text-xl font-semibold mb-2">사내 문서 검색 AI</h3>
+          <p className="text-muted-foreground">Notion, Google Drive, 내 PC 등 여러 곳에 흩어져 있는 문서를 한번에 검색하세요.</p>
         </div>
       </div>
     </div>
@@ -711,16 +711,14 @@ const CTA = () => {
   // URL 파라미터에서 UTM 및 LinkedIn 데이터를 읽어서 폼에 자동 설정
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    
     console.log('=== URL PARAMETER PARSING ===');
     console.log('Current URL:', window.location.href);
     console.log('URL search params:', window.location.search);
     console.log('All params:', Array.from(params.entries()));
-    
+
     // utm_source 확인
     const utmSource = params.get('utm_source');
     const isLinkedIn = utmSource === 'linkedin';
-    
     console.log('UTM Source:', utmSource, 'Is LinkedIn:', isLinkedIn);
 
     // UTM 파라미터 처리 
@@ -743,25 +741,21 @@ const CTA = () => {
     if (isLinkedIn) {
       console.log('=== LINKEDIN DYNAMIC PARAMETERS MAPPING (DEBUG) ===');
       console.log('🔍 All URL params:', Array.from(params.entries()));
-      
       const linkedinParamsMap = {
-        'campaign_group_id'      : 'linkedin_campaign_group_id',
-        'campaign_group_name'    : 'linkedin_campaign_group_name', 
-        'campaign_id'            : 'linkedin_campaign_id',
-        'utm_campaign'           : 'linkedin_campaign_name',
-        'utm_content'            : 'linkedin_ad_id',
-        'creative_name'          : 'linkedin_ad_name'
+        'campaign_group_id': 'linkedin_campaign_group_id',
+        'campaign_group_name': 'linkedin_campaign_group_name',
+        'campaign_id': 'linkedin_campaign_id',
+        'utm_campaign': 'linkedin_campaign_name',
+        'utm_content': 'linkedin_ad_id',
+        'creative_name': 'linkedin_ad_name'
       };
-
       console.log('📝 Current form values before LinkedIn mapping:', getValues());
-
       Object.entries(linkedinParamsMap).forEach(([paramName, fieldName]) => {
         const rawValue = params.get(paramName);
         console.log(`🔎 Checking param [${paramName}]: raw value =`, rawValue);
-        
         if (rawValue) {
           let processedValue = rawValue;
-          
+
           // URL 디코딩 (이름 파라미터들만)
           if (paramName.includes('_name') || paramName === 'utm_campaign') {
             try {
@@ -772,9 +766,7 @@ const CTA = () => {
               processedValue = rawValue; // 실패시 원본값 사용
             }
           }
-
           console.log(`📤 Setting [${fieldName}] = "${processedValue}"`);
-          
           try {
             setValue(fieldName as keyof FormValues, processedValue);
             const verifyValue = getValues(fieldName as keyof FormValues);
@@ -787,16 +779,13 @@ const CTA = () => {
           console.log(`⚪ Parameter [${paramName}] not found in URL`);
         }
       });
-
       console.log('📝 Final form values after LinkedIn mapping:', getValues());
     }
-    
     console.log('=== PARAMETER PARSING COMPLETE ===');
   }, [setValue]);
   const onSubmit = async (values: FormValues) => {
     console.log('=== FORM SUBMISSION STARTED ===');
     console.log('Form submission values:', JSON.stringify(values, null, 2));
-    
     try {
       console.log('=== ATTEMPTING SUPABASE INSERT ===');
       const insertData = {
@@ -817,30 +806,25 @@ const CTA = () => {
         linkedin_campaign_id: values.linkedin_campaign_id || null,
         linkedin_ad_name: values.linkedin_ad_name || null
       };
-      
       console.log('Insert data:', JSON.stringify(insertData, null, 2));
-      
       const result = await supabase.from('email_signups').insert([insertData]);
-      
       console.log('=== SUPABASE INSERT RESULT ===');
       console.log('Full result:', JSON.stringify(result, null, 2));
       console.log('Error:', result.error);
       console.log('Data:', result.data);
-      
       if (result.error) {
         console.error('=== SUPABASE ERROR DETAILS ===');
         console.error('Error code:', result.error.code);
         console.error('Error message:', result.error.message);
         console.error('Error details:', result.error.details);
         console.error('Error hint:', result.error.hint);
-        
+
         // Analytics: 폼 제출 실패 추적
         import('@/lib/analytics').then(({
           analytics
         }) => {
           analytics.trackFormSubmit('waitlist', false);
         });
-        
         if (result.error.code === '23505') {
           toast.error("이미 등록된 이메일입니다.");
         } else {
@@ -848,7 +832,6 @@ const CTA = () => {
         }
         return;
       }
-
       console.log('=== SUCCESS ===');
       // Analytics: 폼 제출 성공 추적
       import('@/lib/analytics').then(({

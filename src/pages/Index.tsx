@@ -739,56 +739,35 @@ const CTA = () => {
 
     // LinkedIn인 경우 특별 처리
     if (isLinkedIn) {
-      console.log('=== LINKEDIN SPECIFIC MAPPING ===');
+      console.log('=== LINKEDIN DYNAMIC PARAMETERS MAPPING (FINAL) ===');
       
-      // utm_campaign -> linkedin_campaign_name (LinkedIn 캠페인명)
-      const utmCampaign = params.get('utm_campaign');
-      if (utmCampaign) {
-        const decodedCampaign = decodeURIComponent(utmCampaign.replace(/\+/g, ' '));
-        console.log('LinkedIn Campaign Name:', decodedCampaign);
-        setValue('linkedin_campaign_name', decodedCampaign);
-      }
-      
-      // utm_content -> linkedin_ad_id (LinkedIn 광고 ID)
-      const utmContent = params.get('utm_content');
-      if (utmContent) {
-        console.log('LinkedIn Ad ID from utm_content:', utmContent);
-        setValue('linkedin_ad_id', utmContent);
-      }
-      
-      
-      // 직접 LinkedIn 파라미터들도 확인
-      const linkedinDirectParams = {
-        'campaign_group_id': 'linkedin_campaign_group_id',
-        'campaign_group_name': 'linkedin_campaign_group_name',
-        'campaign_id': 'linkedin_campaign_id',
-        'campaign_name': 'linkedin_campaign_name',
-        'creative_id': 'linkedin_ad_id',
-        'creative_name': 'linkedin_ad_name',
-        'ad_id': 'linkedin_ad_id'
+      const linkedinParamsMap = {
+        'campaign_group_id'      : 'linkedin_campaign_group_id',
+        'campaign_group_name'    : 'linkedin_campaign_group_name',
+        'campaign_id'            : 'linkedin_campaign_id',
+        'utm_campaign'           : 'linkedin_campaign_name', // {{CAMPAIGN_NAME}}
+        'utm_content'            : 'linkedin_ad_id',         // {{CREATIVE_ID}}
+        'creative_name'          : 'linkedin_ad_name'        // {{CREATIVE_NAME}}
       };
-      
-      Object.entries(linkedinDirectParams).forEach(([paramName, formField]) => {
+
+      Object.entries(linkedinParamsMap).forEach(([paramName, fieldName]) => {
         let paramValue = params.get(paramName);
+        
         if (paramValue) {
-          // URL 디코딩 처리 (이름 파라미터들)
-          if (paramName.includes('_name')) {
+          if (paramName.includes('_name') || paramName === 'utm_campaign') {
             try {
               paramValue = decodeURIComponent(paramValue.replace(/\+/g, ' '));
             } catch (e) {
-              console.error(`Failed to decode LinkedIn parameter [${paramName}]:`, e);
+              console.error(`Failed to decode URL parameter [${paramName}]:`, e);
             }
           }
-          
-          console.log(`LinkedIn Direct ${paramName} -> ${formField}:`, paramValue);
+
+          console.log(`LinkedIn Param [${paramName}] -> Field [${fieldName}]:`, paramValue);
           try {
-            setValue(formField as keyof FormValues, paramValue);
-            console.log(`✓ Successfully set ${formField}:`, paramValue);
+            setValue(fieldName as keyof FormValues, paramValue); 
           } catch (error) {
-            console.error(`✗ Failed to set ${formField}:`, error);
+            console.error(`✗ Failed to set ${fieldName}:`, error);
           }
-        } else {
-          console.log(`- LinkedIn parameter [${paramName}] not found in URL`);
         }
       });
     } else {

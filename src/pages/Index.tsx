@@ -809,7 +809,11 @@ const CTA = () => {
         utm_ad_id: values.utm_ad_id || null,
         utm_ad_name: values.utm_ad_name || null,
         linkedin_campaign_name: values.linkedin_campaign_name || null,
-        linkedin_ad_id: values.linkedin_ad_id || null
+        linkedin_ad_id: values.linkedin_ad_id || null,
+        linkedin_campaign_group_id: values.linkedin_campaign_group_id || null,
+        linkedin_campaign_group_name: values.linkedin_campaign_group_name || null,
+        linkedin_campaign_id: values.linkedin_campaign_id || null,
+        linkedin_ad_name: values.linkedin_ad_name || null
       };
       
       console.log('Insert data:', JSON.stringify(insertData, null, 2));
@@ -892,6 +896,10 @@ const CTA = () => {
             {/* Hidden LinkedIn 필드들 */}
             <input type="hidden" {...register("linkedin_campaign_name")} />
             <input type="hidden" {...register("linkedin_ad_id")} />
+            <input type="hidden" {...register("linkedin_campaign_group_id")} />
+            <input type="hidden" {...register("linkedin_campaign_group_name")} />
+            <input type="hidden" {...register("linkedin_campaign_id")} />
+            <input type="hidden" {...register("linkedin_ad_name")} />
             
             <div className="flex items-center gap-2">
               <Checkbox id="consent" checked={watch("consent")} onCheckedChange={checked => setValue("consent", !!checked)} />

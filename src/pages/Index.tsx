@@ -773,7 +773,20 @@ const CTA = () => {
     } else {
       // 일반 UTM (비 LinkedIn) 처리
       console.log('=== GENERAL UTM PARAMETERS ===');
-      const generalUtmFields = ['utm_campaign_name', 'utm_adset_id', 'utm_adset_name', 'utm_ad_id', 'utm_ad_name'] as const;
+      
+      // Facebook 특수 매핑: utm_content -> utm_campaign_id
+      const utmContent = params.get('utm_content');
+      if (utmContent) {
+        console.log('🎯 Facebook UTM Content -> Campaign ID:', utmContent);
+        try {
+          setValue('utm_campaign_id', utmContent);
+          console.log(`✓ Successfully set utm_campaign_id from utm_content:`, utmContent);
+        } catch (error) {
+          console.error(`✗ Failed to set utm_campaign_id:`, error);
+        }
+      }
+      
+      const generalUtmFields = ['utm_medium', 'utm_campaign_name', 'utm_adset_id', 'utm_adset_name', 'utm_ad_id', 'utm_ad_name'] as const;
       
       generalUtmFields.forEach(fieldName => {
         // For utm_campaign_name, we read from utm_campaign URL parameter

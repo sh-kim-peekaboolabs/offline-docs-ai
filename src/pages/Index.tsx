@@ -650,6 +650,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             <li>답변 내 인용 제공</li>
             <li>최대 10개의 지식 베이스 생성</li>
             <li>(지식 베이스 당 최대 10개 문서)</li>
+            <li>Notion, Google Drive 연동 (지원 예정)</li>
           </ul>
           <div className="mt-6 text-center">
             <a href="#cta"><Button variant="hero" size="lg" className="w-full">Waitlist 등록하기</Button></a>

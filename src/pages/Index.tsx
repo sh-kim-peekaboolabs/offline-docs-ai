@@ -698,6 +698,7 @@ const CTA = () => {
     reset,
     watch,
     setValue,
+    getValues,
     formState: {
       errors,
       isSubmitting
@@ -739,69 +740,54 @@ const CTA = () => {
 
     // LinkedIn인 경우 특별 처리
     if (isLinkedIn) {
-      console.log('=== LINKEDIN DYNAMIC PARAMETERS MAPPING (FINAL) ===');
+      console.log('=== LINKEDIN DYNAMIC PARAMETERS MAPPING (DEBUG) ===');
+      console.log('🔍 All URL params:', Array.from(params.entries()));
       
       const linkedinParamsMap = {
         'campaign_group_id'      : 'linkedin_campaign_group_id',
-        'campaign_group_name'    : 'linkedin_campaign_group_name',
+        'campaign_group_name'    : 'linkedin_campaign_group_name', 
         'campaign_id'            : 'linkedin_campaign_id',
-        'utm_campaign'           : 'linkedin_campaign_name', // {{CAMPAIGN_NAME}}
-        'utm_content'            : 'linkedin_ad_id',         // {{CREATIVE_ID}}
-        'creative_name'          : 'linkedin_ad_name'        // {{CREATIVE_NAME}}
+        'utm_campaign'           : 'linkedin_campaign_name',
+        'utm_content'            : 'linkedin_ad_id',
+        'creative_name'          : 'linkedin_ad_name'
       };
 
+      console.log('📝 Current form values before LinkedIn mapping:', getValues());
+
       Object.entries(linkedinParamsMap).forEach(([paramName, fieldName]) => {
-        let paramValue = params.get(paramName);
+        const rawValue = params.get(paramName);
+        console.log(`🔎 Checking param [${paramName}]: raw value =`, rawValue);
         
-        if (paramValue) {
+        if (rawValue) {
+          let processedValue = rawValue;
+          
+          // URL 디코딩 (이름 파라미터들만)
           if (paramName.includes('_name') || paramName === 'utm_campaign') {
             try {
-              paramValue = decodeURIComponent(paramValue.replace(/\+/g, ' '));
+              processedValue = decodeURIComponent(rawValue.replace(/\+/g, ' '));
+              console.log(`🔄 Decoded [${paramName}]: "${rawValue}" → "${processedValue}"`);
             } catch (e) {
-              console.error(`Failed to decode URL parameter [${paramName}]:`, e);
+              console.error(`❌ Decode failed for [${paramName}]:`, e);
+              processedValue = rawValue; // 실패시 원본값 사용
             }
           }
 
-          console.log(`LinkedIn Param [${paramName}] -> Field [${fieldName}]:`, paramValue);
+          console.log(`📤 Setting [${fieldName}] = "${processedValue}"`);
+          
           try {
-            setValue(fieldName as keyof FormValues, paramValue); 
+            setValue(fieldName as keyof FormValues, processedValue);
+            const verifyValue = getValues(fieldName as keyof FormValues);
+            console.log(`✅ Successfully set [${fieldName}]. Verify:`, verifyValue);
           } catch (error) {
-            console.error(`✗ Failed to set ${fieldName}:`, error);
+            console.error(`❌ Failed to set [${fieldName}]:`, error);
+            console.error('Error details:', error.message);
           }
+        } else {
+          console.log(`⚪ Parameter [${paramName}] not found in URL`);
         }
       });
-    } else {
-      // 일반 UTM (비 LinkedIn) 처리
-      console.log('=== GENERAL UTM PARAMETERS ===');
-      
-      // Facebook 특수 매핑: utm_content -> utm_campaign_id
-      const utmContent = params.get('utm_content');
-      if (utmContent) {
-        console.log('🎯 Facebook UTM Content -> Campaign ID:', utmContent);
-        try {
-          setValue('utm_campaign_id', utmContent);
-          console.log(`✓ Successfully set utm_campaign_id from utm_content:`, utmContent);
-        } catch (error) {
-          console.error(`✗ Failed to set utm_campaign_id:`, error);
-        }
-      }
-      
-      const generalUtmFields = ['utm_medium', 'utm_campaign_name', 'utm_adset_id', 'utm_adset_name', 'utm_ad_id', 'utm_ad_name'] as const;
-      
-      generalUtmFields.forEach(fieldName => {
-        // For utm_campaign_name, we read from utm_campaign URL parameter
-        const paramName = fieldName === 'utm_campaign_name' ? 'utm_campaign' : fieldName;
-        const paramValue = params.get(paramName);
-        console.log(`General UTM ${paramName} -> ${fieldName}:`, paramValue);
-        if (paramValue) {
-          try {
-            setValue(fieldName, paramValue);
-            console.log(`✓ Successfully set ${fieldName} to:`, paramValue);
-          } catch (error) {
-            console.error(`✗ Failed to set ${fieldName}:`, error);
-          }
-        }
-      });
+
+      console.log('📝 Final form values after LinkedIn mapping:', getValues());
     }
     
     console.log('=== PARAMETER PARSING COMPLETE ===');

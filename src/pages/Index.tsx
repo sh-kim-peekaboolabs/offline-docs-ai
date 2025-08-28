@@ -669,6 +669,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             <li>요약 결과 내보내기(Word, PPTX, Markdown)</li>
             <li>커스텀 요약 템플릿(지원 예정)</li>
             <li>무제한 지식 베이스 생성 및 베이스 최대 용량 대폭 확장</li>
+            <li>Gmail, Slack, Github, Jira, Confluence 등 다양한 App 커넥터 제공 (지원 예정)</li>
             <li>이메일 우선 지원</li>
           </ul>
           <div className="mt-6 text-center">

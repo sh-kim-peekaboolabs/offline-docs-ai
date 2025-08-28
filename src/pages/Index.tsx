@@ -153,17 +153,17 @@ const Features = () => <section id="features" className="section bg-secondary-li
       <div className="grid md:grid-cols-3 gap-6">
         <div className="feature-card text-center group gpu-optimized">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
-            <Search className="w-8 h-8" />
-          </div>
-          <h3 className="text-xl font-semibold mb-2">사내 문서 검색 AI</h3>
-          <p className="text-muted-foreground">Notion, Google Drive, 내 PC 등 여러 곳에 흩어져 있는 문서를 한번에 검색하세요.</p>
-        </div>
-        <div className="feature-card text-center group gpu-optimized">
-          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
             <WifiOff className="w-8 h-8" />
           </div>
           <h3 className="text-xl font-semibold mb-2">오프라인 AI</h3>
           <p className="text-muted-foreground">AI가 내 PC에서 동작해 자료가 외부로 나갈 일이 없어요.</p>
+        </div>
+        <div className="feature-card text-center group gpu-optimized">
+          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
+            <Brain className="w-8 h-8" />
+          </div>
+          <h3 className="text-xl font-semibold mb-2">한국어 특화 AI</h3>
+          <p className="text-muted-foreground">한국어 문맥·문체에 최적화된 AI를 탑재했어요.</p>
         </div>
         <div className="feature-card text-center group gpu-optimized">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
@@ -188,10 +188,10 @@ const Features = () => <section id="features" className="section bg-secondary-li
         </div>
         <div className="feature-card text-center group gpu-optimized">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
-            <Brain className="w-8 h-8" />
+            <Search className="w-8 h-8" />
           </div>
-          <h3 className="text-xl font-semibold mb-2">한국어 특화 AI</h3>
-          <p className="text-muted-foreground">한국어 문맥·문체에 최적화된 AI를 탑재했어요.</p>
+          <h3 className="text-xl font-semibold mb-2">사내 문서 검색 AI</h3>
+          <p className="text-muted-foreground">Notion, Google Drive, 내 PC 등 여러 곳에 흩어져 있는 문서를 한번에 검색하세요.</p>
         </div>
       </div>
     </div>
@@ -430,7 +430,7 @@ const Testimonials = () => {
     name: "이상훈",
     role: "R&D 팀장",
     company: "테크이노베이션",
-    content: "기술 문서가 방대해서 항상 찾기 어려웠는데, 이제 한번에 찾을 수 있어 생산성이 대폭 향상되었습니다.",
+    content: "기술 문서가 HWP로만 되어 있어서 항상 불편했는데, 이제 바로 질문하고 답을 얻을 수 있어 개발 속도가 2배 빨라졌습니다.",
     rating: 5
   }];
   return <section className="py-20 bg-gradient-to-br from-gray-50 to-white" aria-labelledby="testimonials-heading">
@@ -680,10 +680,10 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
           <p className="mt-4 text-2xl font-bold">별도 문의</p>
           <ul className="mt-4 space-y-2 text-sm flex-1">
             <li>Pro의 모든 기능 포함</li>
-            <li>계정 라이선스 관리</li>
-            <li>폐쇄망 환경을 위한 오프라인 설치 지원</li>
+            <li>대규모 팀을 위한 중앙 라이선스 관리</li>
+            <li>폐쇄망 환경에서 동작하는 온프레미스 AI 설치</li>
             <li>전담 기술 지원 매니저 및 SLA</li>
-            <li>회사 맞춤형 AI 학습</li>
+            <li>회사 전용 AI 학습 및 배포 관리</li>
           </ul>
           <div className="mt-6 text-center">
             <a href="#cta"><Button variant="hero" size="lg" className="w-full">Waitlist 등록하기</Button></a>

@@ -153,17 +153,17 @@ const Features = () => <section id="features" className="section bg-secondary-li
       <div className="grid md:grid-cols-3 gap-6">
         <div className="feature-card text-center group gpu-optimized">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
-            <WifiOff className="w-8 h-8" />
-          </div>
-          <h3 className="text-xl font-semibold mb-2">오프라인 AI</h3>
-          <p className="text-muted-foreground">AI가 내 PC에서 동작해 자료가 외부로 나갈 일이 없어요.</p>
-        </div>
-        <div className="feature-card text-center group gpu-optimized">
-          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
             <Brain className="w-8 h-8" />
           </div>
           <h3 className="text-xl font-semibold mb-2">한국어 특화 AI</h3>
           <p className="text-muted-foreground">한국어 문맥·문체에 최적화된 AI를 탑재했어요.</p>
+        </div>
+        <div className="feature-card text-center group gpu-optimized">
+          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
+            <WifiOff className="w-8 h-8" />
+          </div>
+          <h3 className="text-xl font-semibold mb-2">오프라인 AI</h3>
+          <p className="text-muted-foreground">AI가 내 PC에서 동작해 자료가 외부로 나갈 일이 없어요.</p>
         </div>
         <div className="feature-card text-center group gpu-optimized">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">

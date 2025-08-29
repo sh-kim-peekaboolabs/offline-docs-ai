@@ -151,19 +151,11 @@ const Hero = ({ language }: { language: 'ko' | 'en' }) => {
             </Button>
           </a>
           
-          {/* Enhanced status badge */}
-          <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full border border-green-200/50 shadow-lg backdrop-blur-sm">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full animate-bounce shadow-lg shadow-green-500/50" />
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce shadow-lg shadow-green-400/50" style={{ animationDelay: '0.1s' }} />
-              <div className="w-1.5 h-1.5 bg-green-300 rounded-full animate-bounce shadow-lg shadow-green-300/50" style={{ animationDelay: '0.2s' }} />
-            </div>
-            <span className="text-sm font-semibold text-green-700">{content.statusText}</span>
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 bg-green-300 rounded-full animate-bounce shadow-lg shadow-green-300/50" style={{ animationDelay: '0.3s' }} />
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce shadow-lg shadow-green-400/50" style={{ animationDelay: '0.4s' }} />
-              <div className="w-3 h-3 bg-green-500 rounded-full animate-bounce shadow-lg shadow-green-500/50" style={{ animationDelay: '0.5s' }} />
-            </div>
+          {/* Simplified status badge */}
+          <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
+            <span className="text-sm font-medium text-green-700">{content.statusText}</span>
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
           </div>
           
           {/* Enhanced beta text */}

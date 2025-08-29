@@ -40,10 +40,10 @@ const LanguageToggle = ({ language, onToggle }: { language: 'ko' | 'en', onToggl
     variant="outline" 
     size="sm" 
     onClick={onToggle}
-    className="flex items-center gap-2"
+    className="flex items-center gap-2 min-w-[80px]"
   >
     <Globe className="w-4 h-4" />
-    {language === 'ko' ? 'EN' : '한국어'}
+    <span>{language === 'ko' ? '한국어' : 'English'}</span>
   </Button>
 );
 
@@ -108,7 +108,7 @@ const Hero = ({ language }: { language: 'ko' | 'en' }) => {
   } : {
     badge: 'From your PC to Notion, across all scattered documents',
     title: 'Find the answers you need with a single question.',
-    subtitle: 'Fast and secure AI enterprise document navigator',
+    subtitle: 'Fast and secured AI enterprise search',
     ctaButton: 'Join Waitlist',
     statusText: '🔥 100+ people already signed up!',
     betaText: '* Limited beta tester recruitment *'
@@ -257,6 +257,11 @@ const Features = ({ language }: { language: 'ko' | 'en' }) => {
         icon: Brain,
         title: '한국어 특화 AI',
         description: '한국어 문맥·문체에 최적화된 AI를 탑재했어요.'
+      },
+      {
+        icon: Shield,
+        title: '기업급 보안',
+        description: '데이터가 PC를 벗어나지 않아 완벽한 보안을 보장합니다.'
       }
     ]
   } : {
@@ -287,6 +292,11 @@ const Features = ({ language }: { language: 'ko' | 'en' }) => {
         icon: LinkIcon,
         title: 'Document·Link·Text Integration',
         description: 'Analyze everything in one unified knowledge base.'
+      },
+      {
+        icon: Shield,
+        title: 'Enterprise-Grade Security',
+        description: 'Your data stays on your device with zero external transmission.'
       }
     ]
   };
@@ -316,9 +326,214 @@ const Solution = ({ language }: { language?: 'ko' | 'en' }) => null;
 const Comparison = ({ language }: { language?: 'ko' | 'en' }) => null;
 const Scenarios = ({ language }: { language?: 'ko' | 'en' }) => null;
 const Testimonials = ({ language }: { language?: 'ko' | 'en' }) => null;
-const Security = ({ language }: { language?: 'ko' | 'en' }) => null;
+const Security = ({ language }: { language?: 'ko' | 'en' }) => {
+  const content = language === 'ko' ? {
+    title: '보안',
+    subtitle: '당신의 데이터는 절대 외부로 나가지 않습니다',
+    features: [
+      {
+        icon: Lock,
+        title: '100% 온디바이스 처리',
+        description: '모든 AI 처리가 당신의 PC에서만 이루어집니다. 서버 전송이 존재하지 않습니다.'
+      },
+      {
+        icon: Shield,
+        title: '기업급 보안',
+        description: '금융, 의료, 정부 기관에서 요구하는 최고 수준의 보안을 제공합니다.'
+      },
+      {
+        icon: WifiOff,
+        title: '폐쇄망 환경 지원',
+        description: '인터넷 연결 없이도 완벽하게 동작하여 완전한 격리 환경을 보장합니다.'
+      }
+    ]
+  } : {
+    title: 'Security',
+    subtitle: 'Your data never leaves your device',
+    features: [
+      {
+        icon: Lock,
+        title: '100% On-Device Processing',
+        description: 'All AI processing happens only on your PC. No server transmission exists.'
+      },
+      {
+        icon: Shield,
+        title: 'Enterprise-Grade Security',
+        description: 'Provides the highest level of security required by financial, medical, and government institutions.'
+      },
+      {
+        icon: WifiOff,
+        title: 'Air-Gapped Environment Support',
+        description: 'Works perfectly without internet connection, ensuring complete isolation.'
+      }
+    ]
+  };
+
+  return (
+    <section id="security" className="section bg-secondary-lighter/50">
+      <div className="container">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-semibold mb-4">{content.title}</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{content.subtitle}</p>
+        </div>
+        
+        <div className="grid md:grid-cols-3 gap-8">
+          {content.features.map((feature, index) => (
+            <div key={index} className="feature-card text-center">
+              <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4">
+                <feature.icon className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+              <p className="text-muted-foreground">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Pricing = ({ language }: { language?: 'ko' | 'en' }) => {
+  const content = language === 'ko' ? {
+    title: '요금제',
+    subtitle: '출시 예정인 요금제를 미리 확인하세요',
+    plans: [
+      {
+        name: 'Personal',
+        price: '월 29,000원',
+        description: '개인 사용자를 위한 기본 플랜',
+        features: [
+          '무제한 문서 처리',
+          '기본 AI 모델',
+          '5GB 저장공간',
+          '이메일 지원'
+        ],
+        popular: false
+      },
+      {
+        name: 'Professional',
+        price: '월 59,000원',
+        description: '전문가와 소규모 팀을 위한 플랜',
+        features: [
+          '무제한 문서 처리',
+          '고급 AI 모델',
+          '50GB 저장공간',
+          '우선 지원',
+          '팀 공유 기능'
+        ],
+        popular: true
+      },
+      {
+        name: 'Enterprise',
+        price: '별도 문의',
+        description: '대기업을 위한 맞춤형 솔루션',
+        features: [
+          '무제한 모든 기능',
+          '맞춤형 AI 모델',
+          '무제한 저장공간',
+          '전담 지원',
+          '온프레미스 배포',
+          'SSO 연동'
+        ],
+        popular: false
+      }
+    ]
+  } : {
+    title: 'Pricing',
+    subtitle: 'Check out our upcoming pricing plans',
+    plans: [
+      {
+        name: 'Personal',
+        price: '$29/month',
+        description: 'Basic plan for individual users',
+        features: [
+          'Unlimited document processing',
+          'Standard AI models',
+          '5GB storage',
+          'Email support'
+        ],
+        popular: false
+      },
+      {
+        name: 'Professional',
+        price: '$59/month',
+        description: 'Perfect for professionals and small teams',
+        features: [
+          'Unlimited document processing',
+          'Advanced AI models',
+          '50GB storage',
+          'Priority support',
+          'Team sharing features'
+        ],
+        popular: true
+      },
+      {
+        name: 'Enterprise',
+        price: 'Contact us',
+        description: 'Custom solution for large organizations',
+        features: [
+          'Unlimited everything',
+          'Custom AI models',
+          'Unlimited storage',
+          'Dedicated support',
+          'On-premises deployment',
+          'SSO integration'
+        ],
+        popular: false
+      }
+    ]
+  };
+
+  return (
+    <section id="pricing" className="section">
+      <div className="container">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-semibold mb-4">{content.title}</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{content.subtitle}</p>
+        </div>
+        
+        <div className="grid md:grid-cols-3 gap-8">
+          {content.plans.map((plan, index) => (
+            <div key={index} className={`feature-card ${plan.popular ? 'ring-2 ring-primary bg-primary/5' : ''}`}>
+              {plan.popular && (
+                <div className="text-center mb-4">
+                  <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
+                    {language === 'ko' ? '인기' : 'Popular'}
+                  </span>
+                </div>
+              )}
+              <div className="text-center mb-6">
+                <h3 className="text-xl font-semibold mb-2">{plan.name}</h3>
+                <div className="text-3xl font-bold mb-2">{plan.price}</div>
+                <p className="text-muted-foreground text-sm">{plan.description}</p>
+              </div>
+              
+              <ul className="space-y-3 mb-6">
+                {plan.features.map((feature, featureIndex) => (
+                  <li key={featureIndex} className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                    <span className="text-sm">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              
+              <Button 
+                variant={plan.popular ? "default" : "outline"} 
+                className="w-full"
+                asChild
+              >
+                <a href="#cta">
+                  {language === 'ko' ? 'Waitlist 등록' : 'Join Waitlist'}
+                </a>
+              </Button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 const HowItWorks = ({ language }: { language?: 'ko' | 'en' }) => null;
-const Pricing = ({ language }: { language?: 'ko' | 'en' }) => null;
 
 const CTA = ({ language }: { language?: 'ko' | 'en' }) => {
   const { register, handleSubmit, formState: { errors }, setValue, getValues } = useForm<FormValues>({

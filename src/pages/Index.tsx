@@ -292,7 +292,7 @@ const Scenarios = () => {
       description: "인터넷이 차단된 폐쇄망 PC에서 대량의 보고서 및 정책 자료의 핵심 내용을 요약하고, 보안 유출 없이 신속하게 업무를 처리합니다.",
       icon: Shield,
       bgColor: "from-slate-600 to-gray-700",
-      image: "/lovable-uploads/5726b51d-1973-4f73-9b73-62db08774f61.png"
+      image: "/lovable-uploads/ebf98bf4-9354-4eca-b2a5-310ff4a6c967.png"
     }
   ] : [
     {
@@ -325,7 +325,7 @@ const Scenarios = () => {
       description: "Summarize key content from massive reports and policy materials on offline PCs in closed networks, processing work quickly without security breaches.",
       icon: Shield,
       bgColor: "from-slate-600 to-gray-700",
-      image: "/lovable-uploads/5726b51d-1973-4f73-9b73-62db08774f61.png"
+      image: "/lovable-uploads/ebf98bf4-9354-4eca-b2a5-310ff4a6c967.png"
     }
   ];
 
@@ -355,7 +355,7 @@ const Scenarios = () => {
                   </div>
                   <p className="text-white/90 leading-relaxed">{env.description}</p>
                 </div>
-                <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
+                <div className="absolute inset-0 opacity-30 group-hover:opacity-40 transition-opacity duration-300">
                   <img 
                     src={env.image} 
                     alt={`${env.title} background`}

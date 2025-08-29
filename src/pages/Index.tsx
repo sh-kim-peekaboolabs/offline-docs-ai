@@ -11,7 +11,7 @@ import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, 
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { useEffect } from "react";
 import { usePageTracking, useSectionTracking } from "@/hooks/useAnalytics";
-import { useLanguage } from "@/hooks/useLanguage";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { translations } from "@/data/translations";
 
@@ -806,6 +806,9 @@ const Footer = () => {
 };
 
 const Index = () => {
+  const { language } = useLanguage();
+  console.log('Current language in Index:', language);
+  
   usePageTracking();
   useSectionTracking();
 

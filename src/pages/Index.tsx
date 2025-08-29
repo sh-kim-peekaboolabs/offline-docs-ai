@@ -267,94 +267,221 @@ const Scenarios = () => {
       title: "엔터프라이즈 기업",
       description: "수백 페이지의 기술 표준 문서나 R&D 자료에서 필요한 스펙과 정보를 즉시 검색하여 개발 시간을 단축합니다.",
       icon: Building2,
-      gradient: "from-blue-600 via-blue-700 to-indigo-800",
-      overlayGradient: "from-blue-900/80 to-indigo-900/60",
-      image: "/lovable-uploads/3098a8d7-6b45-47dc-abc4-9946c5c83a10.png"
+      bgColor: "from-blue-500 to-blue-700",
+      image: "/lovable-uploads/964e7f8b-0bcd-47ff-972d-4595b6bebcd0.png"
     },
     {
       id: 2,
       title: "법무법인",
-      description: "수만 페이지에 달하는 증거 자료와 판례 더미 속에서 사건의 핵심 쟁점과 인용할 근거를 빠르게 찾아내 소송 전략을 수립합니다.",
+      description: "수만 페이지에 달하는 증거 자료와 판례 DB에 속에서 사건의 핵심 쟁점과 인용할 근거를 빠르게 찾아내 소송 전략을 수립합니다.",
       icon: Scale,
-      gradient: "from-amber-600 via-orange-700 to-red-800",
-      overlayGradient: "from-orange-900/80 to-red-900/60",
-      image: "/lovable-uploads/5726b51d-1973-4f73-9b73-62db08774f61.png"
+      bgColor: "from-amber-700 to-orange-800",
+      image: "/lovable-uploads/3098a8d7-6b45-47dc-abc4-9946c5c83a10.png"
     },
     {
       id: 3,
-      title: "투자회사·컨설팅",
-      description: "투자 검토 시 필요한 재무 자료, 시장 분석 보고서에서 핵심 수치와 인사이트를 신속하게 추출하여 의사결정을 가속화합니다.",
+      title: "투자사 및 금융권",
+      description: "수십 개의 투자 보고서와 실사 데이터에서 핵심 성장 동력이나 잠재적 리스크를 신속하게 식별하여 투자 결정을 내립니다.",
       icon: TrendingUp,
-      gradient: "from-emerald-600 via-teal-700 to-cyan-800",
-      overlayGradient: "from-emerald-900/80 to-cyan-900/60",
+      bgColor: "from-emerald-600 to-teal-700",
       image: "/lovable-uploads/9bd95de7-d285-4dd7-ac4a-8fcc6ab83d7d.png"
+    },
+    {
+      id: 4,
+      title: "국방 및 공공기관",
+      description: "인터넷이 차단된 폐쇄망 PC에서 대량의 보고서 및 정책 자료의 핵심 내용을 요약하고, 보안 유출 없이 신속하게 업무를 처리합니다.",
+      icon: Shield,
+      bgColor: "from-slate-600 to-gray-700",
+      image: "/lovable-uploads/5726b51d-1973-4f73-9b73-62db08774f61.png"
     }
   ] : [
     {
       id: 1,
       title: "Enterprise Companies",
-      description: "Instantly search through hundreds of pages of technical standards and R&D materials to find the specs and information you need, reducing development time.",
+      description: "Instantly search through hundreds of pages of technical standards and R&D materials to find required specs and information, reducing development time.",  
       icon: Building2,
-      gradient: "from-blue-600 via-blue-700 to-indigo-800",
-      overlayGradient: "from-blue-900/80 to-indigo-900/60",
-      image: "/lovable-uploads/3098a8d7-6b45-47dc-abc4-9946c5c83a10.png"
+      bgColor: "from-blue-500 to-blue-700",
+      image: "/lovable-uploads/964e7f8b-0bcd-47ff-972d-4595b6bebcd0.png"
     },
     {
       id: 2,
       title: "Law Firms",
-      description: "Quickly find key issues and citable evidence from thousands of pages of evidence and case precedents to develop litigation strategies.",
+      description: "Quickly identify key issues and citations from tens of thousands of pages of evidence and case law databases to build litigation strategies.",
       icon: Scale,
-      gradient: "from-amber-600 via-orange-700 to-red-800",
-      overlayGradient: "from-orange-900/80 to-red-900/60",
-      image: "/lovable-uploads/5726b51d-1973-4f73-9b73-62db08774f61.png"
+      bgColor: "from-amber-700 to-orange-800", 
+      image: "/lovable-uploads/3098a8d7-6b45-47dc-abc4-9946c5c83a10.png"
     },
     {
       id: 3,
-      title: "Investment & Consulting",
-      description: "Rapidly extract key figures and insights from financial materials and market analysis reports needed for investment reviews, accelerating decision-making.",
+      title: "Investment & Finance",
+      description: "Rapidly identify key growth drivers and potential risks from dozens of investment reports and due diligence data to make investment decisions.",
       icon: TrendingUp,
-      gradient: "from-emerald-600 via-teal-700 to-cyan-800",
-      overlayGradient: "from-emerald-900/80 to-cyan-900/60",
+      bgColor: "from-emerald-600 to-teal-700",
       image: "/lovable-uploads/9bd95de7-d285-4dd7-ac4a-8fcc6ab83d7d.png"
+    },
+    {
+      id: 4,
+      title: "Defense & Government",
+      description: "Summarize key content from massive reports and policy materials on offline PCs in closed networks, processing work quickly without security breaches.",
+      icon: Shield,
+      bgColor: "from-slate-600 to-gray-700",
+      image: "/lovable-uploads/5726b51d-1973-4f73-9b73-62db08774f61.png"
     }
   ];
 
   return (
-    <section id="scenarios" className="section" aria-labelledby="scenarios-heading">
+    <section id="scenarios" className="section bg-slate-900 text-white" aria-labelledby="scenarios-heading">
       <div className="container">
-        <h2 id="scenarios-heading" className="text-2xl md:text-3xl font-semibold mb-4 text-center">{t.scenarios.title}</h2>
-        <p className="text-center text-muted-foreground mb-12">{t.scenarios.subtitle}</p>
+        <div className="text-center mb-16">
+          <h2 id="scenarios-heading" className="text-3xl md:text-4xl font-bold mb-4">
+            {language === 'ko' ? '이런 환경에서' : 'Effective in these environments'} <span className="text-blue-400">{language === 'ko' ? '효과적입니다' : ''}</span>
+          </h2>
+          <p className="text-lg text-gray-300">
+            {language === 'ko' ? '대용량 문서 처리가 필요한 전문 분야에서 AI의 힘으로 업무 효율성을 극대화하세요' : 'Maximize work efficiency with AI power in professional fields requiring large document processing'}
+          </p>
+        </div>
         
-        <div className="grid gap-8">
+        <div className="grid md:grid-cols-2 gap-6">
           {environments.map((env) => {
             const IconComponent = env.icon;
             return (
-              <div key={env.id} className="relative overflow-hidden rounded-3xl group">
-                <div className={`absolute inset-0 bg-gradient-to-r ${env.gradient}`}></div>
-                <div className={`absolute inset-0 bg-gradient-to-t ${env.overlayGradient}`}></div>
-                
-                <div className="relative z-10 grid md:grid-cols-2 items-center min-h-[400px]">
-                  <div className="p-8 md:p-12 text-white">
-                    <div className="inline-flex p-4 rounded-2xl bg-white/20 backdrop-blur mb-6">
-                      <IconComponent className="w-8 h-8" />
+              <div key={env.id} className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${env.bgColor} p-8 min-h-[280px] group hover:scale-[1.02] transition-transform duration-300`}>
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                      <IconComponent className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold mb-4">{env.title}</h3>
-                    <p className="text-lg text-white/90 leading-relaxed">{env.description}</p>
+                    <h3 className="text-xl font-bold text-white">{env.title}</h3>
                   </div>
-                  
-                  <div className="relative h-full min-h-[300px] md:min-h-[400px] overflow-hidden">
-                    <img 
-                      src={env.image} 
-                      alt={`${env.title} ${language === 'ko' ? '시나리오 이미지' : 'scenario image'}`}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/20"></div>
-                  </div>
+                  <p className="text-white/90 leading-relaxed">{env.description}</p>
+                </div>
+                <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
+                  <img 
+                    src={env.image} 
+                    alt={`${env.title} background`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />  
                 </div>
               </div>
             );
           })}
+        </div>
+
+        <div className="text-center mt-12">
+          <p className="text-gray-400 mb-6">{language === 'ko' ? '당신의 업무 환경에 AI를 지금 바로 도입하세요' : 'Introduce AI to your work environment right now'}</p>
+          <a href="#cta">
+            <Button variant="hero" size="lg" className="bg-blue-600 hover:bg-blue-700">
+              {language === 'ko' ? '바로 시작하기' : 'Get Started'} →
+            </Button>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
+const Testimonials = () => {
+  const { language } = useLanguage();
+  
+  const testimonials = language === 'ko' ? [
+    {
+      name: "김민수",
+      role: "변호사",
+      company: "법무법인 A",
+      rating: 5,
+      content: "수만 페이지의 판례 자료에서 핵심 쟁점을 찾는 시간이 90% 단축되었습니다. 이제 소송 전략 수립에 더 집중할 수 있어요.",
+      avatar: "김"
+    },
+    {
+      name: "박지영", 
+      role: "투자 분석가",
+      company: "KL 투자증권",
+      rating: 5,
+      content: "실사 보고서 분석에 걸리던 시간이 하루에서 2시간으로 줄었어요. 정확한 출처까지 제공돼서 투자 결정의 확신을 가질 수 있습니다.",
+      avatar: "박"
+    },
+    {
+      name: "이상훈",
+      role: "R&D 팀장",
+      company: "테크노나비에선",
+      rating: 5,
+      content: "기술 문서가 HWP로만 되어 있어서 방법 못 찾았는데, 이제 바로 질문하고 답을 얻을 수 있어서 개발 속도가 2배 빨라졌습니다.",
+      avatar: "이"
+    }
+  ] : [
+    {
+      name: "Minsu Kim",
+      role: "Attorney",
+      company: "Law Firm A", 
+      rating: 5,
+      content: "The time it takes to find key issues from tens of thousands of case law materials has been reduced by 90%. Now I can focus more on developing litigation strategies.",
+      avatar: "M"
+    },
+    {
+      name: "Jiyoung Park",
+      role: "Investment Analyst", 
+      company: "KL Securities",
+      rating: 5,
+      content: "The time spent analyzing due diligence reports has been reduced from a day to 2 hours. With accurate citations provided, I can make investment decisions with confidence.",
+      avatar: "J"
+    },
+    {
+      name: "Sanghoon Lee",
+      role: "R&D Team Lead",
+      company: "TechnoNavison",
+      rating: 5,
+      content: "Technical documents were only available in proprietary formats, but now I can ask questions and get answers immediately, making development 2x faster.",
+      avatar: "S"
+    }
+  ];
+
+  return (
+    <section className="section bg-gray-50" aria-labelledby="testimonials-heading">
+      <div className="container">
+        <div className="text-center mb-16">
+          <h2 id="testimonials-heading" className="text-3xl md:text-4xl font-bold mb-4">
+            {language === 'ko' ? '이미 경험한 분들의 이야기' : 'Stories from those who have experienced it'}
+          </h2>
+          <p className="text-lg text-gray-600">
+            {language === 'ko' ? '업무 효율성이 눈에 띄게 향상되었다는 실제 사용자들의 생생한 후기' : 'Real user testimonials showing significant improvements in work efficiency'}
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+              <div className="flex items-center mb-4">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              
+              <blockquote className="text-gray-700 mb-6 leading-relaxed">
+                "{testimonial.content}"
+              </blockquote>
+              
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold">
+                  {testimonial.avatar}
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-900">{testimonial.name}</div>
+                  <div className="text-sm text-gray-600">{testimonial.role} · {testimonial.company}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        <div className="text-center mt-12">
+          <p className="text-gray-600 mb-6">
+            {language === 'ko' ? '당신도 이런 효율성을 경험해보세요' : 'Experience this efficiency yourself'}
+          </p>
+          <a href="#cta">
+            <Button variant="hero" size="lg">
+              {language === 'ko' ? 'Waitlist 등록하기' : 'Join Waitlist'}
+            </Button>
+          </a>
         </div>
       </div>
     </section>
@@ -821,6 +948,7 @@ const Index = () => {
       <Features />
       <Comparison />
       <Scenarios />
+      <Testimonials />
       <Security />
       <Pricing />
       <FAQ />

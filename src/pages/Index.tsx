@@ -748,11 +748,13 @@ const CTA = () => {
       }
     });
 
-    // Facebook인 경우 특별 처리
-    const isFacebook = utmSource === 'fb' || utmSource === 'facebook';
+    // Facebook인 경우 특별 처리 (fbclid가 있거나 utm_source가 fb/facebook인 경우)
+    const isFacebook = utmSource === 'fb' || utmSource === 'facebook' || params.has('fbclid');
     if (isFacebook) {
       console.log('=== FACEBOOK DYNAMIC PARAMETERS MAPPING (DEBUG) ===');
       console.log('🔍 All URL params:', Array.from(params.entries()));
+      console.log('🎯 Facebook detection - utm_source:', utmSource, ', has fbclid:', params.has('fbclid'));
+      console.log('📍 Key params check - utm_campaign:', params.get('utm_campaign'), ', utm_content:', params.get('utm_content'));
       const facebookParamsMap = {
         'utm_campaign': 'utm_campaign_name',  // Facebook의 utm_campaign을 utm_campaign_name으로 매핑
         'utm_content': 'utm_campaign_id',     // Facebook의 utm_content를 utm_campaign_id로 매핑

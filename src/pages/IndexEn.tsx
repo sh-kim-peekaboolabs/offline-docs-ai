@@ -138,6 +138,18 @@ const Problem = () => <section className="section pt-8" aria-labelledby="problem
             <p className="text-sm text-muted-foreground mt-auto">Situations where you want to use AI but can't</p>
           </div>
         </div>
+        <div className="feature-card flex items-start gap-4 p-6 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-purple-100 opacity-30"></div>
+          <div className="relative z-10 flex-shrink-0">
+            <div className="p-3 rounded-xl bg-purple-100 text-purple-600">
+              <Cloud className="w-6 h-6" />
+            </div>
+          </div>
+          <div className="relative z-10 flex-1 flex flex-col justify-between min-h-[100px]">
+            <h3 className="font-semibold mb-2">Service dependency and availability risks</h3>
+            <p className="text-sm text-muted-foreground mt-auto">Risk of service outages, slowdowns, and unexpected pricing changes</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>;

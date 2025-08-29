@@ -443,11 +443,11 @@ const Security = () => <section id="security" className="section bg-gradient-to-
         <div className="feature-card bg-white/80 backdrop-blur-sm border border-blue-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-green-100 text-green-600">
-              <WifiOff className="w-5 h-5" />
+              <Shield className="w-5 h-5" />
             </div>
-            <h3 className="font-semibold">Offline operation</h3>
+            <h3 className="font-semibold">No external data leaks</h3>
           </div>
-          <p className="text-sm text-muted-foreground">Works perfectly even without internet connection.</p>
+          <p className="text-sm text-muted-foreground">Your data never leaves your device, ensuring complete data security and privacy.</p>
         </div>
         <div className="feature-card bg-white/80 backdrop-blur-sm border border-blue-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <div className="flex items-center gap-3 mb-3">

@@ -258,7 +258,10 @@ const Comparison = () => {
 };
 
 const Scenarios = () => {
-  const environments = [
+  const { language } = useLanguage();
+  const t = translations[language];
+  
+  const environments = language === 'ko' ? [
     {
       id: 1,
       title: "엔터프라이즈 기업",
@@ -286,13 +289,41 @@ const Scenarios = () => {
       overlayGradient: "from-emerald-900/80 to-cyan-900/60",
       image: "/lovable-uploads/9bd95de7-d285-4dd7-ac4a-8fcc6ab83d7d.png"
     }
+  ] : [
+    {
+      id: 1,
+      title: "Enterprise Companies",
+      description: "Instantly search through hundreds of pages of technical standards and R&D materials to find the specs and information you need, reducing development time.",
+      icon: Building2,
+      gradient: "from-blue-600 via-blue-700 to-indigo-800",
+      overlayGradient: "from-blue-900/80 to-indigo-900/60",
+      image: "/lovable-uploads/3098a8d7-6b45-47dc-abc4-9946c5c83a10.png"
+    },
+    {
+      id: 2,
+      title: "Law Firms",
+      description: "Quickly find key issues and citable evidence from thousands of pages of evidence and case precedents to develop litigation strategies.",
+      icon: Scale,
+      gradient: "from-amber-600 via-orange-700 to-red-800",
+      overlayGradient: "from-orange-900/80 to-red-900/60",
+      image: "/lovable-uploads/5726b51d-1973-4f73-9b73-62db08774f61.png"
+    },
+    {
+      id: 3,
+      title: "Investment & Consulting",
+      description: "Rapidly extract key figures and insights from financial materials and market analysis reports needed for investment reviews, accelerating decision-making.",
+      icon: TrendingUp,
+      gradient: "from-emerald-600 via-teal-700 to-cyan-800",
+      overlayGradient: "from-emerald-900/80 to-cyan-900/60",
+      image: "/lovable-uploads/9bd95de7-d285-4dd7-ac4a-8fcc6ab83d7d.png"
+    }
   ];
 
   return (
     <section id="scenarios" className="section" aria-labelledby="scenarios-heading">
       <div className="container">
-        <h2 id="scenarios-heading" className="text-2xl md:text-3xl font-semibold mb-4 text-center">사용 시나리오</h2>
-        <p className="text-center text-muted-foreground mb-12">다양한 환경에서 활용해보세요</p>
+        <h2 id="scenarios-heading" className="text-2xl md:text-3xl font-semibold mb-4 text-center">{t.scenarios.title}</h2>
+        <p className="text-center text-muted-foreground mb-12">{t.scenarios.subtitle}</p>
         
         <div className="grid gap-8">
           {environments.map((env) => {
@@ -314,7 +345,7 @@ const Scenarios = () => {
                   <div className="relative h-full min-h-[300px] md:min-h-[400px] overflow-hidden">
                     <img 
                       src={env.image} 
-                      alt={`${env.title} 시나리오 이미지`}
+                      alt={`${env.title} ${language === 'ko' ? '시나리오 이미지' : 'scenario image'}`}
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       loading="lazy"
                     />
@@ -331,51 +362,85 @@ const Scenarios = () => {
 };
 
 const Security = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+  
+  const securityFeatures = language === 'ko' ? [
+    {
+      title: "완전한 오프라인 처리",
+      description: "모든 AI 처리가 사용자의 로컬 디바이스에서 실행되어 데이터가 외부로 전송되지 않습니다.",
+      icon: Shield,
+      color: "green"
+    },
+    {
+      title: "엔드투엔드 암호화",
+      description: "문서 저장부터 검색까지 모든 과정이 암호화되어 보호됩니다.",
+      icon: Lock,
+      color: "blue"
+    },
+    {
+      title: "네트워크 독립성",
+      description: "인터넷 연결 없이도 완전히 작동하여 폐쇄망 환경에서도 사용 가능합니다.",
+      icon: WifiOff,
+      color: "purple"
+    }
+  ] : [
+    {
+      title: "Complete Offline Processing",
+      description: "All AI processing runs on your local device with no data transmitted externally.",
+      icon: Shield,
+      color: "green"
+    },
+    {
+      title: "End-to-End Encryption",
+      description: "All processes from document storage to search are encrypted and protected.",
+      icon: Lock,
+      color: "blue"
+    },
+    {
+      title: "Network Independence",
+      description: "Works completely without internet connection, usable even in closed network environments.",
+      icon: WifiOff,
+      color: "purple"
+    }
+  ];
+
   return (
     <section id="security" className="section bg-secondary-lighter/50" aria-labelledby="security-heading">
       <div className="container">
-        <h2 id="security-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">보안 및 프라이버시</h2>
+        <h2 id="security-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">{t.security.title}</h2>
         
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="order-2 md:order-1">
             <img 
               src="/lovable-uploads/964e7f8b-0bcd-47ff-972d-4595b6bebcd0.png" 
-              alt="보안 기능을 나타내는 방패와 자물쇠 3D 아이콘"
+              alt={language === 'ko' ? "보안 기능을 나타내는 방패와 자물쇠 3D 아이콘" : "3D icons of shield and lock representing security features"}
               className="w-full max-w-md mx-auto rounded-2xl shadow-lg"
               loading="lazy"
             />
           </div>
           
           <div className="order-1 md:order-2 space-y-6">
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-xl bg-green-100 text-green-600 flex-shrink-0">
-                <Shield className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">완전한 오프라인 처리</h3>
-                <p className="text-muted-foreground">모든 AI 처리가 사용자의 로컬 디바이스에서 실행되어 데이터가 외부로 전송되지 않습니다.</p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-xl bg-blue-100 text-blue-600 flex-shrink-0">
-                <Lock className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">엔드투엔드 암호화</h3>
-                <p className="text-muted-foreground">문서 저장부터 검색까지 모든 과정이 암호화되어 보호됩니다.</p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-xl bg-purple-100 text-purple-600 flex-shrink-0">
-                <WifiOff className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">네트워크 독립성</h3>
-                <p className="text-muted-foreground">인터넷 연결 없이도 완전히 작동하여 폐쇄망 환경에서도 사용 가능합니다.</p>
-              </div>
-            </div>
+            {securityFeatures.map((feature, index) => {
+              const IconComponent = feature.icon;
+              const colorClasses = {
+                green: "bg-green-100 text-green-600",
+                blue: "bg-blue-100 text-blue-600", 
+                purple: "bg-purple-100 text-purple-600"
+              };
+              
+              return (
+                <div key={index} className="flex items-start gap-4">
+                  <div className={`p-3 rounded-xl ${colorClasses[feature.color as keyof typeof colorClasses]} flex-shrink-0`}>
+                    <IconComponent className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                    <p className="text-muted-foreground">{feature.description}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -384,7 +449,10 @@ const Security = () => {
 };
 
 const Pricing = () => {
-  const plans = [
+  const { language } = useLanguage();
+  const t = translations[language];
+  
+  const plans = language === 'ko' ? [
     {
       name: "Personal",
       price: "무료",
@@ -425,12 +493,53 @@ const Pricing = () => {
       buttonText: "문의하기",
       popular: false
     }
+  ] : [
+    {
+      name: "Personal",
+      price: "Free",
+      description: "Basic features for individual users",
+      features: [
+        "Up to 100 documents",
+        "Basic search functionality",
+        "PDF, TXT support"
+      ],
+      buttonText: "Get Started Free",
+      popular: false
+    },
+    {
+      name: "Professional",
+      price: "$29/month",
+      description: "Advanced features for professionals and small teams",
+      features: [
+        "Unlimited documents",
+        "Advanced AI search",
+        "All file formats supported",
+        "PDF, OCR, XLSX, PPTX support",
+        "Priority support"
+      ],
+      buttonText: "14-day Free Trial",
+      popular: true
+    },
+    {
+      name: "Enterprise",
+      price: "Contact us",
+      description: "Custom solutions for large organizations",
+      features: [
+        "On-premises deployment",
+        "Custom AI models",
+        "Dedicated support team",
+        "SSO integration",
+        "Advanced security features"
+      ],
+      buttonText: "Contact Sales",
+      popular: false
+    }
   ];
 
   return (
     <section id="pricing" className="section" aria-labelledby="pricing-heading">
       <div className="container">
-        <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">요금제</h2>
+        <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">{t.pricing.title}</h2>
         
         <div className="grid md:grid-cols-3 gap-8">
           {plans.map((plan, index) => (
@@ -438,7 +547,7 @@ const Pricing = () => {
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                   <span className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium">
-                    가장 인기
+                    {language === 'ko' ? '가장 인기' : 'Most Popular'}
                   </span>
                 </div>
               )}
@@ -474,7 +583,10 @@ const Pricing = () => {
 };
 
 const FAQ = () => {
-  const faqs = [
+  const { language } = useLanguage();
+  const t = translations[language];
+  
+  const faqs = language === 'ko' ? [
     {
       question: "Localdocs는 어떤 운영체제를 지원하나요?",
       answer: "Windows, macOS, Linux 모든 운영체제를 지원합니다. 웹 브라우저를 통해 접근할 수 있어 별도의 설치가 필요하지 않습니다."
@@ -495,12 +607,33 @@ const FAQ = () => {
       question: "문서 개수에 제한이 있나요?",
       answer: "Personal 플랜은 100개 문서까지, Professional 이상 플랜에서는 무제한으로 문서를 처리할 수 있습니다."
     }
+  ] : [
+    {
+      question: "What operating systems does Localdocs support?",
+      answer: "Localdocs supports all operating systems including Windows, macOS, and Linux. You can access it through a web browser without needing separate installation."
+    },
+    {
+      question: "Can it really be used without internet connection?",
+      answer: "Yes, absolutely. All AI processing happens locally, so no internet connection is required at all. You can safely use it in closed network environments."
+    },
+    {
+      question: "What file formats are supported?",
+      answer: "We support a wide variety of formats including PDF, DOCX, PPTX, XLSX, TXT, and even scanned documents (OCR). Multiple document formats are supported natively."
+    },
+    {
+      question: "How is data protected?",
+      answer: "All data is processed only on your local device and is never transmitted to external servers. Additionally, all stored data is encrypted for protection."
+    },
+    {
+      question: "Is there a limit on the number of documents?",
+      answer: "The Personal plan supports up to 100 documents, while Professional and higher plans allow unlimited document processing."
+    }
   ];
 
   return (
     <section id="faq" className="section bg-secondary-lighter/50" aria-labelledby="faq-heading">
       <div className="container">
-        <h2 id="faq-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">자주 묻는 질문</h2>
+        <h2 id="faq-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">{t.faq.title}</h2>
         
         <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, index) => (
@@ -516,6 +649,9 @@ const FAQ = () => {
 };
 
 const CTA = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+  
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -542,7 +678,7 @@ const CTA = () => {
     try {
       // Ensure email is provided and consent is true
       if (!values.email || !values.consent) {
-        toast.error("이메일과 동의가 필요합니다.");
+        toast.error(language === 'ko' ? "이메일과 동의가 필요합니다." : "Email and consent are required.");
         return;
       }
 
@@ -572,11 +708,11 @@ const CTA = () => {
 
       if (error) throw error;
 
-      toast.success("Waitlist 등록이 완료되었습니다! 곧 연락드리겠습니다.");
+      toast.success(language === 'ko' ? "Waitlist 등록이 완료되었습니다! 곧 연락드리겠습니다." : "Waitlist registration completed! We'll contact you soon.");
       form.reset();
     } catch (error) {
       console.error('Waitlist submission error:', error);
-      toast.error("등록 중 오류가 발생했습니다. 다시 시도해 주세요.");
+      toast.error(language === 'ko' ? "등록 중 오류가 발생했습니다. 다시 시도해 주세요." : "An error occurred during registration. Please try again.");
     }
   };
 
@@ -610,16 +746,16 @@ const CTA = () => {
     <section id="cta" className="section" aria-labelledby="cta-heading">
       <div className="container">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-4">얼리 액세스 신청하기</h2>
+          <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-4">{t.cta.title}</h2>
           <p className="text-muted-foreground mb-8">
-            베타 출시 알림을 받고 무료로 먼저 사용해 보세요.
+            {language === 'ko' ? '베타 출시 알림을 받고 무료로 먼저 사용해 보세요.' : 'Get beta launch notifications and try it for free first.'}
           </p>
           
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <div>
               <Input
                 type="email"
-                placeholder="이메일 주소를 입력해 주세요"
+                placeholder={language === 'ko' ? "이메일 주소를 입력해 주세요" : "Enter your email address"}
                 {...form.register("email")}
                 className="text-center"
               />
@@ -634,7 +770,7 @@ const CTA = () => {
                 {...form.register("consent")}
               />
               <Label htmlFor="consent" className="text-sm text-muted-foreground">
-                개인정보 수집 및 이용에 동의합니다
+                {language === 'ko' ? '개인정보 수집 및 이용에 동의합니다' : 'I agree to the collection and use of personal information'}
               </Label>
             </div>
             {form.formState.errors.consent && (
@@ -642,7 +778,7 @@ const CTA = () => {
             )}
             
             <Button type="submit" size="lg" className="w-full md:w-auto">
-              무료 얼리 액세스 신청
+              {language === 'ko' ? '무료 얼리 액세스 신청' : 'Apply for Free Early Access'}
             </Button>
           </form>
         </div>

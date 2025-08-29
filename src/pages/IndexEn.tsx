@@ -210,8 +210,8 @@ const Features = () => <section id="features" className="section bg-secondary-li
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
             <Brain className="w-8 h-8" />
           </div>
-          <h3 className="text-xl font-semibold mb-2">Korean-specialized AI</h3>
-          <p className="text-muted-foreground">Equipped with AI optimized for Korean context and style.</p>
+          <h3 className="text-xl font-semibold mb-2">AI trained on company data</h3>
+          <p className="text-muted-foreground">Customized AI that understands your company's context and terminology.</p>
         </div>
       </div>
     </div>

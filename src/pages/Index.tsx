@@ -748,6 +748,51 @@ const CTA = () => {
       }
     });
 
+    // Facebook인 경우 특별 처리
+    const isFacebook = utmSource === 'fb' || utmSource === 'facebook';
+    if (isFacebook) {
+      console.log('=== FACEBOOK DYNAMIC PARAMETERS MAPPING (DEBUG) ===');
+      console.log('🔍 All URL params:', Array.from(params.entries()));
+      const facebookParamsMap = {
+        'fbclid': 'utm_campaign_id',
+        'fb_campaign_id': 'utm_campaign_id',
+        'fb_campaign_name': 'utm_campaign_name',
+        'campaign_id': 'utm_campaign_id',
+        'campaign_name': 'utm_campaign_name',
+        'adset_id': 'utm_adset_id',
+        'adset_name': 'utm_adset_name',
+        'ad_id': 'utm_ad_id',
+        'ad_name': 'utm_ad_name'
+      };
+      console.log('📝 Current form values before Facebook mapping:', getValues());
+      Object.entries(facebookParamsMap).forEach(([paramName, fieldName]) => {
+        const rawValue = params.get(paramName);
+        console.log(`🔎 Checking Facebook param [${paramName}]: raw value =`, rawValue);
+        if (rawValue) {
+          let processedValue = rawValue;
+          
+          // URL 디코딩 (이름 파라미터들만)
+          if (paramName.includes('_name') || paramName === 'campaign_name') {
+            try {
+              processedValue = decodeURIComponent(rawValue.replace(/\+/g, ' '));
+              console.log(`🔄 Decoded [${paramName}]: "${rawValue}" → "${processedValue}"`);
+            } catch (e) {
+              console.error(`❌ Decode failed for [${paramName}]:`, e);
+              processedValue = rawValue;
+            }
+          }
+          console.log(`📤 Setting Facebook [${fieldName}] = "${processedValue}"`);
+          try {
+            setValue(fieldName as any, processedValue);
+            console.log(`✅ Successfully set Facebook ${fieldName} to:`, processedValue);
+          } catch (error) {
+            console.error(`❌ Failed to set Facebook ${fieldName}:`, error);
+          }
+        }
+      });
+      console.log('📝 Form values after Facebook mapping:', getValues());
+    }
+
     // LinkedIn인 경우 특별 처리
     if (isLinkedIn) {
       console.log('=== LINKEDIN DYNAMIC PARAMETERS MAPPING (DEBUG) ===');

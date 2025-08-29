@@ -530,11 +530,11 @@ const Security = () => <section id="security" className="section bg-gradient-to-
         <div className="feature-card bg-white/80 backdrop-blur-sm border border-blue-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-green-100 text-green-600">
-              <WifiOff className="w-5 h-5" />
+              <Shield className="w-5 h-5" />
             </div>
-            <h3 className="font-semibold">오프라인 동작</h3>
+            <h3 className="font-semibold">데이터 외부 유출 없음</h3>
           </div>
-          <p className="text-sm text-muted-foreground">인터넷 연결이 없는 상태에서도 완벽하게 동작합니다.</p>
+          <p className="text-sm text-muted-foreground">데이터가 사용자의 기기를 벗어나지 않아 완전한 데이터 보안과 개인정보 보호를 보장합니다.</p>
         </div>
         <div className="feature-card bg-white/80 backdrop-blur-sm border border-blue-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <div className="flex items-center gap-3 mb-3">

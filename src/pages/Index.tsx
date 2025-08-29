@@ -16,7 +16,7 @@ import { LanguageToggle } from "@/components/LanguageToggle";
 import { translations } from "@/data/translations";
 
 const formSchema = z.object({
-  email: z.string().email("유효한 이메일을 입력해 주세요."),
+  email: z.string().min(1, "이메일을 입력해 주세요.").email("유효한 이메일을 입력해 주세요."),
   consent: z.boolean().refine(val => val === true, {
     message: "동의가 필요합니다."
   }),
@@ -540,9 +540,35 @@ const CTA = () => {
 
   const onSubmit = async (values: FormValues) => {
     try {
+      // Ensure email is provided and consent is true
+      if (!values.email || !values.consent) {
+        toast.error("이메일과 동의가 필요합니다.");
+        return;
+      }
+
+      // Prepare data for database insertion, converting empty strings to null for optional fields
+      const insertData = {
+        email: values.email,
+        consent: values.consent,
+        utm_source: values.utm_source || null,
+        utm_campaign_id: values.utm_campaign_id || null,
+        utm_medium: values.utm_medium || null,
+        utm_campaign_name: values.utm_campaign_name || null,
+        utm_adset_id: values.utm_adset_id || null,
+        utm_adset_name: values.utm_adset_name || null,
+        utm_ad_id: values.utm_ad_id || null,
+        utm_ad_name: values.utm_ad_name || null,
+        linkedin_campaign_name: values.linkedin_campaign_name || null,
+        linkedin_ad_id: values.linkedin_ad_id || null,
+        linkedin_campaign_group_id: values.linkedin_campaign_group_id || null,
+        linkedin_campaign_group_name: values.linkedin_campaign_group_name || null,
+        linkedin_campaign_id: values.linkedin_campaign_id || null,
+        linkedin_ad_name: values.linkedin_ad_name || null
+      };
+
       const { error } = await supabase
         .from('email_signups')
-        .insert([values]);
+        .insert([insertData]);
 
       if (error) throw error;
 

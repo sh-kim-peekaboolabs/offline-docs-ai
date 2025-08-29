@@ -723,9 +723,18 @@ const CTA = () => {
     const isLinkedIn = utmSource === 'linkedin';
     console.log('UTM Source:', utmSource, 'Is LinkedIn:', isLinkedIn);
 
-    // UTM 파라미터 처리 
-    const utmFields = ['utm_source', 'utm_campaign_id', 'utm_medium'] as const;
-    console.log('=== UTM PARAMETERS ===');
+    // UTM 파라미터 처리 - 모든 UTM 필드 포함
+    const utmFields = [
+      'utm_source', 
+      'utm_campaign_id', 
+      'utm_medium',
+      'utm_campaign_name',
+      'utm_adset_id',
+      'utm_adset_name', 
+      'utm_ad_id',
+      'utm_ad_name'
+    ] as const;
+    console.log('=== UTM PARAMETERS (ALL FIELDS) ===');
     utmFields.forEach(fieldName => {
       const paramValue = params.get(fieldName);
       console.log(`UTM ${fieldName}:`, paramValue);

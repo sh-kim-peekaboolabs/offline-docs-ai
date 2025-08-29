@@ -754,6 +754,8 @@ const CTA = () => {
       console.log('=== FACEBOOK DYNAMIC PARAMETERS MAPPING (DEBUG) ===');
       console.log('🔍 All URL params:', Array.from(params.entries()));
       const facebookParamsMap = {
+        'utm_campaign': 'utm_campaign_name',  // Facebook의 utm_campaign을 utm_campaign_name으로 매핑
+        'utm_content': 'utm_campaign_id',     // Facebook의 utm_content를 utm_campaign_id로 매핑
         'fbclid': 'utm_campaign_id',
         'fb_campaign_id': 'utm_campaign_id',
         'fb_campaign_name': 'utm_campaign_name',

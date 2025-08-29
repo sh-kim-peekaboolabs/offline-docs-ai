@@ -436,32 +436,32 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="section bg-gray-50" aria-labelledby="testimonials-heading">
+    <section className="section bg-gray-50 py-20" aria-labelledby="testimonials-heading">
       <div className="container">
         <div className="text-center mb-16">
-          <h2 id="testimonials-heading" className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 id="testimonials-heading" className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
             {language === 'ko' ? '이미 경험한 분들의 이야기' : 'Stories from those who have experienced it'}
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-600 max-w-4xl mx-auto">
             {language === 'ko' ? '업무 효율성이 눈에 띄게 향상되었다는 실제 사용자들의 생생한 후기' : 'Real user testimonials showing significant improvements in work efficiency'}
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+            <div key={index} className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
               <div className="flex items-center mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
               
-              <blockquote className="text-gray-700 mb-6 leading-relaxed">
+              <blockquote className="text-gray-700 mb-6 leading-relaxed text-sm">
                 "{testimonial.content}"
               </blockquote>
               
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold">
+                <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold text-lg">
                   {testimonial.avatar}
                 </div>
                 <div>
@@ -473,12 +473,12 @@ const Testimonials = () => {
           ))}
         </div>
         
-        <div className="text-center mt-12">
+        <div className="text-center">
           <p className="text-gray-600 mb-6">
             {language === 'ko' ? '당신도 이런 효율성을 경험해보세요' : 'Experience this efficiency yourself'}
           </p>
           <a href="#cta">
-            <Button variant="hero" size="lg">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium">
               {language === 'ko' ? 'Waitlist 등록하기' : 'Join Waitlist'}
             </Button>
           </a>

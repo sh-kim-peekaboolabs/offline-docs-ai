@@ -22,7 +22,7 @@ export const LanguageToggle = () => {
           className="flex items-center gap-2 text-sm font-medium border border-border bg-background hover:bg-accent"
         >
           <Languages className="w-4 h-4" />
-          <span>Language</span>
+          <span>{currentLanguageLabel}</span>
           <ChevronDown className="w-3 h-3" />
         </Button>
       </DropdownMenuTrigger>

@@ -247,7 +247,7 @@ const Comparison = () => <section className="section" aria-labelledby="compariso
                 </td>
               </tr>
               <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="p-6 font-medium">Korean-optimized model</td>
+                <td className="p-6 font-medium">Customized model trained on company data</td>
                 <td className="text-center p-6">
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-yellow-100 text-yellow-700">
                     General level

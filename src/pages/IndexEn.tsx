@@ -51,7 +51,7 @@ const Nav = () => {
       </div>
       <nav className="hidden md:flex items-center gap-6 text-sm">
         <a href="#features" className="story-link">Features</a>
-        <a href="#scenarios" className="story-link">Use Cases</a>
+        <a href="#security" className="story-link">Use Cases</a>
         <a href="#security" className="story-link">Security</a>
         <a href="#pricing" className="story-link">Pricing</a>
         <a href="#faq" className="story-link">FAQ</a>
@@ -331,92 +331,6 @@ const Scenarios = () => {
     image: "/lovable-uploads/ebf98bf4-9354-4eca-b2a5-310ff4a6c967.png"
   }];
 
-  return <section id="scenarios" className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black" aria-labelledby="scenarios-heading">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 id="scenarios-heading" className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Effective in 
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              {" "}these environments
-            </span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Maximize work efficiency with AI power in specialized fields that require large document processing
-          </p>
-        </div>
-
-        {/* Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {environments.map((env, index) => {
-          const IconComponent = env.icon;
-          return <div key={env.id} className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${env.gradient} 
-                           gpu-optimized h-80`}>
-                {/* Background Image with Overlay */}
-                <div className="absolute inset-0 bg-cover bg-center gpu-scale" style={{
-              backgroundImage: `url(${env.image})`
-            }} />
-                <div className={`absolute inset-0 bg-gradient-to-br ${env.overlayGradient}`} />
-                
-                {/* Animated Background Pattern */}
-                <div className="absolute inset-0 opacity-10">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.1),rgba(255,255,255,0.02))]" />
-                </div>
-
-                {/* Content */}
-                <div className="relative h-full p-8 flex flex-col justify-between">
-                  {/* Icon and Title */}
-                  <div>
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl group-hover:bg-white/30 transition-all duration-300">
-                        <IconComponent className="w-8 h-8 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-white group-hover:text-blue-100 transition-colors duration-300">
-                        {env.title}
-                      </h3>
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  <div className="flex-1">
-                    <p className="text-gray-100 leading-relaxed text-lg group-hover:text-white transition-colors duration-300">
-                      {env.description}
-                    </p>
-                  </div>
-
-                  {/* Bottom Accent */}
-                  <div className="mt-6">
-                    <div className="w-full h-1 bg-gradient-to-r from-white/30 to-transparent rounded-full group-hover:from-white/50 transition-all duration-300" />
-                  </div>
-                </div>
-
-                {/* Hover Effect Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>;
-        })}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <div className="inline-flex flex-col items-center gap-4">
-            <p className="text-gray-300 text-lg">
-              Implement AI in your work environment right now
-            </p>
-            <a href="#cta">
-              <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold overflow-hidden hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300">
-                <span className="relative z-10 flex items-center gap-2">
-                  Get Started Now
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>;
 };
 
 const Testimonials = () => {
@@ -1072,7 +986,6 @@ const IndexEn = () => {
         <Solution />
         <Features />
         <Comparison />
-        <Scenarios />
         <Testimonials />
         <Security />
         <HowItWorks />

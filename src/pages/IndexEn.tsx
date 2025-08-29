@@ -247,21 +247,6 @@ const Comparison = () => <section className="section" aria-labelledby="compariso
                 </td>
               </tr>
               <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="p-6 font-medium">HWP support</td>
-                <td className="text-center p-6">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-red-100 text-red-700">
-                    <X className="w-4 h-4 mr-1" />
-                    Unsupported or unstable
-                  </span>
-                </td>
-                <td className="text-center p-6">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-700">
-                    <CheckCircle className="w-4 h-4 mr-1" />
-                    Basic support
-                  </span>
-                </td>
-              </tr>
-              <tr className="hover:bg-gray-50/50 transition-colors">
                 <td className="p-6 font-medium">Korean-optimized model</td>
                 <td className="text-center p-6">
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-yellow-100 text-yellow-700">

@@ -189,8 +189,8 @@ const Features = () => <section id="features" className="section bg-secondary-li
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
             <FileText className="w-8 h-8" />
           </div>
-          <h3 className="text-xl font-semibold mb-2">PDF, OCR, HWP support</h3>
-          <p className="text-muted-foreground">Supports various documents from PDF to Korean Hangul files.</p>
+          <h3 className="text-xl font-semibold mb-2">PDF, OCR, XLSX, PPTX support</h3>
+          <p className="text-muted-foreground">Supports various document formats including PDF, Excel, PowerPoint, and scanned documents.</p>
         </div>
         <div className="feature-card text-center group gpu-optimized">
           <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">

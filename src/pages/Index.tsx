@@ -115,26 +115,66 @@ const Hero = ({ language }: { language: 'ko' | 'en' }) => {
   };
 
   return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
-      <div className="container relative py-20 md:py-28 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">{content.badge}</div>
-        <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">{content.title}</h1>
-        <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      {/* Enhanced background with multiple gradients */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50" />
+      
+      {/* Animated background elements */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full mix-blend-multiply filter blur-xl animate-pulse opacity-70" />
+      <div className="absolute top-40 right-10 w-72 h-72 bg-secondary/20 rounded-full mix-blend-multiply filter blur-xl animate-pulse opacity-70" style={{ animationDelay: '2s' }} />
+      <div className="absolute -bottom-8 left-20 w-72 h-72 bg-accent/15 rounded-full mix-blend-multiply filter blur-xl animate-pulse opacity-70" style={{ animationDelay: '4s' }} />
+      
+      <div className="container relative z-10 py-20 md:py-32 text-center">
+        {/* Enhanced badge with better styling */}
+        <div className="inline-flex items-center gap-2 rounded-full px-6 py-3 bg-gradient-to-r from-primary/20 to-secondary/20 backdrop-blur-sm border border-primary/20 text-primary text-sm font-medium mb-8 shadow-lg animate-fade-in">
+          <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+          {content.badge}
+        </div>
+        
+        {/* Enhanced title with better typography */}
+        <h1 className="mx-auto max-w-4xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6 animate-fade-in bg-gradient-to-br from-foreground via-foreground to-foreground/80 bg-clip-text text-transparent">
+          {content.title}
+        </h1>
+        
+        {/* Enhanced subtitle */}
+        <p className="mt-6 text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in font-medium">
           {content.subtitle}
         </p>
-        <div className="mt-8 flex flex-col items-center justify-center gap-4">
-          <a href="#cta"><Button variant="hero" size="xl">{content.ctaButton}</Button></a>
-          <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
-            <span className="text-sm font-medium text-green-700">{content.statusText}</span>
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{
-            animationDelay: '0.2s'
-          }}></div>
+        
+        {/* Enhanced CTA section */}
+        <div className="mt-12 flex flex-col items-center justify-center gap-6 animate-fade-in">
+          <a href="#cta" className="group">
+            <Button variant="hero" size="xl" className="text-lg px-8 py-4 shadow-2xl hover:shadow-primary/25 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
+              {content.ctaButton}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+            </Button>
+          </a>
+          
+          {/* Enhanced status badge */}
+          <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full border border-green-200/50 shadow-lg backdrop-blur-sm">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-green-500 rounded-full animate-bounce shadow-lg shadow-green-500/50" />
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce shadow-lg shadow-green-400/50" style={{ animationDelay: '0.1s' }} />
+              <div className="w-1.5 h-1.5 bg-green-300 rounded-full animate-bounce shadow-lg shadow-green-300/50" style={{ animationDelay: '0.2s' }} />
+            </div>
+            <span className="text-sm font-semibold text-green-700">{content.statusText}</span>
+            <div className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 bg-green-300 rounded-full animate-bounce shadow-lg shadow-green-300/50" style={{ animationDelay: '0.3s' }} />
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce shadow-lg shadow-green-400/50" style={{ animationDelay: '0.4s' }} />
+              <div className="w-3 h-3 bg-green-500 rounded-full animate-bounce shadow-lg shadow-green-500/50" style={{ animationDelay: '0.5s' }} />
+            </div>
           </div>
-          <p className="text-xs text-muted-foreground/70 animate-fade-in">{content.betaText}</p>
+          
+          {/* Enhanced beta text */}
+          <p className="text-sm text-muted-foreground/80 animate-fade-in font-medium tracking-wide">
+            {content.betaText}
+          </p>
         </div>
       </div>
+      
+      {/* Bottom fade effect */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };

@@ -256,7 +256,7 @@ const Comparison = () => <section className="section" aria-labelledby="compariso
                 <td className="text-center p-6">
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-700">
                     <Zap className="w-4 h-4 mr-1" />
-                    Korean-specialized
+                     Customized model
                   </span>
                 </td>
               </tr>

@@ -82,7 +82,7 @@ const Hero = () => <section className="relative overflow-hidden">
       <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">From your PC to Notion, all scattered documents</div>
       <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">Find the answers you need with a single question.</h1>
       <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-        Fast and secure AI-powered document navigator for your company
+        Fast and secure AI enterprise search
       </p>
       <div className="mt-8 flex flex-col items-center justify-center gap-4">
         <a href="#cta"><Button variant="hero" size="xl">Join Waitlist</Button></a>

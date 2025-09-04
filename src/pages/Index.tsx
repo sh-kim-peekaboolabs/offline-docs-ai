@@ -380,6 +380,10 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
           <ul className="space-y-3 flex-1 text-sm">
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Free 플랜 모두 포함</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
               <span>무제한 PDF 업로드</span>
             </li>
             <li className="flex items-start gap-2">

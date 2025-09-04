@@ -424,23 +424,23 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>폐쇄망/인트라넷 설치 지원</span>
+              <span>사내 시스템 연동</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>중앙 라이선스 관리</span>
+              <span>기업 데이터를 학습한 사내 AI 구축</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>팀 단위 권한/보안 정책 설정</span>
+              <span>중앙 관리자용 어드민 대시보드</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>SLA/전담 기술 지원 매니저</span>
+              <span>SSO 등 강화된 계정 관리</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>맞춤형 기능 커스터마이징</span>
+              <span>미디어 전용 RAG 패키지 지원</span>
             </li>
           </ul>
           <div className="mt-6">

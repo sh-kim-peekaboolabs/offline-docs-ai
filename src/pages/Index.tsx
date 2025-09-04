@@ -507,7 +507,7 @@ const FAQ = () => {
         </details>
         <details className="feature-card">
           <summary className="font-medium cursor-pointer">답변에 출처가 표시되나요?</summary>
-          <p className="mt-2 text-muted-foreground">언제나 "문서명과 쪽수"까지 함께 제공됩니다.</p>
+          <p className="mt-2 text-muted-foreground">모든 답변에 출처를 제공합니다. 어떤 문서의, 어느 페이지에서 가져왔는지 확인할 수 있습니다.</p>
         </details>
         <details className="feature-card">
           <summary className="font-medium cursor-pointer">보안이 중요한 환경에서도 사용할 수 있나요?</summary>

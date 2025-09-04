@@ -7,10 +7,11 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield, Star, ChevronDown } from "lucide-react";
+import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield, Star, ChevronDown, Settings, Users, BarChart3 } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { useEffect } from "react";
 import { usePageTracking, useSectionTracking } from "@/hooks/useAnalytics";
+
 const formSchema = z.object({
   email: z.string().email("유효한 이메일을 입력해 주세요."),
   consent: z.boolean().refine(val => val === true, {
@@ -31,7 +32,9 @@ const formSchema = z.object({
   linkedin_campaign_id: z.string().optional(),
   linkedin_ad_name: z.string().optional()
 });
+
 type FormValues = z.infer<typeof formSchema>;
+
 const Nav = () => {
   const scrollToTop = () => {
     window.scrollTo({
@@ -39,6 +42,7 @@ const Nav = () => {
       behavior: 'smooth'
     });
   };
+
   return <header className="sticky top-0 z-40 bg-background/80 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b">
     <div className="container flex items-center justify-between py-4">
       <div className="flex items-center gap-3 cursor-pointer" onClick={scrollToTop}>
@@ -71,13 +75,17 @@ const Nav = () => {
     </div>
   </header>;
 };
+
 const Hero = () => <section className="relative overflow-hidden">
     <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
     <div className="container relative py-20 md:py-28 text-center">
-      <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">내 PC부터 Notion까지, 흩어진 모든 문서에서</div>
-      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">한 번의 질문으로, 원하는 답을 찾으세요.</h1>
+      <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">오프라인 ChatPDF, Localdocs (로컬독스)</div>
+      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">PDF와 대화하듯, 오프라인에서도 안전하게</h1>
       <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-        빠르고 안전한 AI 사내 문서 탐색기
+        긴 보고서를 올려두고, 궁금한 걸 물어보세요. AI가 답을 찾아주고, 문서와 쪽수까지 알려드립니다.
+      </p>
+      <p className="mt-3 text-base text-muted-foreground/80 max-w-2xl mx-auto">
+        데이터 유출 걱정 없는 100% 오프라인 AI
       </p>
       <div className="mt-8 flex flex-col items-center justify-center gap-4">
         <a href="#cta"><Button variant="hero" size="xl">Waitlist 등록하기</Button></a>
@@ -92,420 +100,188 @@ const Hero = () => <section className="relative overflow-hidden">
       </div>
     </div>
   </section>;
-const Problem = () => <section className="section pt-8" aria-labelledby="problem-heading">
-    <div className="container">
-      <h2 id="problem-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">Localdocs를 써야하는 이유</h2>
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="feature-card flex items-start gap-4 p-6 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-red-100 opacity-30"></div>
-          <div className="relative z-10 flex-shrink-0">
-            <div className="p-3 rounded-xl bg-destructive/10 text-destructive">
-              <ShieldCheck className="w-6 h-6" />
-            </div>
-          </div>
-          <div className="relative z-10 flex-1 flex flex-col justify-between min-h-[100px]">
-            <h3 className="font-semibold mb-2">기밀 문서라 ChatGPT를 사용할 수 없어요</h3>
-            <p className="text-sm text-muted-foreground mt-auto">보안 문서라 외부에 유출되면 안돼요</p>
-          </div>
-        </div>
-        <div className="feature-card flex items-start gap-4 p-6 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100 opacity-30"></div>
-          <div className="relative z-10 flex-shrink-0">
-            <div className="p-3 rounded-xl bg-blue-100 text-blue-600">
-              <AlertTriangle className="w-6 h-6" />
-            </div>
-          </div>
-          <div className="relative z-10 flex-1 flex flex-col justify-between min-h-[100px]">
-            <h3 className="font-semibold mb-2">수백 페이지 문서 처리 한계</h3>
-            <p className="text-sm text-muted-foreground mt-auto">문서 개수가 많거나, 용량이 크면 토큰 제한이 걸려요</p>
-          </div>
-        </div>
-        <div className="feature-card flex items-start gap-4 p-6 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-orange-100 opacity-30"></div>
-          <div className="relative z-10 flex-shrink-0">
-            <div className="p-3 rounded-xl bg-orange-100 text-orange-600">
-              <WifiOff className="w-6 h-6" />
-            </div>
-          </div>
-          <div className="relative z-10 flex-1 flex flex-col justify-between min-h-[100px]">
-            <h3 className="font-semibold mb-2">폐쇄망이라 인터넷을 못 써요</h3>
-            <p className="text-sm text-muted-foreground mt-auto">AI를 쓰고 싶어도 못 쓰는 상황이에요</p>
-          </div>
-        </div>
-        <div className="feature-card flex items-start gap-4 p-6 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-red-100 opacity-30"></div>
-          <div className="relative z-10 flex-shrink-0">
-            <div className="p-3 rounded-xl bg-red-100 text-red-600">
-              <X className="w-6 h-6" />
-            </div>
-          </div>
-          <div className="relative z-10 flex-1 flex flex-col justify-between min-h-[100px]">
-            <h3 className="font-semibold mb-2">HWP 파일 미지원</h3>
-            <p className="text-sm text-muted-foreground mt-auto">ChatGPT도 HWP파일을 지원하지 않아 매번 PDF로 변환해야 해요.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>;
-const Solution = () => <section className="section" aria-labelledby="solution-heading">
-    <div className="container">
-      <h2 id="solution-heading" className="text-2xl md:text-3xl font-semibold mb-8">이젠 localdocs 하나로 끝내세요.</h2>
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="feature-card flex items-start gap-4"><WifiOff className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">맥락까지 이해하는 한국어 특화 AI</h3><p className="text-sm text-muted-foreground">인터넷 연결 없이, 국내 업무 환경의 뉘앙스까지 파악해 완벽한 요약 결과를 제공합니다.</p></div></div>
-        <div className="feature-card flex items-start gap-4"><FileText className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">HWP는 기본, 어떤 문서든 변환 없이 바로</h3><p className="text-sm text-muted-foreground">HWP, PDF, PPTX는 물론 스캔(OCR) 문서까지, 번거로운 변환 과정 없이 즉시 분석하세요.</p></div></div>
-        <div className="feature-card flex items-start gap-4"><Quote className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">신뢰할 수 있는 답변: 모든 결과에 출처 표기</h3><p className="text-sm text-muted-foreground">AI의 답변이 어떤 문서, 어느 페이지에서 나왔는지 클릭 한 번으로 검증하여 보고서에 활용하세요.</p></div></div>
-        <div className="feature-card flex items-start gap-4"><Lock className="text-primary" /><div><h3 className="text-xl font-semibold mb-1">외부 유출 원천 차단: 100% 온디바이스(On-device) 처리</h3><p className="text-sm text-muted-foreground">당신의 모든 데이터는 오직 PC 안에서만 처리됩니다. 서버 전송 자체가 존재하지 않습니다.</p></div></div>
-      </div>
-      <div className="text-center mt-8"><a href="#cta"><Button variant="hero" size="lg">Waitlist 등록하기</Button></a></div>
-    </div>
-  </section>;
+
 const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
-      <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">핵심 기능</h2>
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="feature-card text-center group gpu-optimized">
-          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
-            <WifiOff className="w-8 h-8" />
+      <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">Localdocs, 이렇게 다릅니다</h2>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="feature-card text-left p-6">
+          <div className="flex items-start gap-3 mb-3">
+            <div className="p-2 rounded-lg bg-blue-100 text-blue-600 flex-shrink-0">
+              <Search className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2">즉시 정보 검색</h3>
+              <p className="text-sm text-muted-foreground">PDF를 올려두면, 필요한 정보를 바로 찾아줍니다.</p>
+            </div>
           </div>
-          <h3 className="text-xl font-semibold mb-2">오프라인 AI</h3>
-          <p className="text-muted-foreground">AI가 내 PC에서 동작해 자료가 외부로 나갈 일이 없어요.</p>
         </div>
-        <div className="feature-card text-center group gpu-optimized">
-          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
-            <Search className="w-8 h-8" />
+        <div className="feature-card text-left p-6">
+          <div className="flex items-start gap-3 mb-3">
+            <div className="p-2 rounded-lg bg-green-100 text-green-600 flex-shrink-0">
+              <Quote className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2">정확한 출처 표시</h3>
+              <p className="text-sm text-muted-foreground">답변은 언제나 '어느 문서, 몇 쪽'에서 나왔는지 함께 표시합니다.</p>
+            </div>
           </div>
-          <h3 className="text-xl font-semibold mb-2">사내 문서 검색 AI</h3>
-          <p className="text-muted-foreground">Notion, Google Drive, 내 PC 등 여러 곳에 흩어져 있는 문서를 한번에 검색하세요.</p>
         </div>
-        <div className="feature-card text-center group gpu-optimized">
-          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
-            <FileText className="w-8 h-8" />
+        <div className="feature-card text-left p-6">
+          <div className="flex items-start gap-3 mb-3">
+            <div className="p-2 rounded-lg bg-purple-100 text-purple-600 flex-shrink-0">
+              <FileText className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2">다양한 콘텐츠 분석</h3>
+              <p className="text-sm text-muted-foreground">표·이미지·수식까지 분석해줍니다.</p>
+            </div>
           </div>
-          <h3 className="text-xl font-semibold mb-2">PDF, OCR, HWP 등 지원</h3>
-          <p className="text-muted-foreground">PDF부터 한글까지 다양한 문서를 지원해요.</p>
         </div>
-        <div className="feature-card text-center group gpu-optimized">
-          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
-            <Quote className="w-8 h-8" />
+        <div className="feature-card text-left p-6">
+          <div className="flex items-start gap-3 mb-3">
+            <div className="p-2 rounded-lg bg-orange-100 text-orange-600 flex-shrink-0">
+              <LinkIcon className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2">다중 문서 대화</h3>
+              <p className="text-sm text-muted-foreground">여러 문서를 한 번에 등록해놓고 대화할 수 있습니다.</p>
+            </div>
           </div>
-          <h3 className="text-xl font-semibold mb-2">모든 답변에 출처 제공</h3>
-          <p className="text-muted-foreground">문서에서 찾은 출처를 바로 확인할 수 있어요. </p>
         </div>
-        <div className="feature-card text-center group gpu-optimized">
-          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
-            <LinkIcon className="w-8 h-8" />
+        <div className="feature-card text-left p-6">
+          <div className="flex items-start gap-3 mb-3">
+            <div className="p-2 rounded-lg bg-indigo-100 text-indigo-600 flex-shrink-0">
+              <Brain className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2">한국어 최적화</h3>
+              <p className="text-sm text-muted-foreground">한국어 문맥에 최적화된 AI로 계약서·보고서도 정확하게 다룹니다.</p>
+            </div>
           </div>
-          <h3 className="text-xl font-semibold mb-2">문서·링크·텍스트 통합</h3>
-          <p className="text-muted-foreground">하나의 지식 베이스에서 한번에 분석해요.</p>
         </div>
-        <div className="feature-card text-center group gpu-optimized">
-          <div className="inline-flex p-4 rounded-2xl bg-primary/10 text-primary mb-4 gpu-scale">
-            <Brain className="w-8 h-8" />
+        <div className="feature-card text-left p-6">
+          <div className="flex items-start gap-3 mb-3">
+            <div className="p-2 rounded-lg bg-red-100 text-red-600 flex-shrink-0">
+              <Shield className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2">100% 오프라인</h3>
+              <p className="text-sm text-muted-foreground">외부 서버와 연결되지 않고, 오직 내 PC에서만 실행됩니다.</p>
+            </div>
           </div>
-          <h3 className="text-xl font-semibold mb-2">한국어 특화 AI</h3>
-          <p className="text-muted-foreground">한국어 문맥·문체에 최적화된 AI를 탑재했어요.</p>
         </div>
+      </div>
+      <div className="text-center mt-8">
+        <p className="text-sm text-muted-foreground">현재는 PDF만 지원, 곧 HWP·PPTX·XLSX까지 확장 예정입니다.</p>
       </div>
     </div>
   </section>;
-const Comparison = () => <section className="section" aria-labelledby="comparison-heading">
-    <div className="container">
-      <h2 id="comparison-heading" className="text-2xl md:text-3xl font-semibold mb-6 text-center">다른 AI와 무엇이 다른가요?</h2>
-      <div className="overflow-x-auto">
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-          <table className="w-full">
-            <thead className="bg-gradient-to-r from-primary/5 to-primary/10">
-              <tr>
-                <th className="text-left p-6 font-semibold text-lg">항목</th>
-                <th className="text-center p-6 font-semibold text-lg text-gray-600">AI 서비스</th>
-                <th className="text-center p-6 font-semibold text-lg text-primary">Localdocs</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="p-6 font-medium">인터넷 없이 실행</td>
-                <td className="text-center p-6">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-red-100 text-red-700">
-                    <X className="w-4 h-4 mr-1" />
-                    제한적
-                  </span>
-                </td>
-                <td className="text-center p-6">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-700">
-                    <CheckCircle className="w-4 h-4 mr-1" />
-                    가능
-                  </span>
-                </td>
-              </tr>
-              <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="p-6 font-medium">HWP 지원</td>
-                <td className="text-center p-6">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-red-100 text-red-700">
-                    <X className="w-4 h-4 mr-1" />
-                    미지원 또는 불안정
-                  </span>
-                </td>
-                <td className="text-center p-6">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-700">
-                    <CheckCircle className="w-4 h-4 mr-1" />
-                    기본 지원
-                  </span>
-                </td>
-              </tr>
-              <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="p-6 font-medium">한국어 최적화 모델 탑재</td>
-                <td className="text-center p-6">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-yellow-100 text-yellow-700">
-                    일반 수준
-                  </span>
-                </td>
-                <td className="text-center p-6">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-700">
-                    <Zap className="w-4 h-4 mr-1" />
-                    한국어 특화
-                  </span>
-                </td>
-              </tr>
-              <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="p-6 font-medium">인용 제공</td>
-                <td className="text-center p-6">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-yellow-100 text-yellow-700">
-                    제한적
-                  </span>
-                </td>
-                <td className="text-center p-6">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-700">
-                    <CheckCircle className="w-4 h-4 mr-1" />
-                    기본 제공
-                  </span>
-                </td>
-              </tr>
-              <tr className="hover:bg-gray-50/50 transition-colors">
-                <td className="p-6 font-medium">데이터 이동</td>
-                <td className="text-center p-6">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-red-100 text-red-700">
-                    <Cloud className="w-4 h-4 mr-1" />
-                    외부 전송
-                  </span>
-                </td>
-                <td className="text-center p-6">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-700">
-                    <Lock className="w-4 h-4 mr-1" />
-                    로컬 유지
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>;
+
 const Scenarios = () => {
-  const environments = [{
-    id: 1,
-    title: "엔터프라이즈 기업",
-    description: "수백 페이지의 기술 표준 문서나 R&D 자료에서 필요한 스펙과 정보를 즉시 검색하여 개발 시간을 단축합니다.",
-    icon: Building2,
-    gradient: "from-blue-600 via-blue-700 to-indigo-800",
-    overlayGradient: "from-blue-900/80 to-indigo-900/60",
-    image: "/lovable-uploads/3098a8d7-6b45-47dc-abc4-9946c5c83a10.png"
-  }, {
-    id: 2,
-    title: "법무법인",
-    description: "수만 페이지에 달하는 증거 자료와 판례 더미 속에서 사건의 핵심 쟁점과 인용할 근거를 빠르게 찾아내 소송 전략을 수립합니다.",
-    icon: Scale,
-    gradient: "from-amber-600 via-orange-700 to-red-800",
-    overlayGradient: "from-amber-900/80 to-red-900/60",
-    image: "/lovable-uploads/964e7f8b-0bcd-47ff-972d-4595b6bebcd0.png"
-  }, {
-    id: 3,
-    title: "투자사 및 금융권",
-    description: "수십 개의 투자 보고서와 실사 데이터에서 핵심 성장 동력이나 잠재적 리스크를 신속하게 식별하여 투자 결정을 내립니다.",
-    icon: TrendingUp,
-    gradient: "from-emerald-600 via-teal-700 to-cyan-800",
-    overlayGradient: "from-emerald-900/80 to-cyan-900/60",
-    image: "/lovable-uploads/9bd95de7-d285-4dd7-ac4a-8fcc6ab83d7d.png"
-  }, {
-    id: 4,
-    title: "국방 및 공공기관",
-    description: "인터넷이 차단된 폐쇄망 PC에서 대외비 보고서 및 정책 자료의 핵심 내용을 요약하고, 보안 유출 없이 신속하게 업무를 처리합니다.",
-    icon: Shield,
-    gradient: "from-slate-600 via-gray-700 to-zinc-800",
-    overlayGradient: "from-slate-900/80 to-zinc-900/60",
-    image: "/lovable-uploads/ebf98bf4-9354-4eca-b2a5-310ff4a6c967.png"
-  }];
+  const scenarios = [
+    {
+      id: 1,
+      title: "기술팀",
+      icon: Settings,
+      gradient: "from-blue-600 via-blue-700 to-indigo-800",
+      points: [
+        "ISO26262, OEM 표준, 협력사 가이드라인 문서를 한 번에 올려두고 원하는 규격을 바로 찾아보세요.",
+        "600쪽이 넘는 기술 서적에서도 필요한 항목을 몇 초 만에 확인할 수 있습니다."
+      ]
+    },
+    {
+      id: 2,
+      title: "법무팀",
+      icon: Scale,
+      gradient: "from-amber-600 via-orange-700 to-red-800",
+      points: [
+        "수백 페이지 계약 문서를 넘기며 원하는 조항을 찾는 시간을 줄이세요.",
+        "예: 위약금 조항이 어디 있는지 물으면, 해당 쪽수를 바로 알려드립니다."
+      ]
+    },
+    {
+      id: 3,
+      title: "공공·연구기관",
+      icon: BarChart3,
+      gradient: "from-emerald-600 via-teal-700 to-cyan-800",
+      points: [
+        "여러 편의 논문 중 원하는 레퍼런스만 추려보세요. 예: '김○○(2021)의 데이터셋 이름'을 검색해 즉시 확인.",
+        "각종 매뉴얼을 등록해두고, 필요한 순간 바로 확인하세요. 예: '방재 매뉴얼 5장의 비상 연락 체계'를 몇 초 만에 찾습니다."
+      ]
+    }
+  ];
+
   return <section id="scenarios" className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black" aria-labelledby="scenarios-heading">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 id="scenarios-heading" className="text-4xl md:text-5xl font-bold text-white mb-6">
-            이런 환경에서 
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              {" "}효과적입니다
-            </span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            대용량 문서 처리가 필요한 전문 분야에서 AI의 힘으로 업무 효율성을 극대화하세요
-          </p>
-        </div>
-
-        {/* Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {environments.map((env, index) => {
-          const IconComponent = env.icon;
-          return <div key={env.id} className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${env.gradient} 
-                           gpu-optimized h-80`}>
-                {/* Background Image with Overlay */}
-                <div className="absolute inset-0 bg-cover bg-center gpu-scale" style={{
-              backgroundImage: `url(${env.image})`
-            }} />
-                <div className={`absolute inset-0 bg-gradient-to-br ${env.overlayGradient}`} />
-                
-                {/* Animated Background Pattern */}
-                <div className="absolute inset-0 opacity-10">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.1),rgba(255,255,255,0.02))]" />
-                </div>
-
-                {/* Content */}
-                <div className="relative h-full p-8 flex flex-col justify-between">
-                  {/* Icon and Title */}
-                  <div>
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl group-hover:bg-white/30 transition-all duration-300">
-                        <IconComponent className="w-8 h-8 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-white group-hover:text-blue-100 transition-colors duration-300">
-                        {env.title}
-                      </h3>
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  <div className="flex-1">
-                    <p className="text-gray-100 leading-relaxed text-lg group-hover:text-white transition-colors duration-300">
-                      {env.description}
-                    </p>
-                  </div>
-
-                  {/* Bottom Accent */}
-                  <div className="mt-6">
-                    <div className="w-full h-1 bg-gradient-to-r from-white/30 to-transparent rounded-full group-hover:from-white/50 transition-all duration-300" />
-                  </div>
-                </div>
-
-                {/* Hover Effect Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>;
-        })}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <div className="inline-flex flex-col items-center gap-4">
-            <p className="text-gray-300 text-lg">
-              당신의 업무 환경에 AI를 지금 바로 도입하세요
-            </p>
-            <a href="#cta">
-              <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold overflow-hidden hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300">
-                <span className="relative z-10 flex items-center gap-2">
-                  바로 시작하기
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </button>
-            </a>
-          </div>
-        </div>
+    <div className="max-w-7xl mx-auto px-6">
+      <div className="text-center mb-16">
+        <h2 id="scenarios-heading" className="text-4xl md:text-5xl font-bold text-white mb-6">
+          이럴 때 
+          <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            {" "}Localdocs가 필요합니다
+          </span>
+        </h2>
       </div>
-    </section>;
-};
-const Testimonials = () => {
-  const testimonials = [{
-    id: 1,
-    name: "김민수",
-    role: "변호사",
-    company: "법무법인 A",
-    content: "수만 페이지의 판례 자료에서 핵심 쟁점을 찾는 시간이 90% 단축되었습니다. 이제 소송 전략 수립에 더 집중할 수 있어요.",
-    rating: 5
-  }, {
-    id: 2,
-    name: "박지영",
-    role: "투자 분석가",
-    company: "KL 투자증권",
-    content: "실사 보고서 분석에 걸리던 시간이 하루에서 2시간으로 줄었어요. 정확한 출처까지 제공돼서 투자 결정에 확신을 가질 수 있습니다.",
-    rating: 5
-  }, {
-    id: 3,
-    name: "이상훈",
-    role: "R&D 팀장",
-    company: "테크이노베이션",
-    content: "기술 문서가 HWP로만 되어 있어서 항상 불편했는데, 이제 바로 질문하고 답을 얻을 수 있어 개발 속도가 2배 빨라졌습니다.",
-    rating: 5
-  }];
-  return <section className="py-20 bg-gradient-to-br from-gray-50 to-white" aria-labelledby="testimonials-heading">
-      <div className="container max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 id="testimonials-heading" className="text-4xl font-bold text-gray-900 mb-4">
-            이미 경험한 분들의 이야기
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            업무 효율성이 눈에 띄게 향상되었다는 실제 사용자들의 생생한 후기
-          </p>
-        </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map(testimonial => <div key={testimonial.id} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl gpu-optimized border border-gray-100 group">
-              {/* Stars */}
-              <div className="flex gap-1 mb-6">
-                {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />)}
-              </div>
-
-              {/* Content */}
-              <blockquote className="text-gray-700 leading-relaxed mb-6 text-lg italic">
-                "{testimonial.content}"
-              </blockquote>
-
-              {/* Author */}
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                  <span className="text-white font-semibold text-lg">
-                    {testimonial.name.charAt(0)}
-                  </span>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {scenarios.map((scenario) => {
+          const IconComponent = scenario.icon;
+          return (
+            <div key={scenario.id} className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${scenario.gradient} gpu-optimized p-8`}>
+              <div className="relative h-full flex flex-col">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl group-hover:bg-white/30 transition-all duration-300">
+                    <IconComponent className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white group-hover:text-blue-100 transition-colors duration-300">
+                    {scenario.title}
+                  </h3>
                 </div>
-                <div>
-                  <div className="font-semibold text-gray-900">
-                    {testimonial.name}
-                  </div>
-                  <div className="text-sm text-gray-600">
-                    {testimonial.role} · {testimonial.company}
-                  </div>
+                
+                <div className="space-y-4">
+                  {scenario.points.map((point, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-white/60 rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-gray-100 leading-relaxed group-hover:text-white transition-colors duration-300">
+                        {point}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6">
+                  <div className="w-full h-1 bg-gradient-to-r from-white/30 to-transparent rounded-full group-hover:from-white/50 transition-all duration-300" />
                 </div>
               </div>
+              
+              <div className="absolute inset-0 bg-gradient-to-t from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+          );
+        })}
+      </div>
 
-              {/* Hover Effect Border */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-            </div>)}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <p className="text-gray-600 mb-6">
-            당신도 이런 효율성을 경험해보세요
+      <div className="text-center mt-16">
+        <div className="inline-flex flex-col items-center gap-4">
+          <p className="text-gray-300 text-lg">
+            당신의 업무 환경에 AI를 지금 바로 도입하세요
           </p>
           <a href="#cta">
-            <Button variant="hero" size="lg" className="px-8 py-4">
-              Waitlist 등록하기
-            </Button>
+            <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold overflow-hidden hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300">
+              <span className="relative z-10 flex items-center gap-2">
+                바로 시작하기
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </button>
           </a>
         </div>
       </div>
-    </section>;
+    </div>
+  </section>;
 };
+
 const Security = () => <section id="security" className="section bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden" aria-labelledby="security-heading">
     <div className="absolute inset-0 bg-gradient-to-r from-blue-100/50 to-indigo-100/50"></div>
     <div className="absolute top-10 right-10 w-32 h-32 bg-blue-200/30 rounded-full blur-2xl"></div>
@@ -515,351 +291,325 @@ const Security = () => <section id="security" className="section bg-gradient-to-
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-600 text-white mb-4">
           <Lock className="w-8 h-8" />
         </div>
-        <h2 id="security-heading" className="text-2xl md:text-3xl font-semibold mb-4">보안을 최우선으로 고려합니다</h2>
+        <h2 id="security-heading" className="text-2xl md:text-3xl font-semibold mb-4">데이터는 절대 밖으로 나가지 않습니다</h2>
       </div>
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="feature-card bg-white/80 backdrop-blur-sm border border-blue-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-blue-100 text-blue-600">
               <Lock className="w-5 h-5" />
             </div>
-            <h3 className="font-semibold">내 PC에서 수행</h3>
+            <h3 className="font-semibold">PC 안에서만 진행</h3>
           </div>
-          <p className="text-sm text-muted-foreground">모든 처리는 사용자의 개인 컴퓨터 환경에서 처리됩니다.</p>
+          <p className="text-sm text-muted-foreground">모든 분석은 PC 안에서만 진행됩니다.</p>
         </div>
         <div className="feature-card bg-white/80 backdrop-blur-sm border border-blue-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-green-100 text-green-600">
               <Shield className="w-5 h-5" />
             </div>
-            <h3 className="font-semibold">데이터 외부 유출 없음</h3>
+            <h3 className="font-semibold">외부 전송 없음</h3>
           </div>
-          <p className="text-sm text-muted-foreground">데이터가 사용자의 기기를 벗어나지 않아 완전한 데이터 보안과 개인정보 보호를 보장합니다.</p>
+          <p className="text-sm text-muted-foreground">외부 서버로 전송되지 않으니, 유출 위험이 전혀 없습니다.</p>
         </div>
         <div className="feature-card bg-white/80 backdrop-blur-sm border border-blue-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-purple-100 text-purple-600">
-              <Download className="w-5 h-5" />
+              <WifiOff className="w-5 h-5" />
             </div>
-            <h3 className="font-semibold">간편 설치</h3>
+            <h3 className="font-semibold">폐쇄망 지원</h3>
           </div>
-          <p className="text-sm text-muted-foreground">PC 앱 다운로드 후 바로 사용 가능합니다.</p>
+          <p className="text-sm text-muted-foreground">인트라넷, 폐쇄망 환경에서도 문제없이 사용할 수 있습니다.</p>
+        </div>
+        <div className="feature-card bg-white/80 backdrop-blur-sm border border-blue-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="p-2 rounded-lg bg-orange-100 text-orange-600">
+              <CheckCircle className="w-5 h-5" />
+            </div>
+            <h3 className="font-semibold">오프라인 실행</h3>
+          </div>
+          <p className="text-sm text-muted-foreground">인터넷 연결이 없어도 그대로 실행됩니다.</p>
         </div>
       </div>
     </div>
   </section>;
-const HowItWorks = () => {
-  const steps = [{
-    id: 1,
-    icon: Download,
-    title: "앱 다운로드 및 설치",
-    description: "PC에 앱을 설치하세요",
-    color: "from-blue-500 to-blue-600",
-    bgColor: "bg-blue-50",
-    iconColor: "text-blue-600"
-  }, {
-    id: 2,
-    icon: FileText,
-    title: "나만의 AI 지식 베이스 만들기",
-    description: "분석하고 싶은 파일들을 드래그 앤 드롭으로 간편하게 추가하세요",
-    color: "from-indigo-500 to-indigo-600",
-    bgColor: "bg-indigo-50",
-    iconColor: "text-indigo-600"
-  }, {
-    id: 3,
-    icon: Search,
-    title: "AI에게 질문하고 핵심 요약받기",
-    description: "\"이 계약서의 핵심 독소 조항은 뭐야?\"처럼 채팅하듯 질문하면 AI가 즉시 답변합니다",
-    color: "from-green-500 to-green-600",
-    bgColor: "bg-green-50",
-    iconColor: "text-green-600"
-  }, {
-    id: 4,
-    icon: Quote,
-    title: "클릭 한 번으로 출처 확인",
-    description: "AI 답변의 출처 위치를 원 클릭으로 찾고, 사실 여부를 파악하세요.",
-    color: "from-purple-500 to-purple-600",
-    bgColor: "bg-purple-50",
-    iconColor: "text-purple-600"
-  }];
-  return <section className="py-16 px-6 bg-gradient-to-br from-gray-50 to-white" aria-labelledby="how-heading">
-      <div className="container max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 id="how-heading" className="text-4xl font-bold text-gray-900 mb-4">
-            사용 방법
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            몇 분만에 AI 지식 베이스를 구축하고 스마트한 답변을 받아보세요
-          </p>
-        </div>
 
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((step, index) => {
-          const IconComponent = step.icon;
-          return <div key={step.id} className="relative group">
-                {/* Connection Line - only show between steps */}
-                {index < steps.length - 1 && <div className="hidden lg:block absolute top-12 left-full w-full h-0.5 bg-gradient-to-r from-gray-300 to-transparent z-0" style={{
-              transform: 'translateX(-50%)'
-            }} />}
-                
-                {/* Card */}
-                <div className="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl gpu-optimized border border-gray-100 h-full">
-                  {/* Step Number */}
-                  <div className={`absolute -top-4 left-6 w-8 h-8 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center shadow-lg`}>
-                    <span className="text-white font-bold text-sm">{step.id}</span>
-                  </div>
-
-                  {/* Icon */}
-                  <div className={`w-16 h-16 ${step.bgColor} rounded-2xl flex items-center justify-center mb-6 gpu-scale`}>
-                    <IconComponent className={`w-8 h-8 ${step.iconColor}`} />
-                  </div>
-
-                  {/* Content */}
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 leading-tight">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed text-sm">
-                      {step.description}
-                    </p>
-                  </div>
-
-                  {/* Hover Effect Border */}
-                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${step.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-                </div>
-              </div>;
-        })}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <a href="#cta">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold gpu-optimized cursor-pointer">
-              <span>바로 시작하기</span>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>;
-};
 const Pricing = () => <section id="pricing" className="section" aria-labelledby="pricing-heading">
     <div className="container">
-      <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4">나에게 맞는 요금제를 선택하세요</h2>
-      <p className="text-muted-foreground mb-8">개인적인 문서 탐색은 무료로 시작하세요. 데이터 분석, 보고서 작성 등 전문가 수준의 생산성이 필요하다면 Pro를, 조직을 위한 보안과 관리가 필요하다면 Enterprise를 선택하세요.</p>
-      <div className="grid md:grid-cols-3 gap-6 pt-16 pb-4">
-        <div className="pricing-card h-full flex flex-col">
-          <h3 className="text-xl font-semibold">Free</h3>
-          <p className="mt-1 text-muted-foreground">핵심 기능을 경험하는 가장 좋은 방법</p>
-          <p className="mt-4 text-2xl font-bold">₩0 <span className="text-sm font-medium text-muted-foreground">/ 평생</span></p>
-          <ul className="mt-4 space-y-2 text-sm flex-1">
-            <li>오프라인 AI 요약·검색</li>
-            <li>기본 문서 지원(HWP, PDF, PPTX, DOCX)</li>
-            <li>답변 내 인용 제공</li>
-            <li>최대 10개의 지식 베이스 생성</li>
-            <li>(지식 베이스 당 최대 10개 문서)</li>
-            <li>Notion, Google Drive 연동 (지원 예정)</li>
+      <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4 text-center">나에게 맞는 요금제를 선택하세요</h2>
+      <div className="grid md:grid-cols-3 gap-6 pt-8">
+        
+        {/* Free Plan */}
+        <div className="pricing-card h-full flex flex-col border border-gray-200 rounded-lg p-6 bg-white">
+          <div className="text-center mb-6">
+            <h3 className="text-xl font-semibold mb-2">Free</h3>
+            <div className="text-3xl font-bold mb-2">₩0</div>
+          </div>
+          <ul className="space-y-3 flex-1 text-sm">
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>PDF 업로드 및 대화 가능</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>문서 3개, 지식베이스 1개 제한</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>표·이미지 분석은 일부 제한</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>개인 학습·소규모 용도</span>
+            </li>
           </ul>
-          <div className="mt-6 text-center">
-            <a href="#cta"><Button variant="hero" size="lg" className="w-full">Waitlist 등록하기</Button></a>
+          <div className="mt-6">
+            <a href="#cta" className="w-full">
+              <Button variant="outline" className="w-full">Waitlist 등록하기</Button>
+            </a>
           </div>
         </div>
-        <div className="pricing-card featured h-full flex flex-col">
-          <div className="flex items-center gap-2">
-            <h3 className="text-xl font-semibold">Pro</h3>
-            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary text-primary-foreground">인기</span>
+
+        {/* Pro Plan */}
+        <div className="pricing-card h-full flex flex-col border-2 border-primary rounded-lg p-6 bg-white relative">
+          <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+            <span className="bg-primary text-white px-4 py-1 rounded-full text-sm font-medium">추천</span>
           </div>
-          <p className="mt-1 text-muted-foreground">데이터 분석부터 보고서 작성까지, 전문가를 위한 생산성 도구</p>
-          <p className="mt-4 text-2xl font-bold">$19 <span className="text-sm font-medium text-muted-foreground">/ 사용자 / 월</span></p>
-          <ul className="mt-4 space-y-2 text-sm flex-1">
-            <li>Free의 모든 기능 포함</li>
-            <li>고급 문서 지원(XLSX/CSV, 스캔 PDF OCR)</li>
-            <li>요약 결과 내보내기(Word, PPTX, Markdown)</li>
-            <li>커스텀 요약 템플릿(지원 예정)</li>
-            <li>무제한 지식 베이스 생성 및 베이스 최대 용량 대폭 확장</li>
-            <li>Gmail, Slack, Github, Jira, Confluence 등 다양한 App 커넥터 제공 (지원 예정)</li>
-            <li>이메일 CS 우선 지원</li>
+          <div className="text-center mb-6">
+            <h3 className="text-xl font-semibold mb-2">Pro</h3>
+            <div className="text-3xl font-bold mb-2">$12<span className="text-lg font-normal">/월</span></div>
+            <div className="text-sm text-muted-foreground">개인</div>
+          </div>
+          <ul className="space-y-3 flex-1 text-sm">
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>무제한 PDF 업로드</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>지식베이스 무제한 생성</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>표·이미지·수식 완전 지원</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>HWP·PPTX·XLSX 지원 예정 포함</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>요약 결과 내보내기(Word, PPTX, Markdown)</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>이메일 지원</span>
+            </li>
           </ul>
-          <div className="mt-6 text-center">
-            <a href="#cta"><Button variant="hero" size="lg" className="w-full">Waitlist 등록하기</Button></a>
+          <div className="mt-6">
+            <a href="#cta" className="w-full">
+              <Button variant="hero" className="w-full">Waitlist 등록하기</Button>
+            </a>
           </div>
         </div>
-        <div className="pricing-card h-full flex flex-col">
-          <h3 className="text-xl font-semibold">Enterprise</h3>
-          <p className="mt-1 text-muted-foreground">보안, 배포, 중앙 관리가 중요한 조직을 위한 맞춤형 솔루션</p>
-          <p className="mt-4 text-2xl font-bold">별도 문의</p>
-          <ul className="mt-4 space-y-2 text-sm flex-1">
-            <li>Pro의 모든 기능 포함</li>
-            <li>대규모 팀을 위한 중앙 라이선스 관리</li>
-            <li>폐쇄망 환경에서 동작하는 온프레미스 AI 설치</li>
-            <li>전담 기술 지원 매니저 및 SLA</li>
-            <li>회사 전용 AI 학습 및 배포 관리</li>
+
+        {/* Enterprise Plan */}
+        <div className="pricing-card h-full flex flex-col border border-gray-200 rounded-lg p-6 bg-white">
+          <div className="text-center mb-6">
+            <h3 className="text-xl font-semibold mb-2">Enterprise</h3>
+            <div className="text-3xl font-bold mb-2">별도 협의</div>
+          </div>
+          <ul className="space-y-3 flex-1 text-sm">
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>폐쇄망/인트라넷 설치 지원</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>중앙 라이선스 관리</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>팀 단위 권한/보안 정책 설정</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>SLA/전담 기술 지원 매니저</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>맞춤형 기능 커스터마이징</span>
+            </li>
           </ul>
-          <div className="mt-6 text-center">
-            <a href="#cta"><Button variant="hero" size="lg" className="w-full">Waitlist 등록하기</Button></a>
+          <div className="mt-6">
+            <a href="#cta" className="w-full">
+              <Button variant="outline" className="w-full">Waitlist 등록하기</Button>
+            </a>
           </div>
         </div>
       </div>
     </div>
   </section>;
+
+const FAQ = () => {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '인터넷이 없어도 사용할 수 있나요?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '네, 설치 후에는 인터넷 없이도 모든 기능이 동작합니다.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '어떤 파일 형식을 지원하나요?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '현재는 PDF, 곧 HWP·PPTX·XLSX도 지원할 예정입니다.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '표·그래프도 읽을 수 있나요?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '네, 표와 이미지, 수식까지 분석할 수 있습니다.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '답변에 출처가 표시되나요?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '언제나 "문서명과 쪽수"까지 함께 제공됩니다.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '보안이 중요한 환경에서도 사용할 수 있나요?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '네, 폐쇄망·인트라넷에서도 100% 로컬 처리로 안전하게 쓸 수 있습니다.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '무료 플랜과 유료 플랜의 차이는 무엇인가요?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '무료는 문서/지식베이스 개수 제한이 있고, Pro는 무제한 + 고급 기능, Enterprise는 팀 관리·보안 기능까지 제공합니다.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '한국어 외 다른 언어도 지원하나요?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '네, 다양한 언어의 문서를 지원하며 특히 한국어 문서에서 뛰어난 성능을 발휘합니다.'
+        }
+      }
+    ]
+  };
+
+  return <section id="faq" className="section" aria-labelledby="faq-heading">
+    <div className="container">
+      <h2 id="faq-heading" className="text-2xl md:text-3xl font-semibold mb-6 text-center">자주 묻는 질문</h2>
+      <div className="grid gap-4 max-w-3xl mx-auto">
+        <details className="feature-card">
+          <summary className="font-medium cursor-pointer">인터넷이 없어도 사용할 수 있나요?</summary>
+          <p className="mt-2 text-muted-foreground">네, 설치 후에는 인터넷 없이도 모든 기능이 동작합니다.</p>
+        </details>
+        <details className="feature-card">
+          <summary className="font-medium cursor-pointer">어떤 파일 형식을 지원하나요?</summary>
+          <p className="mt-2 text-muted-foreground">현재는 PDF, 곧 HWP·PPTX·XLSX도 지원할 예정입니다.</p>
+        </details>
+        <details className="feature-card">
+          <summary className="font-medium cursor-pointer">표·그래프도 읽을 수 있나요?</summary>
+          <p className="mt-2 text-muted-foreground">네, 표와 이미지, 수식까지 분석할 수 있습니다.</p>
+        </details>
+        <details className="feature-card">
+          <summary className="font-medium cursor-pointer">답변에 출처가 표시되나요?</summary>
+          <p className="mt-2 text-muted-foreground">언제나 "문서명과 쪽수"까지 함께 제공됩니다.</p>
+        </details>
+        <details className="feature-card">
+          <summary className="font-medium cursor-pointer">보안이 중요한 환경에서도 사용할 수 있나요?</summary>
+          <p className="mt-2 text-muted-foreground">네, 폐쇄망·인트라넷에서도 100% 로컬 처리로 안전하게 쓸 수 있습니다.</p>
+        </details>
+        <details className="feature-card">
+          <summary className="font-medium cursor-pointer">무료 플랜과 유료 플랜의 차이는 무엇인가요?</summary>
+          <p className="mt-2 text-muted-foreground">무료는 문서/지식베이스 개수 제한이 있고, Pro는 무제한 + 고급 기능, Enterprise는 팀 관리·보안 기능까지 제공합니다.</p>
+        </details>
+        <details className="feature-card">
+          <summary className="font-medium cursor-pointer">한국어 외 다른 언어도 지원하나요?</summary>
+          <p className="mt-2 text-muted-foreground">네, 다양한 언어의 문서를 지원하며 특히 한국어 문서에서 뛰어난 성능을 발휘합니다.</p>
+        </details>
+      </div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify(faqJsonLd)
+      }} />
+    </div>
+  </section>;
+};
+
 const CTA = () => {
   const {
     register,
     handleSubmit,
+    formState: { errors, isSubmitting },
+    setValue,
     reset,
     watch,
-    setValue,
-    getValues,
-    formState: {
-      errors,
-      isSubmitting
-    }
+    getValues
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema)
   });
 
-  // URL 파라미터에서 UTM 및 LinkedIn 데이터를 읽어서 폼에 자동 설정
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    console.log('=== URL PARAMETER PARSING ===');
-    console.log('Current URL:', window.location.href);
-    console.log('URL search params:', window.location.search);
-    console.log('All params:', Array.from(params.entries()));
+    
+    // UTM 파라미터 매핑
+    const utmParams = {
+      'utm_source': 'utm_source',
+      'utm_campaign': 'utm_campaign_id', 
+      'utm_medium': 'utm_medium',
+      'utm_campaign_name': 'utm_campaign_name',
+      'utm_adset_id': 'utm_adset_id',
+      'utm_adset_name': 'utm_adset_name', 
+      'utm_ad_id': 'utm_ad_id',
+      'utm_ad_name': 'utm_ad_name'
+    };
 
-    // utm_source 확인
-    const utmSource = params.get('utm_source');
-    const isLinkedIn = utmSource === 'linkedin';
-    console.log('UTM Source:', utmSource, 'Is LinkedIn:', isLinkedIn);
-
-    // UTM 파라미터 처리 - 모든 UTM 필드 포함
-    const utmFields = [
-      'utm_source', 
-      'utm_campaign_id', 
-      'utm_medium',
-      'utm_campaign_name',
-      'utm_adset_id',
-      'utm_adset_name', 
-      'utm_ad_id',
-      'utm_ad_name'
-    ] as const;
-    console.log('=== UTM PARAMETERS (ALL FIELDS) ===');
-    utmFields.forEach(fieldName => {
-      const paramValue = params.get(fieldName);
-      console.log(`UTM ${fieldName}:`, paramValue);
-      if (paramValue) {
-        try {
-          setValue(fieldName, paramValue);
-          console.log(`✓ Successfully set ${fieldName} to:`, paramValue);
-        } catch (error) {
-          console.error(`✗ Failed to set ${fieldName}:`, error);
-        }
+    Object.entries(utmParams).forEach(([paramName, fieldName]) => {
+      const value = params.get(paramName);
+      if (value) {
+        setValue(fieldName as keyof FormValues, value);
       }
     });
 
-    // Facebook인 경우 특별 처리 (fbclid가 있거나 utm_source가 fb/facebook인 경우)
-    const isFacebook = utmSource === 'fb' || utmSource === 'facebook' || params.has('fbclid');
-    if (isFacebook) {
-      console.log('=== FACEBOOK DYNAMIC PARAMETERS MAPPING (DEBUG) ===');
-      console.log('🔍 All URL params:', Array.from(params.entries()));
-      console.log('🎯 Facebook detection - utm_source:', utmSource, ', has fbclid:', params.has('fbclid'));
-      console.log('📍 Key params check - utm_campaign:', params.get('utm_campaign'), ', utm_content:', params.get('utm_content'));
-      const facebookParamsMap = {
-        'utm_campaign': 'utm_campaign_name',  // Facebook의 utm_campaign을 utm_campaign_name으로 매핑
-        'utm_content': 'utm_campaign_id',     // Facebook의 utm_content를 utm_campaign_id로 매핑
-        'fbclid': 'utm_campaign_id',
-        'fb_campaign_id': 'utm_campaign_id',
-        'fb_campaign_name': 'utm_campaign_name',
-        'campaign_id': 'utm_campaign_id',
-        'campaign_name': 'utm_campaign_name',
-        'adset_id': 'utm_adset_id',
-        'adset_name': 'utm_adset_name',
-        'ad_id': 'utm_ad_id',
-        'ad_name': 'utm_ad_name'
-      };
-      console.log('📝 Current form values before Facebook mapping:', getValues());
-      Object.entries(facebookParamsMap).forEach(([paramName, fieldName]) => {
-        const rawValue = params.get(paramName);
-        console.log(`🔎 Checking Facebook param [${paramName}]: raw value =`, rawValue);
-        if (rawValue) {
-          let processedValue = rawValue;
-          
-          // URL 디코딩 (이름 파라미터들만)
-          if (paramName.includes('_name') || paramName === 'campaign_name') {
-            try {
-              processedValue = decodeURIComponent(rawValue.replace(/\+/g, ' '));
-              console.log(`🔄 Decoded [${paramName}]: "${rawValue}" → "${processedValue}"`);
-            } catch (e) {
-              console.error(`❌ Decode failed for [${paramName}]:`, e);
-              processedValue = rawValue;
-            }
-          }
-          console.log(`📤 Setting Facebook [${fieldName}] = "${processedValue}"`);
-          try {
-            setValue(fieldName as any, processedValue);
-            console.log(`✅ Successfully set Facebook ${fieldName} to:`, processedValue);
-          } catch (error) {
-            console.error(`❌ Failed to set Facebook ${fieldName}:`, error);
-          }
-        }
-      });
-      console.log('📝 Form values after Facebook mapping:', getValues());
-    }
+    // LinkedIn 파라미터 매핑
+    const linkedinParams = {
+      'campaign_group_id': 'linkedin_campaign_group_id',
+      'campaign_group_name': 'linkedin_campaign_group_name',
+      'campaign_id': 'linkedin_campaign_id',
+      'utm_campaign': 'linkedin_campaign_name',
+      'utm_content': 'linkedin_ad_id',
+      'creative_name': 'linkedin_ad_name'
+    };
 
-    // LinkedIn인 경우 특별 처리
-    if (isLinkedIn) {
-      console.log('=== LINKEDIN DYNAMIC PARAMETERS MAPPING (DEBUG) ===');
-      console.log('🔍 All URL params:', Array.from(params.entries()));
-      const linkedinParamsMap = {
-        'campaign_group_id': 'linkedin_campaign_group_id',
-        'campaign_group_name': 'linkedin_campaign_group_name',
-        'campaign_id': 'linkedin_campaign_id',
-        'utm_campaign': 'linkedin_campaign_name',
-        'utm_content': 'linkedin_ad_id',
-        'creative_name': 'linkedin_ad_name'
-      };
-      console.log('📝 Current form values before LinkedIn mapping:', getValues());
-      Object.entries(linkedinParamsMap).forEach(([paramName, fieldName]) => {
-        const rawValue = params.get(paramName);
-        console.log(`🔎 Checking param [${paramName}]: raw value =`, rawValue);
-        if (rawValue) {
-          let processedValue = rawValue;
-
-          // URL 디코딩 (이름 파라미터들만)
-          if (paramName.includes('_name') || paramName === 'utm_campaign') {
-            try {
-              processedValue = decodeURIComponent(rawValue.replace(/\+/g, ' '));
-              console.log(`🔄 Decoded [${paramName}]: "${rawValue}" → "${processedValue}"`);
-            } catch (e) {
-              console.error(`❌ Decode failed for [${paramName}]:`, e);
-              processedValue = rawValue; // 실패시 원본값 사용
-            }
-          }
-          console.log(`📤 Setting [${fieldName}] = "${processedValue}"`);
-          try {
-            setValue(fieldName as keyof FormValues, processedValue);
-            const verifyValue = getValues(fieldName as keyof FormValues);
-            console.log(`✅ Successfully set [${fieldName}]. Verify:`, verifyValue);
-          } catch (error) {
-            console.error(`❌ Failed to set [${fieldName}]:`, error);
-            console.error('Error details:', error.message);
-          }
-        } else {
-          console.log(`⚪ Parameter [${paramName}] not found in URL`);
-        }
-      });
-      console.log('📝 Final form values after LinkedIn mapping:', getValues());
-    }
-    console.log('=== PARAMETER PARSING COMPLETE ===');
+    Object.entries(linkedinParams).forEach(([paramName, fieldName]) => {
+      const value = params.get(paramName);
+      if (value) {
+        setValue(fieldName as keyof FormValues, value);
+      }
+    });
   }, [setValue]);
+
   const onSubmit = async (values: FormValues) => {
-    console.log('=== FORM SUBMISSION STARTED ===');
-    console.log('Form submission values:', JSON.stringify(values, null, 2));
     try {
-      console.log('=== ATTEMPTING SUPABASE INSERT ===');
       const insertData = {
         email: values.email,
         consent: values.consent,
@@ -878,25 +628,10 @@ const CTA = () => {
         linkedin_campaign_id: values.linkedin_campaign_id || null,
         linkedin_ad_name: values.linkedin_ad_name || null
       };
-      console.log('Insert data:', JSON.stringify(insertData, null, 2));
-      const result = await supabase.from('email_signups').insert([insertData]);
-      console.log('=== SUPABASE INSERT RESULT ===');
-      console.log('Full result:', JSON.stringify(result, null, 2));
-      console.log('Error:', result.error);
-      console.log('Data:', result.data);
-      if (result.error) {
-        console.error('=== SUPABASE ERROR DETAILS ===');
-        console.error('Error code:', result.error.code);
-        console.error('Error message:', result.error.message);
-        console.error('Error details:', result.error.details);
-        console.error('Error hint:', result.error.hint);
 
-        // Analytics: 폼 제출 실패 추적
-        import('@/lib/analytics').then(({
-          analytics
-        }) => {
-          analytics.trackFormSubmit('waitlist', false);
-        });
+      const result = await supabase.from('email_signups').insert([insertData]);
+      
+      if (result.error) {
         if (result.error.code === '23505') {
           toast.error("이미 등록된 이메일입니다.");
         } else {
@@ -904,140 +639,63 @@ const CTA = () => {
         }
         return;
       }
-      console.log('=== SUCCESS ===');
-      // Analytics: 폼 제출 성공 추적
-      import('@/lib/analytics').then(({
-        analytics
-      }) => {
-        analytics.trackFormSubmit('waitlist', true);
-      });
+
       toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
       reset();
     } catch (error) {
-      console.error('=== CATCH ERROR ===');
-      console.error('Catch error type:', typeof error);
-      console.error('Catch error:', error);
-      console.error('Error message:', error instanceof Error ? error.message : 'Unknown error');
-      console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
-
-      // Analytics: 폼 제출 에러 추적
-      import('@/lib/analytics').then(({
-        analytics
-      }) => {
-        analytics.trackFormSubmit('waitlist', false);
-      });
       toast.error(`등록 중 오류가 발생했습니다: ${error instanceof Error ? error.message : '알 수 없는 오류'}`);
     }
   };
+
   return <section id="cta" className="section" aria-labelledby="cta-heading">
-      <div className="container">
-        <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">지금 바로 Waitlist에 등록하세요.</h2>
-        <p className="text-muted-foreground mb-6 text-center">누구보다 빠르게 베타 버전을 사용할 수 있습니다.</p>
-        <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto">
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="email">이메일 주소</Label>
-              <Input id="email" type="email" placeholder="hello@localdocs.ai" {...register("email")} />
-              {errors.email && <p className="text-sm text-destructive mt-1">{errors.email.message}</p>}
-            </div>
-            
-            {/* Hidden UTM 필드들 */}
-            <input type="hidden" {...register("utm_source")} />
-            <input type="hidden" {...register("utm_campaign_id")} />
-            <input type="hidden" {...register("utm_medium")} />
-            <input type="hidden" {...register("utm_campaign_name")} />
-            <input type="hidden" {...register("utm_adset_id")} />
-            <input type="hidden" {...register("utm_adset_name")} />
-            <input type="hidden" {...register("utm_ad_id")} />
-            <input type="hidden" {...register("utm_ad_name")} />
-            
-            {/* Hidden LinkedIn 필드들 */}
-            <input type="hidden" {...register("linkedin_campaign_name")} />
-            <input type="hidden" {...register("linkedin_ad_id")} />
-            <input type="hidden" {...register("linkedin_campaign_group_id")} />
-            <input type="hidden" {...register("linkedin_campaign_group_name")} />
-            <input type="hidden" {...register("linkedin_campaign_id")} />
-            <input type="hidden" {...register("linkedin_ad_name")} />
-            
-            <div className="flex items-center gap-2">
-              <Checkbox id="consent" checked={watch("consent")} onCheckedChange={checked => setValue("consent", !!checked)} />
-              <Label htmlFor="consent" className="text-sm text-muted-foreground">개인정보 수집 및 알림 수신에 동의합니다.</Label>
-            </div>
-            {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}
-            <div>
-              <Button type="submit" variant="hero" size="lg" disabled={isSubmitting} className="w-full">Waitlist 등록하기</Button>
-            </div>
+    <div className="container">
+      <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">내 PDF와 직접 대화해보세요</h2>
+      <p className="text-muted-foreground mb-6 text-center">데이터 유출 걱정 없는 Localdocs, 지금 Waitlist 등록하고 먼저 경험해 보세요.</p>
+      <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto">
+        <div className="space-y-4">
+          <div>
+            <Label htmlFor="email">이메일 주소</Label>
+            <Input id="email" type="email" placeholder="hello@localdocs.ai" {...register("email")} />
+            {errors.email && <p className="text-sm text-destructive mt-1">{errors.email.message}</p>}
           </div>
-          <p className="text-xs text-muted-foreground text-center mt-4">제출하신 이메일은 베타 알림과 안내 외 용도로 사용하지 않습니다.</p>
-        </form>
-      </div>
-    </section>;
-};
-const FAQ = () => {
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [{
-      '@type': 'Question',
-      name: '인터넷 없이 정말 동작하나요?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '네, PC앱만 설치하면 인터넷 없이 동작합니다. 문서가 외부에 유출될 일이 전혀 없습니다.'
-      }
-    }, {
-      '@type': 'Question',
-      name: '어떤 파일 형식을 지원하나요?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'HWP/HWPX, PDF, PPTX, DOCX 등을 지원합니다. 다만, 순차적으로 적용될 수 있습니다.'
-      }
-    }, {
-      '@type': 'Question',
-      name: '결과 출처는 어떻게 제공되나요?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Localdocs는 모든 결과를 문서 기반으로 제공합니다. 그래서 모든 답변엔 문서 출처 링크 또는 문서 내 위치(페이지, 문단 등)를 결과와 함께 표시합니다. 인용 형식은 데이터 소스에 따라 달라질 수 있습니다.'
-      }
-    }, {
-      '@type': 'Question',
-      name: '클라우드로 데이터가 전송되나요?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '절대 전송되지 않습니다. 데이터는 PC 내에서만 처리되며 클라우드로 일절 전송되지 않습니다. 불안하시면, 인터넷을 끄고 실행하셔도 됩니다.'
-      }
-    }, {
-      '@type': 'Question',
-      name: '기업용 배포 모델이 있나요?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '네, Enterprise 플랜을 통해 대규모 팀을 위한 중앙 라이선스 관리 및 폐쇄망 환경을 위한 오프라인 설치/배포를 지원합니다. 별도 문의를 통해 귀사의 환경에 맞는 최적의 솔루션을 상담해 드립니다.'
-      }
-    }, {
-      '@type': 'Question',
-      name: '한국어 특화 요약 정확도는 어느 정도인가요?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '자체 개발한 한국어 특화 온디바이스 LLM을 기반으로, 국내 업무 환경의 보고서, 논문, 법률 문서 등에서 최고의 요약 성능을 목표로 하고 있습니다. 구체적인 성능 지표는 출시와 함께 투명하게 공개할 예정입니다.'
-      }
-    }]
-  };
-  return <section id="faq" className="section" aria-labelledby="faq-heading">
-      <div className="container">
-        <h2 id="faq-heading" className="text-2xl md:text-3xl font-semibold mb-6">FAQ</h2>
-        <div className="grid gap-4">
-          <details className="feature-card"><summary className="font-medium">인터넷 없이 정말 동작하나요?</summary><p className="mt-2 text-muted-foreground">네, PC앱만 설치하면 인터넷 없이 동작합니다. 문서가 외부에 유출될 일이 전혀 없습니다.</p></details>
-          <details className="feature-card"><summary className="font-medium">어떤 파일 형식을 지원하나요?</summary><p className="mt-2 text-muted-foreground">HWP/HWPX, PDF, PPTX, DOCX 등을 지원합니다. 다만, 순차적으로 적용될 수 있습니다.</p></details>
-          <details className="feature-card"><summary className="font-medium">결과 출처는 어떻게 제공되나요?</summary><p className="mt-2 text-muted-foreground">Localdocs는 모든 결과를 문서 기반으로 제공합니다. 그래서 모든 답변엔 문서 출처 링크 또는 문서 내 위치(페이지, 문단 등)를 결과와 함께 표시합니다. 인용 형식은 데이터 소스에 따라 달라질 수 있습니다.</p></details>
-          <details className="feature-card"><summary className="font-medium">클라우드로 데이터가 전송되나요?</summary><p className="mt-2 text-muted-foreground">아니요, 데이터는 외부로 전송되지 않습니다. AI가 개인 PC에서 동작하기 때문에 폐쇄망이나 인터넷이 끊겨 있어도 정상 사용할 수 있습니다.</p></details>
-          <details className="feature-card"><summary className="font-medium">기업용 배포 모델이 있나요?</summary><p className="mt-2 text-muted-foreground">네, Enterprise 플랜을 통해 대규모 팀을 위한 중앙 라이선스 관리 및 폐쇄망 환경을 위한 오프라인 설치/배포를 지원합니다. '별도 문의'를 통해 귀사의 환경에 맞는 최적의 솔루션을 상담해 드립니다.</p></details>
-          <details className="feature-card"><summary className="font-medium">한국어 특화 요약 정확도는 어느 정도인가요?</summary><p className="mt-2 text-muted-foreground">자체 개발한 한국어 특화 온디바이스 LLM을 기반으로, 국내 업무 환경의 보고서, 논문, 법률 문서 등에서 최고의 요약 성능을 목표로 하고 있습니다. 구체적인 성능 지표는 출시와 함께 투명하게 공개할 예정입니다.</p></details>
+          
+          {/* Hidden UTM 필드들 */}
+          <input type="hidden" {...register("utm_source")} />
+          <input type="hidden" {...register("utm_campaign_id")} />
+          <input type="hidden" {...register("utm_medium")} />
+          <input type="hidden" {...register("utm_campaign_name")} />
+          <input type="hidden" {...register("utm_adset_id")} />
+          <input type="hidden" {...register("utm_adset_name")} />
+          <input type="hidden" {...register("utm_ad_id")} />
+          <input type="hidden" {...register("utm_ad_name")} />
+          
+          {/* Hidden LinkedIn 필드들 */}
+          <input type="hidden" {...register("linkedin_campaign_name")} />
+          <input type="hidden" {...register("linkedin_ad_id")} />
+          <input type="hidden" {...register("linkedin_campaign_group_id")} />
+          <input type="hidden" {...register("linkedin_campaign_group_name")} />
+          <input type="hidden" {...register("linkedin_campaign_id")} />
+          <input type="hidden" {...register("linkedin_ad_name")} />
+          
+          <div className="flex items-center gap-2">
+            <Checkbox 
+              id="consent" 
+              checked={watch("consent")} 
+              onCheckedChange={(checked) => setValue("consent", !!checked)} 
+            />
+            <Label htmlFor="consent" className="text-sm text-muted-foreground">개인정보 수집 및 알림 수신에 동의합니다.</Label>
+          </div>
+          {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}
+          <div>
+            <Button type="submit" variant="hero" size="lg" disabled={isSubmitting} className="w-full">Waitlist 등록하기</Button>
+          </div>
         </div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{
-        __html: JSON.stringify(faqJsonLd)
-      }} />
-      </div>
-    </section>;
+        <p className="text-xs text-muted-foreground text-center mt-4">제출하신 이메일은 베타 알림과 안내 외 용도로 사용하지 않습니다.</p>
+      </form>
+    </div>
+  </section>;
 };
+
 const Footer = () => <footer className="border-t">
     <div className="container py-8 text-sm">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
@@ -1050,28 +708,25 @@ const Footer = () => <footer className="border-t">
       </div>
     </div>
   </footer>;
+
 const Index = () => {
   // 페이지뷰와 섹션뷰 자동 추적 활성화
   usePageTracking();
   useSectionTracking();
+
   return <div>
-      <Nav />
-      <main>
-        <Hero />
-        
-        <Problem />
-        <Solution />
-        <Features />
-        <Comparison />
-        <Scenarios />
-        <Testimonials />
-        <Security />
-        <HowItWorks />
-        <Pricing />
-        <CTA />
-        <FAQ />
-      </main>
-      <Footer />
-    </div>;
+    <Nav />
+    <main>
+      <Hero />
+      <Features />
+      <Scenarios />
+      <Security />
+      <Pricing />
+      <CTA />
+      <FAQ />
+    </main>
+    <Footer />
+  </div>;
 };
+
 export default Index;

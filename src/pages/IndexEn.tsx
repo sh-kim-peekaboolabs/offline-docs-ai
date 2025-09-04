@@ -141,15 +141,6 @@ const Features = () => <section id="features" className="section bg-secondary-li
           </div>
           <p className="text-sm text-muted-foreground">Register multiple documents at once and have conversations across them.</p>
         </div>
-        <div className="feature-card bg-white/80 backdrop-blur-sm border border-teal-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-teal-100 text-teal-600">
-              <Brain className="w-5 h-5" />
-            </div>
-            <h3 className="font-semibold">Korean-Optimized AI</h3>
-          </div>
-          <p className="text-sm text-muted-foreground">AI optimized for Korean context handles contracts and reports accurately.</p>
-        </div>
         <div className="feature-card bg-white/80 backdrop-blur-sm border border-gray-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-gray-100 text-gray-600">

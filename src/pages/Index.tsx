@@ -353,6 +353,10 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>지식베이스당 최대 3개 문서 등록 가능</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
               <span>개인 학습·소규모 용도</span>
             </li>
           </ul>

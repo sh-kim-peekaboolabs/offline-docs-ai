@@ -341,6 +341,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
           <div className="text-center mb-6">
             <h3 className="text-xl font-semibold mb-2">Free</h3>
             <div className="text-3xl font-bold mb-2">₩0</div>
+            <div className="text-sm text-muted-foreground h-5"></div>
           </div>
           <ul className="space-y-3 flex-1 text-sm">
             <li className="flex items-start gap-2">
@@ -416,6 +417,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
           <div className="text-center mb-6">
             <h3 className="text-xl font-semibold mb-2">Enterprise</h3>
             <div className="text-3xl font-bold mb-2">별도 협의</div>
+            <div className="text-sm text-muted-foreground h-5"></div>
           </div>
           <ul className="space-y-3 flex-1 text-sm">
             <li className="flex items-start gap-2">

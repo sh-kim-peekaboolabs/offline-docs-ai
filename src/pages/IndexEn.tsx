@@ -423,44 +423,112 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
     </div>
   </section>;
 
-const FAQ = () => <section id="faq" className="section bg-secondary-lighter/50" aria-labelledby="faq-heading">
+const FAQ = () => {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Can I use it without internet?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, all features work without internet after installation.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'What file formats are supported?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Currently only PDF is supported. We plan to add various formats like HWP, PPTX, and XLSX soon.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Can it read tables and graphs?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, it can analyze tables, images, and formulas.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Are sources provided for answers?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, document name and page number are always provided together.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Can it be used in security-critical environments?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, it can be safely used in air-gapped networks and intranets with 100% local processing.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: "What's the difference between free and paid plans?",
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Free has limitations on document/knowledge base count, Pro offers unlimited + advanced features, and Enterprise provides team management and security features.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Are languages other than Korean supported?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, various languages are supported, with exceptional performance on Korean documents.'
+        }
+      }
+    ]
+  };
+
+  return <section id="faq" className="section bg-secondary-lighter/50" aria-labelledby="faq-heading">
     <div className="container">
       <div className="text-center mb-12">
         <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-4">FAQ</div>
         <h2 id="faq-heading" className="text-2xl md:text-3xl font-semibold mb-4">Frequently Asked Questions</h2>
       </div>
-      <div className="max-w-3xl mx-auto space-y-6">
-        <div className="bg-white rounded-lg p-6 shadow-sm border">
-          <h3 className="font-semibold mb-2">Can I use it without internet?</h3>
+      <div className="grid gap-4 max-w-3xl mx-auto">
+        <details className="feature-card">
+          <summary className="font-medium cursor-pointer">Can I use it without internet?</summary>
           <p className="mt-2 text-muted-foreground">Yes, all features work without internet after installation.</p>
-        </div>
-        <div className="bg-white rounded-lg p-6 shadow-sm border">
-          <h3 className="font-semibold mb-2">What file formats are supported?</h3>
+        </details>
+        <details className="feature-card">
+          <summary className="font-medium cursor-pointer">What file formats are supported?</summary>
           <p className="mt-2 text-muted-foreground">Currently only PDF is supported. We plan to add various formats like HWP, PPTX, and XLSX soon.</p>
-        </div>
-        <div className="bg-white rounded-lg p-6 shadow-sm border">
-          <h3 className="font-semibold mb-2">Can it read tables and graphs?</h3>
+        </details>
+        <details className="feature-card">
+          <summary className="font-medium cursor-pointer">Can it read tables and graphs?</summary>
           <p className="mt-2 text-muted-foreground">Yes, it can analyze tables, images, and formulas.</p>
-        </div>
-        <div className="bg-white rounded-lg p-6 shadow-sm border">
-          <h3 className="font-semibold mb-2">Are sources provided for answers?</h3>
+        </details>
+        <details className="feature-card">
+          <summary className="font-medium cursor-pointer">Are sources provided for answers?</summary>
           <p className="mt-2 text-muted-foreground">Yes, document name and page number are always provided together.</p>
-        </div>
-        <div className="bg-white rounded-lg p-6 shadow-sm border">
-          <h3 className="font-semibold mb-2">Can it be used in security-critical environments?</h3>
+        </details>
+        <details className="feature-card">
+          <summary className="font-medium cursor-pointer">Can it be used in security-critical environments?</summary>
           <p className="mt-2 text-muted-foreground">Yes, it can be safely used in air-gapped networks and intranets with 100% local processing.</p>
-        </div>
-        <div className="bg-white rounded-lg p-6 shadow-sm border">
-          <h3 className="font-semibold mb-2">What's the difference between free and paid plans?</h3>
+        </details>
+        <details className="feature-card">
+          <summary className="font-medium cursor-pointer">What's the difference between free and paid plans?</summary>
           <p className="mt-2 text-muted-foreground">Free has limitations on document/knowledge base count, Pro offers unlimited + advanced features, and Enterprise provides team management and security features.</p>
-        </div>
-        <div className="bg-white rounded-lg p-6 shadow-sm border">
-          <h3 className="font-semibold mb-2">Are languages other than Korean supported?</h3>
+        </details>
+        <details className="feature-card">
+          <summary className="font-medium cursor-pointer">Are languages other than Korean supported?</summary>
           <p className="mt-2 text-muted-foreground">Yes, various languages are supported, with exceptional performance on Korean documents.</p>
-        </div>
+        </details>
       </div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify(faqJsonLd)
+      }} />
     </div>
   </section>;
+};
 
 const Scenarios2 = () => <section className="section relative py-20 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-indigo-900"></div>

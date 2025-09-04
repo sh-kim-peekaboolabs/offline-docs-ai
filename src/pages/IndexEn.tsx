@@ -218,8 +218,8 @@ const Scenarios = () => {
                 </div>
                 <ul className="space-y-3 text-white/90">
                   {scenario.points.map((point, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <span className="mt-1 block h-1.5 w-1.5 rounded-full bg-white/60 flex-shrink-0" />
+                    <li key={index} className="flex items-start gap-3">
+                      <span className="mt-2 block h-1.5 w-1.5 rounded-full bg-white/60 flex-shrink-0" />
                       <span className="text-sm leading-relaxed">{point}</span>
                     </li>
                   ))}

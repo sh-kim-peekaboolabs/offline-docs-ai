@@ -420,6 +420,10 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
           <ul className="space-y-3 flex-1 text-sm">
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Pro 플랜 항목 모두 포함</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
               <span>폐쇄망/인트라넷 설치 지원</span>
             </li>
             <li className="flex items-start gap-2">

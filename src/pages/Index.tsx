@@ -298,7 +298,7 @@ const Security = () => <section id="security" className="section bg-gradient-to-
             </div>
             <h3 className="font-semibold">PC 안에서만 진행</h3>
           </div>
-          <p className="text-sm text-muted-foreground">모든 분석은 PC 안에서만 진행됩니다.</p>
+          <p className="text-sm text-muted-foreground">사용자님의 PC에서만 안전하게 처리됩니다. 데이터는 외부로 전송되지 않습니다.</p>
         </div>
         <div className="feature-card bg-white/80 backdrop-blur-sm border border-blue-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <div className="flex items-center gap-3 mb-3">

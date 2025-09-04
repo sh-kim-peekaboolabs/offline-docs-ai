@@ -7,7 +7,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield, Star, ChevronDown } from "lucide-react";
+import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield, Star, ChevronDown, Settings, BarChart3 } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { useEffect } from "react";
 import { usePageTracking, useSectionTracking } from "@/hooks/useAnalytics";
@@ -163,39 +163,87 @@ const Features = () => <section id="features" className="section bg-secondary-li
     </div>
   </section>;
 
-const Scenarios = () => <section id="scenarios" className="section" aria-labelledby="scenarios-heading">
+const Scenarios = () => {
+  const scenarios = [
+    {
+      id: 1,
+      title: "Technical Teams",
+      icon: Settings,
+      gradient: "from-blue-600 via-blue-700 to-indigo-800",
+      points: [
+        "Upload ISO26262, OEM standards, and partner guideline documents at once to find the specs you need instantly.",
+        "Find necessary items in seconds even from technical books over 600 pages."
+      ]
+    },
+    {
+      id: 2,
+      title: "Legal Teams",
+      icon: Scale,
+      gradient: "from-amber-600 via-orange-700 to-red-800",
+      points: [
+        "Reduce time spent flipping through hundreds of pages of contract documents looking for specific clauses.",
+        "Example: Ask about penalty clauses and get the exact page reference immediately."
+      ]
+    },
+    {
+      id: 3,
+      title: "Public & Research Institutions",
+      icon: BarChart3,
+      gradient: "from-emerald-600 via-teal-700 to-cyan-800",
+      points: [
+        "Extract only the references you need from multiple research papers. Example: Search for 'Kim○○(2021) dataset name' and verify instantly.",
+        "Register various manuals and check them when needed. Example: Find 'Chapter 5 emergency contact system in disaster prevention manual' in seconds."
+      ]
+    }
+  ];
+
+  return <section id="scenarios" className="section" aria-labelledby="scenarios-heading">
     <div className="container">
       <div className="text-center mb-12">
         <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-4">Scenarios</div>
         <h2 id="scenarios-heading" className="text-2xl md:text-3xl font-semibold mb-4">When You Need Localdocs</h2>
+        <p className="text-lg text-muted-foreground">This is when Localdocs is needed</p>
       </div>
-      <div className="space-y-8">
-        <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 border border-blue-200/50 shadow-lg">
-          <h3 className="text-xl font-semibold mb-3 text-blue-700">Technical Teams</h3>
-          <ul className="space-y-2 text-muted-foreground">
-            <li>• Upload ISO26262, OEM standards, and partner guideline documents at once to find the specs you need instantly.</li>
-            <li>• Find necessary items in seconds even from technical books over 600 pages.</li>
-          </ul>
-        </div>
-        <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 border border-green-200/50 shadow-lg">
-          <h3 className="text-xl font-semibold mb-3 text-green-700">Legal Teams</h3>
-          <ul className="space-y-2 text-muted-foreground">
-            <li>• Reduce time spent flipping through hundreds of pages of contract documents looking for specific clauses.</li>
-            <li>• Example: Ask about penalty clauses and get the exact page reference immediately.</li>
-          </ul>
-        </div>
-        <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 border border-purple-200/50 shadow-lg">
-          <h3 className="text-xl font-semibold mb-3 text-purple-700">Public & Research Institutions</h3>
-          <ul className="space-y-2 text-muted-foreground">
-            <li>• Extract only the references you need from multiple research papers.</li>
-            <li>• Example: Search for "Kim○○(2021) dataset name" and verify instantly.</li>
-            <li>• Register various manuals and check them when needed.</li>
-            <li>• Example: Find "Chapter 5 emergency contact system in disaster prevention manual" in seconds.</li>
-          </ul>
-        </div>
+      <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
+        {scenarios.map((scenario) => {
+          const IconComponent = scenario.icon;
+          return (
+            <div key={scenario.id} className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${scenario.gradient} p-8 text-white shadow-2xl`}>
+              <div className="relative z-10">
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="rounded-lg bg-white/20 p-2">
+                    <IconComponent className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-xl font-bold">{scenario.title}</h3>
+                </div>
+                <ul className="space-y-3 text-white/90">
+                  {scenario.points.map((point, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <span className="mt-1 block h-1.5 w-1.5 rounded-full bg-white/60 flex-shrink-0" />
+                      <span className="text-sm leading-relaxed">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white/10" />
+              <div className="absolute -bottom-4 -left-4 h-24 w-24 rounded-full bg-white/5" />
+            </div>
+          );
+        })}
+      </div>
+      <div className="text-center mt-16">
+        <p className="text-lg text-muted-foreground mb-6">
+          Improve your work efficiency 10x by introducing Localdocs right now
+        </p>
+        <a href="#cta">
+          <Button variant="hero" size="xl" className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary shadow-2xl">
+            Join Waitlist Now →
+          </Button>
+        </a>
       </div>
     </div>
   </section>;
+};
 
 const Security = () => <section id="security" className="section bg-gradient-to-br from-gray-50 to-blue-50/30" aria-labelledby="security-heading">
     <div className="container">

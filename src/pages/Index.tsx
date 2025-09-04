@@ -438,6 +438,10 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
               <span>미디어 전용 RAG 패키지 지원</span>
             </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>전담 기술 지원 및 온보딩</span>
+            </li>
           </ul>
           <div className="mt-6">
             <a href="#cta" className="w-full">

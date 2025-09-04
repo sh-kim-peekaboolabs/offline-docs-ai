@@ -11,7 +11,6 @@ import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, 
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { useEffect } from "react";
 import { usePageTracking, useSectionTracking } from "@/hooks/useAnalytics";
-
 const formSchema = z.object({
   email: z.string().email("유효한 이메일을 입력해 주세요."),
   consent: z.boolean().refine(val => val === true, {
@@ -32,9 +31,7 @@ const formSchema = z.object({
   linkedin_campaign_id: z.string().optional(),
   linkedin_ad_name: z.string().optional()
 });
-
 type FormValues = z.infer<typeof formSchema>;
-
 const Nav = () => {
   const scrollToTop = () => {
     window.scrollTo({
@@ -42,7 +39,6 @@ const Nav = () => {
       behavior: 'smooth'
     });
   };
-
   return <header className="sticky top-0 z-40 bg-background/80 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b">
     <div className="container flex items-center justify-between py-4">
       <div className="flex items-center gap-3 cursor-pointer" onClick={scrollToTop}>
@@ -75,7 +71,6 @@ const Nav = () => {
     </div>
   </header>;
 };
-
 const Hero = () => <section className="relative overflow-hidden">
     <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
     <div className="container relative py-20 md:py-28 text-center">
@@ -97,7 +92,6 @@ const Hero = () => <section className="relative overflow-hidden">
       </div>
     </div>
   </section>;
-
 const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
       <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">Localdocs, 이렇게 다릅니다</h2>
@@ -170,45 +164,30 @@ const Features = () => <section id="features" className="section bg-secondary-li
         </div>
       </div>
       <div className="text-center mt-8">
-        <p className="text-sm text-muted-foreground">현재는 PDF만 지원, 곧 HWP·PPTX·XLSX까지 확장 예정입니다.</p>
+        <p className="text-sm text-muted-foreground">현재는 PDF만 지원합니다. 곧 HWP·PPTX·XLSX까지 확장할 예정입니다.</p>
       </div>
     </div>
   </section>;
-
 const Scenarios = () => {
-  const scenarios = [
-    {
-      id: 1,
-      title: "기술팀",
-      icon: Settings,
-      gradient: "from-blue-600 via-blue-700 to-indigo-800",
-      points: [
-        "ISO26262, OEM 표준, 협력사 가이드라인 문서를 한 번에 올려두고 원하는 규격을 바로 찾아보세요.",
-        "600쪽이 넘는 기술 서적에서도 필요한 항목을 몇 초 만에 확인할 수 있습니다."
-      ]
-    },
-    {
-      id: 2,
-      title: "법무팀",
-      icon: Scale,
-      gradient: "from-amber-600 via-orange-700 to-red-800",
-      points: [
-        "수백 페이지 계약 문서를 넘기며 원하는 조항을 찾는 시간을 줄이세요.",
-        "예: 위약금 조항이 어디 있는지 물으면, 해당 쪽수를 바로 알려드립니다."
-      ]
-    },
-    {
-      id: 3,
-      title: "공공·연구기관",
-      icon: BarChart3,
-      gradient: "from-emerald-600 via-teal-700 to-cyan-800",
-      points: [
-        "여러 편의 논문 중 원하는 레퍼런스만 추려보세요. 예: '김○○(2021)의 데이터셋 이름'을 검색해 즉시 확인.",
-        "각종 매뉴얼을 등록해두고, 필요한 순간 바로 확인하세요. 예: '방재 매뉴얼 5장의 비상 연락 체계'를 몇 초 만에 찾습니다."
-      ]
-    }
-  ];
-
+  const scenarios = [{
+    id: 1,
+    title: "기술팀",
+    icon: Settings,
+    gradient: "from-blue-600 via-blue-700 to-indigo-800",
+    points: ["ISO26262, OEM 표준, 협력사 가이드라인 문서를 한 번에 올려두고 원하는 규격을 바로 찾아보세요.", "600쪽이 넘는 기술 서적에서도 필요한 항목을 몇 초 만에 확인할 수 있습니다."]
+  }, {
+    id: 2,
+    title: "법무팀",
+    icon: Scale,
+    gradient: "from-amber-600 via-orange-700 to-red-800",
+    points: ["수백 페이지 계약 문서를 넘기며 원하는 조항을 찾는 시간을 줄이세요.", "예: 위약금 조항이 어디 있는지 물으면, 해당 쪽수를 바로 알려드립니다."]
+  }, {
+    id: 3,
+    title: "공공·연구기관",
+    icon: BarChart3,
+    gradient: "from-emerald-600 via-teal-700 to-cyan-800",
+    points: ["여러 편의 논문 중 원하는 레퍼런스만 추려보세요. 예: '김○○(2021)의 데이터셋 이름'을 검색해 즉시 확인.", "각종 매뉴얼을 등록해두고, 필요한 순간 바로 확인하세요. 예: '방재 매뉴얼 5장의 비상 연락 체계'를 몇 초 만에 찾습니다."]
+  }];
   return <section id="scenarios" className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black" aria-labelledby="scenarios-heading">
     <div className="max-w-7xl mx-auto px-6">
       <div className="text-center mb-16">
@@ -221,10 +200,9 @@ const Scenarios = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {scenarios.map((scenario) => {
+        {scenarios.map(scenario => {
           const IconComponent = scenario.icon;
-          return (
-            <div key={scenario.id} className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${scenario.gradient} gpu-optimized p-8`}>
+          return <div key={scenario.id} className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${scenario.gradient} gpu-optimized p-8`}>
               <div className="relative h-full flex flex-col">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl group-hover:bg-white/30 transition-all duration-300">
@@ -236,14 +214,12 @@ const Scenarios = () => {
                 </div>
                 
                 <div className="space-y-4">
-                  {scenario.points.map((point, index) => (
-                    <div key={index} className="flex items-start gap-3">
+                  {scenario.points.map((point, index) => <div key={index} className="flex items-start gap-3">
                       <div className="w-2 h-2 bg-white/60 rounded-full mt-2 flex-shrink-0"></div>
                       <p className="text-gray-100 leading-relaxed group-hover:text-white transition-colors duration-300">
                         {point}
                       </p>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
 
                 <div className="mt-6">
@@ -252,8 +228,7 @@ const Scenarios = () => {
               </div>
               
               <div className="absolute inset-0 bg-gradient-to-t from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-          );
+            </div>;
         })}
       </div>
 
@@ -278,7 +253,6 @@ const Scenarios = () => {
     </div>
   </section>;
 };
-
 const Security = () => <section id="security" className="section bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden" aria-labelledby="security-heading">
     <div className="absolute inset-0 bg-gradient-to-r from-blue-100/50 to-indigo-100/50"></div>
     <div className="absolute top-10 right-10 w-32 h-32 bg-blue-200/30 rounded-full blur-2xl"></div>
@@ -330,7 +304,6 @@ const Security = () => <section id="security" className="section bg-gradient-to-
       </div>
     </div>
   </section>;
-
 const Pricing = () => <section id="pricing" className="section" aria-labelledby="pricing-heading">
     <div className="container">
       <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4 text-center">나에게 맞는 요금제를 선택하세요</h2>
@@ -461,71 +434,61 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
       </div>
     </div>
   </section>;
-
 const FAQ = () => {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: '인터넷이 없어도 사용할 수 있나요?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '네, 설치 후에는 인터넷 없이도 모든 기능이 동작합니다.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: '어떤 파일 형식을 지원하나요?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '현재는 PDF, 곧 HWP·PPTX·XLSX도 지원할 예정입니다.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: '표·그래프도 읽을 수 있나요?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '네, 표와 이미지, 수식까지 분석할 수 있습니다.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: '답변에 출처가 표시되나요?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '언제나 "문서명과 쪽수"까지 함께 제공됩니다.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: '보안이 중요한 환경에서도 사용할 수 있나요?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '네, 폐쇄망·인트라넷에서도 100% 로컬 처리로 안전하게 쓸 수 있습니다.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: '무료 플랜과 유료 플랜의 차이는 무엇인가요?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '무료는 문서/지식베이스 개수 제한이 있고, Pro는 무제한 + 고급 기능, Enterprise는 팀 관리·보안 기능까지 제공합니다.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: '한국어 외 다른 언어도 지원하나요?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '네, 다양한 언어의 문서를 지원하며 특히 한국어 문서에서 뛰어난 성능을 발휘합니다.'
-        }
+    mainEntity: [{
+      '@type': 'Question',
+      name: '인터넷이 없어도 사용할 수 있나요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '네, 설치 후에는 인터넷 없이도 모든 기능이 동작합니다.'
       }
-    ]
+    }, {
+      '@type': 'Question',
+      name: '어떤 파일 형식을 지원하나요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '현재는 PDF, 곧 HWP·PPTX·XLSX도 지원할 예정입니다.'
+      }
+    }, {
+      '@type': 'Question',
+      name: '표·그래프도 읽을 수 있나요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '네, 표와 이미지, 수식까지 분석할 수 있습니다.'
+      }
+    }, {
+      '@type': 'Question',
+      name: '답변에 출처가 표시되나요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '언제나 "문서명과 쪽수"까지 함께 제공됩니다.'
+      }
+    }, {
+      '@type': 'Question',
+      name: '보안이 중요한 환경에서도 사용할 수 있나요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '네, 폐쇄망·인트라넷에서도 100% 로컬 처리로 안전하게 쓸 수 있습니다.'
+      }
+    }, {
+      '@type': 'Question',
+      name: '무료 플랜과 유료 플랜의 차이는 무엇인가요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '무료는 문서/지식베이스 개수 제한이 있고, Pro는 무제한 + 고급 기능, Enterprise는 팀 관리·보안 기능까지 제공합니다.'
+      }
+    }, {
+      '@type': 'Question',
+      name: '한국어 외 다른 언어도 지원하나요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '네, 다양한 언어의 문서를 지원하며 특히 한국어 문서에서 뛰어난 성능을 발휘합니다.'
+      }
+    }]
   };
-
   return <section id="faq" className="section" aria-labelledby="faq-heading">
     <div className="container">
       <h2 id="faq-heading" className="text-2xl md:text-3xl font-semibold mb-6 text-center">자주 묻는 질문</h2>
@@ -565,12 +528,14 @@ const FAQ = () => {
     </div>
   </section>;
 };
-
 const CTA = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: {
+      errors,
+      isSubmitting
+    },
     setValue,
     reset,
     watch,
@@ -578,22 +543,20 @@ const CTA = () => {
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema)
   });
-
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    
+
     // UTM 파라미터 매핑
     const utmParams = {
       'utm_source': 'utm_source',
-      'utm_campaign': 'utm_campaign_id', 
+      'utm_campaign': 'utm_campaign_id',
       'utm_medium': 'utm_medium',
       'utm_campaign_name': 'utm_campaign_name',
       'utm_adset_id': 'utm_adset_id',
-      'utm_adset_name': 'utm_adset_name', 
+      'utm_adset_name': 'utm_adset_name',
       'utm_ad_id': 'utm_ad_id',
       'utm_ad_name': 'utm_ad_name'
     };
-
     Object.entries(utmParams).forEach(([paramName, fieldName]) => {
       const value = params.get(paramName);
       if (value) {
@@ -610,7 +573,6 @@ const CTA = () => {
       'utm_content': 'linkedin_ad_id',
       'creative_name': 'linkedin_ad_name'
     };
-
     Object.entries(linkedinParams).forEach(([paramName, fieldName]) => {
       const value = params.get(paramName);
       if (value) {
@@ -618,7 +580,6 @@ const CTA = () => {
       }
     });
   }, [setValue]);
-
   const onSubmit = async (values: FormValues) => {
     try {
       const insertData = {
@@ -639,9 +600,7 @@ const CTA = () => {
         linkedin_campaign_id: values.linkedin_campaign_id || null,
         linkedin_ad_name: values.linkedin_ad_name || null
       };
-
       const result = await supabase.from('email_signups').insert([insertData]);
-      
       if (result.error) {
         if (result.error.code === '23505') {
           toast.error("이미 등록된 이메일입니다.");
@@ -650,14 +609,12 @@ const CTA = () => {
         }
         return;
       }
-
       toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
       reset();
     } catch (error) {
       toast.error(`등록 중 오류가 발생했습니다: ${error instanceof Error ? error.message : '알 수 없는 오류'}`);
     }
   };
-
   return <section id="cta" className="section" aria-labelledby="cta-heading">
     <div className="container">
       <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">내 PDF와 직접 대화해보세요</h2>
@@ -689,11 +646,7 @@ const CTA = () => {
           <input type="hidden" {...register("linkedin_ad_name")} />
           
           <div className="flex items-center gap-2">
-            <Checkbox 
-              id="consent" 
-              checked={watch("consent")} 
-              onCheckedChange={(checked) => setValue("consent", !!checked)} 
-            />
+            <Checkbox id="consent" checked={watch("consent")} onCheckedChange={checked => setValue("consent", !!checked)} />
             <Label htmlFor="consent" className="text-sm text-muted-foreground">개인정보 수집 및 알림 수신에 동의합니다.</Label>
           </div>
           {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}
@@ -706,7 +659,6 @@ const CTA = () => {
     </div>
   </section>;
 };
-
 const Footer = () => <footer className="border-t">
     <div className="container py-8 text-sm">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
@@ -719,12 +671,10 @@ const Footer = () => <footer className="border-t">
       </div>
     </div>
   </footer>;
-
 const Index = () => {
   // 페이지뷰와 섹션뷰 자동 추적 활성화
   usePageTracking();
   useSectionTracking();
-
   return <div>
     <Nav />
     <main>
@@ -739,5 +689,4 @@ const Index = () => {
     <Footer />
   </div>;
 };
-
 export default Index;

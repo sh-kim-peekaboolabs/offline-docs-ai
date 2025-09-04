@@ -76,7 +76,7 @@ const Hero = () => <section className="relative overflow-hidden">
     <div className="container relative py-20 md:py-28 text-center">
       <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">오프라인 ChatPDF, Localdocs (로컬독스)</div>
       <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">수백 쪽 PDF에서 원하는 자료를<br />한번에 찾는 AI 검색기</h1>
-      <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">문서를 올려두고 질문만 하세요. 답과 출처를 한번에 알려드립니다.</p>
+      <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">질문만 하세요. 답과 출처를 한번에 알려드립니다.</p>
       <div className="mt-8 flex flex-col items-center justify-center gap-4">
         <a href="#cta"><Button variant="hero" size="xl">Waitlist 등록하기</Button></a>
         <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">

@@ -84,9 +84,6 @@ const Hero = () => <section className="relative overflow-hidden">
       <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
         긴 보고서를 올려두고, 궁금한 걸 물어보세요. AI가 답을 찾아주고, 문서와 쪽수까지 알려드립니다.
       </p>
-      <p className="mt-3 text-base text-muted-foreground/80 max-w-2xl mx-auto">
-        데이터 유출 걱정 없는 100% 오프라인 AI
-      </p>
       <div className="mt-8 flex flex-col items-center justify-center gap-4">
         <a href="#cta"><Button variant="hero" size="xl">Waitlist 등록하기</Button></a>
         <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">

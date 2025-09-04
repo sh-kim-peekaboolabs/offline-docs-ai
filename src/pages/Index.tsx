@@ -305,7 +305,7 @@ const Security = () => <section id="security" className="section bg-gradient-to-
             <div className="p-2 rounded-lg bg-green-100 text-green-600">
               <Shield className="w-5 h-5" />
             </div>
-            <h3 className="font-semibold">외부 전송 없음</h3>
+            <h3 className="font-semibold">데이터 외부 유출 차단</h3>
           </div>
           <p className="text-sm text-muted-foreground">외부 서버로 전송되지 않으니, 유출 위험이 전혀 없습니다.</p>
         </div>

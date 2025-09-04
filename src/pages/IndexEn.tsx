@@ -80,9 +80,9 @@ const Hero = () => <section className="relative overflow-hidden">
     <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
     <div className="container relative py-20 md:py-28 text-center">
       <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">Offline ChatPDF, Localdocs</div>
-      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">AI Search Engine That Finds<br />What You Need in Hundreds of PDF Pages at Once</h1>
+      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">Find Answers in Hundreds of PDF Pages, Locally</h1>
       <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-        Upload your documents and just ask questions. We'll provide answers with exact page references.
+        Simply upload your PDFs and get accurate answers with page numbers.
       </p>
       <div className="mt-8 flex flex-col items-center justify-center gap-4">
         <a href="#cta"><Button variant="hero" size="xl">Join Waitlist</Button></a>
@@ -530,34 +530,6 @@ const FAQ = () => {
   </section>;
 };
 
-const Scenarios2 = () => <section className="section relative py-20 overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-indigo-900"></div>
-    <div className="absolute inset-0 bg-black/40"></div>
-    <div className="container relative z-10">
-      <div className="text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Improve Your Work Efficiency 10x</h2>
-        <p className="text-gray-300 text-lg">
-          Introduce Localdocs to increase your work efficiency by 10x right now
-        </p>
-      </div>
-      <div className="text-center mt-16">
-        <div className="inline-flex flex-col items-center gap-4">
-          <a href="#cta">
-            <Button variant="hero" size="xl" className="bg-white text-primary hover:bg-gray-100 shadow-xl">
-              Join Waitlist Now
-            </Button>
-          </a>
-          <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
-            <span className="text-sm font-medium text-green-700">🔥 100+ applications submitted already!</span>
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{
-            animationDelay: '0.2s'
-          }}></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>;
 
 const CTA = () => {
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset, setValue } = useForm<FormValues>({
@@ -638,7 +610,6 @@ const CTA = () => {
   return <section id="cta" className="section bg-gradient-to-br from-primary/5 to-secondary/10" aria-labelledby="cta-heading">
     <div className="container">
       <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-4">CTA</div>
         <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-4">Chat Directly with Your PDFs</h2>
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
           Localdocs with no data leak concerns. Join the waitlist now and experience it first.
@@ -713,9 +684,8 @@ export default function IndexEn() {
         <Scenarios />
         <Security />
         <Pricing />
-        <FAQ />
-        <Scenarios2 />
         <CTA />
+        <FAQ />
       </main>
       <Footer />
     </div>

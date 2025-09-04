@@ -369,9 +369,6 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
 
         {/* Pro Plan */}
         <div className="pricing-card h-full flex flex-col border-2 border-primary rounded-lg p-6 bg-white relative">
-          <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-            <span className="bg-primary text-white px-4 py-1 rounded-full text-sm font-medium">추천</span>
-          </div>
           <div className="text-center mb-6">
             <h3 className="text-xl font-semibold mb-2">Pro</h3>
             <div className="text-3xl font-bold mb-2">$12<span className="text-lg font-normal">/월</span></div>

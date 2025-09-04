@@ -80,7 +80,7 @@ const Hero = () => <section className="relative overflow-hidden">
     <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
     <div className="container relative py-20 md:py-28 text-center">
       <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">오프라인 ChatPDF, Localdocs (로컬독스)</div>
-      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">PDF와 대화하듯, 오프라인에서도 안전하게</h1>
+      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">PDF와 대화하듯,<br />오프라인에서도 안전하게</h1>
       <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
         긴 보고서를 올려두고, 궁금한 걸 물어보세요. AI가 답을 찾아주고, 문서와 쪽수까지 알려드립니다.
       </p>

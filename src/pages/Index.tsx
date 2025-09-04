@@ -523,7 +523,7 @@ const FAQ = () => {
         </details>
         <details className="feature-card">
           <summary className="font-medium cursor-pointer">어떤 파일 형식을 지원하나요?</summary>
-          <p className="mt-2 text-muted-foreground">현재는 PDF, 곧 HWP·PPTX·XLSX도 지원할 예정입니다.</p>
+          <p className="mt-2 text-muted-foreground">현재는 PDF만 지원됩니다. 곧 HWP, PPTX, XLSX 등 다양한 포맷을 추가할 예정입니다.</p>
         </details>
         <details className="feature-card">
           <summary className="font-medium cursor-pointer">표·그래프도 읽을 수 있나요?</summary>

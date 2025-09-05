@@ -11,7 +11,6 @@ import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, 
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { useEffect } from "react";
 import { usePageTracking, useSectionTracking } from "@/hooks/useAnalytics";
-
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address."),
   consent: z.boolean().refine(val => val === true, {
@@ -32,9 +31,7 @@ const formSchema = z.object({
   linkedin_campaign_id: z.string().optional(),
   linkedin_ad_name: z.string().optional()
 });
-
 type FormValues = z.infer<typeof formSchema>;
-
 const Nav = () => {
   const scrollToTop = () => {
     window.scrollTo({
@@ -42,7 +39,6 @@ const Nav = () => {
       behavior: 'smooth'
     });
   };
-
   return <header className="sticky top-0 z-40 bg-background/80 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b">
     <div className="container flex items-center justify-between py-4">
       <div className="flex items-center gap-3 cursor-pointer" onClick={scrollToTop}>
@@ -75,7 +71,6 @@ const Nav = () => {
     </div>
   </header>;
 };
-
 const Hero = () => <section className="relative overflow-hidden">
     <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
     <div className="container relative py-20 md:py-28 text-center">
@@ -88,7 +83,7 @@ const Hero = () => <section className="relative overflow-hidden">
         <a href="#cta"><Button variant="hero" size="xl">Join Waitlist</Button></a>
         <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
-          <span className="text-sm font-medium text-green-700">🔥 100+ applications submitted already!</span>
+          <span className="text-sm font-medium text-green-700">🔥 100+ applications submitted!</span>
           <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{
           animationDelay: '0.2s'
         }}></div>
@@ -97,7 +92,6 @@ const Hero = () => <section className="relative overflow-hidden">
       </div>
     </div>
   </section>;
-
 const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
       <div className="text-center mb-12">
@@ -162,41 +156,26 @@ const Features = () => <section id="features" className="section bg-secondary-li
       </div>
     </div>
   </section>;
-
 const Scenarios = () => {
-  const scenarios = [
-    {
-      id: 1,
-      title: "Technical Teams",
-      icon: Settings,
-      gradient: "from-blue-600 via-blue-700 to-indigo-800",
-      points: [
-        "Upload ISO26262, OEM standards, and partner guideline documents at once to find the specs you need instantly.",
-        "Find necessary items in seconds even from technical books over 600 pages."
-      ]
-    },
-    {
-      id: 2,
-      title: "Legal Teams",
-      icon: Scale,
-      gradient: "from-amber-600 via-orange-700 to-red-800",
-      points: [
-        "Reduce time spent flipping through hundreds of pages of contract documents looking for specific clauses.",
-        "Example: Ask about penalty clauses and get the exact page reference immediately."
-      ]
-    },
-    {
-      id: 3,
-      title: "Public & Research Institutions",
-      icon: BarChart3,
-      gradient: "from-emerald-600 via-teal-700 to-cyan-800",
-      points: [
-        "Extract only the references you need from multiple research papers. Example: Search for 'Kim○○(2021) dataset name' and verify instantly.",
-        "Register various manuals and check them when needed. Example: Find 'Chapter 5 emergency contact system in disaster prevention manual' in seconds."
-      ]
-    }
-  ];
-
+  const scenarios = [{
+    id: 1,
+    title: "Technical Teams",
+    icon: Settings,
+    gradient: "from-blue-600 via-blue-700 to-indigo-800",
+    points: ["Upload ISO26262, OEM standards, and partner guideline documents at once to find the specs you need instantly.", "Find necessary items in seconds even from technical books over 600 pages."]
+  }, {
+    id: 2,
+    title: "Legal Teams",
+    icon: Scale,
+    gradient: "from-amber-600 via-orange-700 to-red-800",
+    points: ["Reduce time spent flipping through hundreds of pages of contract documents looking for specific clauses.", "Example: Ask about penalty clauses and get the exact page reference immediately."]
+  }, {
+    id: 3,
+    title: "Public & Research Institutions",
+    icon: BarChart3,
+    gradient: "from-emerald-600 via-teal-700 to-cyan-800",
+    points: ["Extract only the references you need from multiple research papers. Example: Search for 'Kim○○(2021) dataset name' and verify instantly.", "Register various manuals and check them when needed. Example: Find 'Chapter 5 emergency contact system in disaster prevention manual' in seconds."]
+  }];
   return <section id="scenarios" className="section" aria-labelledby="scenarios-heading">
     <div className="container">
       <div className="text-center mb-12">
@@ -205,10 +184,9 @@ const Scenarios = () => {
         <p className="text-lg text-muted-foreground">This is when Localdocs is needed</p>
       </div>
       <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
-        {scenarios.map((scenario) => {
+        {scenarios.map(scenario => {
           const IconComponent = scenario.icon;
-          return (
-            <div key={scenario.id} className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${scenario.gradient} p-8 text-white shadow-2xl`}>
+          return <div key={scenario.id} className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${scenario.gradient} p-8 text-white shadow-2xl`}>
               <div className="relative z-10">
                 <div className="mb-4 flex items-center gap-3">
                   <div className="rounded-lg bg-white/20 p-2">
@@ -217,18 +195,15 @@ const Scenarios = () => {
                   <h3 className="text-xl font-bold">{scenario.title}</h3>
                 </div>
                 <ul className="space-y-3 text-white/90">
-                  {scenario.points.map((point, index) => (
-                    <li key={index} className="flex items-start gap-3">
+                  {scenario.points.map((point, index) => <li key={index} className="flex items-start gap-3">
                       <span className="mt-2 block h-1.5 w-1.5 rounded-full bg-white/60 flex-shrink-0" />
                       <span className="text-sm leading-relaxed">{point}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </div>
               <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white/10" />
               <div className="absolute -bottom-4 -left-4 h-24 w-24 rounded-full bg-white/5" />
-            </div>
-          );
+            </div>;
         })}
       </div>
       <div className="text-center mt-16">
@@ -244,7 +219,6 @@ const Scenarios = () => {
     </div>
   </section>;
 };
-
 const Security = () => <section id="security" className="section bg-gradient-to-br from-gray-50 to-blue-50/30" aria-labelledby="security-heading">
     <div className="container">
       <div className="text-center mb-12">
@@ -291,7 +265,6 @@ const Security = () => <section id="security" className="section bg-gradient-to-
       </div>
     </div>
   </section>;
-
 const Pricing = () => <section id="pricing" className="section" aria-labelledby="pricing-heading">
     <div className="container">
       <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4 text-center">Choose the Right Plan for You</h2>
@@ -422,71 +395,61 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
       </div>
     </div>
   </section>;
-
 const FAQ = () => {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'Can I use it without internet?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, all features work without internet after installation.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'What file formats are supported?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Currently only PDF is supported. We plan to add various formats like HWP, PPTX, and XLSX soon.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'Can it read tables and graphs?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, it can analyze tables, images, and formulas.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'Are sources provided for answers?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, document name and page number are always provided together.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'Can it be used in security-critical environments?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, it can be safely used in air-gapped networks and intranets with 100% local processing.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: "What's the difference between free and paid plans?",
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Free has limitations on document/knowledge base count, Pro offers unlimited + advanced features, and Enterprise provides team management and security features.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'Are languages other than Korean supported?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, various languages are supported, with exceptional performance on Korean documents.'
-        }
+    mainEntity: [{
+      '@type': 'Question',
+      name: 'Can I use it without internet?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, all features work without internet after installation.'
       }
-    ]
+    }, {
+      '@type': 'Question',
+      name: 'What file formats are supported?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Currently only PDF is supported. We plan to add various formats like HWP, PPTX, and XLSX soon.'
+      }
+    }, {
+      '@type': 'Question',
+      name: 'Can it read tables and graphs?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, it can analyze tables, images, and formulas.'
+      }
+    }, {
+      '@type': 'Question',
+      name: 'Are sources provided for answers?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, document name and page number are always provided together.'
+      }
+    }, {
+      '@type': 'Question',
+      name: 'Can it be used in security-critical environments?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, it can be safely used in air-gapped networks and intranets with 100% local processing.'
+      }
+    }, {
+      '@type': 'Question',
+      name: "What's the difference between free and paid plans?",
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Free has limitations on document/knowledge base count, Pro offers unlimited + advanced features, and Enterprise provides team management and security features.'
+      }
+    }, {
+      '@type': 'Question',
+      name: 'Are languages other than Korean supported?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, various languages are supported, with exceptional performance on Korean documents.'
+      }
+    }]
   };
-
   return <section id="faq" className="section bg-secondary-lighter/50" aria-labelledby="faq-heading">
     <div className="container">
       <div className="text-center mb-12">
@@ -529,13 +492,19 @@ const FAQ = () => {
     </div>
   </section>;
 };
-
-
 const CTA = () => {
-  const { register, handleSubmit, formState: { errors, isSubmitting }, reset, setValue } = useForm<FormValues>({
+  const {
+    register,
+    handleSubmit,
+    formState: {
+      errors,
+      isSubmitting
+    },
+    reset,
+    setValue
+  } = useForm<FormValues>({
     resolver: zodResolver(formSchema)
   });
-
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const utmSource = urlParams.get('utm_source');
@@ -546,7 +515,7 @@ const CTA = () => {
     const utmAdsetName = urlParams.get('utm_adset_name') || urlParams.get('adsetname');
     const utmAdId = urlParams.get('utm_ad_id') || urlParams.get('adid');
     const utmAdName = urlParams.get('utm_ad_name') || urlParams.get('adname');
-    
+
     // LinkedIn specific parameters
     const linkedinCampaignName = urlParams.get('linkedin_campaign_name');
     const linkedinAdId = urlParams.get('linkedin_ad_id');
@@ -554,7 +523,6 @@ const CTA = () => {
     const linkedinCampaignGroupName = urlParams.get('linkedin_campaign_group_name');
     const linkedinCampaignId = urlParams.get('linkedin_campaign_id');
     const linkedinAdName = urlParams.get('linkedin_ad_name');
-
     if (utmSource) setValue('utm_source', utmSource);
     if (utmCampaignId) setValue('utm_campaign_id', utmCampaignId);
     if (utmMedium) setValue('utm_medium', utmMedium);
@@ -563,7 +531,6 @@ const CTA = () => {
     if (utmAdsetName) setValue('utm_adset_name', utmAdsetName);
     if (utmAdId) setValue('utm_ad_id', utmAdId);
     if (utmAdName) setValue('utm_ad_name', utmAdName);
-    
     if (linkedinCampaignName) setValue('linkedin_campaign_name', linkedinCampaignName);
     if (linkedinAdId) setValue('linkedin_ad_id', linkedinAdId);
     if (linkedinCampaignGroupId) setValue('linkedin_campaign_group_id', linkedinCampaignGroupId);
@@ -571,7 +538,6 @@ const CTA = () => {
     if (linkedinCampaignId) setValue('linkedin_campaign_id', linkedinCampaignId);
     if (linkedinAdName) setValue('linkedin_ad_name', linkedinAdName);
   }, [setValue]);
-
   const onSubmit = async (values: FormValues) => {
     try {
       const insertData = {
@@ -592,13 +558,10 @@ const CTA = () => {
         linkedin_campaign_id: values.linkedin_campaign_id || null,
         linkedin_ad_name: values.linkedin_ad_name || null
       };
-
-      const { error } = await supabase
-        .from('email_signups')
-        .insert([insertData]);
-
+      const {
+        error
+      } = await supabase.from('email_signups').insert([insertData]);
       if (error) throw error;
-
       toast.success("Successfully joined the waitlist!");
       reset();
     } catch (error) {
@@ -606,7 +569,6 @@ const CTA = () => {
       toast.error("An error occurred. Please try again.");
     }
   };
-
   return <section id="cta" className="section bg-gradient-to-br from-primary/5 to-secondary/10" aria-labelledby="cta-heading">
     <div className="container">
       <div className="text-center mb-12">
@@ -618,37 +580,19 @@ const CTA = () => {
       <div className="max-w-md mx-auto">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <Input 
-              type="email" 
-              placeholder="Enter your email"
-              {...register('email')}
-              className="w-full"
-            />
-            {errors.email && (
-              <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
-            )}
+            <Input type="email" placeholder="Enter your email" {...register('email')} className="w-full" />
+            {errors.email && <p className="text-sm text-destructive mt-1">{errors.email.message}</p>}
           </div>
           
           <div className="flex items-start space-x-2">
-            <Checkbox 
-              id="consent"
-              {...register('consent')}
-            />
+            <Checkbox id="consent" {...register('consent')} />
             <Label htmlFor="consent" className="text-sm text-muted-foreground leading-relaxed">
               I agree to receive product updates and marketing emails.
             </Label>
           </div>
-          {errors.consent && (
-            <p className="text-sm text-destructive">{errors.consent.message}</p>
-          )}
+          {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}
 
-          <Button 
-            type="submit" 
-            variant="hero" 
-            size="lg" 
-            className="w-full"
-            disabled={isSubmitting}
-          >
+          <Button type="submit" variant="hero" size="lg" className="w-full" disabled={isSubmitting}>
             {isSubmitting ? "Joining..." : "Join Waitlist"}
           </Button>
         </form>
@@ -656,7 +600,6 @@ const CTA = () => {
     </div>
   </section>;
 };
-
 const Footer = () => <footer className="bg-muted py-12">
     <div className="container">
       <div className="flex flex-col md:flex-row items-center justify-between">
@@ -670,13 +613,10 @@ const Footer = () => <footer className="bg-muted py-12">
       </div>
     </div>
   </footer>;
-
 export default function IndexEn() {
   usePageTracking();
   useSectionTracking();
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <Nav />
       <main>
         <Hero />
@@ -688,6 +628,5 @@ export default function IndexEn() {
         <FAQ />
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 }

@@ -405,6 +405,10 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>지식베이스 공유 기능</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
               <span>기업 데이터를 학습한 사내 AI 구축</span>
             </li>
             <li className="flex items-start gap-2">

@@ -373,7 +373,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>요약 결과 내보내기</span>
+              <span>결과 내보내기</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />

@@ -327,10 +327,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
               <span>지식베이스당 최대 3개 문서 등록 가능</span>
             </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>개인 학습·소규모 용도</span>
-            </li>
+            
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
               <span>표·이미지·수식 완전 지원</span>
@@ -372,7 +369,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>요약 결과 내보내기(Word, PPTX, Markdown)</span>
+              <span>요약 결과 내보내기</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />

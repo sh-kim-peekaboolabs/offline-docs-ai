@@ -413,7 +413,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>중앙 관리자용 어드민 대시보드</span>
+              <span>중앙 관리자용 어드민 대시보드(라이센스 관리)</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />

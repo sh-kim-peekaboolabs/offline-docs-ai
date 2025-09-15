@@ -331,11 +331,11 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Includes upcoming HWP, PPTX, XLSX support</span>
+              <span>Includes HWP, PPTX, XLSX support (upcoming)</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Summary export (Word, PPTX, Markdown)</span>
+              <span>Summary export (Word, PPTX, TXT) (upcoming)</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />

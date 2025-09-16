@@ -284,11 +284,11 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>1 knowledge base provided</span>
+              <span>1 folder provided</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Up to 3 documents per knowledge base</span>
+              <span>Up to 3 documents per folder</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
@@ -323,7 +323,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Unlimited knowledge base creation</span>
+              <span>Unlimited folder creation</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
@@ -439,7 +439,7 @@ const FAQ = () => {
       name: "What's the difference between free and paid plans?",
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Free has limitations on document/knowledge base count, Pro offers unlimited + advanced features, and Enterprise provides team management and security features.'
+        text: 'Free has limitations on document/folder count, Pro offers unlimited + advanced features, and Enterprise provides team management and security features.'
       }
     }, {
       '@type': 'Question',
@@ -479,7 +479,7 @@ const FAQ = () => {
         </details>
         <details className="feature-card">
           <summary className="font-medium cursor-pointer">What's the difference between free and paid plans?</summary>
-          <p className="mt-2 text-muted-foreground">Free has limitations on document/knowledge base count, Pro offers unlimited + advanced features, and Enterprise provides team management and security features.</p>
+          <p className="mt-2 text-muted-foreground">Free has limitations on document/folder count, Pro offers unlimited + advanced features, and Enterprise provides team management and security features.</p>
         </details>
         <details className="feature-card">
           <summary className="font-medium cursor-pointer">Are languages other than Korean supported?</summary>

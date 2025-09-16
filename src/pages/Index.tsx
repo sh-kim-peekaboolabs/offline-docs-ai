@@ -321,11 +321,11 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>지식베이스 1개 생성</span>
+              <span>폴더 1개 생성</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>지식베이스당 문서 최대 3개 업로드 가능</span>
+              <span>폴더당 문서 최대 3개 업로드 가능</span>
             </li>
             
             <li className="flex items-start gap-2">
@@ -361,11 +361,11 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>지식베이스 무제한 생성</span>
+              <span>폴더 무제한 생성</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>지식베이스당 문서 최대 50개 업로드</span>
+              <span>폴더당 문서 최대 50개 업로드</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
@@ -405,7 +405,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>지식베이스 공유 기능</span>
+              <span>폴더 공유 기능</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
@@ -481,7 +481,7 @@ const FAQ = () => {
       name: '무료 플랜과 유료 플랜의 차이는 무엇인가요?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: '무료는 문서/지식베이스 개수 제한이 있고, Pro는 무제한 + 고급 기능, Enterprise는 팀 관리·보안 기능까지 제공합니다.'
+        text: '무료는 문서/폴더 개수 제한이 있고, Pro는 무제한 + 고급 기능, Enterprise는 팀 관리·보안 기능까지 제공합니다.'
       }
     }, {
       '@type': 'Question',
@@ -518,7 +518,7 @@ const FAQ = () => {
         </details>
         <details className="feature-card">
           <summary className="font-medium cursor-pointer">무료 플랜과 유료 플랜의 차이는 무엇인가요?</summary>
-          <p className="mt-2 text-muted-foreground">무료는 문서/지식베이스 개수 제한이 있고, Pro는 무제한 + 고급 기능, Enterprise는 팀 관리·보안 기능까지 제공합니다.</p>
+          <p className="mt-2 text-muted-foreground">무료는 문서/폴더 개수 제한이 있고, Pro는 무제한 + 고급 기능, Enterprise는 팀 관리·보안 기능까지 제공합니다.</p>
         </details>
         <details className="feature-card">
           <summary className="font-medium cursor-pointer">한국어 외 다른 언어도 지원하나요?</summary>

@@ -181,6 +181,12 @@ const Scenarios = () => {
     points: ["수백 페이지 계약 문서를 넘기며 원하는 조항을 찾는 시간을 줄이세요.", "예: 위약금 조항이 어디 있는지 물으면, 해당 쪽수를 바로 알려드립니다."]
   }, {
     id: 3,
+    title: "금융팀",
+    icon: TrendingUp,
+    gradient: "from-purple-600 via-pink-700 to-rose-800",
+    points: ["400p가 넘는 공시보고서에서 재무제표 정보를 빠르게 얻고 싶을 때.", "사내 재무 정보들을 종합하여 인사이트를 얻고 싶을 때."]
+  }, {
+    id: 4,
     title: "공공·연구기관",
     icon: BarChart3,
     gradient: "from-emerald-600 via-teal-700 to-cyan-800",
@@ -197,7 +203,7 @@ const Scenarios = () => {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {scenarios.map(scenario => {
           const IconComponent = scenario.icon;
           return <div key={scenario.id} className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${scenario.gradient} gpu-optimized p-8`}>

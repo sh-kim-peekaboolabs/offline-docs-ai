@@ -74,9 +74,9 @@ const Nav = () => {
 const Hero = () => <section className="relative overflow-hidden">
     <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
     <div className="container relative py-20 md:py-28 text-center">
-      <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">보안이 중요한 팀을 위한 PDF 검색·요약 AI, 로컬독스</div>
-      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">수십 개의 PDF에서 필요한 정보를<br />한 번에 찾아보세요</h1>
-      <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">인터넷 연결 없이 작동하며, 모든 데이터는 절대 외부로 전송되지 않습니다</p>
+      <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">오프라인 ChatPDF, Localdocs (로컬독스)</div>
+      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">수십 개의 PDF에서 원하는 자료를<br />한번에 찾아보세요</h1>
+      <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">질문만 하세요. 답과 출처를 1분 만에 알려드립니다.</p>
       <div className="mt-8 flex flex-col items-center justify-center gap-4">
         <a href="#cta"><Button variant="hero" size="xl">Waitlist 등록하기</Button></a>
         <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">
@@ -92,7 +92,7 @@ const Hero = () => <section className="relative overflow-hidden">
   </section>;
 const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
-      <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">Localdocs, 이렇게 다릅니다</h2>
+      <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">로컬독스, 이렇게 다릅니다</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="feature-card text-left p-6">
           <div className="flex items-start gap-3 mb-3">
@@ -620,7 +620,7 @@ const CTA = () => {
   };
   return <section id="cta" className="section" aria-labelledby="cta-heading">
     <div className="container">
-      <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">내 PDF와 직접 대화해보세요</h2>
+      <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">내 PDF와 안전하게 대화하세요</h2>
       <p className="text-muted-foreground mb-6 text-center">데이터 유출 걱정 없는 로컬독스, 지금 Waitlist 등록하고 먼저 경험해 보세요.</p>
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto">
         <div className="space-y-4">

@@ -171,6 +171,12 @@ const Scenarios = () => {
     points: ["Reduce time spent flipping through hundreds of pages of contract documents looking for specific clauses.", "Example: Ask about penalty clauses and get the exact page reference immediately."]
   }, {
     id: 3,
+    title: "Financial Teams",
+    icon: TrendingUp,
+    gradient: "from-purple-600 via-pink-700 to-rose-800",
+    points: ["When you need to quickly extract financial statement information from disclosure reports exceeding 400 pages.", "When you want to synthesize internal financial information to gain insights."]
+  }, {
+    id: 4,
     title: "Public & Research Institutions",
     icon: BarChart3,
     gradient: "from-emerald-600 via-teal-700 to-cyan-800",
@@ -183,7 +189,7 @@ const Scenarios = () => {
         <h2 id="scenarios-heading" className="text-2xl md:text-3xl font-semibold mb-4">When You Need Localdocs</h2>
         <p className="text-lg text-muted-foreground">This is when Localdocs is needed</p>
       </div>
-      <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {scenarios.map(scenario => {
           const IconComponent = scenario.icon;
           return <div key={scenario.id} className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${scenario.gradient} p-8 text-white shadow-2xl`}>

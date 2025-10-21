@@ -621,7 +621,7 @@ const CTA = () => {
   return <section id="cta" className="section" aria-labelledby="cta-heading">
     <div className="container">
       <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">내 PDF와 직접 대화해보세요</h2>
-      <p className="text-muted-foreground mb-6 text-center">데이터 유출 걱정 없는 Localdocs, 지금 Waitlist 등록하고 먼저 경험해 보세요.</p>
+      <p className="text-muted-foreground mb-6 text-center">데이터 유출 걱정 없는 로컬독스, 지금 Waitlist 등록하고 먼저 경험해 보세요.</p>
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto">
         <div className="space-y-4">
           <div>

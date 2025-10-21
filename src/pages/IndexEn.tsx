@@ -12,24 +12,25 @@ import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { useEffect } from "react";
 import { usePageTracking, useSectionTracking } from "@/hooks/useAnalytics";
 const formSchema = z.object({
-  email: z.string().email("Please enter a valid email address."),
+  email: z.string().email("Please enter a valid email address.").max(255, "Email must be less than 255 characters."),
   consent: z.boolean().refine(val => val === true, {
     message: "Consent is required."
   }),
-  utm_source: z.string().optional(),
-  utm_campaign_id: z.string().optional(),
-  utm_medium: z.string().optional(),
-  utm_campaign_name: z.string().optional(),
-  utm_adset_id: z.string().optional(),
-  utm_adset_name: z.string().optional(),
-  utm_ad_id: z.string().optional(),
-  utm_ad_name: z.string().optional(),
-  linkedin_campaign_name: z.string().optional(),
-  linkedin_ad_id: z.string().optional(),
-  linkedin_campaign_group_id: z.string().optional(),
-  linkedin_campaign_group_name: z.string().optional(),
-  linkedin_campaign_id: z.string().optional(),
-  linkedin_ad_name: z.string().optional()
+  honeypot: z.string().max(0).optional(), // Anti-spam honeypot field
+  utm_source: z.string().max(100).optional(),
+  utm_campaign_id: z.string().max(100).optional(),
+  utm_medium: z.string().max(100).optional(),
+  utm_campaign_name: z.string().max(200).optional(),
+  utm_adset_id: z.string().max(100).optional(),
+  utm_adset_name: z.string().max(200).optional(),
+  utm_ad_id: z.string().max(100).optional(),
+  utm_ad_name: z.string().max(200).optional(),
+  linkedin_campaign_name: z.string().max(200).optional(),
+  linkedin_ad_id: z.string().max(100).optional(),
+  linkedin_campaign_group_id: z.string().max(100).optional(),
+  linkedin_campaign_group_name: z.string().max(200).optional(),
+  linkedin_campaign_id: z.string().max(100).optional(),
+  linkedin_ad_name: z.string().max(200).optional()
 });
 type FormValues = z.infer<typeof formSchema>;
 const Nav = () => {
@@ -546,6 +547,12 @@ const CTA = () => {
   }, [setValue]);
   const onSubmit = async (values: FormValues) => {
     try {
+      // Honeypot check - reject if filled
+      if (values.honeypot) {
+        toast.error("Invalid request.");
+        return;
+      }
+
       const insertData = {
         email: values.email,
         consent: values.consent,
@@ -571,7 +578,6 @@ const CTA = () => {
       toast.success("Successfully joined the waitlist!");
       reset();
     } catch (error) {
-      console.error('Error:', error);
       toast.error("An error occurred. Please try again.");
     }
   };
@@ -589,6 +595,16 @@ const CTA = () => {
             <Input type="email" placeholder="Enter your email" {...register('email')} className="w-full" />
             {errors.email && <p className="text-sm text-destructive mt-1">{errors.email.message}</p>}
           </div>
+          
+          {/* Honeypot field - hidden from users, catches bots */}
+          <input 
+            type="text" 
+            {...register('honeypot')} 
+            style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
           
           <div className="flex items-start space-x-2">
             <Checkbox id="consent" {...register('consent')} />

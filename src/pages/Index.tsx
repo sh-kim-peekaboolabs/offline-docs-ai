@@ -12,24 +12,25 @@ import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { useEffect } from "react";
 import { usePageTracking, useSectionTracking } from "@/hooks/useAnalytics";
 const formSchema = z.object({
-  email: z.string().email("유효한 이메일을 입력해 주세요."),
+  email: z.string().email("유효한 이메일을 입력해 주세요.").max(255, "이메일은 255자 이하여야 합니다."),
   consent: z.boolean().refine(val => val === true, {
     message: "동의가 필요합니다."
   }),
-  utm_source: z.string().optional(),
-  utm_campaign_id: z.string().optional(),
-  utm_medium: z.string().optional(),
-  utm_campaign_name: z.string().optional(),
-  utm_adset_id: z.string().optional(),
-  utm_adset_name: z.string().optional(),
-  utm_ad_id: z.string().optional(),
-  utm_ad_name: z.string().optional(),
-  linkedin_campaign_name: z.string().optional(),
-  linkedin_ad_id: z.string().optional(),
-  linkedin_campaign_group_id: z.string().optional(),
-  linkedin_campaign_group_name: z.string().optional(),
-  linkedin_campaign_id: z.string().optional(),
-  linkedin_ad_name: z.string().optional()
+  honeypot: z.string().max(0).optional(), // Anti-spam honeypot field
+  utm_source: z.string().max(100).optional(),
+  utm_campaign_id: z.string().max(100).optional(),
+  utm_medium: z.string().max(100).optional(),
+  utm_campaign_name: z.string().max(200).optional(),
+  utm_adset_id: z.string().max(100).optional(),
+  utm_adset_name: z.string().max(200).optional(),
+  utm_ad_id: z.string().max(100).optional(),
+  utm_ad_name: z.string().max(200).optional(),
+  linkedin_campaign_name: z.string().max(200).optional(),
+  linkedin_ad_id: z.string().max(100).optional(),
+  linkedin_campaign_group_id: z.string().max(100).optional(),
+  linkedin_campaign_group_name: z.string().max(200).optional(),
+  linkedin_campaign_id: z.string().max(100).optional(),
+  linkedin_ad_name: z.string().max(200).optional()
 });
 type FormValues = z.infer<typeof formSchema>;
 const Nav = () => {
@@ -587,6 +588,12 @@ const CTA = () => {
   }, [setValue]);
   const onSubmit = async (values: FormValues) => {
     try {
+      // Honeypot check - reject if filled
+      if (values.honeypot) {
+        toast.error("잘못된 요청입니다.");
+        return;
+      }
+
       const insertData = {
         email: values.email,
         consent: values.consent,
@@ -610,14 +617,14 @@ const CTA = () => {
         if (result.error.code === '23505') {
           toast.error("이미 등록된 이메일입니다.");
         } else {
-          toast.error(`등록 중 오류가 발생했습니다: ${result.error.message}`);
+          toast.error("등록 중 오류가 발생했습니다.");
         }
         return;
       }
       toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
       reset();
     } catch (error) {
-      toast.error(`등록 중 오류가 발생했습니다: ${error instanceof Error ? error.message : '알 수 없는 오류'}`);
+      toast.error("등록 중 오류가 발생했습니다.");
     }
   };
   return <section id="cta" className="section" aria-labelledby="cta-heading">
@@ -631,6 +638,16 @@ const CTA = () => {
             <Input id="email" type="email" placeholder="hello@localdocs.ai" {...register("email")} />
             {errors.email && <p className="text-sm text-destructive mt-1">{errors.email.message}</p>}
           </div>
+          
+          {/* Honeypot field - hidden from users, catches bots */}
+          <input 
+            type="text" 
+            {...register("honeypot")} 
+            style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
           
           {/* Hidden UTM 필드들 */}
           <input type="hidden" {...register("utm_source")} />

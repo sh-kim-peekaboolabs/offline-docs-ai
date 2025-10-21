@@ -1,12 +1,14 @@
 import ReactGA from 'react-ga4';
 
+const isDev = import.meta.env.DEV;
+
 // Google Analytics 초기화
 export const initGA = (measurementId: string) => {
-  console.log('🚀 Initializing Google Analytics with ID:', measurementId);
+  if (isDev) console.log('🚀 Initializing Google Analytics with ID:', measurementId);
   
   ReactGA.initialize(measurementId);
   
-  console.log('✅ Google Analytics initialized successfully');
+  if (isDev) console.log('✅ Google Analytics initialized successfully');
   
   // 초기 페이지뷰 전송
   trackPageView(window.location.pathname + window.location.search);
@@ -14,7 +16,7 @@ export const initGA = (measurementId: string) => {
 
 // 페이지뷰 추적
 export const trackPageView = (path: string, title?: string) => {
-  console.log('📊 Tracking page view:', { path, title });
+  if (isDev) console.log('📊 Tracking page view:', { path, title });
   
   ReactGA.send({ 
     hitType: "pageview", 

@@ -192,7 +192,7 @@ const Scenarios = () => {
         <h2 id="scenarios-heading" className="text-4xl md:text-5xl font-bold text-white mb-6">
           이럴 때 
           <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            {" "}Localdocs가 필요합니다
+            {" "}로컬독스가 필요합니다
           </span>
         </h2>
       </div>

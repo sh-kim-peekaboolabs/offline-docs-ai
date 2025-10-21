@@ -225,10 +225,6 @@ const Scenarios = () => {
                       </p>
                     </div>)}
                 </div>
-
-                <div className="mt-6">
-                  <div className="w-full h-1 bg-gradient-to-r from-white/30 to-transparent rounded-full group-hover:from-white/50 transition-all duration-300" />
-                </div>
               </div>
               
               <div className="absolute inset-0 bg-gradient-to-t from-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

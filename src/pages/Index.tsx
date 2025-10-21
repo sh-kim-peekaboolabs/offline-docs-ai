@@ -43,7 +43,7 @@ const Nav = () => {
     <div className="container flex items-center justify-between py-4">
       <div className="flex items-center gap-3 cursor-pointer" onClick={scrollToTop}>
         <img src={logo} alt="localdocs 3D 문서 스택 로고" width={40} height={40} className="logo-interactive" loading="lazy" />
-        <div className="text-xl font-bold text-primary">Localdocs</div>
+        <div className="text-xl font-bold text-primary">로컬독스</div>
       </div>
       <nav className="hidden md:flex items-center gap-6 text-sm">
         <a href="#features" className="story-link">제품 특징</a>
@@ -92,7 +92,7 @@ const Hero = () => <section className="relative overflow-hidden">
   </section>;
 const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
-      <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">Localdocs, 이렇게 다릅니다</h2>
+      <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">로컬독스, 이렇게 다릅니다</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="feature-card text-left p-6">
           <div className="flex items-start gap-3 mb-3">
@@ -192,7 +192,7 @@ const Scenarios = () => {
         <h2 id="scenarios-heading" className="text-4xl md:text-5xl font-bold text-white mb-6">
           이럴 때 
           <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            {" "}Localdocs가 필요합니다
+            {" "}로컬독스가 필요합니다
           </span>
         </h2>
       </div>
@@ -233,7 +233,7 @@ const Scenarios = () => {
       <div className="text-center mt-16">
         <div className="inline-flex flex-col items-center gap-4">
           <p className="text-gray-300 text-lg">
-            당신의 업무 효율을 10배 높여줄 Localdocs를 지금 바로 도입하세요
+            당신의 업무 효율을 10배 높여줄 로컬독스를 지금 바로 도입하세요
           </p>
           <a href="#cta">
             <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold overflow-hidden hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300">

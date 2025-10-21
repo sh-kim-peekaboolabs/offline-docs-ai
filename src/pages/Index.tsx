@@ -74,9 +74,9 @@ const Nav = () => {
 const Hero = () => <section className="relative overflow-hidden">
     <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
     <div className="container relative py-20 md:py-28 text-center">
-      <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">오프라인 ChatPDF, Localdocs (로컬독스)</div>
-      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">수십 개의 PDF에서 원하는 자료를<br />한번에 찾아보세요</h1>
-      <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">질문만 하세요. 답과 출처를 1분 만에 알려드립니다.</p>
+      <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">보안이 중요한 팀을 위한 PDF 검색·요약 AI, 로컬독스</div>
+      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">수십 개의 PDF에서 필요한 정보를<br />한 번에 찾아보세요</h1>
+      <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">인터넷 연결 없이 작동하며, 모든 데이터는 절대 외부로 전송되지 않습니다</p>
       <div className="mt-8 flex flex-col items-center justify-center gap-4">
         <a href="#cta"><Button variant="hero" size="xl">Waitlist 등록하기</Button></a>
         <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">

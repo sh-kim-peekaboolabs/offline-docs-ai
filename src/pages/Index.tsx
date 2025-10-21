@@ -43,7 +43,7 @@ const Nav = () => {
     <div className="container flex items-center justify-between py-4">
       <div className="flex items-center gap-3 cursor-pointer" onClick={scrollToTop}>
         <img src={logo} alt="localdocs 3D 문서 스택 로고" width={40} height={40} className="logo-interactive" loading="lazy" />
-        <div className="text-xl font-bold text-primary">로컬독스</div>
+        <div className="text-xl font-bold text-primary">Localdocs</div>
       </div>
       <nav className="hidden md:flex items-center gap-6 text-sm">
         <a href="#features" className="story-link">제품 특징</a>

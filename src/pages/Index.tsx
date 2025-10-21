@@ -192,7 +192,7 @@ const Scenarios = () => {
         <h2 id="scenarios-heading" className="text-4xl md:text-5xl font-bold text-white mb-6">
           이럴 때 
           <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            {" "}로컬독스가 필요합니다
+            {" "}Localdocs가 필요합니다
           </span>
         </h2>
       </div>
@@ -233,7 +233,7 @@ const Scenarios = () => {
       <div className="text-center mt-16">
         <div className="inline-flex flex-col items-center gap-4">
           <p className="text-gray-300 text-lg">
-            당신의 업무 효율을 10배 높여줄 로컬독스를 지금 바로 도입하세요
+            당신의 업무 효율을 10배 높여줄 Localdocs를 지금 바로 도입하세요
           </p>
           <a href="#cta">
             <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold overflow-hidden hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300">
@@ -620,7 +620,7 @@ const CTA = () => {
   };
   return <section id="cta" className="section" aria-labelledby="cta-heading">
     <div className="container">
-      <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">내 PDF와 직접 대화해보세요</h2>
+      <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">내 PDF와 안전하게 대화하세요</h2>
       <p className="text-muted-foreground mb-6 text-center">데이터 유출 걱정 없는 Localdocs, 지금 Waitlist 등록하고 먼저 경험해 보세요.</p>
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto">
         <div className="space-y-4">

@@ -624,13 +624,23 @@ const CTA = () => {
 };
 const Footer = () => <footer className="bg-muted py-12">
     <div className="container">
-      <div className="flex flex-col md:flex-row items-center justify-between">
-        <div className="flex items-center gap-3 mb-4 md:mb-0">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
           <img src={logo} alt="Localdocs logo" width={32} height={32} loading="lazy" />
           <div className="text-lg font-bold text-primary">Localdocs</div>
         </div>
-        <div className="text-sm text-muted-foreground">
-          © 2024 Localdocs. All rights reserved.
+        <div className="flex items-center gap-4 text-sm">
+          <a href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
+            Terms of Service
+          </a>
+          <span className="text-muted-foreground">|</span>
+          <a href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
+            Privacy Policy
+          </a>
+          <span className="text-muted-foreground hidden md:inline">|</span>
+          <div className="text-muted-foreground">
+            © 2024 Localdocs. All rights reserved.
+          </div>
         </div>
       </div>
     </div>

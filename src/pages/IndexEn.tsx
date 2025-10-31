@@ -223,7 +223,7 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
               Intuitive Interface
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Upload your files and explore documents faster than anyone else.
+              Upload your files. Explore even 430-page documents seamlessly, all at once.
             </p>
             <img src={uploadScreen} alt="File upload screen" className="w-full rounded-lg shadow-md mb-4" />
             <div className="flex items-center gap-2 text-sm text-blue-600 font-medium">

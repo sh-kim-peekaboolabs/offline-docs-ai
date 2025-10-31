@@ -224,7 +224,7 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
               직관적인 인터페이스
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              파일을 업로드 하세요. 누구보다 빠르게 문서를 탐색합니다.
+              파일을 업로드하세요. 430p 짜리 문서도 한번에, 끊김없이 탐색합니다.
             </p>
             <img src={uploadScreen} alt="파일 업로드 화면" className="w-full rounded-lg shadow-md mb-4" />
             <div className="flex items-center gap-2 text-sm text-blue-600 font-medium">

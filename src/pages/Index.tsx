@@ -16,7 +16,8 @@ const formSchema = z.object({
   consent: z.boolean().refine(val => val === true, {
     message: "동의가 필요합니다."
   }),
-  honeypot: z.string().max(0).optional(), // Anti-spam honeypot field
+  honeypot: z.string().max(0).optional(),
+  // Anti-spam honeypot field
   utm_source: z.string().max(100).optional(),
   utm_campaign_id: z.string().max(100).optional(),
   utm_medium: z.string().max(100).optional(),
@@ -82,7 +83,7 @@ const Hero = () => <section className="relative overflow-hidden">
         <a href="#cta"><Button variant="hero" size="xl">Waitlist 등록하기</Button></a>
         <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
-          <span className="text-sm font-medium text-green-700">🔥 100명+ 신청 완료!</span>
+          <span className="text-sm font-medium text-green-700">🔥 200명+ 신청 완료!</span>
           <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{
           animationDelay: '0.2s'
         }}></div>
@@ -593,7 +594,6 @@ const CTA = () => {
         toast.error("잘못된 요청입니다.");
         return;
       }
-
       const insertData = {
         email: values.email,
         consent: values.consent,
@@ -640,14 +640,12 @@ const CTA = () => {
           </div>
           
           {/* Honeypot field - hidden from users, catches bots */}
-          <input 
-            type="text" 
-            {...register("honeypot")} 
-            style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
-            tabIndex={-1}
-            autoComplete="off"
-            aria-hidden="true"
-          />
+          <input type="text" {...register("honeypot")} style={{
+            position: 'absolute',
+            left: '-9999px',
+            width: '1px',
+            height: '1px'
+          }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
           
           {/* Hidden UTM 필드들 */}
           <input type="hidden" {...register("utm_source")} />

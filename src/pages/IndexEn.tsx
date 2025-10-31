@@ -224,7 +224,7 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
             <p className="text-muted-foreground leading-relaxed mb-4">
               Upload your files.<br />Explore even 430-page documents seamlessly, all at once.
             </p>
-            <img src={uploadScreen} alt="File upload screen" className="w-full rounded-lg shadow-md mb-4" />
+            <img src={uploadScreen} alt="File upload screen" className="w-full h-64 object-cover rounded-lg shadow-md mb-4" />
             <div className="flex items-center gap-2 text-sm text-blue-600 font-medium">
               <Zap className="w-4 h-4" />
               <span>Simple drag and drop</span>
@@ -248,7 +248,7 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">Ask 'Samsung Electronics 2025 H1 Sales by Division'.<br />
 Every page is carefully read, with sources provided!</p>
-            <img src={qaScreen} alt="Q&A screen" className="w-full rounded-lg shadow-md mb-4" />
+            <img src={qaScreen} alt="Q&A screen" className="w-full h-64 object-cover rounded-lg shadow-md mb-4" />
             <div className="flex items-center gap-2 text-sm text-purple-600 font-medium">
               <CheckCircle className="w-4 h-4" />
               <span>Precise sources with page numbers</span>

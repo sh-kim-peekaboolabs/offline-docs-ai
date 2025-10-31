@@ -73,25 +73,126 @@ const Nav = () => {
     </div>
   </header>;
 };
-const Hero = () => <section className="relative overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
-    <div className="container relative py-20 md:py-28 text-center">
-      <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">보안이 중요한 팀을 위한 PDF 검색·요약 AI, 로컬독스</div>
-      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">수십 개의 PDF에서 필요한 정보를<br />한 번에 찾아보세요</h1>
-      <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">인터넷 연결 없이 작동하며, 모든 데이터는 절대 외부로 전송되지 않습니다</p>
-      <div className="mt-8 flex flex-col items-center justify-center gap-4">
-        <a href="#cta"><Button variant="hero" size="xl">Waitlist 등록하기</Button></a>
-        <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
-          <span className="text-sm font-medium text-green-700">🔥 200명+ 신청 완료!</span>
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{
-          animationDelay: '0.2s'
-        }}></div>
+const Hero = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset
+  } = useForm<FormValues>({
+    resolver: zodResolver(formSchema)
+  });
+
+  const onSubmit = async (values: FormValues) => {
+    try {
+      if (values.honeypot) {
+        toast.error("잘못된 요청입니다.");
+        return;
+      }
+      
+      const insertData = {
+        email: values.email,
+        consent: values.consent
+      };
+      
+      const result = await supabase.from('email_signups').insert([insertData]);
+      
+      if (result.error) {
+        if (result.error.code === '23505') {
+          toast.error("이미 등록된 이메일입니다.");
+        } else {
+          toast.error("등록 중 오류가 발생했습니다.");
+        }
+        return;
+      }
+      
+      toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
+      reset();
+    } catch (error) {
+      toast.error("등록 중 오류가 발생했습니다.");
+    }
+  };
+
+  return (
+    <section className="relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
+      <div className="container relative py-20 md:py-28 text-center">
+        <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">
+          보안이 중요한 팀을 위한 PDF 검색·요약 AI, 로컬독스
         </div>
-        <p className="text-xs text-muted-foreground/70 animate-fade-in">* 한정된 베타 테스터 모집 중 *</p>
+        <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">
+          수십 개의 PDF에서 필요한 정보를<br />한 번에 찾아보세요
+        </h1>
+        <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          인터넷 연결 없이 작동하며, 모든 데이터는 절대 외부로 전송되지 않습니다
+        </p>
+        
+        {/* Waitlist 신청 폼 */}
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-8 max-w-md mx-auto">
+          <div className="flex flex-col gap-3">
+            <div className="flex gap-2">
+              <Input
+                type="email"
+                placeholder="이메일 주소를 입력하세요"
+                className="flex-1"
+                {...register("email")}
+              />
+              <Button 
+                type="submit" 
+                variant="hero" 
+                size="lg"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "등록 중..." : "등록하기"}
+              </Button>
+            </div>
+            {errors.email && (
+              <p className="text-sm text-destructive">{errors.email.message}</p>
+            )}
+            
+            {/* Honeypot field */}
+            <input
+              type="text"
+              {...register("honeypot")}
+              style={{
+                position: 'absolute',
+                left: '-9999px',
+                width: '1px',
+                height: '1px'
+              }}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+            
+            <div className="flex items-start gap-2">
+              <Checkbox id="hero-consent" {...register("consent")} />
+              <Label 
+                htmlFor="hero-consent" 
+                className="text-xs text-muted-foreground cursor-pointer leading-relaxed"
+              >
+                개인정보 수집 및 이용에 동의합니다
+              </Label>
+            </div>
+            {errors.consent && (
+              <p className="text-sm text-destructive">{errors.consent.message}</p>
+            )}
+          </div>
+        </form>
+
+        <div className="mt-6 flex flex-col items-center justify-center gap-3">
+          <p className="text-sm font-medium text-primary">🚀 2025년 11월 중 론칭 예정</p>
+          <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
+            <span className="text-sm font-medium text-green-700">🔥 200명+ 신청 완료!</span>
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+          </div>
+          <p className="text-xs text-muted-foreground/70 animate-fade-in">* 한정된 베타 테스터 모집 중 *</p>
+        </div>
       </div>
-    </div>
-  </section>;
+    </section>
+  );
+};
 const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
       <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">로컬독스, 이렇게 다릅니다</h2>

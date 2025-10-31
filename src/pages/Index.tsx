@@ -196,16 +196,13 @@ const DemoVideo = () => <section className="section bg-gradient-to-br from-gray-
       </div>
     </div>
   </section>;
-
 const HowItWorks = () => <section className="section bg-white" aria-labelledby="how-it-works-heading">
     <div className="container">
       <div className="text-center mb-12">
         <h2 id="how-it-works-heading" className="text-2xl md:text-3xl font-semibold mb-3">
           간단한 두 단계로 시작하세요
         </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          복잡한 설정 없이, 파일 업로드와 질문만으로 즉시 사용 가능합니다
-        </p>
+        <p className="text-muted-foreground max-w-2xl mx-auto">복잡한 설정 없이, 파일을 업로드하고 즉시 질문하세요.</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -248,9 +245,8 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
             <p className="text-lg font-semibold text-primary mb-2">
               정확한 답변 제공
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              '삼성전자 2025년도 상반기 사업부문별 매출'을 물어보세요. 모든 페이지를 꼼꼼하게 읽고, 출처까지 알아서 딱!
-            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">'삼성전자 2025년도 상반기 사업부문별 매출'을 물어보세요.
+반기보고서를 꼼꼼하게 읽고, 출처까지 알아서 딱!</p>
             <img src={qaScreen} alt="Q&A 화면" className="w-full rounded-lg shadow-md mb-4" />
             <div className="flex items-center gap-2 text-sm text-purple-600 font-medium">
               <CheckCircle className="w-4 h-4" />
@@ -261,7 +257,6 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
       </div>
     </div>
   </section>;
-
 const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
       <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">로컬독스, 이렇게 다릅니다</h2>

@@ -9,6 +9,8 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield, Star, ChevronDown, Settings, BarChart3 } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
+import uploadScreen from "@/assets/upload-screen.png";
+import qaScreen from "@/assets/qa-screen.png";
 import { useEffect } from "react";
 import { usePageTracking, useSectionTracking } from "@/hooks/useAnalytics";
 const formSchema = z.object({
@@ -207,7 +209,7 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
 
       <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         {/* File Upload */}
-        <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 p-8 border border-blue-100 hover:shadow-xl transition-all duration-300">
+        <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 p-6 border border-blue-100 hover:shadow-xl transition-all duration-300">
           <div className="absolute top-0 right-0 w-32 h-32 bg-blue-200/20 rounded-full blur-3xl"></div>
           <div className="relative">
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-600 text-white mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -220,10 +222,11 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
             <p className="text-lg font-semibold text-primary mb-2">
               Intuitive Interface
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed mb-4">
               Upload your files and explore documents faster than anyone else.
             </p>
-            <div className="mt-6 flex items-center gap-2 text-sm text-blue-600 font-medium">
+            <img src={uploadScreen} alt="File upload screen" className="w-full rounded-lg shadow-md mb-4" />
+            <div className="flex items-center gap-2 text-sm text-blue-600 font-medium">
               <Zap className="w-4 h-4" />
               <span>Simple drag and drop</span>
             </div>
@@ -231,7 +234,7 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
         </div>
 
         {/* Q&A */}
-        <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-50 to-pink-50 p-8 border border-purple-100 hover:shadow-xl transition-all duration-300">
+        <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-50 to-pink-50 p-6 border border-purple-100 hover:shadow-xl transition-all duration-300">
           <div className="absolute top-0 right-0 w-32 h-32 bg-purple-200/20 rounded-full blur-3xl"></div>
           <div className="relative">
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-purple-600 text-white mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -244,10 +247,11 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
             <p className="text-lg font-semibold text-primary mb-2">
               Accurate Answers
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed mb-4">
               Ask away. Every page is carefully read, with sources provided automatically!
             </p>
-            <div className="mt-6 flex items-center gap-2 text-sm text-purple-600 font-medium">
+            <img src={qaScreen} alt="Q&A screen" className="w-full rounded-lg shadow-md mb-4" />
+            <div className="flex items-center gap-2 text-sm text-purple-600 font-medium">
               <CheckCircle className="w-4 h-4" />
               <span>Precise sources with page numbers</span>
             </div>

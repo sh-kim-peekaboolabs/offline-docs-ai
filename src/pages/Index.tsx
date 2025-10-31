@@ -9,6 +9,8 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield, Star, ChevronDown, Settings, Users, BarChart3 } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
+import uploadScreen from "@/assets/upload-screen.png";
+import qaScreen from "@/assets/qa-screen.png";
 import { useEffect } from "react";
 import { usePageTracking, useSectionTracking } from "@/hooks/useAnalytics";
 const formSchema = z.object({
@@ -208,7 +210,7 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
 
       <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         {/* 파일 업로드 화면 */}
-        <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 p-8 border border-blue-100 hover:shadow-xl transition-all duration-300">
+        <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 p-6 border border-blue-100 hover:shadow-xl transition-all duration-300">
           <div className="absolute top-0 right-0 w-32 h-32 bg-blue-200/20 rounded-full blur-3xl"></div>
           <div className="relative">
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-600 text-white mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -221,10 +223,11 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
             <p className="text-lg font-semibold text-primary mb-2">
               직관적인 인터페이스
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed mb-4">
               파일을 업로드 하세요. 누구보다 빠르게 문서를 탐색합니다.
             </p>
-            <div className="mt-6 flex items-center gap-2 text-sm text-blue-600 font-medium">
+            <img src={uploadScreen} alt="파일 업로드 화면" className="w-full rounded-lg shadow-md mb-4" />
+            <div className="flex items-center gap-2 text-sm text-blue-600 font-medium">
               <Zap className="w-4 h-4" />
               <span>드래그 앤 드롭으로 간편하게</span>
             </div>
@@ -232,7 +235,7 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
         </div>
 
         {/* Q&A 화면 */}
-        <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-50 to-pink-50 p-8 border border-purple-100 hover:shadow-xl transition-all duration-300">
+        <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-50 to-pink-50 p-6 border border-purple-100 hover:shadow-xl transition-all duration-300">
           <div className="absolute top-0 right-0 w-32 h-32 bg-purple-200/20 rounded-full blur-3xl"></div>
           <div className="relative">
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-purple-600 text-white mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -245,10 +248,11 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
             <p className="text-lg font-semibold text-primary mb-2">
               정확한 답변 제공
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed mb-4">
               질문하세요. 모든 페이지를 꼼꼼하게 읽고, 출처까지 알아서 딱!
             </p>
-            <div className="mt-6 flex items-center gap-2 text-sm text-purple-600 font-medium">
+            <img src={qaScreen} alt="Q&A 화면" className="w-full rounded-lg shadow-md mb-4" />
+            <div className="flex items-center gap-2 text-sm text-purple-600 font-medium">
               <CheckCircle className="w-4 h-4" />
               <span>페이지 번호와 함께 정확한 출처 제공</span>
             </div>

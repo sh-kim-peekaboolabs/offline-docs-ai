@@ -173,7 +173,8 @@ const DemoVideo = () => <section className="section bg-gradient-to-br from-gray-
     <div className="container">
       <div className="text-center mb-8">
         <h2 id="demo-heading" className="text-2xl md:text-3xl font-semibold mb-3">See LocalDocs in Action</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">Watch how LocalDocs finds the information you need in seconds from hundreds of pages of PDF documents.</p>
+        <p className="text-muted-foreground max-w-2xl mx-auto">Watch how LocalDocs finds the information you need in seconds from 
+430p Samsung Half-year Business Report</p>
       </div>
       <div className="max-w-4xl mx-auto">
         <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">

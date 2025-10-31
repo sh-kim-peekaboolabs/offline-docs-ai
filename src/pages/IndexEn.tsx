@@ -195,7 +195,6 @@ const DemoVideo = () => <section className="section bg-gradient-to-br from-gray-
       </div>
     </div>
   </section>;
-
 const HowItWorks = () => <section className="section bg-white" aria-labelledby="how-it-works-heading">
     <div className="container">
       <div className="text-center mb-12">
@@ -247,9 +246,8 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
             <p className="text-lg font-semibold text-primary mb-2">
               Accurate Answers
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              Ask 'Samsung Electronics 2025 H1 Sales by Division'. Every page is carefully read, with sources provided automatically!
-            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">Ask 'Samsung Electronics 2025 H1 Sales by Division'. 
+Every page is carefully read, with sources provided!</p>
             <img src={qaScreen} alt="Q&A screen" className="w-full rounded-lg shadow-md mb-4" />
             <div className="flex items-center gap-2 text-sm text-purple-600 font-medium">
               <CheckCircle className="w-4 h-4" />
@@ -260,7 +258,6 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
       </div>
     </div>
   </section>;
-
 const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
       <div className="text-center mb-12">

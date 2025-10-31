@@ -195,6 +195,42 @@ const Hero = () => {
     </section>
   );
 };
+
+const DemoVideo = () => (
+  <section className="section bg-gradient-to-br from-gray-50 to-white" aria-labelledby="demo-heading">
+    <div className="container">
+      <div className="text-center mb-8">
+        <h2 id="demo-heading" className="text-2xl md:text-3xl font-semibold mb-3">
+          See Localdocs in Action
+        </h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
+          Watch how Localdocs finds the information you need in seconds from hundreds of pages of PDF documents.
+        </p>
+      </div>
+      <div className="max-w-4xl mx-auto">
+        <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+          <video
+            className="w-full h-auto"
+            controls
+            preload="metadata"
+            poster="/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png"
+          >
+            <source src="/videos/localdocs-demo.mp4" type="video/mp4" />
+            <p className="text-muted-foreground p-8">
+              Your browser does not support video playback.
+            </p>
+          </video>
+        </div>
+        <div className="mt-6 text-center">
+          <p className="text-sm text-muted-foreground">
+            💡 See how Localdocs works in a real work environment
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
 const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
       <div className="text-center mb-12">
@@ -754,6 +790,7 @@ export default function IndexEn() {
       <Nav />
       <main>
         <Hero />
+        <DemoVideo />
         <Features />
         <Scenarios />
         <Security />

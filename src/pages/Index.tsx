@@ -196,6 +196,42 @@ const Hero = () => {
     </section>
   );
 };
+
+const DemoVideo = () => (
+  <section className="section bg-gradient-to-br from-gray-50 to-white" aria-labelledby="demo-heading">
+    <div className="container">
+      <div className="text-center mb-8">
+        <h2 id="demo-heading" className="text-2xl md:text-3xl font-semibold mb-3">
+          로컬독스 실제 사용 모습을 확인하세요
+        </h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
+          수백 페이지의 PDF 문서에서 원하는 정보를 몇 초 만에 찾는 과정을 직접 확인해보세요.
+        </p>
+      </div>
+      <div className="max-w-4xl mx-auto">
+        <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+          <video
+            className="w-full h-auto"
+            controls
+            preload="metadata"
+            poster="/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png"
+          >
+            <source src="/videos/localdocs-demo.mp4" type="video/mp4" />
+            <p className="text-muted-foreground p-8">
+              브라우저가 비디오 재생을 지원하지 않습니다.
+            </p>
+          </video>
+        </div>
+        <div className="mt-6 text-center">
+          <p className="text-sm text-muted-foreground">
+            💡 실제 업무 환경에서 로컬독스가 어떻게 작동하는지 확인하세요
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
 const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
       <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">로컬독스, 이렇게 다릅니다</h2>
@@ -811,6 +847,7 @@ const Index = () => {
     <Nav />
     <main>
       <Hero />
+      <DemoVideo />
       <Features />
       <Scenarios />
       <Security />

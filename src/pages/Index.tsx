@@ -179,7 +179,7 @@ const DemoVideo = () => <section className="section bg-gradient-to-br from-gray-
       </div>
       <div className="max-w-4xl mx-auto">
         <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-          <video className="w-full h-auto" controls preload="metadata" poster="/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png">
+          <video className="w-full h-auto" controls autoPlay muted preload="metadata">
             <source src="/videos/localdocs-demo.mp4" type="video/mp4" />
             <p className="text-muted-foreground p-8">
               브라우저가 비디오 재생을 지원하지 않습니다.

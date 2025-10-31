@@ -128,55 +128,58 @@ const Hero = () => {
         </p>
         
         {/* Waitlist 신청 폼 */}
-        <form onSubmit={handleSubmit(onSubmit)} className="mt-8 max-w-md mx-auto">
-          <div className="flex flex-col gap-3">
-            <div className="flex gap-2">
-              <Input
-                type="email"
-                placeholder="이메일 주소를 입력하세요"
-                className="flex-1"
-                {...register("email")}
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-8 max-w-2xl mx-auto">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 p-8">
+            <div className="flex flex-col gap-5">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Input
+                  type="email"
+                  placeholder="이메일 주소를 입력하세요"
+                  className="flex-1 h-14 text-base px-5 rounded-xl border-2 focus:border-primary transition-colors"
+                  {...register("email")}
+                />
+                <Button 
+                  type="submit" 
+                  variant="hero" 
+                  className="h-14 px-8 text-base font-semibold rounded-xl whitespace-nowrap"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "등록 중..." : "Waitlist 등록하기"}
+                </Button>
+              </div>
+              
+              {errors.email && (
+                <p className="text-sm text-destructive -mt-2">{errors.email.message}</p>
+              )}
+              
+              {/* Honeypot field */}
+              <input
+                type="text"
+                {...register("honeypot")}
+                style={{
+                  position: 'absolute',
+                  left: '-9999px',
+                  width: '1px',
+                  height: '1px'
+                }}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
               />
-              <Button 
-                type="submit" 
-                variant="hero" 
-                size="lg"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "등록 중..." : "등록하기"}
-              </Button>
+              
+              <div className="flex items-start gap-3 -mt-1">
+                <Checkbox id="hero-consent" {...register("consent")} className="mt-1" />
+                <Label 
+                  htmlFor="hero-consent" 
+                  className="text-sm text-muted-foreground cursor-pointer leading-relaxed"
+                >
+                  개인정보 수집 및 이용에 동의합니다
+                </Label>
+              </div>
+              {errors.consent && (
+                <p className="text-sm text-destructive -mt-2">{errors.consent.message}</p>
+              )}
             </div>
-            {errors.email && (
-              <p className="text-sm text-destructive">{errors.email.message}</p>
-            )}
-            
-            {/* Honeypot field */}
-            <input
-              type="text"
-              {...register("honeypot")}
-              style={{
-                position: 'absolute',
-                left: '-9999px',
-                width: '1px',
-                height: '1px'
-              }}
-              tabIndex={-1}
-              autoComplete="off"
-              aria-hidden="true"
-            />
-            
-            <div className="flex items-start gap-2">
-              <Checkbox id="hero-consent" {...register("consent")} />
-              <Label 
-                htmlFor="hero-consent" 
-                className="text-xs text-muted-foreground cursor-pointer leading-relaxed"
-              >
-                개인정보 수집 및 이용에 동의합니다
-              </Label>
-            </div>
-            {errors.consent && (
-              <p className="text-sm text-destructive">{errors.consent.message}</p>
-            )}
           </div>
         </form>
 

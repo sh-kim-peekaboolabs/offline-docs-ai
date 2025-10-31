@@ -72,27 +72,129 @@ const Nav = () => {
     </div>
   </header>;
 };
-const Hero = () => <section className="relative overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
-    <div className="container relative py-20 md:py-28 text-center">
-      <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">Offline ChatPDF, Localdocs</div>
-      <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">Find Answers in Dozens of PDFs at Once, Locally</h1>
-      <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-        Simply upload your PDFs and get accurate answers with page numbers.
-      </p>
-      <div className="mt-8 flex flex-col items-center justify-center gap-4">
-        <a href="#cta"><Button variant="hero" size="xl">Join Waitlist</Button></a>
-        <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
-          <span className="text-sm font-medium text-green-700">🔥 100+ submitted!</span>
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{
-          animationDelay: '0.2s'
-        }}></div>
+const Hero = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset
+  } = useForm<FormValues>({
+    resolver: zodResolver(formSchema)
+  });
+
+  const onSubmit = async (values: FormValues) => {
+    try {
+      if (values.honeypot) {
+        toast.error("Invalid request.");
+        return;
+      }
+      
+      const insertData = {
+        email: values.email,
+        consent: values.consent
+      };
+      
+      const result = await supabase.from('email_signups').insert([insertData]);
+      
+      if (result.error) {
+        if (result.error.code === '23505') {
+          toast.error("This email is already registered.");
+        } else {
+          toast.error("An error occurred during registration.");
+        }
+        return;
+      }
+      
+      toast.success("Successfully registered! We'll keep you updated.");
+      reset();
+    } catch (error) {
+      toast.error("An error occurred during registration.");
+    }
+  };
+
+  return (
+    <section className="relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
+      <div className="container relative py-20 md:py-28 text-center">
+        <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">
+          Offline ChatPDF, Localdocs
         </div>
-        <p className="text-xs text-muted-foreground/70 animate-fade-in">* Limited beta testers recruitment *</p>
+        <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">
+          Find Answers in Dozens of PDFs at Once, Locally
+        </h1>
+        <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          Simply upload your PDFs and get accurate answers with page numbers.
+        </p>
+        
+        {/* Waitlist Form */}
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-8 max-w-2xl mx-auto">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 p-8">
+            <div className="flex flex-col gap-5">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Input
+                  type="email"
+                  placeholder="Enter your email address"
+                  className="flex-1 h-14 text-base px-5 rounded-xl border-2 focus:border-primary transition-colors"
+                  {...register("email")}
+                />
+                <Button 
+                  type="submit" 
+                  variant="hero" 
+                  className="h-14 px-8 text-base font-semibold rounded-xl whitespace-nowrap"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Joining..." : "Join Waitlist"}
+                </Button>
+              </div>
+              
+              {errors.email && (
+                <p className="text-sm text-destructive -mt-2">{errors.email.message}</p>
+              )}
+              
+              {/* Honeypot field */}
+              <input
+                type="text"
+                {...register("honeypot")}
+                style={{
+                  position: 'absolute',
+                  left: '-9999px',
+                  width: '1px',
+                  height: '1px'
+                }}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+              
+              <div className="flex items-start gap-3 -mt-1">
+                <Checkbox id="hero-consent" {...register("consent")} className="mt-1" />
+                <Label 
+                  htmlFor="hero-consent" 
+                  className="text-sm text-muted-foreground cursor-pointer leading-relaxed"
+                >
+                  I agree to the collection and use of personal information
+                </Label>
+              </div>
+              {errors.consent && (
+                <p className="text-sm text-destructive -mt-2">{errors.consent.message}</p>
+              )}
+            </div>
+          </div>
+        </form>
+
+        <div className="mt-6 flex flex-col items-center justify-center gap-3">
+          <p className="text-sm font-medium text-primary">🚀 Launching in November 2025</p>
+          <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
+            <span className="text-sm font-medium text-green-700">🔥 200+ submitted!</span>
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+          </div>
+          <p className="text-xs text-muted-foreground/70 animate-fade-in">* Limited beta testers recruitment *</p>
+        </div>
       </div>
-    </div>
-  </section>;
+    </section>
+  );
+};
 const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
       <div className="text-center mb-12">

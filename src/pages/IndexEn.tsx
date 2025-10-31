@@ -11,7 +11,7 @@ import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, 
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import uploadScreen from "@/assets/upload-screen.png";
 import qaScreen from "@/assets/qa-screen.png";
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePageTracking, useSectionTracking } from "@/hooks/useAnalytics";
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address.").max(255, "Email must be less than 255 characters."),
@@ -171,30 +171,63 @@ const Hero = () => {
       </div>
     </section>;
 };
-const DemoVideo = () => <section className="section bg-gradient-to-br from-gray-50 to-white" aria-labelledby="demo-heading">
-    <div className="container">
-      <div className="text-center mb-8">
-        <h2 id="demo-heading" className="text-2xl md:text-3xl font-semibold mb-3">See LocalDocs in Action</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">Watch how LocalDocs finds the information you need in seconds from 
+const DemoVideo = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px' }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section className="section bg-gradient-to-br from-gray-50 to-white" aria-labelledby="demo-heading">
+      <div className="container">
+        <div className="text-center mb-8">
+          <h2 id="demo-heading" className="text-2xl md:text-3xl font-semibold mb-3">See LocalDocs in Action</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">Watch how LocalDocs finds the information you need in seconds from 
 430p Samsung Half-year Business Report</p>
-      </div>
-      <div className="max-w-4xl mx-auto">
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-          <video className="w-full h-auto" controls autoPlay muted loop preload="metadata">
-            <source src="/videos/localdocs-demo.mp4" type="video/mp4" />
-            <p className="text-muted-foreground p-8">
-              Your browser does not support video playback.
+        </div>
+        <div className="max-w-4xl mx-auto">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+            <video 
+              ref={videoRef}
+              className="w-full h-auto" 
+              controls 
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+            >
+              {isVisible && <source src="/videos/localdocs-demo.mp4" type="video/mp4" />}
+              <p className="text-muted-foreground p-8">
+                Your browser does not support video playback.
+              </p>
+            </video>
+          </div>
+          <div className="mt-6 text-center">
+            <p className="text-sm text-muted-foreground">
+              💡 See how Localdocs works in a real work environment
             </p>
-          </video>
-        </div>
-        <div className="mt-6 text-center">
-          <p className="text-sm text-muted-foreground">
-            💡 See how Localdocs works in a real work environment
-          </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>;
+    </section>
+  );
+};
 const HowItWorks = () => <section className="section bg-white" aria-labelledby="how-it-works-heading">
     <div className="container">
       <div className="text-center mb-12">

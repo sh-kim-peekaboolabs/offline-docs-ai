@@ -11,7 +11,7 @@ import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, 
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import uploadScreen from "@/assets/upload-screen.png";
 import qaScreen from "@/assets/qa-screen.png";
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePageTracking, useSectionTracking } from "@/hooks/useAnalytics";
 const formSchema = z.object({
   email: z.string().email("유효한 이메일을 입력해 주세요.").max(255, "이메일은 255자 이하여야 합니다."),
@@ -171,31 +171,64 @@ const Hero = () => {
       </div>
     </section>;
 };
-const DemoVideo = () => <section className="section bg-gradient-to-br from-gray-50 to-white" aria-labelledby="demo-heading">
-    <div className="container">
-      <div className="text-center mb-8">
-        <h2 id="demo-heading" className="text-2xl md:text-3xl font-semibold mb-3">
-          로컬독스 실제 사용 모습을 확인하세요
-        </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">430p 삼성전자 반기 보고서에서 원하는 정보를 몇 초 만에 찾는 과정을 직접 확인해보세요.</p>
-      </div>
-      <div className="max-w-4xl mx-auto">
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-          <video className="w-full h-auto" controls autoPlay muted loop preload="metadata">
-            <source src="/videos/localdocs-demo.mp4" type="video/mp4" />
-            <p className="text-muted-foreground p-8">
-              브라우저가 비디오 재생을 지원하지 않습니다.
+const DemoVideo = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px' }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section className="section bg-gradient-to-br from-gray-50 to-white" aria-labelledby="demo-heading">
+      <div className="container">
+        <div className="text-center mb-8">
+          <h2 id="demo-heading" className="text-2xl md:text-3xl font-semibold mb-3">
+            로컬독스 실제 사용 모습을 확인하세요
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">430p 삼성전자 반기 보고서에서 원하는 정보를 몇 초 만에 찾는 과정을 직접 확인해보세요.</p>
+        </div>
+        <div className="max-w-4xl mx-auto">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+            <video 
+              ref={videoRef}
+              className="w-full h-auto" 
+              controls 
+              autoPlay 
+              muted 
+              loop 
+              playsInline
+            >
+              {isVisible && <source src="/videos/localdocs-demo.mp4" type="video/mp4" />}
+              <p className="text-muted-foreground p-8">
+                브라우저가 비디오 재생을 지원하지 않습니다.
+              </p>
+            </video>
+          </div>
+          <div className="mt-6 text-center">
+            <p className="text-sm text-muted-foreground">
+              💡 실제 업무 환경에서 로컬독스가 어떻게 작동하는지 확인하세요
             </p>
-          </video>
-        </div>
-        <div className="mt-6 text-center">
-          <p className="text-sm text-muted-foreground">
-            💡 실제 업무 환경에서 로컬독스가 어떻게 작동하는지 확인하세요
-          </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>;
+    </section>
+  );
+};
 const HowItWorks = () => <section className="section bg-white" aria-labelledby="how-it-works-heading">
     <div className="container">
       <div className="text-center mb-12">

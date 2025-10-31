@@ -77,26 +77,25 @@ const Hero = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: {
+      errors,
+      isSubmitting
+    },
     reset
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema)
   });
-
   const onSubmit = async (values: FormValues) => {
     try {
       if (values.honeypot) {
         toast.error("잘못된 요청입니다.");
         return;
       }
-      
       const insertData = {
         email: values.email,
         consent: values.consent
       };
-      
       const result = await supabase.from('email_signups').insert([insertData]);
-      
       if (result.error) {
         if (result.error.code === '23505') {
           toast.error("이미 등록된 이메일입니다.");
@@ -105,16 +104,13 @@ const Hero = () => {
         }
         return;
       }
-      
       toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
       reset();
     } catch (error) {
       toast.error("등록 중 오류가 발생했습니다.");
     }
   };
-
-  return (
-    <section className="relative overflow-hidden">
+  return <section className="relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
       <div className="container relative py-20 md:py-28 text-center">
         <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">
@@ -132,53 +128,29 @@ const Hero = () => {
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 p-8">
             <div className="flex flex-col gap-5">
               <div className="flex flex-col sm:flex-row gap-3">
-                <Input
-                  type="email"
-                  placeholder="이메일 주소를 입력하세요"
-                  className="flex-1 h-14 text-base px-5 rounded-xl border-2 focus:border-primary transition-colors"
-                  {...register("email")}
-                />
-                <Button 
-                  type="submit" 
-                  variant="hero" 
-                  className="h-14 px-8 text-base font-semibold rounded-xl whitespace-nowrap"
-                  disabled={isSubmitting}
-                >
+                <Input type="email" placeholder="이메일 주소를 입력하세요" className="flex-1 h-14 text-base px-5 rounded-xl border-2 focus:border-primary transition-colors" {...register("email")} />
+                <Button type="submit" variant="hero" className="h-14 px-8 text-base font-semibold rounded-xl whitespace-nowrap" disabled={isSubmitting}>
                   {isSubmitting ? "등록 중..." : "Waitlist 등록하기"}
                 </Button>
               </div>
               
-              {errors.email && (
-                <p className="text-sm text-destructive -mt-2">{errors.email.message}</p>
-              )}
+              {errors.email && <p className="text-sm text-destructive -mt-2">{errors.email.message}</p>}
               
               {/* Honeypot field */}
-              <input
-                type="text"
-                {...register("honeypot")}
-                style={{
-                  position: 'absolute',
-                  left: '-9999px',
-                  width: '1px',
-                  height: '1px'
-                }}
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-              />
+              <input type="text" {...register("honeypot")} style={{
+              position: 'absolute',
+              left: '-9999px',
+              width: '1px',
+              height: '1px'
+            }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
               
               <div className="flex items-start gap-3 -mt-1">
                 <Checkbox id="hero-consent" {...register("consent")} className="mt-1" />
-                <Label 
-                  htmlFor="hero-consent" 
-                  className="text-sm text-muted-foreground cursor-pointer leading-relaxed"
-                >
+                <Label htmlFor="hero-consent" className="text-sm text-muted-foreground cursor-pointer leading-relaxed">
                   개인정보 수집 및 이용에 동의합니다
                 </Label>
               </div>
-              {errors.consent && (
-                <p className="text-sm text-destructive -mt-2">{errors.consent.message}</p>
-              )}
+              {errors.consent && <p className="text-sm text-destructive -mt-2">{errors.consent.message}</p>}
             </div>
           </div>
         </form>
@@ -188,34 +160,26 @@ const Hero = () => {
           <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
             <span className="text-sm font-medium text-green-700">🔥 200명+ 신청 완료!</span>
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{
+            animationDelay: '0.2s'
+          }}></div>
           </div>
           <p className="text-xs text-muted-foreground/70 animate-fade-in">* 한정된 베타 테스터 모집 중 *</p>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
-const DemoVideo = () => (
-  <section className="section bg-gradient-to-br from-gray-50 to-white" aria-labelledby="demo-heading">
+const DemoVideo = () => <section className="section bg-gradient-to-br from-gray-50 to-white" aria-labelledby="demo-heading">
     <div className="container">
       <div className="text-center mb-8">
         <h2 id="demo-heading" className="text-2xl md:text-3xl font-semibold mb-3">
           로컬독스 실제 사용 모습을 확인하세요
         </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          수백 페이지의 PDF 문서에서 원하는 정보를 몇 초 만에 찾는 과정을 직접 확인해보세요.
-        </p>
+        <p className="text-muted-foreground max-w-2xl mx-auto">PDF 문서에서 원하는 정보를 몇 초 만에 찾는 과정을 직접 확인해보세요.</p>
       </div>
       <div className="max-w-4xl mx-auto">
         <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-          <video
-            className="w-full h-auto"
-            controls
-            preload="metadata"
-            poster="/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png"
-          >
+          <video className="w-full h-auto" controls preload="metadata" poster="/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png">
             <source src="/videos/localdocs-demo.mp4" type="video/mp4" />
             <p className="text-muted-foreground p-8">
               브라우저가 비디오 재생을 지원하지 않습니다.
@@ -229,9 +193,7 @@ const DemoVideo = () => (
         </div>
       </div>
     </div>
-  </section>
-);
-
+  </section>;
 const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
       <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">로컬독스, 이렇게 다릅니다</h2>

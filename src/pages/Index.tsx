@@ -183,7 +183,7 @@ const DemoVideo = () => {
           observer.disconnect();
         }
       },
-      { rootMargin: '300px' }
+      { rootMargin: '500px' }
     );
 
     if (videoRef.current) {
@@ -256,7 +256,7 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
             <p className="text-muted-foreground leading-relaxed mb-4">
               파일을 업로드하세요.<br />430p 짜리 문서도 한번에, 끊김없이 탐색합니다.
             </p>
-            <img src={uploadScreen} alt="파일 업로드 화면" className="w-full h-64 object-contain rounded-lg shadow-md mb-4" />
+            <img src={uploadScreen} alt="파일 업로드 화면" className="w-full h-64 object-contain rounded-lg shadow-md mb-4" loading="lazy" />
             <div className="flex items-center gap-2 text-sm text-blue-600 font-medium">
               <Zap className="w-4 h-4" />
               <span>드래그 앤 드롭으로 간편하게</span>
@@ -282,7 +282,7 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
               '삼성전자 2025년도 상반기 사업부문별 매출'을 물어보세요.<br />
               반기보고서를 꼼꼼하게 읽고, 출처까지 알아서 딱!
             </p>
-            <img src={qaScreen} alt="Q&A 화면" className="w-full h-64 object-contain rounded-lg shadow-md mb-4" />
+            <img src={qaScreen} alt="Q&A 화면" className="w-full h-64 object-contain rounded-lg shadow-md mb-4" loading="lazy" />
             <div className="flex items-center gap-2 text-sm text-purple-600 font-medium">
               <CheckCircle className="w-4 h-4" />
               <span>페이지 번호와 함께 정확한 출처 제공</span>

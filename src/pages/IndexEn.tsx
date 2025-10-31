@@ -211,6 +211,7 @@ const DemoVideo = () => {
               muted 
               loop 
               playsInline
+              poster="/videos/demo-poster.png"
             >
               {isVisible && <source src="/videos/localdocs-demo.mp4" type="video/mp4" />}
               <p className="text-muted-foreground p-8">

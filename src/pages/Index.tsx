@@ -194,6 +194,70 @@ const DemoVideo = () => <section className="section bg-gradient-to-br from-gray-
       </div>
     </div>
   </section>;
+
+const HowItWorks = () => <section className="section bg-white" aria-labelledby="how-it-works-heading">
+    <div className="container">
+      <div className="text-center mb-12">
+        <h2 id="how-it-works-heading" className="text-2xl md:text-3xl font-semibold mb-3">
+          간단한 두 단계로 시작하세요
+        </h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
+          복잡한 설정 없이, 파일 업로드와 질문만으로 즉시 사용 가능합니다
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {/* 파일 업로드 화면 */}
+        <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 p-8 border border-blue-100 hover:shadow-xl transition-all duration-300">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-200/20 rounded-full blur-3xl"></div>
+          <div className="relative">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-600 text-white mb-4 group-hover:scale-110 transition-transform duration-300">
+              <FileText className="w-6 h-6" />
+            </div>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">1</span>
+              <h3 className="text-xl font-bold">파일 업로드</h3>
+            </div>
+            <p className="text-lg font-semibold text-primary mb-2">
+              직관적인 인터페이스
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              파일을 업로드 하세요. 누구보다 빠르게 문서를 탐색합니다.
+            </p>
+            <div className="mt-6 flex items-center gap-2 text-sm text-blue-600 font-medium">
+              <Zap className="w-4 h-4" />
+              <span>드래그 앤 드롭으로 간편하게</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Q&A 화면 */}
+        <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-50 to-pink-50 p-8 border border-purple-100 hover:shadow-xl transition-all duration-300">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-purple-200/20 rounded-full blur-3xl"></div>
+          <div className="relative">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-purple-600 text-white mb-4 group-hover:scale-110 transition-transform duration-300">
+              <Search className="w-6 h-6" />
+            </div>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-purple-600 text-white text-sm font-bold">2</span>
+              <h3 className="text-xl font-bold">질문하기</h3>
+            </div>
+            <p className="text-lg font-semibold text-primary mb-2">
+              정확한 답변 제공
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              질문하세요. 모든 페이지를 꼼꼼하게 읽고, 출처까지 알아서 딱!
+            </p>
+            <div className="mt-6 flex items-center gap-2 text-sm text-purple-600 font-medium">
+              <CheckCircle className="w-4 h-4" />
+              <span>페이지 번호와 함께 정확한 출처 제공</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>;
+
 const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
       <h2 id="features-heading" className="text-2xl md:text-3xl font-semibold mb-8 text-center">로컬독스, 이렇게 다릅니다</h2>
@@ -810,6 +874,7 @@ const Index = () => {
     <main>
       <Hero />
       <DemoVideo />
+      <HowItWorks />
       <Features />
       <Scenarios />
       <Security />

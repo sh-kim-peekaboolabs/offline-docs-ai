@@ -173,8 +173,8 @@ const DemoVideo = () => <section className="section bg-gradient-to-br from-gray-
     <div className="container">
       <div className="text-center mb-8">
         <h2 id="demo-heading" className="text-2xl md:text-3xl font-semibold mb-3">See LocalDocs in Action</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">Watch how LocalDocs finds the information you need in seconds from 
-430p Samsung Half-year Business Report</p>
+        <p className="text-muted-foreground max-w-2xl mx-auto">Watch how LocalDocs finds the information you need in seconds from 
+430p Samsung Half-year Business Report</p>
       </div>
       <div className="max-w-4xl mx-auto">
         <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
@@ -193,6 +193,70 @@ const DemoVideo = () => <section className="section bg-gradient-to-br from-gray-
       </div>
     </div>
   </section>;
+
+const HowItWorks = () => <section className="section bg-white" aria-labelledby="how-it-works-heading">
+    <div className="container">
+      <div className="text-center mb-12">
+        <h2 id="how-it-works-heading" className="text-2xl md:text-3xl font-semibold mb-3">
+          Get Started in Two Simple Steps
+        </h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
+          No complex setup required - just upload files and ask questions
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {/* File Upload */}
+        <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 p-8 border border-blue-100 hover:shadow-xl transition-all duration-300">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-200/20 rounded-full blur-3xl"></div>
+          <div className="relative">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-600 text-white mb-4 group-hover:scale-110 transition-transform duration-300">
+              <FileText className="w-6 h-6" />
+            </div>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">1</span>
+              <h3 className="text-xl font-bold">Upload Files</h3>
+            </div>
+            <p className="text-lg font-semibold text-primary mb-2">
+              Intuitive Interface
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Upload your files and explore documents faster than anyone else.
+            </p>
+            <div className="mt-6 flex items-center gap-2 text-sm text-blue-600 font-medium">
+              <Zap className="w-4 h-4" />
+              <span>Simple drag and drop</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Q&A */}
+        <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-50 to-pink-50 p-8 border border-purple-100 hover:shadow-xl transition-all duration-300">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-purple-200/20 rounded-full blur-3xl"></div>
+          <div className="relative">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-purple-600 text-white mb-4 group-hover:scale-110 transition-transform duration-300">
+              <Search className="w-6 h-6" />
+            </div>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-purple-600 text-white text-sm font-bold">2</span>
+              <h3 className="text-xl font-bold">Ask Questions</h3>
+            </div>
+            <p className="text-lg font-semibold text-primary mb-2">
+              Accurate Answers
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Ask away. Every page is carefully read, with sources provided automatically!
+            </p>
+            <div className="mt-6 flex items-center gap-2 text-sm text-purple-600 font-medium">
+              <CheckCircle className="w-4 h-4" />
+              <span>Precise sources with page numbers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>;
+
 const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
       <div className="text-center mb-12">
@@ -750,6 +814,7 @@ export default function IndexEn() {
       <main>
         <Hero />
         <DemoVideo />
+        <HowItWorks />
         <Features />
         <Scenarios />
         <Security />

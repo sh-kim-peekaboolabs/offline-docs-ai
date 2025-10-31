@@ -249,7 +249,7 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
               정확한 답변 제공
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              질문하세요. 모든 페이지를 꼼꼼하게 읽고, 출처까지 알아서 딱!
+              '삼성전자 2025년도 상반기 사업부문별 매출'을 물어보세요. 모든 페이지를 꼼꼼하게 읽고, 출처까지 알아서 딱!
             </p>
             <img src={qaScreen} alt="Q&A 화면" className="w-full rounded-lg shadow-md mb-4" />
             <div className="flex items-center gap-2 text-sm text-purple-600 font-medium">

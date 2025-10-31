@@ -16,7 +16,8 @@ const formSchema = z.object({
   consent: z.boolean().refine(val => val === true, {
     message: "Consent is required."
   }),
-  honeypot: z.string().max(0).optional(), // Anti-spam honeypot field
+  honeypot: z.string().max(0).optional(),
+  // Anti-spam honeypot field
   utm_source: z.string().max(100).optional(),
   utm_campaign_id: z.string().max(100).optional(),
   utm_medium: z.string().max(100).optional(),
@@ -76,26 +77,25 @@ const Hero = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: {
+      errors,
+      isSubmitting
+    },
     reset
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema)
   });
-
   const onSubmit = async (values: FormValues) => {
     try {
       if (values.honeypot) {
         toast.error("Invalid request.");
         return;
       }
-      
       const insertData = {
         email: values.email,
         consent: values.consent
       };
-      
       const result = await supabase.from('email_signups').insert([insertData]);
-      
       if (result.error) {
         if (result.error.code === '23505') {
           toast.error("This email is already registered.");
@@ -104,16 +104,13 @@ const Hero = () => {
         }
         return;
       }
-      
       toast.success("Successfully registered! We'll keep you updated.");
       reset();
     } catch (error) {
       toast.error("An error occurred during registration.");
     }
   };
-
-  return (
-    <section className="relative overflow-hidden">
+  return <section className="relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
       <div className="container relative py-20 md:py-28 text-center">
         <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">
@@ -131,53 +128,29 @@ const Hero = () => {
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 p-8">
             <div className="flex flex-col gap-5">
               <div className="flex flex-col sm:flex-row gap-3">
-                <Input
-                  type="email"
-                  placeholder="Enter your email address"
-                  className="flex-1 h-14 text-base px-5 rounded-xl border-2 focus:border-primary transition-colors"
-                  {...register("email")}
-                />
-                <Button 
-                  type="submit" 
-                  variant="hero" 
-                  className="h-14 px-8 text-base font-semibold rounded-xl whitespace-nowrap"
-                  disabled={isSubmitting}
-                >
+                <Input type="email" placeholder="Enter your email address" className="flex-1 h-14 text-base px-5 rounded-xl border-2 focus:border-primary transition-colors" {...register("email")} />
+                <Button type="submit" variant="hero" className="h-14 px-8 text-base font-semibold rounded-xl whitespace-nowrap" disabled={isSubmitting}>
                   {isSubmitting ? "Joining..." : "Join Waitlist"}
                 </Button>
               </div>
               
-              {errors.email && (
-                <p className="text-sm text-destructive -mt-2">{errors.email.message}</p>
-              )}
+              {errors.email && <p className="text-sm text-destructive -mt-2">{errors.email.message}</p>}
               
               {/* Honeypot field */}
-              <input
-                type="text"
-                {...register("honeypot")}
-                style={{
-                  position: 'absolute',
-                  left: '-9999px',
-                  width: '1px',
-                  height: '1px'
-                }}
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-              />
+              <input type="text" {...register("honeypot")} style={{
+              position: 'absolute',
+              left: '-9999px',
+              width: '1px',
+              height: '1px'
+            }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
               
               <div className="flex items-start gap-3 -mt-1">
                 <Checkbox id="hero-consent" {...register("consent")} className="mt-1" />
-                <Label 
-                  htmlFor="hero-consent" 
-                  className="text-sm text-muted-foreground cursor-pointer leading-relaxed"
-                >
+                <Label htmlFor="hero-consent" className="text-sm text-muted-foreground cursor-pointer leading-relaxed">
                   I agree to the collection and use of personal information
                 </Label>
               </div>
-              {errors.consent && (
-                <p className="text-sm text-destructive -mt-2">{errors.consent.message}</p>
-              )}
+              {errors.consent && <p className="text-sm text-destructive -mt-2">{errors.consent.message}</p>}
             </div>
           </div>
         </form>
@@ -187,34 +160,24 @@ const Hero = () => {
           <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
             <span className="text-sm font-medium text-green-700">🔥 200+ submitted!</span>
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{
+            animationDelay: '0.2s'
+          }}></div>
           </div>
           <p className="text-xs text-muted-foreground/70 animate-fade-in">* Limited beta testers recruitment *</p>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
-const DemoVideo = () => (
-  <section className="section bg-gradient-to-br from-gray-50 to-white" aria-labelledby="demo-heading">
+const DemoVideo = () => <section className="section bg-gradient-to-br from-gray-50 to-white" aria-labelledby="demo-heading">
     <div className="container">
       <div className="text-center mb-8">
-        <h2 id="demo-heading" className="text-2xl md:text-3xl font-semibold mb-3">
-          See Localdocs in Action
-        </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          Watch how Localdocs finds the information you need in seconds from hundreds of pages of PDF documents.
-        </p>
+        <h2 id="demo-heading" className="text-2xl md:text-3xl font-semibold mb-3">See LocalDocs in Action</h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">Watch how LocalDocs finds the information you need in seconds from hundreds of pages of PDF documents.</p>
       </div>
       <div className="max-w-4xl mx-auto">
         <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-          <video
-            className="w-full h-auto"
-            controls
-            preload="metadata"
-            poster="/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png"
-          >
+          <video className="w-full h-auto" controls preload="metadata" poster="/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png">
             <source src="/videos/localdocs-demo.mp4" type="video/mp4" />
             <p className="text-muted-foreground p-8">
               Your browser does not support video playback.
@@ -228,9 +191,7 @@ const DemoVideo = () => (
         </div>
       </div>
     </div>
-  </section>
-);
-
+  </section>;
 const Features = () => <section id="features" className="section bg-secondary-lighter/50" aria-labelledby="features-heading">
     <div className="container">
       <div className="text-center mb-12">
@@ -690,7 +651,6 @@ const CTA = () => {
         toast.error("Invalid request.");
         return;
       }
-
       const insertData = {
         email: values.email,
         consent: values.consent,
@@ -735,14 +695,12 @@ const CTA = () => {
           </div>
           
           {/* Honeypot field - hidden from users, catches bots */}
-          <input 
-            type="text" 
-            {...register('honeypot')} 
-            style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
-            tabIndex={-1}
-            autoComplete="off"
-            aria-hidden="true"
-          />
+          <input type="text" {...register('honeypot')} style={{
+            position: 'absolute',
+            left: '-9999px',
+            width: '1px',
+            height: '1px'
+          }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
           
           <div className="flex items-start space-x-2">
             <Checkbox id="consent" {...register('consent')} />

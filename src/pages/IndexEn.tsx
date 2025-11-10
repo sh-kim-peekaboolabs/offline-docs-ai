@@ -88,7 +88,7 @@ const Hero = () => {
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      consent: true
+      consent: false
     }
   });
   const onSubmit = async (values: FormValues) => {

@@ -207,7 +207,7 @@ const Financial = () => {
               <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
                 <Check className="w-6 h-6 text-green-600" />
               </div>
-              <p className="font-semibold text-gray-900">문장 단위 출처</p>
+              <p className="font-semibold text-gray-900">문장 단위 출처 표시</p>
             </div>
             <div className="flex flex-col items-center gap-3 p-4">
               <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">

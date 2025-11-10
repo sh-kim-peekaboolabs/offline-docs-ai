@@ -401,82 +401,191 @@ const Defense = () => {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-24 px-4 bg-gradient-to-b from-navy to-navy-dark">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 animate-fade-in">
+      <section id="features" className="py-32 px-4 bg-gradient-to-br from-navy-dark via-navy to-teal-dark relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-center mb-20 animate-fade-in text-white">
             왜 로컬독스인가요?
           </h2>
           
-          <div className="grid md:grid-cols-2 gap-10">
-            {[
-              {
-                icon: <FileText className="w-16 h-16 text-teal" />,
-                title: "문장 단위로 출처 제공",
-                description: "답변의 모든 문장마다 정확한 출처를 표시합니다. '교범 p.47, 3번째 문단'처럼 구체적으로 제공되어 신뢰도 높은 의사결정이 가능합니다.",
-                visual: (
-                  <div className="mt-6 p-4 bg-gray-900/50 rounded-lg border border-teal/20 font-mono text-sm">
-                    <p className="text-gray-200">방어 작전의 핵심 원칙은 집중과 경제성입니다<sup className="text-teal">[1]</sup></p>
-                    <p className="text-gray-400 text-xs mt-2">[출처: FM 3-90, p.47]</p>
-                  </div>
-                )
-              },
-              {
-                icon: <Database className="w-16 h-16 text-teal" />,
-                title: "표와 수식도 완벽 인식",
-                description: "복잡한 기술 표, 수학 수식, 다이어그램을 정확하게 인식하고 분석합니다. 페이지가 넘어가는 표도 끊김 없이 처리합니다.",
-                visual: (
-                  <div className="mt-6 flex items-center justify-center">
-                    <div className="p-4 bg-gray-900/50 rounded-lg border border-teal/20">
-                      <div className="grid grid-cols-2 gap-2 text-xs">
-                        <div className="bg-gray-800 p-2 rounded">장비</div>
-                        <div className="bg-gray-800 p-2 rounded">수량</div>
-                        <div className="text-gray-400">M4A1</div>
-                        <div className="text-gray-400">240</div>
-                      </div>
-                      <CheckCircle className="w-6 h-6 text-teal mt-2 mx-auto" />
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Feature 1 - Citations */}
+            <div 
+              className="group bg-gradient-to-br from-gray-800 to-gray-900 p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500"
+              style={{ animationDelay: '0ms' }}
+            >
+              <div className="flex flex-col items-center text-center">
+                {/* Icon Circle */}
+                <div className="w-24 h-24 rounded-full bg-teal/10 flex items-center justify-center mb-8 group-hover:rotate-12 transition-transform duration-500">
+                  <span className="text-6xl">📄</span>
+                </div>
+                
+                {/* Title */}
+                <h3 className="text-3xl font-bold mb-5 text-white">문장 단위로 출처 제공</h3>
+                
+                {/* Description */}
+                <p className="text-lg text-gray-300 leading-relaxed mb-8">
+                  답변의 모든 문장마다 정확한 출처를 표시합니다. &apos;교범 p.47, 3번째 문단&apos;처럼 구체적으로 제공되어 신뢰도 높은 의사결정이 가능합니다.
+                </p>
+                
+                {/* Visual Mockup */}
+                <div className="w-full h-52 bg-gray-900 rounded-xl border border-teal/20 p-6 flex flex-col justify-center group-hover:translate-y-[-4px] transition-transform duration-300">
+                  <div className="space-y-4">
+                    <p className="text-gray-200 font-mono text-sm leading-relaxed">
+                      방어 작전의 핵심 원칙은 집중과 경제성입니다<sup className="text-teal font-bold">[1]</sup>
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <ArrowRight className="w-4 h-4 text-teal" />
+                      <p className="text-gray-400 text-xs font-mono">[출처: FM 3-90, p.47, 문단 3]</p>
+                    </div>
+                    <p className="text-gray-200 font-mono text-sm leading-relaxed">
+                      화력 집중이 필수적입니다<sup className="text-teal font-bold">[2]</sup>
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <ArrowRight className="w-4 h-4 text-teal" />
+                      <p className="text-gray-400 text-xs font-mono">[출처: FM 3-90, p.51, 문단 2]</p>
                     </div>
                   </div>
-                )
-              },
-              {
-                icon: <Shield className="w-16 h-16 text-teal" />,
-                title: "인터넷 연결 불필요",
-                description: "완전히 로컬에서만 작동합니다. 폐쇄망 환경에서도 문제없이 사용 가능하며, 민감한 자료가 외부로 유출될 위험이 없습니다.",
-                visual: (
-                  <div className="mt-6 flex items-center justify-center gap-4">
-                    <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center">💻</div>
-                    <div className="text-red-500 text-2xl font-bold">✕</div>
-                    <div className="text-teal text-2xl">🔒</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Feature 2 - Table Recognition */}
+            <div 
+              className="group bg-gradient-to-br from-gray-800 to-gray-900 p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500"
+              style={{ animationDelay: '200ms' }}
+            >
+              <div className="flex flex-col items-center text-center">
+                {/* Icon Circle */}
+                <div className="w-24 h-24 rounded-full bg-teal/10 flex items-center justify-center mb-8 group-hover:rotate-12 transition-transform duration-500">
+                  <span className="text-6xl">📊</span>
+                </div>
+                
+                {/* Title */}
+                <h3 className="text-3xl font-bold mb-5 text-white">표와 수식도 완벽 인식</h3>
+                
+                {/* Description */}
+                <p className="text-lg text-gray-300 leading-relaxed mb-8">
+                  복잡한 기술 표, 수학 수식, 다이어그램을 정확하게 인식하고 분석합니다. 페이지가 넘어가는 표도 끊김 없이 처리합니다.
+                </p>
+                
+                {/* Visual Mockup */}
+                <div className="w-full h-52 bg-gray-900 rounded-xl border border-teal/20 p-6 flex flex-col justify-center group-hover:translate-y-[-4px] transition-transform duration-300">
+                  <div className="space-y-3">
+                    <div className="grid grid-cols-3 gap-2 text-sm">
+                      <div className="bg-gray-800 p-3 rounded font-semibold text-gray-200">장비</div>
+                      <div className="bg-gray-800 p-3 rounded font-semibold text-gray-200">수량</div>
+                      <div className="bg-gray-800 p-3 rounded font-semibold text-gray-200">상태</div>
+                      <div className="text-gray-400 p-2">M4A1</div>
+                      <div className="text-gray-400 p-2">240</div>
+                      <div className="text-gray-400 p-2">정상</div>
+                      <div className="text-gray-400 p-2">K2</div>
+                      <div className="text-gray-400 p-2">180</div>
+                      <div className="text-gray-400 p-2">정상</div>
+                    </div>
+                    <div className="flex items-center justify-center gap-2 pt-2">
+                      <CheckCircle className="w-5 h-5 text-green-500" />
+                      <span className="text-green-400 font-semibold text-sm">표 인식 완료 ✓</span>
+                    </div>
                   </div>
-                )
-              },
-              {
-                icon: <Users className="w-16 h-16 text-teal" />,
-                title: "여러 문서 동시 분석",
-                description: "교범, 매뉴얼, 보고서 등 여러 문서를 한 번에 업로드하고 통합 검색 및 비교 분석이 가능합니다.",
-                visual: (
-                  <div className="mt-6 flex items-center justify-center gap-2">
-                    {[...Array(3)].map((_, i) => (
-                      <div key={i} className="w-16 h-20 bg-gray-800 rounded border border-teal/30 flex items-center justify-center text-2xl" style={{ transform: `translateX(${-i * 8}px)`, zIndex: 3 - i }}>
-                        📄
+                </div>
+              </div>
+            </div>
+
+            {/* Feature 3 - Offline */}
+            <div 
+              className="group bg-gradient-to-br from-gray-800 to-gray-900 p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500"
+              style={{ animationDelay: '400ms' }}
+            >
+              <div className="flex flex-col items-center text-center">
+                {/* Icon Circle */}
+                <div className="w-24 h-24 rounded-full bg-teal/10 flex items-center justify-center mb-8 group-hover:rotate-12 transition-transform duration-500">
+                  <div className="relative">
+                    <span className="text-5xl">🔌</span>
+                    <span className="absolute -top-1 -right-1 text-3xl">⚡</span>
+                  </div>
+                </div>
+                
+                {/* Title */}
+                <h3 className="text-3xl font-bold mb-5 text-white">인터넷 연결 불필요</h3>
+                
+                {/* Description */}
+                <p className="text-lg text-gray-300 leading-relaxed mb-8">
+                  완전히 로컬에서만 작동합니다. 폐쇄망 환경에서도 문제없이 사용 가능하며, 민감한 자료가 외부로 유출될 위험이 없습니다.
+                </p>
+                
+                {/* Visual Mockup */}
+                <div className="w-full h-52 bg-gray-900 rounded-xl border border-teal/20 p-6 flex items-center justify-center group-hover:translate-y-[-4px] transition-transform duration-300">
+                  <div className="flex items-center justify-around w-full">
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="w-16 h-16 bg-gray-800 rounded-xl flex items-center justify-center text-3xl border border-teal/30">
+                        💻
+                      </div>
+                      <span className="text-teal font-semibold text-sm">로컬</span>
+                    </div>
+                    
+                    <div className="flex flex-col items-center gap-2">
+                      <ArrowRight className="w-8 h-8 text-teal" />
+                      <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
+                        <span className="text-red-400 text-2xl font-bold">✕</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="w-16 h-16 bg-teal/20 rounded-xl flex items-center justify-center text-3xl border-2 border-teal">
+                        🔒
+                      </div>
+                      <span className="text-teal font-semibold text-sm">안전</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Feature 4 - Multiple Documents */}
+            <div 
+              className="group bg-gradient-to-br from-gray-800 to-gray-900 p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500"
+              style={{ animationDelay: '600ms' }}
+            >
+              <div className="flex flex-col items-center text-center">
+                {/* Icon Circle */}
+                <div className="w-24 h-24 rounded-full bg-teal/10 flex items-center justify-center mb-8 group-hover:rotate-12 transition-transform duration-500">
+                  <span className="text-6xl">📚</span>
+                </div>
+                
+                {/* Title */}
+                <h3 className="text-3xl font-bold mb-5 text-white">여러 문서 동시 분석</h3>
+                
+                {/* Description */}
+                <p className="text-lg text-gray-300 leading-relaxed mb-8">
+                  교범, 매뉴얼, 보고서 등 여러 문서를 한 번에 업로드하고 통합 검색 및 비교 분석이 가능합니다.
+                </p>
+                
+                {/* Visual Mockup */}
+                <div className="w-full h-52 bg-gray-900 rounded-xl border border-teal/20 p-6 flex items-center justify-center group-hover:translate-y-[-4px] transition-transform duration-300">
+                  <div className="relative flex items-center justify-center">
+                    {[1, 2, 3, 4].map((num, i) => (
+                      <div 
+                        key={num}
+                        className="absolute w-20 h-28 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg border-2 border-teal/40 flex flex-col items-center justify-center text-lg font-bold transition-transform duration-300"
+                        style={{ 
+                          transform: `translateX(${(i - 1.5) * 32}px) translateY(${i * 4}px) rotate(${(i - 1.5) * 8}deg)`,
+                          zIndex: 4 - i
+                        }}
+                      >
+                        <span className="text-3xl mb-2">📄</span>
+                        <span className="text-teal">{num}</span>
                       </div>
                     ))}
                   </div>
-                )
-              }
-            ].map((feature, idx) => (
-              <div 
-                key={idx}
-                className="bg-gray-800 p-10 rounded-2xl border border-teal/20 hover:border-teal/50 hover:shadow-xl hover:shadow-teal/10 hover:scale-105 transition-all duration-300"
-              >
-                <div className="mb-6">{feature.icon}</div>
-                <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
-                <p className="text-gray-200 leading-relaxed mb-4">{feature.description}</p>
-                <div className="border-t border-teal/20 pt-4">
-                  {feature.visual}
+                  <div className="absolute bottom-8">
+                    <span className="text-teal font-bold text-sm">통합 검색 가능</span>
+                  </div>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>

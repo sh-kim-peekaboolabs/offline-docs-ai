@@ -7,6 +7,7 @@ import { AnalyticsProvider } from "@/components/AnalyticsProvider";
 import Index from "./pages/Index";
 import IndexEn from "./pages/IndexEn";
 import Financial from "./pages/Financial";
+import Defense from "./pages/Defense";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
@@ -24,6 +25,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/en" element={<IndexEn />} />
             <Route path="/financial" element={<Financial />} />
+            <Route path="/defense" element={<Defense />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

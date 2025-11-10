@@ -54,6 +54,14 @@
     --brand-pink: 329 67% 55%;   /* #d84190 */
     --brand-gold: 43 78% 54%;    /* #D4AF37 */
 
+    /* Defense page colors */
+    --navy-dark: 220 90% 6%; /* #0f1419 */
+    --navy: 216 56% 25%; /* #1a365d */
+    --navy-light: 215 54% 34%; /* #2c5282 */
+    --teal: 178 39% 39%; /* #319795 */
+    --teal-light: 177 44% 55%; /* #4fd1c5 */
+    --teal-dark: 180 39% 23%; /* #234e52 */
+
     /* Gradients & shadows */
     --gradient-primary: linear-gradient(135deg, hsl(226.5 72.7% 40.2%) 0%, hsl(221.2 83.2% 53.3%) 100%);
     --gradient-subtle: linear-gradient(135deg, hsl(214.3 94.1% 92.2%) 0%, hsl(210 20% 98%) 100%);

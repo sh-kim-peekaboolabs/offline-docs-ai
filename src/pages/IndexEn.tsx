@@ -84,13 +84,48 @@ const Hero = () => {
       errors,
       isSubmitting
     },
-    reset
+    reset,
+    setValue
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       consent: false
     }
   });
+  
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramMapping = [
+      ['utm_source', 'utm_source'],
+      ['utm_campaign_id', 'utm_campaign_id'],
+      ['campaignid', 'utm_campaign_id'],
+      ['utm_medium', 'utm_medium'],
+      ['utm_campaign_name', 'utm_campaign_name'],
+      ['utm_campaign', 'utm_campaign_name'],
+      ['utm_adset_id', 'utm_adset_id'],
+      ['adsetid', 'utm_adset_id'],
+      ['utm_adset_name', 'utm_adset_name'],
+      ['adsetname', 'utm_adset_name'],
+      ['utm_ad_id', 'utm_ad_id'],
+      ['adid', 'utm_ad_id'],
+      ['utm_ad_name', 'utm_ad_name'],
+      ['adname', 'utm_ad_name'],
+      ['linkedin_campaign_name', 'linkedin_campaign_name'],
+      ['linkedin_ad_id', 'linkedin_ad_id'],
+      ['linkedin_campaign_group_id', 'linkedin_campaign_group_id'],
+      ['linkedin_campaign_group_name', 'linkedin_campaign_group_name'],
+      ['linkedin_campaign_id', 'linkedin_campaign_id'],
+      ['linkedin_ad_name', 'linkedin_ad_name']
+    ];
+    
+    paramMapping.forEach(([paramName, fieldName]) => {
+      const value = urlParams.get(paramName);
+      if (value) {
+        setValue(fieldName as keyof FormValues, value);
+      }
+    });
+  }, [setValue]);
+  
   const onSubmit = async (values: FormValues) => {
     try {
       if (values.honeypot) {
@@ -99,7 +134,21 @@ const Hero = () => {
       }
       const insertData = {
         email: values.email,
-        consent: values.consent
+        consent: values.consent,
+        utm_source: values.utm_source || null,
+        utm_campaign_id: values.utm_campaign_id || null,
+        utm_medium: values.utm_medium || null,
+        utm_campaign_name: values.utm_campaign_name || null,
+        utm_adset_id: values.utm_adset_id || null,
+        utm_adset_name: values.utm_adset_name || null,
+        utm_ad_id: values.utm_ad_id || null,
+        utm_ad_name: values.utm_ad_name || null,
+        linkedin_campaign_name: values.linkedin_campaign_name || null,
+        linkedin_ad_id: values.linkedin_ad_id || null,
+        linkedin_campaign_group_id: values.linkedin_campaign_group_id || null,
+        linkedin_campaign_group_name: values.linkedin_campaign_group_name || null,
+        linkedin_campaign_id: values.linkedin_campaign_id || null,
+        linkedin_ad_name: values.linkedin_ad_name || null
       };
       const result = await supabase.from('email_signups').insert([insertData]);
       if (result.error) {
@@ -149,6 +198,24 @@ const Hero = () => {
               width: '1px',
               height: '1px'
             }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
+              
+              {/* Hidden UTM fields */}
+              <input type="hidden" {...register("utm_source")} />
+              <input type="hidden" {...register("utm_campaign_id")} />
+              <input type="hidden" {...register("utm_medium")} />
+              <input type="hidden" {...register("utm_campaign_name")} />
+              <input type="hidden" {...register("utm_adset_id")} />
+              <input type="hidden" {...register("utm_adset_name")} />
+              <input type="hidden" {...register("utm_ad_id")} />
+              <input type="hidden" {...register("utm_ad_name")} />
+              
+              {/* Hidden LinkedIn fields */}
+              <input type="hidden" {...register("linkedin_campaign_name")} />
+              <input type="hidden" {...register("linkedin_ad_id")} />
+              <input type="hidden" {...register("linkedin_campaign_group_id")} />
+              <input type="hidden" {...register("linkedin_campaign_group_name")} />
+              <input type="hidden" {...register("linkedin_campaign_id")} />
+              <input type="hidden" {...register("linkedin_ad_name")} />
               
               <div className="flex items-start gap-3 -mt-1">
                 <Controller
@@ -816,6 +883,24 @@ const CTA = () => {
             width: '1px',
             height: '1px'
           }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
+          
+          {/* Hidden UTM fields */}
+          <input type="hidden" {...register("utm_source")} />
+          <input type="hidden" {...register("utm_campaign_id")} />
+          <input type="hidden" {...register("utm_medium")} />
+          <input type="hidden" {...register("utm_campaign_name")} />
+          <input type="hidden" {...register("utm_adset_id")} />
+          <input type="hidden" {...register("utm_adset_name")} />
+          <input type="hidden" {...register("utm_ad_id")} />
+          <input type="hidden" {...register("utm_ad_name")} />
+          
+          {/* Hidden LinkedIn fields */}
+          <input type="hidden" {...register("linkedin_campaign_name")} />
+          <input type="hidden" {...register("linkedin_ad_id")} />
+          <input type="hidden" {...register("linkedin_campaign_group_id")} />
+          <input type="hidden" {...register("linkedin_campaign_group_name")} />
+          <input type="hidden" {...register("linkedin_campaign_id")} />
+          <input type="hidden" {...register("linkedin_ad_name")} />
           
           <div className="flex items-start space-x-2">
             <Checkbox id="consent" {...register('consent')} />

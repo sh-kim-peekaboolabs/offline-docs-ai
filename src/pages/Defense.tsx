@@ -752,136 +752,64 @@ const Defense = () => {
 
       {/* Pricing Section */}
       <section id="pricing" className="py-24 px-4 bg-navy">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-white">
-            나에게 맞는 요금제를 선택하세요
+            도입 문의
           </h2>
-          <div className="grid md:grid-cols-3 gap-8 pt-8">
-            
-            {/* Free Plan */}
-            <div className="bg-gray-800 border border-gray-700 rounded-2xl p-8 flex flex-col h-full">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-semibold mb-2 text-white">Free</h3>
-                <div className="text-4xl font-bold mb-2 text-white">무료</div>
-              </div>
-              <ul className="space-y-3 flex-1 text-sm text-gray-200">
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>PDF 업로드 및 대화 가능</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>폴더 1개 생성</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>폴더에 PDF 최대 3개 업로드</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>표·이미지·수식 완전 지원</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>이메일 CS 지원</span>
-                </li>
-              </ul>
-              <div className="mt-6">
-                <Button variant="outline" className="w-full bg-transparent border-gray-600 text-white hover:bg-gray-700">
-                  Waitlist 등록하기
-                </Button>
-              </div>
-            </div>
-
-            {/* Pro Plan */}
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 border-2 border-teal rounded-2xl p-8 flex flex-col h-full relative shadow-2xl shadow-teal/20">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-semibold mb-2 text-white flex items-center justify-center gap-2">
-                  Pro
-                  <span className="bg-teal text-white px-3 py-1 rounded-full text-xs font-medium">추천</span>
-                </h3>
-                <div className="text-4xl font-bold mb-2 text-white">
-                  $12<span className="text-lg font-normal">/월</span>
+          <p className="text-xl text-gray-300 text-center mb-16">
+            조직 규모에 맞는 맞춤형 솔루션을 제공합니다
+          </p>
+          
+          {/* Single Enterprise Card */}
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 border-2 border-teal rounded-3xl p-16 text-center shadow-2xl shadow-teal/30 hover:shadow-teal/50 hover:scale-[1.02] transition-all duration-300">
+              {/* Icon */}
+              <div className="flex justify-center mb-8">
+                <div className="w-24 h-24 rounded-full bg-teal/10 flex items-center justify-center">
+                  <span className="text-6xl">🏢</span>
                 </div>
               </div>
-              <ul className="space-y-3 flex-1 text-sm text-gray-200">
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-teal mt-0.5 flex-shrink-0" />
-                  <span>Free 플랜 모두 포함</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-teal mt-0.5 flex-shrink-0" />
-                  <span>폴더 무제한 생성</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-teal mt-0.5 flex-shrink-0" />
-                  <span>폴더당 문서 최대 50개 업로드</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-teal mt-0.5 flex-shrink-0" />
-                  <span>HWPX·PPTX·XLSX (지원 예정)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-teal mt-0.5 flex-shrink-0" />
-                  <span>결과 내보내기 (지원 예정)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-teal mt-0.5 flex-shrink-0" />
-                  <span>이메일 CS 우선 지원</span>
-                </li>
+              
+              {/* Title */}
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                기업/기관용 솔루션
+              </h3>
+              
+              {/* Description */}
+              <p className="text-lg text-gray-300 mb-10 leading-relaxed">
+                국방, 금융, 연구기관 등<br />
+                보안이 중요한 조직을 위한 맞춤형 솔루션
+              </p>
+              
+              {/* Features */}
+              <ul className="space-y-4 mb-12 text-left max-w-md mx-auto">
+                {[
+                  "폐쇄망 완전 지원",
+                  "온프레미스 설치",
+                  "무제한 사용자",
+                  "기술 지원 포함",
+                  "보안 컨설팅 제공"
+                ].map((feature, idx) => (
+                  <li key={idx} className="flex items-center gap-3 text-gray-200 text-lg">
+                    <CheckCircle className="w-6 h-6 text-teal flex-shrink-0" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
               </ul>
-              <div className="mt-6">
-                <Button className="w-full bg-teal hover:bg-teal-light text-white">
-                  Waitlist 등록하기
-                </Button>
-              </div>
-            </div>
-
-            {/* Enterprise Plan */}
-            <div className="bg-gray-800 border border-gray-700 rounded-2xl p-8 flex flex-col h-full">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-semibold mb-2 text-white">Enterprise</h3>
-                <div className="text-4xl font-bold mb-2 text-white">별도 협의</div>
-              </div>
-              <ul className="space-y-3 flex-1 text-sm text-gray-200">
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>Pro 플랜 항목 모두 포함</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>사내 시스템 연동</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>폴더 공유 기능</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>기업 데이터를 학습한 사내 AI 구축</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>중앙 관리자용 어드민 대시보드(라이센스 관리)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>SSO 등 강화된 계정 관리</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>기업 전용 RAG 패키지 지원</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>전담 기술 지원 및 온보딩</span>
-                </li>
-              </ul>
-              <div className="mt-6">
-                <Button variant="outline" className="w-full bg-transparent border-gray-600 text-white hover:bg-gray-700">
-                  Waitlist 등록하기
-                </Button>
-              </div>
+              
+              {/* CTA Button */}
+              <Button 
+                size="lg"
+                onClick={() => scrollToSection('cta')}
+                className="bg-teal hover:bg-teal-light text-white px-12 py-6 text-lg font-bold rounded-xl shadow-lg hover:shadow-teal/50 transition-all hover:scale-105"
+              >
+                도입 문의하기 <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              
+              {/* Bottom Text */}
+              <p className="text-sm text-gray-400 mt-8">
+                POC(개념 검증) 무료 제공 | 맞춤형 견적 상담
+              </p>
             </div>
           </div>
         </div>

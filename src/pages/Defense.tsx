@@ -1,5 +1,247 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import { ArrowRight, Clock, Lock, FileText, Target, Zap, Shield, CheckCircle, Database, Users } from "lucide-react";
+import { useForm, Controller } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { useEffect, useState } from "react";
+
+const formSchema = z.object({
+  email: z.string().email("유효한 이메일을 입력해 주세요.").max(255, "이메일은 255자 이하여야 합니다."),
+  consent: z.boolean().refine(val => val === true, {
+    message: "동의가 필요합니다."
+  }),
+  honeypot: z.string().max(0).optional(),
+  page_source: z.string().optional(),
+  utm_source: z.string().max(100).optional(),
+  utm_campaign_id: z.string().max(100).optional(),
+  utm_medium: z.string().max(100).optional(),
+  utm_campaign_name: z.string().max(200).optional(),
+  utm_adset_id: z.string().max(100).optional(),
+  utm_adset_name: z.string().max(200).optional(),
+  utm_ad_id: z.string().max(100).optional(),
+  utm_ad_name: z.string().max(200).optional(),
+  linkedin_campaign_name: z.string().max(200).optional(),
+  linkedin_ad_id: z.string().max(100).optional(),
+  linkedin_campaign_group_id: z.string().max(100).optional(),
+  linkedin_campaign_group_name: z.string().max(200).optional(),
+  linkedin_campaign_id: z.string().max(100).optional(),
+  linkedin_ad_name: z.string().max(200).optional()
+});
+
+type FormValues = z.infer<typeof formSchema>;
+
+const CTASection = () => {
+  const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
+  
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors, isSubmitting },
+    reset,
+    setValue
+  } = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      consent: false,
+      page_source: '/defense'
+    }
+  });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    
+    // UTM parameters
+    const utmParams = {
+      'utm_source': 'utm_source',
+      'utm_campaign': 'utm_campaign_id',
+      'utm_medium': 'utm_medium',
+      'utm_campaign_name': 'utm_campaign_name',
+      'utm_adset_id': 'utm_adset_id',
+      'utm_adset_name': 'utm_adset_name',
+      'utm_ad_id': 'utm_ad_id',
+      'utm_ad_name': 'utm_ad_name'
+    };
+    
+    Object.entries(utmParams).forEach(([paramName, fieldName]) => {
+      const value = params.get(paramName);
+      if (value) {
+        setValue(fieldName as keyof FormValues, value);
+      }
+    });
+
+    // LinkedIn parameters
+    const linkedinParams = {
+      'campaign_group_id': 'linkedin_campaign_group_id',
+      'campaign_group_name': 'linkedin_campaign_group_name',
+      'campaign_id': 'linkedin_campaign_id',
+      'utm_campaign': 'linkedin_campaign_name',
+      'utm_content': 'linkedin_ad_id',
+      'creative_name': 'linkedin_ad_name'
+    };
+    
+    Object.entries(linkedinParams).forEach(([paramName, fieldName]) => {
+      const value = params.get(paramName);
+      if (value) {
+        setValue(fieldName as keyof FormValues, value);
+      }
+    });
+  }, [setValue]);
+
+  const onSubmit = async (values: FormValues) => {
+    try {
+      if (values.honeypot) {
+        toast.error("잘못된 요청입니다.");
+        return;
+      }
+
+      const insertData = {
+        email: values.email,
+        consent: values.consent,
+        page_source: '/defense',
+        utm_source: values.utm_source || null,
+        utm_campaign_id: values.utm_campaign_id || null,
+        utm_medium: values.utm_medium || null,
+        utm_campaign_name: values.utm_campaign_name || null,
+        utm_adset_id: values.utm_adset_id || null,
+        utm_adset_name: values.utm_adset_name || null,
+        utm_ad_id: values.utm_ad_id || null,
+        utm_ad_name: values.utm_ad_name || null,
+        linkedin_campaign_name: values.linkedin_campaign_name || null,
+        linkedin_ad_id: values.linkedin_ad_id || null,
+        linkedin_campaign_group_id: values.linkedin_campaign_group_id || null,
+        linkedin_campaign_group_name: values.linkedin_campaign_group_name || null,
+        linkedin_campaign_id: values.linkedin_campaign_id || null,
+        linkedin_ad_name: values.linkedin_ad_name || null
+      };
+
+      const { error } = await supabase.from("email_signups").insert([insertData]);
+
+      if (error) throw error;
+
+      toast.success("등록이 완료되었습니다! 곧 연락드리겠습니다.");
+      setIsSubmitSuccessful(true);
+      reset();
+      
+      setTimeout(() => {
+        setIsSubmitSuccessful(false);
+      }, 3000);
+    } catch (error: any) {
+      console.error("Error submitting form:", error);
+      toast.error("등록 중 오류가 발생했습니다. 다시 시도해주세요.");
+    }
+  };
+
+  return (
+    <section className="py-24 px-4 bg-gradient-to-br from-navy to-teal-dark relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-teal/10 to-transparent animate-pulse"></div>
+      
+      <div className="max-w-4xl mx-auto text-center relative z-10">
+        <h2 className="text-4xl md:text-5xl font-black mb-6">
+          지금 바로 체험해보세요
+        </h2>
+        
+        <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto">
+          설치부터 사용까지 5분이면 충분합니다.<br />
+          폐쇄망에서도 안전하게 작동합니다.
+        </p>
+        
+        <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl mx-auto mb-8">
+          <div className="flex flex-col md:flex-row gap-4 items-start">
+            <div className="flex-1 w-full">
+              <Input
+                type="email"
+                placeholder="이메일 주소를 입력하세요"
+                {...register("email")}
+                className="h-14 text-lg bg-white text-navy border-0"
+                disabled={isSubmitting}
+              />
+              {!isSubmitSuccessful && errors.email && (
+                <p className="text-sm text-red-300 mt-2 text-left">{errors.email.message}</p>
+              )}
+            </div>
+            
+            <Button 
+              type="submit"
+              size="lg"
+              disabled={isSubmitting}
+              className="bg-white text-navy hover:bg-gray-100 h-14 px-8 text-lg font-bold rounded-lg shadow-2xl hover:shadow-white/30 hover:scale-105 transition-all whitespace-nowrap"
+            >
+              {isSubmitting ? "등록 중..." : "무료로 시작하기"} 
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </div>
+
+          <input type="text" {...register("honeypot")} style={{
+            position: 'absolute',
+            left: '-9999px',
+            width: '1px',
+            height: '1px'
+          }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
+          
+          <input type="hidden" {...register("page_source")} />
+          <input type="hidden" {...register("utm_source")} />
+          <input type="hidden" {...register("utm_campaign_id")} />
+          <input type="hidden" {...register("utm_medium")} />
+          <input type="hidden" {...register("utm_campaign_name")} />
+          <input type="hidden" {...register("utm_adset_id")} />
+          <input type="hidden" {...register("utm_adset_name")} />
+          <input type="hidden" {...register("utm_ad_id")} />
+          <input type="hidden" {...register("utm_ad_name")} />
+          <input type="hidden" {...register("linkedin_campaign_name")} />
+          <input type="hidden" {...register("linkedin_ad_id")} />
+          <input type="hidden" {...register("linkedin_campaign_group_id")} />
+          <input type="hidden" {...register("linkedin_campaign_group_name")} />
+          <input type="hidden" {...register("linkedin_campaign_id")} />
+          <input type="hidden" {...register("linkedin_ad_name")} />
+
+          <div className="flex items-start gap-3 mt-4 justify-center">
+            <Controller
+              name="consent"
+              control={control}
+              render={({ field }) => (
+                <Checkbox 
+                  id="defense-consent" 
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                  className="mt-1 border-white data-[state=checked]:bg-white data-[state=checked]:text-navy" 
+                />
+              )}
+            />
+            <Label htmlFor="defense-consent" className="text-sm text-white/90 cursor-pointer leading-relaxed text-left">
+              개인정보 수집 및 이용에 동의합니다
+            </Label>
+          </div>
+          {!isSubmitSuccessful && errors.consent && (
+            <p className="text-sm text-red-300 mt-2">{errors.consent.message}</p>
+          )}
+        </form>
+        
+        <p className="text-white/70 text-sm mb-8">
+          신용카드 등록 불필요 • 언제든 취소 가능
+        </p>
+        
+        <div className="flex flex-wrap justify-center gap-6 text-sm">
+          {[
+            { icon: <Lock className="w-4 h-4" />, text: "완전 보안" },
+            { icon: <Clock className="w-4 h-4" />, text: "5분 설치" },
+            { icon: <CheckCircle className="w-4 h-4" />, text: "무료 체험" }
+          ].map((item, idx) => (
+            <div key={idx} className="flex items-center gap-2 text-white/80">
+              {item.icon}
+              <span>{item.text}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const Defense = () => {
   return (
@@ -116,42 +358,178 @@ const Defense = () => {
         </div>
       </section>
 
-      {/* Demo Section */}
-      <section className="py-24 px-4 bg-navy">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 animate-fade-in">
-            실제로 어떻게 작동하나요?
+      {/* Pricing Section */}
+      <section id="pricing" className="py-24 px-4 bg-navy">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-white">
+            나에게 맞는 요금제를 선택하세요
           </h2>
-          
-          <div className="rounded-2xl overflow-hidden border-2 border-teal shadow-2xl shadow-teal/20 mb-8">
-            <div className="aspect-video flex flex-col items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
-              <div className="w-20 h-20 rounded-full bg-teal/20 flex items-center justify-center mb-4 hover:bg-teal/30 transition-all cursor-pointer animate-pulse">
-                <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-teal border-b-[12px] border-b-transparent ml-1"></div>
+          <div className="grid md:grid-cols-3 gap-8 pt-8">
+            
+            {/* Free Plan */}
+            <div className="bg-gray-800 border border-gray-700 rounded-2xl p-8 flex flex-col h-full">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-semibold mb-2 text-white">Free</h3>
+                <div className="text-4xl font-bold mb-2 text-white">무료</div>
               </div>
-              <p className="text-xl font-semibold">데모 영상</p>
-              <p className="text-sm text-gray-400 mt-2">(추후 삽입 예정)</p>
+              <ul className="space-y-3 flex-1 text-sm text-gray-200">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>PDF 업로드 및 대화 가능</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>폴더 1개 생성</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>폴더에 PDF 최대 3개 업로드</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>표·이미지·수식 완전 지원</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>이메일 CS 지원</span>
+                </li>
+              </ul>
+              <div className="mt-6">
+                <Button variant="outline" className="w-full bg-transparent border-gray-600 text-white hover:bg-gray-700">
+                  Waitlist 등록하기
+                </Button>
+              </div>
+            </div>
+
+            {/* Pro Plan */}
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 border-2 border-teal rounded-2xl p-8 flex flex-col h-full relative shadow-2xl shadow-teal/20">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-semibold mb-2 text-white flex items-center justify-center gap-2">
+                  Pro
+                  <span className="bg-teal text-white px-3 py-1 rounded-full text-xs font-medium">추천</span>
+                </h3>
+                <div className="text-4xl font-bold mb-2 text-white">
+                  $12<span className="text-lg font-normal">/월</span>
+                </div>
+              </div>
+              <ul className="space-y-3 flex-1 text-sm text-gray-200">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-teal mt-0.5 flex-shrink-0" />
+                  <span>Free 플랜 모두 포함</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-teal mt-0.5 flex-shrink-0" />
+                  <span>폴더 무제한 생성</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-teal mt-0.5 flex-shrink-0" />
+                  <span>폴더당 문서 최대 50개 업로드</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-teal mt-0.5 flex-shrink-0" />
+                  <span>HWPX·PPTX·XLSX (지원 예정)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-teal mt-0.5 flex-shrink-0" />
+                  <span>결과 내보내기 (지원 예정)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-teal mt-0.5 flex-shrink-0" />
+                  <span>이메일 CS 우선 지원</span>
+                </li>
+              </ul>
+              <div className="mt-6">
+                <Button className="w-full bg-teal hover:bg-teal-light text-white">
+                  Waitlist 등록하기
+                </Button>
+              </div>
+            </div>
+
+            {/* Enterprise Plan */}
+            <div className="bg-gray-800 border border-gray-700 rounded-2xl p-8 flex flex-col h-full">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-semibold mb-2 text-white">Enterprise</h3>
+                <div className="text-4xl font-bold mb-2 text-white">별도 협의</div>
+              </div>
+              <ul className="space-y-3 flex-1 text-sm text-gray-200">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>Pro 플랜 항목 모두 포함</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>사내 시스템 연동</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>폴더 공유 기능</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>기업 데이터를 학습한 사내 AI 구축</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>중앙 관리자용 어드민 대시보드(라이센스 관리)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>SSO 등 강화된 계정 관리</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>기업 전용 RAG 패키지 지원</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span>전담 기술 지원 및 온보딩</span>
+                </li>
+              </ul>
+              <div className="mt-6">
+                <Button variant="outline" className="w-full bg-transparent border-gray-600 text-white hover:bg-gray-700">
+                  Waitlist 등록하기
+                </Button>
+              </div>
             </div>
           </div>
-          
-          <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-teal/20">
-            <h3 className="text-xl font-bold text-teal mb-6">영상 내용 (30-60초):</h3>
-            <ul className="space-y-3 text-gray-200">
-              {[
-                "FM 3-90 (전술교범) 400페이지 업로드",
-                "질문: '방어 작전의 핵심 원칙은?'",
-                "AI 답변 + 출처 표시",
-                "출처 클릭 → 해당 페이지 이동",
-                "자막: '400페이지 → 10초에 정확한 답변'"
-              ].map((item, idx) => (
-                <li key={idx} className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-teal mr-3 mt-0.5 flex-shrink-0" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="text-center text-gray-400 text-sm mt-8 italic">
-              폐쇄망 환경에서 촬영된 실제 데모입니다
-            </p>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-24 px-4 bg-navy-dark">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-white">
+            자주 묻는 질문
+          </h2>
+          <div className="space-y-4">
+            <details className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-teal/50 transition-all">
+              <summary className="font-medium cursor-pointer text-white text-lg">인터넷이 없어도 사용할 수 있나요?</summary>
+              <p className="mt-4 text-gray-300 leading-relaxed">네, 설치 후에는 인터넷 없이도 모든 기능이 동작합니다.</p>
+            </details>
+            <details className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-teal/50 transition-all">
+              <summary className="font-medium cursor-pointer text-white text-lg">어떤 파일 형식을 지원하나요?</summary>
+              <p className="mt-4 text-gray-300 leading-relaxed">현재는 PDF만 지원됩니다. 곧 HWP, PPTX, XLSX 등 다양한 포맷을 추가할 예정입니다.</p>
+            </details>
+            <details className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-teal/50 transition-all">
+              <summary className="font-medium cursor-pointer text-white text-lg">표·그래프도 읽을 수 있나요?</summary>
+              <p className="mt-4 text-gray-300 leading-relaxed">네, 표와 이미지, 수식까지 분석할 수 있습니다.</p>
+            </details>
+            <details className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-teal/50 transition-all">
+              <summary className="font-medium cursor-pointer text-white text-lg">답변에 출처가 표시되나요?</summary>
+              <p className="mt-4 text-gray-300 leading-relaxed">모든 답변에 출처를 제공합니다. 어떤 문서의, 어느 페이지에서 가져왔는지 확인할 수 있습니다.</p>
+            </details>
+            <details className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-teal/50 transition-all">
+              <summary className="font-medium cursor-pointer text-white text-lg">보안이 중요한 환경에서도 사용할 수 있나요?</summary>
+              <p className="mt-4 text-gray-300 leading-relaxed">네, 폐쇄망·인트라넷에서도 100% 로컬 처리로 안전하게 쓸 수 있습니다.</p>
+            </details>
+            <details className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-teal/50 transition-all">
+              <summary className="font-medium cursor-pointer text-white text-lg">무료 플랜과 유료 플랜의 차이는 무엇인가요?</summary>
+              <p className="mt-4 text-gray-300 leading-relaxed">무료는 문서/폴더 개수 제한이 있고, Pro는 무제한 + 고급 기능, Enterprise는 팀 관리·보안 기능까지 제공합니다.</p>
+            </details>
+            <details className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-teal/50 transition-all">
+              <summary className="font-medium cursor-pointer text-white text-lg">한국어 외 다른 언어도 지원하나요?</summary>
+              <p className="mt-4 text-gray-300 leading-relaxed">네, 다양한 언어의 문서를 지원하며 특히 한국어 문서에서 뛰어난 성능을 발휘합니다.</p>
+            </details>
           </div>
         </div>
       </section>
@@ -398,44 +776,7 @@ const Defense = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-4 bg-gradient-to-br from-navy to-teal-dark relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-teal/10 to-transparent animate-pulse"></div>
-        
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-black mb-6">
-            지금 바로 체험해보세요
-          </h2>
-          
-          <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto">
-            설치부터 사용까지 5분이면 충분합니다.<br />
-            폐쇄망에서도 안전하게 작동합니다.
-          </p>
-          
-          <Button 
-            size="lg" 
-            className="bg-white text-navy hover:bg-gray-100 px-16 py-8 text-xl font-black rounded-2xl shadow-2xl hover:shadow-white/30 hover:scale-105 transition-all mb-6"
-          >
-            무료로 시작하기 <ArrowRight className="ml-3 h-6 w-6" />
-          </Button>
-          
-          <p className="text-white/70 text-sm mb-8">
-            신용카드 등록 불필요 • 언제든 취소 가능
-          </p>
-          
-          <div className="flex flex-wrap justify-center gap-6 text-sm">
-            {[
-              { icon: <Lock className="w-4 h-4" />, text: "완전 보안" },
-              { icon: <Clock className="w-4 h-4" />, text: "5분 설치" },
-              { icon: <CheckCircle className="w-4 h-4" />, text: "무료 체험" }
-            ].map((item, idx) => (
-              <div key={idx} className="flex items-center gap-2 text-white/80">
-                {item.icon}
-                <span>{item.text}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CTASection />
     </div>
   );
 };

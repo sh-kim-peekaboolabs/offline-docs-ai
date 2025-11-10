@@ -138,7 +138,7 @@ const CTASection = () => {
   };
 
   return (
-    <section className="py-24 px-4 bg-gradient-to-br from-navy to-teal-dark relative overflow-hidden">
+    <section id="cta" className="py-24 px-4 bg-gradient-to-br from-navy to-teal-dark relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-teal/10 to-transparent animate-pulse"></div>
       
       <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -243,11 +243,49 @@ const CTASection = () => {
   );
 };
 
+const scrollToSection = (sectionId: string) => {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    const headerOffset = 64;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  }
+};
+
+const Header = () => {
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-navy-dark/80 backdrop-blur-lg border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+        <button 
+          onClick={() => scrollToSection('hero')}
+          className="text-xl font-bold text-white hover:text-teal transition-colors"
+        >
+          로컬독스
+        </button>
+        <Button 
+          size="sm"
+          onClick={() => scrollToSection('cta')}
+          className="bg-teal hover:bg-teal-light text-white"
+        >
+          무료 체험하기
+        </Button>
+      </div>
+    </header>
+  );
+};
+
 const Defense = () => {
   return (
     <div className="min-h-screen bg-navy-dark text-white">
+      <Header />
+      
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-4 py-20 bg-gradient-to-b from-navy to-navy-dark relative overflow-hidden">
+      <section id="hero" className="min-h-screen flex items-center justify-center px-4 py-20 pt-32 bg-gradient-to-b from-navy to-navy-dark relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30"></div>
         
         <div className="max-w-5xl mx-auto text-center relative z-10 animate-fade-in">
@@ -272,14 +310,18 @@ const Defense = () => {
             </div>
           </div>
           
-          <Button size="lg" className="bg-teal hover:bg-teal-light text-white px-12 py-6 text-lg font-bold rounded-xl shadow-lg hover:shadow-teal/50 transition-all hover:scale-105">
+          <Button 
+            size="lg" 
+            onClick={() => scrollToSection('cta')}
+            className="bg-teal hover:bg-teal-light text-white px-12 py-6 text-lg font-bold rounded-xl shadow-lg hover:shadow-teal/50 transition-all hover:scale-105"
+          >
             무료 체험하기 <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </div>
       </section>
 
       {/* Problem Section */}
-      <section className="py-24 px-4 bg-navy-dark">
+      <section id="problem" className="py-24 px-4 bg-navy-dark">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 animate-fade-in">
             이런 경험, 있으시죠?
@@ -321,10 +363,10 @@ const Defense = () => {
       </section>
 
       {/* Solution Section */}
-      <section className="py-24 px-4 bg-gradient-to-b from-navy-dark to-navy">
+      <section id="solution" className="py-24 px-4 bg-gradient-to-b from-navy-dark to-navy">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 animate-fade-in">
-            LocalDocs가 해결합니다
+            로컬독스가 해결합니다
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8">
@@ -354,6 +396,247 @@ const Defense = () => {
                 <p className="text-gray-200 leading-relaxed">{item.content}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-24 px-4 bg-gradient-to-b from-navy to-navy-dark">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 animate-fade-in">
+            왜 로컬독스인가요?
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-10">
+            {[
+              {
+                icon: <FileText className="w-16 h-16 text-teal" />,
+                title: "문장 단위로 출처 제공",
+                description: "답변의 모든 문장마다 정확한 출처를 표시합니다. '교범 p.47, 3번째 문단'처럼 구체적으로 제공되어 신뢰도 높은 의사결정이 가능합니다.",
+                visual: (
+                  <div className="mt-6 p-4 bg-gray-900/50 rounded-lg border border-teal/20 font-mono text-sm">
+                    <p className="text-gray-200">방어 작전의 핵심 원칙은 집중과 경제성입니다<sup className="text-teal">[1]</sup></p>
+                    <p className="text-gray-400 text-xs mt-2">[출처: FM 3-90, p.47]</p>
+                  </div>
+                )
+              },
+              {
+                icon: <Database className="w-16 h-16 text-teal" />,
+                title: "표와 수식도 완벽 인식",
+                description: "복잡한 기술 표, 수학 수식, 다이어그램을 정확하게 인식하고 분석합니다. 페이지가 넘어가는 표도 끊김 없이 처리합니다.",
+                visual: (
+                  <div className="mt-6 flex items-center justify-center">
+                    <div className="p-4 bg-gray-900/50 rounded-lg border border-teal/20">
+                      <div className="grid grid-cols-2 gap-2 text-xs">
+                        <div className="bg-gray-800 p-2 rounded">장비</div>
+                        <div className="bg-gray-800 p-2 rounded">수량</div>
+                        <div className="text-gray-400">M4A1</div>
+                        <div className="text-gray-400">240</div>
+                      </div>
+                      <CheckCircle className="w-6 h-6 text-teal mt-2 mx-auto" />
+                    </div>
+                  </div>
+                )
+              },
+              {
+                icon: <Shield className="w-16 h-16 text-teal" />,
+                title: "인터넷 연결 불필요",
+                description: "완전히 로컬에서만 작동합니다. 폐쇄망 환경에서도 문제없이 사용 가능하며, 민감한 자료가 외부로 유출될 위험이 없습니다.",
+                visual: (
+                  <div className="mt-6 flex items-center justify-center gap-4">
+                    <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center">💻</div>
+                    <div className="text-red-500 text-2xl font-bold">✕</div>
+                    <div className="text-teal text-2xl">🔒</div>
+                  </div>
+                )
+              },
+              {
+                icon: <Users className="w-16 h-16 text-teal" />,
+                title: "여러 문서 동시 분석",
+                description: "교범, 매뉴얼, 보고서 등 여러 문서를 한 번에 업로드하고 통합 검색 및 비교 분석이 가능합니다.",
+                visual: (
+                  <div className="mt-6 flex items-center justify-center gap-2">
+                    {[...Array(3)].map((_, i) => (
+                      <div key={i} className="w-16 h-20 bg-gray-800 rounded border border-teal/30 flex items-center justify-center text-2xl" style={{ transform: `translateX(${-i * 8}px)`, zIndex: 3 - i }}>
+                        📄
+                      </div>
+                    ))}
+                  </div>
+                )
+              }
+            ].map((feature, idx) => (
+              <div 
+                key={idx}
+                className="bg-gray-800 p-10 rounded-2xl border border-teal/20 hover:border-teal/50 hover:shadow-xl hover:shadow-teal/10 hover:scale-105 transition-all duration-300"
+              >
+                <div className="mb-6">{feature.icon}</div>
+                <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
+                <p className="text-gray-200 leading-relaxed mb-4">{feature.description}</p>
+                <div className="border-t border-teal/20 pt-4">
+                  {feature.visual}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Use Cases Section */}
+      <section id="use-cases" className="py-24 px-4 bg-navy">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 animate-fade-in">
+            실제로 어떻게 활용하나요?
+          </h2>
+          
+          <div className="space-y-12">
+            {[
+              {
+                situation: "긴급 작전 명령이 떨어졌는데, 관련 교범 내용을 빠르게 확인해야 할 때",
+                label: "작전 계획 수립",
+                before: [
+                  "교범 5권을 뒤적이며 8시간 소요",
+                  "중요한 절차를 놓칠 위험"
+                ],
+                after: [
+                  "'방어 작전 체크리스트는?' 질문으로 10초 해결",
+                  "출처와 함께 정확한 절차 확인",
+                  "작전 계획 수립 시간 8시간 단축"
+                ]
+              },
+              {
+                situation: "장비 고장 시 기술교범에서 정비 절차를 찾아야 할 때",
+                label: "장비 정비",
+                before: [
+                  "300페이지 기술교범을 Ctrl+F로 검색",
+                  "표로 되어있는 부품 번호 찾기 어려움"
+                ],
+                after: [
+                  "'XX 부품 교체 절차는?' 질문으로 즉시 해결",
+                  "표 안의 부품 번호도 정확히 인식",
+                  "정비 시간 2시간 단축"
+                ]
+              },
+              {
+                situation: "신병 교육을 위해 교범 내용을 정리해야 할 때",
+                label: "교육 자료 준비",
+                before: [
+                  "여러 교범에서 관련 내용 수작업 복사",
+                  "출처 정리에 시간 소요"
+                ],
+                after: [
+                  "'기본 전술 개념 요약해줘' 질문으로 요약 생성",
+                  "출처가 자동으로 포함되어 교육자료 완성",
+                  "자료 준비 시간 5시간 단축"
+                ]
+              }
+            ].map((useCase, idx) => (
+              <div key={idx} className="bg-gray-800 p-10 rounded-3xl border-2 border-teal/30 hover:border-teal/50 transition-all">
+                <div className="inline-block bg-teal px-6 py-2 rounded-full text-sm font-bold mb-6">
+                  {useCase.label}
+                </div>
+                <p className="text-xl font-bold mb-8 text-gray-100">"{useCase.situation}"</p>
+                
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-lg font-bold text-red-400 mb-4 flex items-center">
+                      <span className="mr-2">Before</span>
+                    </h4>
+                    <ul className="space-y-3">
+                      {useCase.before.map((item, i) => (
+                        <li key={i} className="flex items-start text-gray-300">
+                          <span className="text-red-400 mr-3">❌</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h4 className="text-lg font-bold text-green-400 mb-4 flex items-center">
+                      <span className="mr-2">After</span>
+                    </h4>
+                    <ul className="space-y-3">
+                      {useCase.after.map((item, i) => (
+                        <li key={i} className="flex items-start text-gray-200">
+                          <span className="text-green-400 mr-3">✅</span>
+                          <span className={item.includes('단축') ? 'font-bold text-teal' : ''}>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Security Section */}
+      <section id="security" className="py-24 px-4 bg-navy-dark relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-20"></div>
+        
+        <div className="max-w-6xl mx-auto relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 animate-fade-in">
+            보안이 최우선입니다
+          </h2>
+          
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {[
+              {
+                icon: "💻",
+                title: "모든 데이터는 로컬에만",
+                points: [
+                  "인터넷 연결 불필요",
+                  "문서와 AI 모델 모두 로컬 저장",
+                  "외부 서버 전송 없음",
+                  "폐쇄망 환경 완벽 지원"
+                ]
+              },
+              {
+                icon: "🔒",
+                title: "민감 정보 완벽 보호",
+                points: [
+                  "업로드한 문서는 로컬에만 저장",
+                  "클라우드 동기화 없음",
+                  "삭제 시 완전히 제거",
+                  "보안 규정 준수"
+                ]
+              },
+              {
+                icon: "✅",
+                title: "국방/금융권 적용 사례",
+                points: [
+                  "보안에 민감한 기관에서 검증",
+                  "폐쇄망 환경 실전 테스트 완료",
+                  "안전한 AI 문서 분석 솔루션"
+                ]
+              }
+            ].map((security, idx) => (
+              <div 
+                key={idx}
+                className="bg-gray-800/50 backdrop-blur-sm p-10 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/20 transition-all duration-300"
+              >
+                <div className="text-6xl mb-6 text-center animate-pulse">{security.icon}</div>
+                <h3 className="text-2xl font-bold text-center mb-6">{security.title}</h3>
+                <ul className="space-y-3">
+                  {security.points.map((point, i) => (
+                    <li key={i} className="flex items-start text-gray-200">
+                      <span className="text-teal mr-3 flex-shrink-0">•</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          
+          <div className="flex justify-center">
+            <div className="inline-flex items-center justify-center w-32 h-32 rounded-full border-4 border-teal bg-teal/10 animate-pulse">
+              <div className="text-center">
+                <Shield className="w-12 h-12 text-teal mx-auto mb-2" />
+                <p className="text-xs font-bold text-teal">보안 검증</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -495,6 +778,9 @@ const Defense = () => {
         </div>
       </section>
 
+      {/* CTA Section */}
+      <CTASection />
+
       {/* FAQ Section */}
       <section id="faq" className="py-24 px-4 bg-navy-dark">
         <div className="max-w-4xl mx-auto">
@@ -533,250 +819,6 @@ const Defense = () => {
           </div>
         </div>
       </section>
-
-      {/* Features Section */}
-      <section className="py-24 px-4 bg-gradient-to-b from-navy to-navy-dark">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 animate-fade-in">
-            왜 LocalDocs인가요?
-          </h2>
-          
-          <div className="grid md:grid-cols-2 gap-10">
-            {[
-              {
-                icon: <FileText className="w-16 h-16 text-teal" />,
-                title: "문장 단위로 출처 제공",
-                description: "답변의 모든 문장마다 정확한 출처를 표시합니다. '교범 p.47, 3번째 문단'처럼 구체적으로 제공되어 신뢰도 높은 의사결정이 가능합니다.",
-                visual: (
-                  <div className="mt-6 p-4 bg-gray-900/50 rounded-lg border border-teal/20 font-mono text-sm">
-                    <p className="text-gray-200">방어 작전의 핵심 원칙은 집중과 경제성입니다<sup className="text-teal">[1]</sup></p>
-                    <p className="text-gray-400 text-xs mt-2">[출처: FM 3-90, p.47]</p>
-                  </div>
-                )
-              },
-              {
-                icon: <Database className="w-16 h-16 text-teal" />,
-                title: "표와 수식도 완벽 인식",
-                description: "복잡한 기술 표, 수학 수식, 다이어그램을 정확하게 인식하고 분석합니다. 페이지가 넘어가는 표도 끊김 없이 처리합니다.",
-                visual: (
-                  <div className="mt-6 flex items-center justify-center">
-                    <div className="p-4 bg-gray-900/50 rounded-lg border border-teal/20">
-                      <div className="grid grid-cols-2 gap-2 text-xs">
-                        <div className="bg-gray-800 p-2 rounded">장비</div>
-                        <div className="bg-gray-800 p-2 rounded">수량</div>
-                        <div className="text-gray-400">M4A1</div>
-                        <div className="text-gray-400">240</div>
-                      </div>
-                      <CheckCircle className="w-6 h-6 text-teal mt-2 mx-auto" />
-                    </div>
-                  </div>
-                )
-              },
-              {
-                icon: <Shield className="w-16 h-16 text-teal" />,
-                title: "인터넷 연결 불필요",
-                description: "완전히 로컬에서만 작동합니다. 폐쇄망 환경에서도 문제없이 사용 가능하며, 민감한 자료가 외부로 유출될 위험이 없습니다.",
-                visual: (
-                  <div className="mt-6 flex items-center justify-center gap-4">
-                    <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center">💻</div>
-                    <div className="text-red-500 text-2xl font-bold">✕</div>
-                    <div className="text-teal text-2xl">🔒</div>
-                  </div>
-                )
-              },
-              {
-                icon: <Users className="w-16 h-16 text-teal" />,
-                title: "여러 문서 동시 분석",
-                description: "교범, 매뉴얼, 보고서 등 여러 문서를 한 번에 업로드하고 통합 검색 및 비교 분석이 가능합니다.",
-                visual: (
-                  <div className="mt-6 flex items-center justify-center gap-2">
-                    {[...Array(3)].map((_, i) => (
-                      <div key={i} className="w-16 h-20 bg-gray-800 rounded border border-teal/30 flex items-center justify-center text-2xl" style={{ transform: `translateX(${-i * 8}px)`, zIndex: 3 - i }}>
-                        📄
-                      </div>
-                    ))}
-                  </div>
-                )
-              }
-            ].map((feature, idx) => (
-              <div 
-                key={idx}
-                className="bg-gray-800 p-10 rounded-2xl border border-teal/20 hover:border-teal/50 hover:shadow-xl hover:shadow-teal/10 hover:scale-105 transition-all duration-300"
-              >
-                <div className="mb-6">{feature.icon}</div>
-                <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
-                <p className="text-gray-200 leading-relaxed mb-4">{feature.description}</p>
-                <div className="border-t border-teal/20 pt-4">
-                  {feature.visual}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Use Cases Section */}
-      <section className="py-24 px-4 bg-navy">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 animate-fade-in">
-            실제로 어떻게 활용하나요?
-          </h2>
-          
-          <div className="space-y-12">
-            {[
-              {
-                situation: "긴급 작전 명령이 떨어졌는데, 관련 교범 내용을 빠르게 확인해야 할 때",
-                label: "작전 계획 수립",
-                before: [
-                  "교범 5권을 뒤적이며 8시간 소요",
-                  "중요한 절차를 놓칠 위험"
-                ],
-                after: [
-                  "'방어 작전 체크리스트는?' 질문으로 10초 해결",
-                  "출처와 함께 정확한 절차 확인",
-                  "작전 계획 수립 시간 8시간 단축"
-                ]
-              },
-              {
-                situation: "장비 고장 시 기술교범에서 정비 절차를 찾아야 할 때",
-                label: "장비 정비",
-                before: [
-                  "300페이지 기술교범을 Ctrl+F로 검색",
-                  "표로 되어있는 부품 번호 찾기 어려움"
-                ],
-                after: [
-                  "'XX 부품 교체 절차는?' 질문으로 즉시 해결",
-                  "표 안의 부품 번호도 정확히 인식",
-                  "정비 시간 2시간 단축"
-                ]
-              },
-              {
-                situation: "신병 교육을 위해 교범 내용을 정리해야 할 때",
-                label: "교육 자료 준비",
-                before: [
-                  "여러 교범에서 관련 내용 수작업 복사",
-                  "출처 정리에 시간 소요"
-                ],
-                after: [
-                  "'기본 전술 개념 요약해줘' 질문으로 요약 생성",
-                  "출처가 자동으로 포함되어 교육자료 완성",
-                  "자료 준비 시간 5시간 단축"
-                ]
-              }
-            ].map((useCase, idx) => (
-              <div key={idx} className="bg-gray-800 p-10 rounded-3xl border-2 border-teal/30 hover:border-teal/50 transition-all">
-                <div className="inline-block bg-teal px-6 py-2 rounded-full text-sm font-bold mb-6">
-                  {useCase.label}
-                </div>
-                <p className="text-xl font-bold mb-8 text-gray-100">"{useCase.situation}"</p>
-                
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <h4 className="text-lg font-bold text-red-400 mb-4 flex items-center">
-                      <span className="mr-2">Before</span>
-                    </h4>
-                    <ul className="space-y-3">
-                      {useCase.before.map((item, i) => (
-                        <li key={i} className="flex items-start text-gray-300">
-                          <span className="text-red-400 mr-3">❌</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div>
-                    <h4 className="text-lg font-bold text-green-400 mb-4 flex items-center">
-                      <span className="mr-2">After</span>
-                    </h4>
-                    <ul className="space-y-3">
-                      {useCase.after.map((item, i) => (
-                        <li key={i} className="flex items-start text-gray-200">
-                          <span className="text-green-400 mr-3">✅</span>
-                          <span className={item.includes('단축') ? 'font-bold text-teal' : ''}>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Security Section */}
-      <section className="py-24 px-4 bg-navy-dark relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-20"></div>
-        
-        <div className="max-w-6xl mx-auto relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 animate-fade-in">
-            보안이 최우선입니다
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {[
-              {
-                icon: "💻",
-                title: "모든 데이터는 로컬에만",
-                points: [
-                  "인터넷 연결 불필요",
-                  "문서와 AI 모델 모두 로컬 저장",
-                  "외부 서버 전송 없음",
-                  "폐쇄망 환경 완벽 지원"
-                ]
-              },
-              {
-                icon: "🔒",
-                title: "민감 정보 완벽 보호",
-                points: [
-                  "업로드한 문서는 로컬에만 저장",
-                  "클라우드 동기화 없음",
-                  "삭제 시 완전히 제거",
-                  "보안 규정 준수"
-                ]
-              },
-              {
-                icon: "✅",
-                title: "국방/금융권 적용 사례",
-                points: [
-                  "보안에 민감한 기관에서 검증",
-                  "폐쇄망 환경 실전 테스트 완료",
-                  "안전한 AI 문서 분석 솔루션"
-                ]
-              }
-            ].map((security, idx) => (
-              <div 
-                key={idx}
-                className="bg-gray-800/50 backdrop-blur-sm p-10 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/20 transition-all duration-300"
-              >
-                <div className="text-6xl mb-6 text-center animate-pulse">{security.icon}</div>
-                <h3 className="text-2xl font-bold text-center mb-6">{security.title}</h3>
-                <ul className="space-y-3">
-                  {security.points.map((point, i) => (
-                    <li key={i} className="flex items-start text-gray-200">
-                      <span className="text-teal mr-3 flex-shrink-0">•</span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          
-          <div className="flex justify-center">
-            <div className="inline-flex items-center justify-center w-32 h-32 rounded-full border-4 border-teal bg-teal/10 animate-pulse">
-              <div className="text-center">
-                <Shield className="w-12 h-12 text-teal mx-auto mb-2" />
-                <p className="text-xs font-bold text-teal">보안 검증</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <CTASection />
     </div>
   );
 };

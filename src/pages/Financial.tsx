@@ -274,11 +274,6 @@ const Financial = () => {
                   "Ctrl+F 검색하면 200개 결과... 하나하나 확인하다 보면 어느새 30분"
                 </p>
               </div>
-              
-              <div className="inline-flex items-center gap-2 text-sm font-medium text-red-600 bg-red-50 px-3 py-2 rounded-full">
-                <Clock className="w-4 h-4" />
-                <span>30분 / 건</span>
-              </div>
             </div>
             
             {/* Card 2 */}
@@ -298,11 +293,6 @@ const Financial = () => {
                   "판관비가 어느 해는 판매비와관리비로... 5개년 통일하려면 반나절"
                 </p>
               </div>
-              
-              <div className="inline-flex items-center gap-2 text-sm font-medium text-red-600 bg-red-50 px-3 py-2 rounded-full">
-                <Clock className="w-4 h-4" />
-                <span>4-6시간 / 기업</span>
-              </div>
             </div>
             
             {/* Card 3 */}
@@ -321,11 +311,6 @@ const Financial = () => {
                 <p className="text-sm text-gray-700 italic">
                   "유형자산 표만 5개년 정리하는데 한 시간 반... 하나라도 틀리면 끝"
                 </p>
-              </div>
-              
-              <div className="inline-flex items-center gap-2 text-sm font-medium text-red-600 bg-red-50 px-3 py-2 rounded-full">
-                <Clock className="w-4 h-4" />
-                <span>1.5시간 / 표</span>
               </div>
             </div>
             

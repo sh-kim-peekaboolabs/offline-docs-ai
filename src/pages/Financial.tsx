@@ -170,15 +170,6 @@ const Financial = () => {
               {errors.consent && <p className="text-sm text-red-600">{errors.consent.message}</p>}
             </form>
             
-            {/* Social proof */}
-            <div className="mt-6 space-y-2">
-              <p className="text-gray-700 font-medium">
-                ✨ 이미 <strong className="text-blue-600">250명 이상</strong>이 대기 중
-              </p>
-              <p className="text-sm text-gray-500">
-                🚀 11월 중 정식 론칭 예정
-              </p>
-            </div>
           </div>
           
           {/* Value Props */}

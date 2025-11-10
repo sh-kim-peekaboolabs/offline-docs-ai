@@ -46,7 +46,7 @@ const Financial = () => {
       });
     }
   };
-  
+
   // Hero section form
   const heroForm = useForm<EmailSignupFormData>({
     resolver: zodResolver(emailSignupSchema),
@@ -55,7 +55,7 @@ const Financial = () => {
       page_source: '/financial'
     }
   });
-  
+
   // CTA section form
   const ctaForm = useForm<EmailSignupFormData>({
     resolver: zodResolver(emailSignupSchema),
@@ -87,7 +87,7 @@ const Financial = () => {
       linkedin_ad_id: params.get("linkedin_ad_id") || undefined,
       linkedin_ad_name: params.get("linkedin_ad_name") || undefined
     };
-    
+
     // Set values for both forms
     Object.entries(utmParams).forEach(([key, value]) => {
       heroForm.setValue(key as any, value);
@@ -119,17 +119,14 @@ const Financial = () => {
       if (data.linkedin_campaign_group_name) insertData.linkedin_campaign_group_name = data.linkedin_campaign_group_name;
       if (data.linkedin_ad_id) insertData.linkedin_ad_id = data.linkedin_ad_id;
       if (data.linkedin_ad_name) insertData.linkedin_ad_name = data.linkedin_ad_name;
-      
       const {
         error
       } = await (supabase as any).from("email_signups").insert([insertData]);
       if (error) throw error;
-      
       toast({
         title: "등록 완료!",
         description: "출시 소식을 가장 먼저 받아보실 수 있습니다."
       });
-      
       formInstance.reset();
     } catch (error: any) {
       console.error("Email signup submission error:", error);
@@ -172,7 +169,7 @@ const Financial = () => {
           
           {/* Waitlist Form */}
           <div className="max-w-xl mx-auto mb-10">
-            <form onSubmit={heroForm.handleSubmit((data) => onSubmit(data, heroForm))} className="space-y-4">
+            <form onSubmit={heroForm.handleSubmit(data => onSubmit(data, heroForm))} className="space-y-4">
               <div className="flex flex-col sm:flex-row gap-3 items-stretch">
                 <input type="email" {...heroForm.register("email")} placeholder="work@company.com" disabled={heroForm.formState.isSubmitting} className="flex-1 px-6 py-4 rounded-xl text-gray-900 text-lg border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 bg-white shadow-sm" />
                 <button type="submit" disabled={heroForm.formState.isSubmitting} className="px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-lg font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all hover:shadow-xl whitespace-nowrap disabled:opacity-50 shadow-lg">
@@ -1013,9 +1010,7 @@ const Financial = () => {
             <p className="text-white text-lg mb-4">
               더 궁금하신 점이 있으신가요?
             </p>
-            <button onClick={scrollToWaitlist} className="px-8 py-3 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-100 transition-all">
-              Waitlist 등록하고 문의하기 →
-            </button>
+            <button onClick={scrollToWaitlist} className="px-8 py-3 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-100 transition-all">무료체험 신청하고 문의하기 →</button>
           </div>
           
         </div>
@@ -1048,7 +1043,7 @@ const Financial = () => {
           
           {/* Email form */}
           <div className="max-w-md mx-auto">
-            <form onSubmit={ctaForm.handleSubmit((data) => onSubmit(data, ctaForm))} className="space-y-4">
+            <form onSubmit={ctaForm.handleSubmit(data => onSubmit(data, ctaForm))} className="space-y-4">
               <div className="flex flex-col sm:flex-row gap-3">
                 <input type="email" {...ctaForm.register("email")} placeholder="이메일을 입력하세요" disabled={ctaForm.formState.isSubmitting} className="flex-1 px-6 py-4 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-50" />
                 <button type="submit" disabled={ctaForm.formState.isSubmitting} className="px-8 py-4 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-all whitespace-nowrap disabled:opacity-50">

@@ -46,16 +46,18 @@ const Financial = () => {
       });
     }
   };
-  const {
-    register,
-    handleSubmit,
-    formState: {
-      errors,
-      isSubmitting
-    },
-    reset,
-    setValue
-  } = useForm<EmailSignupFormData>({
+  
+  // Hero section form
+  const heroForm = useForm<EmailSignupFormData>({
+    resolver: zodResolver(emailSignupSchema),
+    defaultValues: {
+      consent: false,
+      page_source: '/financial'
+    }
+  });
+  
+  // CTA section form
+  const ctaForm = useForm<EmailSignupFormData>({
     resolver: zodResolver(emailSignupSchema),
     defaultValues: {
       consent: false,
@@ -63,28 +65,36 @@ const Financial = () => {
     }
   });
 
-  // Capture URL parameters
+  // Capture URL parameters for both forms
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    setValue("page_source", "/financial");
-    setValue("utm_source", params.get("utm_source") || undefined);
-    setValue("utm_medium", params.get("utm_medium") || undefined);
-    setValue("utm_campaign_name", params.get("utm_campaign_name") || undefined);
-    setValue("utm_term", params.get("utm_term") || undefined);
-    setValue("utm_content", params.get("utm_content") || undefined);
-    setValue("utm_campaign_id", params.get("utm_campaign_id") || undefined);
-    setValue("utm_adset_id", params.get("utm_adset_id") || undefined);
-    setValue("utm_adset_name", params.get("utm_adset_name") || undefined);
-    setValue("utm_ad_id", params.get("utm_ad_id") || undefined);
-    setValue("utm_ad_name", params.get("utm_ad_name") || undefined);
-    setValue("linkedin_campaign_name", params.get("linkedin_campaign_name") || undefined);
-    setValue("linkedin_campaign_id", params.get("linkedin_campaign_id") || undefined);
-    setValue("linkedin_campaign_group_id", params.get("linkedin_campaign_group_id") || undefined);
-    setValue("linkedin_campaign_group_name", params.get("linkedin_campaign_group_name") || undefined);
-    setValue("linkedin_ad_id", params.get("linkedin_ad_id") || undefined);
-    setValue("linkedin_ad_name", params.get("linkedin_ad_name") || undefined);
-  }, [setValue]);
-  const onSubmit = async (data: EmailSignupFormData) => {
+    const utmParams = {
+      page_source: "/financial",
+      utm_source: params.get("utm_source") || undefined,
+      utm_medium: params.get("utm_medium") || undefined,
+      utm_campaign_name: params.get("utm_campaign_name") || undefined,
+      utm_term: params.get("utm_term") || undefined,
+      utm_content: params.get("utm_content") || undefined,
+      utm_campaign_id: params.get("utm_campaign_id") || undefined,
+      utm_adset_id: params.get("utm_adset_id") || undefined,
+      utm_adset_name: params.get("utm_adset_name") || undefined,
+      utm_ad_id: params.get("utm_ad_id") || undefined,
+      utm_ad_name: params.get("utm_ad_name") || undefined,
+      linkedin_campaign_name: params.get("linkedin_campaign_name") || undefined,
+      linkedin_campaign_id: params.get("linkedin_campaign_id") || undefined,
+      linkedin_campaign_group_id: params.get("linkedin_campaign_group_id") || undefined,
+      linkedin_campaign_group_name: params.get("linkedin_campaign_group_name") || undefined,
+      linkedin_ad_id: params.get("linkedin_ad_id") || undefined,
+      linkedin_ad_name: params.get("linkedin_ad_name") || undefined
+    };
+    
+    // Set values for both forms
+    Object.entries(utmParams).forEach(([key, value]) => {
+      heroForm.setValue(key as any, value);
+      ctaForm.setValue(key as any, value);
+    });
+  }, [heroForm, ctaForm]);
+  const onSubmit = async (data: EmailSignupFormData, formInstance: any) => {
     try {
       const insertData: any = {
         email: data.email,
@@ -109,15 +119,18 @@ const Financial = () => {
       if (data.linkedin_campaign_group_name) insertData.linkedin_campaign_group_name = data.linkedin_campaign_group_name;
       if (data.linkedin_ad_id) insertData.linkedin_ad_id = data.linkedin_ad_id;
       if (data.linkedin_ad_name) insertData.linkedin_ad_name = data.linkedin_ad_name;
+      
       const {
         error
       } = await (supabase as any).from("email_signups").insert([insertData]);
       if (error) throw error;
+      
       toast({
         title: "등록 완료!",
         description: "출시 소식을 가장 먼저 받아보실 수 있습니다."
       });
-      reset();
+      
+      formInstance.reset();
     } catch (error: any) {
       console.error("Email signup submission error:", error);
       toast({
@@ -159,43 +172,43 @@ const Financial = () => {
           
           {/* Waitlist Form */}
           <div className="max-w-xl mx-auto mb-10">
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={heroForm.handleSubmit((data) => onSubmit(data, heroForm))} className="space-y-4">
               <div className="flex flex-col sm:flex-row gap-3 items-stretch">
-                <input type="email" {...register("email")} placeholder="work@company.com" disabled={isSubmitting} className="flex-1 px-6 py-4 rounded-xl text-gray-900 text-lg border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 bg-white shadow-sm" />
-                <button type="submit" disabled={isSubmitting} className="px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-lg font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all hover:shadow-xl whitespace-nowrap disabled:opacity-50 shadow-lg">
-                  {isSubmitting ? "등록 중..." : "무료 체험 신청"}
+                <input type="email" {...heroForm.register("email")} placeholder="work@company.com" disabled={heroForm.formState.isSubmitting} className="flex-1 px-6 py-4 rounded-xl text-gray-900 text-lg border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 bg-white shadow-sm" />
+                <button type="submit" disabled={heroForm.formState.isSubmitting} className="px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-lg font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all hover:shadow-xl whitespace-nowrap disabled:opacity-50 shadow-lg">
+                  {heroForm.formState.isSubmitting ? "등록 중..." : "무료 체험 신청"}
                 </button>
               </div>
               
               {/* Consent checkbox */}
               <div className="flex items-center gap-3 text-left justify-center">
-                <input type="checkbox" {...register("consent")} id="hero-consent" className="w-4 h-4" />
+                <input type="checkbox" {...heroForm.register("consent")} id="hero-consent" className="w-4 h-4" />
                 <label htmlFor="hero-consent" className="text-sm text-gray-600">
                   개인정보 수집 및 이용에 동의합니다
                 </label>
               </div>
               
               {/* Hidden fields for tracking parameters */}
-              <input type="hidden" {...register("page_source")} />
-              <input type="hidden" {...register("utm_source")} />
-              <input type="hidden" {...register("utm_medium")} />
-              <input type="hidden" {...register("utm_campaign_name")} />
-              <input type="hidden" {...register("utm_term")} />
-              <input type="hidden" {...register("utm_content")} />
-              <input type="hidden" {...register("utm_campaign_id")} />
-              <input type="hidden" {...register("utm_adset_id")} />
-              <input type="hidden" {...register("utm_adset_name")} />
-              <input type="hidden" {...register("utm_ad_id")} />
-              <input type="hidden" {...register("utm_ad_name")} />
-              <input type="hidden" {...register("linkedin_campaign_name")} />
-              <input type="hidden" {...register("linkedin_campaign_id")} />
-              <input type="hidden" {...register("linkedin_campaign_group_id")} />
-              <input type="hidden" {...register("linkedin_campaign_group_name")} />
-              <input type="hidden" {...register("linkedin_ad_id")} />
-              <input type="hidden" {...register("linkedin_ad_name")} />
+              <input type="hidden" {...heroForm.register("page_source")} />
+              <input type="hidden" {...heroForm.register("utm_source")} />
+              <input type="hidden" {...heroForm.register("utm_medium")} />
+              <input type="hidden" {...heroForm.register("utm_campaign_name")} />
+              <input type="hidden" {...heroForm.register("utm_term")} />
+              <input type="hidden" {...heroForm.register("utm_content")} />
+              <input type="hidden" {...heroForm.register("utm_campaign_id")} />
+              <input type="hidden" {...heroForm.register("utm_adset_id")} />
+              <input type="hidden" {...heroForm.register("utm_adset_name")} />
+              <input type="hidden" {...heroForm.register("utm_ad_id")} />
+              <input type="hidden" {...heroForm.register("utm_ad_name")} />
+              <input type="hidden" {...heroForm.register("linkedin_campaign_name")} />
+              <input type="hidden" {...heroForm.register("linkedin_campaign_id")} />
+              <input type="hidden" {...heroForm.register("linkedin_campaign_group_id")} />
+              <input type="hidden" {...heroForm.register("linkedin_campaign_group_name")} />
+              <input type="hidden" {...heroForm.register("linkedin_ad_id")} />
+              <input type="hidden" {...heroForm.register("linkedin_ad_name")} />
               
-              {errors.email && <p className="text-sm text-red-600">{errors.email.message}</p>}
-              {errors.consent && <p className="text-sm text-red-600">{errors.consent.message}</p>}
+              {heroForm.formState.errors.email && <p className="text-sm text-red-600">{heroForm.formState.errors.email.message}</p>}
+              {heroForm.formState.errors.consent && <p className="text-sm text-red-600">{heroForm.formState.errors.consent.message}</p>}
             </form>
             
           </div>
@@ -1035,43 +1048,43 @@ const Financial = () => {
           
           {/* Email form */}
           <div className="max-w-md mx-auto">
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={ctaForm.handleSubmit((data) => onSubmit(data, ctaForm))} className="space-y-4">
               <div className="flex flex-col sm:flex-row gap-3">
-                <input type="email" {...register("email")} placeholder="이메일을 입력하세요" disabled={isSubmitting} className="flex-1 px-6 py-4 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-50" />
-                <button type="submit" disabled={isSubmitting} className="px-8 py-4 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-all whitespace-nowrap disabled:opacity-50">
-                  {isSubmitting ? "등록 중..." : "등록하기"}
+                <input type="email" {...ctaForm.register("email")} placeholder="이메일을 입력하세요" disabled={ctaForm.formState.isSubmitting} className="flex-1 px-6 py-4 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-50" />
+                <button type="submit" disabled={ctaForm.formState.isSubmitting} className="px-8 py-4 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-all whitespace-nowrap disabled:opacity-50">
+                  {ctaForm.formState.isSubmitting ? "등록 중..." : "등록하기"}
                 </button>
               </div>
               
               {/* Consent checkbox */}
               <div className="flex items-start gap-2 text-left">
-                <input type="checkbox" {...register("consent")} id="financial-consent" className="mt-1" />
+                <input type="checkbox" {...ctaForm.register("consent")} id="financial-consent" className="mt-1" />
                 <label htmlFor="financial-consent" className="text-sm text-blue-100">
                   개인정보 수집 및 이용에 동의합니다
                 </label>
               </div>
               
               {/* Hidden fields for tracking parameters */}
-              <input type="hidden" {...register("page_source")} />
-              <input type="hidden" {...register("utm_source")} />
-              <input type="hidden" {...register("utm_medium")} />
-              <input type="hidden" {...register("utm_campaign_name")} />
-              <input type="hidden" {...register("utm_term")} />
-              <input type="hidden" {...register("utm_content")} />
-              <input type="hidden" {...register("utm_campaign_id")} />
-              <input type="hidden" {...register("utm_adset_id")} />
-              <input type="hidden" {...register("utm_adset_name")} />
-              <input type="hidden" {...register("utm_ad_id")} />
-              <input type="hidden" {...register("utm_ad_name")} />
-              <input type="hidden" {...register("linkedin_campaign_name")} />
-              <input type="hidden" {...register("linkedin_campaign_id")} />
-              <input type="hidden" {...register("linkedin_campaign_group_id")} />
-              <input type="hidden" {...register("linkedin_campaign_group_name")} />
-              <input type="hidden" {...register("linkedin_ad_id")} />
-              <input type="hidden" {...register("linkedin_ad_name")} />
+              <input type="hidden" {...ctaForm.register("page_source")} />
+              <input type="hidden" {...ctaForm.register("utm_source")} />
+              <input type="hidden" {...ctaForm.register("utm_medium")} />
+              <input type="hidden" {...ctaForm.register("utm_campaign_name")} />
+              <input type="hidden" {...ctaForm.register("utm_term")} />
+              <input type="hidden" {...ctaForm.register("utm_content")} />
+              <input type="hidden" {...ctaForm.register("utm_campaign_id")} />
+              <input type="hidden" {...ctaForm.register("utm_adset_id")} />
+              <input type="hidden" {...ctaForm.register("utm_adset_name")} />
+              <input type="hidden" {...ctaForm.register("utm_ad_id")} />
+              <input type="hidden" {...ctaForm.register("utm_ad_name")} />
+              <input type="hidden" {...ctaForm.register("linkedin_campaign_name")} />
+              <input type="hidden" {...ctaForm.register("linkedin_campaign_id")} />
+              <input type="hidden" {...ctaForm.register("linkedin_campaign_group_id")} />
+              <input type="hidden" {...ctaForm.register("linkedin_campaign_group_name")} />
+              <input type="hidden" {...ctaForm.register("linkedin_ad_id")} />
+              <input type="hidden" {...ctaForm.register("linkedin_ad_name")} />
               
-              {errors.email && <p className="text-sm text-red-200">{errors.email.message}</p>}
-              {errors.consent && <p className="text-sm text-red-200">{errors.consent.message}</p>}
+              {ctaForm.formState.errors.email && <p className="text-sm text-red-200">{ctaForm.formState.errors.email.message}</p>}
+              {ctaForm.formState.errors.consent && <p className="text-sm text-red-200">{ctaForm.formState.errors.consent.message}</p>}
             </form>
             
             {/* Trust badges */}

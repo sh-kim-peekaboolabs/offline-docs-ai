@@ -122,13 +122,9 @@ const Financial = () => {
           </div>
           
           {/* Main Headline */}
-          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-gray-900 mb-8">400페이지 공시보고서,
-10초면 충분합니다.
-
-          <br />
-            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              10초면 충분합니다.
-            </span>
+          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-gray-900 mb-8">400페이지 공시보고서, 
+10초면 충분합니다.<br />
+            
           </h1>
           
           {/* Sub Headline */}
@@ -1040,18 +1036,14 @@ const Financial = () => {
             
             {/* Trust badges */}
             <div className="mt-4 space-y-1 text-sm text-blue-100">
-              <p>✓ 스팸 메일 절대 없음</p>
-              <p>✓ 언제든 구독 해지 가능</p>
-              <p>✓ 이메일은 안전하게 보관됩니다</p>
+              
+              
+              
             </div>
             
             {/* Social proof */}
-            <p className="mt-6 text-purple-100">
-              💬 이미 <strong>250명 이상</strong>이 등록했습니다
-            </p>
-            <p className="mt-2 text-sm text-purple-100">
-              ⚡ 11월 중 정식 론칭 예정
-            </p>
+            
+            
           </div>
           
         </div>

@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
@@ -79,13 +79,17 @@ const Hero = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: {
       errors,
       isSubmitting
     },
     reset
   } = useForm<FormValues>({
-    resolver: zodResolver(formSchema)
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      consent: false
+    }
   });
   const onSubmit = async (values: FormValues) => {
     try {
@@ -147,7 +151,18 @@ const Hero = () => {
             }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
               
               <div className="flex items-start gap-3 -mt-1">
-                <Checkbox id="hero-consent" {...register("consent")} className="mt-1" />
+                <Controller
+                  name="consent"
+                  control={control}
+                  render={({ field }) => (
+                    <Checkbox 
+                      id="hero-consent" 
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                      className="mt-1" 
+                    />
+                  )}
+                />
                 <Label htmlFor="hero-consent" className="text-sm text-muted-foreground cursor-pointer leading-relaxed">
                   개인정보 수집 및 이용에 동의합니다
                 </Label>

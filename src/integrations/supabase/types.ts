@@ -17,6 +17,7 @@ export type Database = {
       email_signups: {
         Row: {
           consent: boolean
+          contacted_at: string | null
           created_at: string
           email: string
           id: string
@@ -26,6 +27,8 @@ export type Database = {
           linkedin_campaign_group_name: string | null
           linkedin_campaign_id: string | null
           linkedin_campaign_name: string | null
+          scheduled_at: string | null
+          status: string | null
           utm_ad_id: string | null
           utm_ad_name: string | null
           utm_adset_id: string | null
@@ -37,6 +40,7 @@ export type Database = {
         }
         Insert: {
           consent?: boolean
+          contacted_at?: string | null
           created_at?: string
           email: string
           id?: string
@@ -46,6 +50,8 @@ export type Database = {
           linkedin_campaign_group_name?: string | null
           linkedin_campaign_id?: string | null
           linkedin_campaign_name?: string | null
+          scheduled_at?: string | null
+          status?: string | null
           utm_ad_id?: string | null
           utm_ad_name?: string | null
           utm_adset_id?: string | null
@@ -57,6 +63,7 @@ export type Database = {
         }
         Update: {
           consent?: boolean
+          contacted_at?: string | null
           created_at?: string
           email?: string
           id?: string
@@ -66,6 +73,8 @@ export type Database = {
           linkedin_campaign_group_name?: string | null
           linkedin_campaign_id?: string | null
           linkedin_campaign_name?: string | null
+          scheduled_at?: string | null
+          status?: string | null
           utm_ad_id?: string | null
           utm_ad_name?: string | null
           utm_adset_id?: string | null
@@ -74,6 +83,54 @@ export type Database = {
           utm_campaign_name?: string | null
           utm_medium?: string | null
           utm_source?: string | null
+        }
+        Relationships: []
+      }
+      waitlist: {
+        Row: {
+          consent: boolean
+          created_at: string
+          email: string
+          id: string
+          linkedin_campaign_id: string | null
+          linkedin_campaign_name: string | null
+          linkedin_creative_id: string | null
+          utm_campaign: string | null
+          utm_campaign_id: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
+        }
+        Insert: {
+          consent?: boolean
+          created_at?: string
+          email: string
+          id?: string
+          linkedin_campaign_id?: string | null
+          linkedin_campaign_name?: string | null
+          linkedin_creative_id?: string | null
+          utm_campaign?: string | null
+          utm_campaign_id?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+        }
+        Update: {
+          consent?: boolean
+          created_at?: string
+          email?: string
+          id?: string
+          linkedin_campaign_id?: string | null
+          linkedin_campaign_name?: string | null
+          linkedin_creative_id?: string | null
+          utm_campaign?: string | null
+          utm_campaign_id?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
         }
         Relationships: []
       }

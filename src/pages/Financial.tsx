@@ -71,7 +71,7 @@ const Financial = () => {
       if (data.linkedin_creative_id) insertData.linkedin_creative_id = data.linkedin_creative_id;
       if (data.linkedin_campaign_id) insertData.linkedin_campaign_id = data.linkedin_campaign_id;
 
-      const { error } = await supabase.from("waitlist").insert([insertData]);
+      const { error } = await (supabase as any).from("waitlist").insert([insertData]);
 
       if (error) throw error;
 
@@ -776,16 +776,55 @@ const Financial = () => {
           
           {/* Email form */}
           <div className="max-w-md mx-auto">
-            <div className="flex gap-3">
-              <input 
-                type="email" 
-                placeholder="이메일을 입력하세요"
-                className="flex-1 px-6 py-4 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
-              />
-              <button className="px-8 py-4 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-all whitespace-nowrap">
-                등록하기
-              </button>
-            </div>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input 
+                  type="email" 
+                  {...register("email")}
+                  placeholder="이메일을 입력하세요"
+                  disabled={isSubmitting}
+                  className="flex-1 px-6 py-4 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-50"
+                />
+                <button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="px-8 py-4 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-all whitespace-nowrap disabled:opacity-50"
+                >
+                  {isSubmitting ? "등록 중..." : "등록하기"}
+                </button>
+              </div>
+              
+              {/* Consent checkbox */}
+              <div className="flex items-start gap-2 text-left">
+                <input
+                  type="checkbox"
+                  {...register("consent")}
+                  id="financial-consent"
+                  className="mt-1"
+                />
+                <label htmlFor="financial-consent" className="text-sm text-blue-100">
+                  개인정보 수집 및 이용에 동의합니다
+                </label>
+              </div>
+              
+              {/* Hidden fields for UTM parameters */}
+              <input type="hidden" {...register("utm_source")} />
+              <input type="hidden" {...register("utm_medium")} />
+              <input type="hidden" {...register("utm_campaign")} />
+              <input type="hidden" {...register("utm_term")} />
+              <input type="hidden" {...register("utm_content")} />
+              <input type="hidden" {...register("utm_campaign_id")} />
+              <input type="hidden" {...register("linkedin_campaign_name")} />
+              <input type="hidden" {...register("linkedin_creative_id")} />
+              <input type="hidden" {...register("linkedin_campaign_id")} />
+              
+              {errors.email && (
+                <p className="text-sm text-red-200">{errors.email.message}</p>
+              )}
+              {errors.consent && (
+                <p className="text-sm text-red-200">{errors.consent.message}</p>
+              )}
+            </form>
             
             {/* Trust badges */}
             <div className="mt-4 space-y-1 text-sm text-blue-100">

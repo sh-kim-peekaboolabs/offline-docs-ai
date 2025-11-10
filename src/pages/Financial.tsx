@@ -108,6 +108,16 @@ const Financial = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50" />
         
         <div className="relative max-w-4xl mx-auto px-6 py-20 text-center">
+          {/* Product Name & Tagline */}
+          <div className="mb-8">
+            <h1 className="text-6xl md:text-7xl font-extrabold text-gray-900 mb-4">
+              LocalDocs
+            </h1>
+            <p className="text-xl md:text-2xl text-blue-600 font-semibold">
+              AI 기반 로컬 문서 분석 솔루션
+            </p>
+          </div>
+          
           {/* Eyebrow */}
           <div className="inline-block mb-6">
             <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">
@@ -116,11 +126,11 @@ const Financial = () => {
           </div>
           
           {/* Main Headline */}
-          <h1 className="text-5xl md:text-6xl font-bold leading-tight text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight text-gray-900 mb-6">
             300페이지 공시보고서,
             <br/>
             <span className="text-blue-600">10초면 충분합니다.</span>
-          </h1>
+          </h2>
           
           {/* Sub Headline */}
           <p className="text-xl text-gray-600 leading-relaxed mb-8">
@@ -227,11 +237,11 @@ const Financial = () => {
           
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              이런 업무, 매주 반복하고 계신가요?
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              매주 반복되는 고통
             </h2>
-            <p className="text-lg text-gray-600">
-              실제 증권사·자산운용사 애널리스트들의 가장 큰 고민
+            <p className="text-xl text-gray-600">
+              증권사·자산운용사 실무자들의 현실
             </p>
           </div>
           
@@ -241,77 +251,73 @@ const Financial = () => {
             {/* Card 1 */}
             <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
               <div className="text-4xl mb-4">📄</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                정보 찾기의 고통
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                정보 찾기
               </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                "상반기 매출이 어디 있더라..."<br/><br/>
-                300페이지 반기보고서 열고, 목차 보고, 재무제표 찾고, 
-                페이지 넘기며 숫자 찾기.<br/><br/>
-                30분이 훌쩍.
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                300페이지 보고서에서<br/>
+                원하는 숫자 하나 찾는데<br/>
+                <strong className="text-gray-900">30분</strong>
               </p>
               
               {/* Quote Box */}
               <div className="bg-blue-50 border-l-4 border-blue-600 p-4 rounded mb-4">
                 <p className="text-sm text-gray-700 italic">
-                  💬 "Ctrl+F로 '매출'을 검색하면 200개 결과가 나와요. 
-                  하나하나 클릭해서 확인하다 보면 어느새 30분..."
+                  "Ctrl+F 검색하면 200개 결과... 하나하나 확인하다 보면 어느새 30분"
                 </p>
               </div>
               
-              <div className="inline-flex items-center gap-2 text-sm font-medium text-gray-500">
+              <div className="inline-flex items-center gap-2 text-sm font-medium text-red-600 bg-red-50 px-3 py-2 rounded-full">
                 <Clock className="w-4 h-4" />
-                <span>소요 시간: 30분 / 숫자 하나</span>
+                <span>30분 / 건</span>
               </div>
             </div>
             
             {/* Card 2 */}
             <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
               <div className="text-4xl mb-4">📊</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                5개년 계정과목 통일 지옥
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                계정과목 통일
               </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                연도별로 계정과목이 바뀌면 일일이 대조하며 엑셀에 수작업.<br/><br/>
-                "매출원가"가 어느 해는 "제품매출원가"로, 또 어느 해는 
-                "상품매출원가"로 표기돼 있어서 5개 파일을 오가며 하나하나 확인해야 합니다.
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                연도별로 바뀌는 계정과목<br/>
+                5개년 수작업 대조에<br/>
+                <strong className="text-gray-900">4-6시간</strong>
               </p>
               
               <div className="bg-blue-50 border-l-4 border-blue-600 p-4 rounded mb-4">
                 <p className="text-sm text-gray-700 italic">
-                  💬 "21년 자료에 '판관비'가 있는데 22년엔 '판매비와관리비'로 표기돼 있어요. 
-                  이걸 5개년치 통일하려면 반나절은 걸립니다..."
+                  "판관비가 어느 해는 판매비와관리비로... 5개년 통일하려면 반나절"
                 </p>
               </div>
               
-              <div className="inline-flex items-center gap-2 text-sm font-medium text-gray-500">
+              <div className="inline-flex items-center gap-2 text-sm font-medium text-red-600 bg-red-50 px-3 py-2 rounded-full">
                 <Clock className="w-4 h-4" />
-                <span>소요 시간: 4-6시간 / 기업</span>
+                <span>4-6시간 / 기업</span>
               </div>
             </div>
             
             {/* Card 3 */}
             <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
               <div className="text-4xl mb-4">📑</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                주석사항 표 정리의 악몽
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                주석 표 정리
               </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                사업보고서 주석에 있는 "비용의 성격별 분류", "유형자산 변동표" 같은 복잡한 표들.<br/><br/>
-                Ctrl+C, Ctrl+V로 엑셀에 옮기는 순간 서식이 깨지고, 
-                숫자가 엉망이 됩니다. 결국 손으로 하나씩 옮기다가...
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                복잡한 주석 표를 엑셀로<br/>
+                복사하면 서식 깨짐<br/>
+                <strong className="text-gray-900">1.5시간 / 표</strong>
               </p>
               
               <div className="bg-blue-50 border-l-4 border-blue-600 p-4 rounded mb-4">
                 <p className="text-sm text-gray-700 italic">
-                  💬 "유형자산 표만 5개년 정리하는데 한 시간 반이 걸렸어요. 
-                  셀 하나라도 틀리면 전체 분석이 틀어집니다."
+                  "유형자산 표만 5개년 정리하는데 한 시간 반... 하나라도 틀리면 끝"
                 </p>
               </div>
               
-              <div className="inline-flex items-center gap-2 text-sm font-medium text-gray-500">
+              <div className="inline-flex items-center gap-2 text-sm font-medium text-red-600 bg-red-50 px-3 py-2 rounded-full">
                 <Clock className="w-4 h-4" />
-                <span>소요 시간: 1.5시간 / 표</span>
+                <span>1.5시간 / 표</span>
               </div>
             </div>
             
@@ -339,7 +345,7 @@ const Financial = () => {
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              3단계면 끝납니다.
+              2단계면 끝납니다.
             </h2>
             <p className="text-lg text-gray-600">
               복잡한 설정도, 학습 시간도 필요 없습니다.
@@ -1146,6 +1152,58 @@ const Financial = () => {
           
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-300 py-12">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            
+            {/* Company Info */}
+            <div>
+              <h3 className="text-white text-xl font-bold mb-4">LocalDocs</h3>
+              <p className="text-sm text-gray-400">
+                AI 기반 로컬 문서 분석 솔루션
+              </p>
+            </div>
+            
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-white font-semibold mb-4">서비스</h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a href="/terms" className="hover:text-white transition-colors">
+                    서비스 이용약관
+                  </a>
+                </li>
+                <li>
+                  <a href="/privacy" className="hover:text-white transition-colors">
+                    개인정보 처리방침
+                  </a>
+                </li>
+              </ul>
+            </div>
+            
+            {/* Contact */}
+            <div>
+              <h4 className="text-white font-semibold mb-4">문의</h4>
+              <p className="text-sm text-gray-400">
+                이메일: contact@localdocs.ai
+              </p>
+            </div>
+            
+          </div>
+          
+          {/* Bottom Bar */}
+          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-gray-400">
+              © 2025 LocalDocs. All rights reserved.
+            </p>
+            <p className="text-sm text-gray-400">
+              회사명: (주)피카부랩스
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

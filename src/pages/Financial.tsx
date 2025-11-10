@@ -162,8 +162,8 @@ const Financial = () => {
           </h1>
           
           {/* Sub Headline */}
-          <p className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-12 max-w-2xl mx-auto">
-            "삼성전자 상반기 매출 얼마야?" 물어보면<br />
+          <p className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-12 max-w-2xl mx-auto">"삼성전자 상반기 매출 얼마야?" 물어보면
+답변 + 출처까지 제공합니다.<br />
             답변 + 출처까지 자동 표시.
           </p>
           

@@ -77,6 +77,8 @@ const Nav = () => {
   </header>;
 };
 const Hero = () => {
+  const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
+  
   const {
     register,
     handleSubmit,
@@ -162,8 +164,10 @@ const Hero = () => {
         }
         return;
       }
+      setIsSubmitSuccessful(true);
       toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
       reset();
+      setTimeout(() => setIsSubmitSuccessful(false), 3000);
     } catch (error) {
       toast.error("등록 중 오류가 발생했습니다.");
     }
@@ -192,7 +196,7 @@ const Hero = () => {
                 </Button>
               </div>
               
-              {errors.email && <p className="text-sm text-destructive -mt-2">{errors.email.message}</p>}
+              {!isSubmitSuccessful && errors.email && <p className="text-sm text-destructive -mt-2">{errors.email.message}</p>}
               
               {/* Honeypot field */}
               <input type="text" {...register("honeypot")} style={{
@@ -238,7 +242,7 @@ const Hero = () => {
                   개인정보 수집 및 이용에 동의합니다
                 </Label>
               </div>
-              {errors.consent && <p className="text-sm text-destructive -mt-2">{errors.consent.message}</p>}
+              {!isSubmitSuccessful && errors.consent && <p className="text-sm text-destructive -mt-2">{errors.consent.message}</p>}
             </div>
           </div>
         </form>

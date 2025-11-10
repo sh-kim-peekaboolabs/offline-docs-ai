@@ -348,9 +348,7 @@ const Financial = () => {
           {/* Transition Box */}
           <div className="mt-16 text-center">
             <div className="inline-block bg-gray-900 text-white px-8 py-6 rounded-xl">
-              <p className="text-2xl font-bold mb-2">
-                이제 이 모든 작업을 10분으로 줄입니다.
-              </p>
+              <p className="text-2xl font-bold mb-2">이제 이 모든 작업을 5분으로 줄입니다.</p>
               <svg className="w-8 h-8 mx-auto mt-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>

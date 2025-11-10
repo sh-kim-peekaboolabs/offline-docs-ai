@@ -109,7 +109,6 @@ const Financial = () => {
       if (data.linkedin_campaign_group_name) insertData.linkedin_campaign_group_name = data.linkedin_campaign_group_name;
       if (data.linkedin_ad_id) insertData.linkedin_ad_id = data.linkedin_ad_id;
       if (data.linkedin_ad_name) insertData.linkedin_ad_name = data.linkedin_ad_name;
-
       const {
         error
       } = await (supabase as any).from("email_signups").insert([insertData]);
@@ -148,8 +147,8 @@ const Financial = () => {
           </div>
           
           {/* Main Headline */}
-          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-gray-900 mb-8">
-            400페이지 공시보고서,<br />
+          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-gray-900 mb-8">400페이지 공시보고서 분석,
+10초면 충분합니다.<br />
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">10초면 충분합니다.</span>
           </h1>
           

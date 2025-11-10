@@ -216,6 +216,31 @@ const Financial = () => {
         </div>
       </section>
 
+      {/* Demo Video Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">
+              실제 동작 화면을 확인해보세요
+            </h2>
+            <p className="text-lg text-gray-600">
+              공시보고서 분석이 얼마나 빨라지는지 직접 확인하세요
+            </p>
+          </div>
+          
+          <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+            <video 
+              controls 
+              poster="/videos/demo-poster.png"
+              className="w-full"
+            >
+              <source src="/videos/localdocs-demo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </section>
+
       {/* SECTION 2: Pain (3-column) */}
       <section id="pain-section" className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">

@@ -128,11 +128,11 @@ const CTASection = () => {
       toast.error("등록 중 오류가 발생했습니다. 다시 시도해주세요.");
     }
   };
-  return <section id="cta" className="py-24 px-4 bg-gradient-to-br from-navy to-teal-dark relative overflow-hidden">
+  return <section id="cta" className="py-20 md:py-32 px-4 bg-gradient-to-br from-navy to-teal-dark relative overflow-hidden scroll-mt-16">
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-teal/10 to-transparent animate-pulse"></div>
       
       <div className="max-w-4xl mx-auto text-center relative z-10">
-        <h2 className="text-4xl md:text-5xl font-black mb-6">
+        <h2 className="text-3xl md:text-5xl font-black mb-6">
           지금 바로 체험해보세요
         </h2>
         
@@ -239,7 +239,7 @@ const Defense = () => {
       <Header />
       
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex items-center justify-center px-4 py-20 pt-32 bg-gradient-to-b from-navy to-navy-dark relative overflow-hidden">
+      <section id="hero" className="min-h-screen flex items-center justify-center px-4 py-20 pt-32 md:pt-24 bg-gradient-to-b from-navy to-navy-dark relative overflow-hidden scroll-mt-16">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30"></div>
         
         <div className="max-w-5xl mx-auto text-center relative z-10 animate-fade-in">
@@ -271,81 +271,86 @@ const Defense = () => {
       </section>
 
       {/* Problem Section */}
-      <section id="problem" className="py-24 px-4 bg-navy-dark">
+      <section id="problem" className="py-20 md:py-32 px-4 bg-navy-dark scroll-mt-16">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 animate-fade-in">
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-12 md:mb-16 animate-fade-in">
             이런 경험, 있으시죠?
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {[{
-            icon: <Clock className="w-12 h-12 text-orange-500" />,
+            icon: <Clock className="w-10 h-10 md:w-12 md:h-12 text-orange-500" />,
             title: "400페이지 교범에서 Ctrl+F로 8시간",
             content: "작전 준비 시간은 촉박한데, 필요한 절차를 찾으려면 교범 여러 권을 뒤적이며 몇 시간씩 허비합니다.",
             delay: "0ms"
           }, {
-            icon: <Lock className="w-12 h-12 text-red-500" />,
+            icon: <Lock className="w-10 h-10 md:w-12 md:h-12 text-red-500" />,
             title: "ChatGPT에 올릴 수 없는 민감 자료",
             content: "일반 AI 서비스는 인터넷이 필요하고, 보안 규정상 민감한 군사문서를 외부에 업로드할 수 없습니다.",
             delay: "100ms"
           }, {
-            icon: <FileText className="w-12 h-12 text-blue-500" />,
+            icon: <FileText className="w-10 h-10 md:w-12 md:h-12 text-blue-500" />,
             title: "표와 수식이 뒤섞인 기술문서",
             content: "복잡한 표, 수식, 도표가 섞인 문서는 단순 검색으로는 정확한 정보를 찾기 어렵습니다.",
             delay: "200ms"
-          }].map((item, idx) => <div key={idx} className="bg-gray-800 p-10 rounded-2xl border border-gray-700 hover:border-gray-600 hover:shadow-xl hover:scale-105 transition-all duration-300" style={{
+          }].map((item, idx) => <div key={idx} className="bg-gray-800 p-8 md:p-10 rounded-2xl border border-gray-700 hover:border-gray-600 hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fade-in" style={{
             animationDelay: item.delay
           }}>
                 <div className="mb-6">{item.icon}</div>
-                <h3 className="text-xl font-bold mb-4">{item.title}</h3>
-                <p className="text-gray-300 leading-relaxed">{item.content}</p>
+                <h3 className="text-lg md:text-xl font-bold mb-4">{item.title}</h3>
+                <p className="text-gray-300 leading-relaxed text-sm md:text-base">{item.content}</p>
               </div>)}
           </div>
         </div>
       </section>
 
       {/* Solution Section */}
-      <section id="solution" className="py-24 px-4 bg-gradient-to-b from-navy-dark to-navy">
+      <section id="solution" className="py-20 md:py-32 px-4 bg-gradient-to-b from-navy-dark to-navy scroll-mt-16">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 animate-fade-in">
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-12 md:mb-16 animate-fade-in">
             로컬독스가 해결합니다
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {[{
-            icon: <Zap className="w-12 h-12 text-teal" />,
+            icon: <Zap className="w-10 h-10 md:w-12 md:h-12 text-teal" />,
             title: "8시간 → 10초",
-            content: "400페이지 교범에서 필요한 절차를 10초 만에 찾아 정확한 출처와 함께 제공합니다."
+            content: "400페이지 교범에서 필요한 절차를 10초 만에 찾아 정확한 출처와 함께 제공합니다.",
+            delay: "0ms"
           }, {
-            icon: <Shield className="w-12 h-12 text-teal" />,
+            icon: <Shield className="w-10 h-10 md:w-12 md:h-12 text-teal" />,
             title: "폐쇄망에서도 동작",
-            content: "인터넷 연결 없이 로컬에서만 작동. 민감한 군사문서도 외부 유출 걱정 없이 안전하게 분석할 수 있습니다."
+            content: "인터넷 연결 없이 로컬에서만 작동. 민감한 군사문서도 외부 유출 걱정 없이 안전하게 분석할 수 있습니다.",
+            delay: "100ms"
           }, {
-            icon: <Target className="w-12 h-12 text-teal" />,
+            icon: <Target className="w-10 h-10 md:w-12 md:h-12 text-teal" />,
             title: "표, 수식도 완벽 인식",
-            content: "복잡한 표, 기술 수식, 다이어그램도 정확하게 인식하고 분석합니다. 페이지가 넘어가는 내용도 놓치지 않습니다."
-          }].map((item, idx) => <div key={idx} className="bg-gradient-to-br from-gray-800 to-gray-900 p-10 rounded-2xl border-2 border-teal/50 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-105 transition-all duration-300">
+            content: "복잡한 표, 기술 수식, 다이어그램도 정확하게 인식하고 분석합니다. 페이지가 넘어가는 내용도 놓치지 않습니다.",
+            delay: "200ms"
+          }].map((item, idx) => <div key={idx} className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 md:p-10 rounded-2xl border-2 border-teal/50 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-105 transition-all duration-300 animate-fade-in" style={{
+            animationDelay: item.delay
+          }}>
                 <div className="mb-6">{item.icon}</div>
-                <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
-                <p className="text-gray-200 leading-relaxed">{item.content}</p>
+                <h3 className="text-xl md:text-2xl font-bold mb-4">{item.title}</h3>
+                <p className="text-gray-200 leading-relaxed text-sm md:text-base">{item.content}</p>
               </div>)}
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-32 px-4 bg-gradient-to-br from-navy-dark via-navy to-teal-dark relative overflow-hidden">
+      <section id="features" className="py-20 md:py-32 px-4 bg-gradient-to-br from-navy-dark via-navy to-teal-dark relative overflow-hidden scroll-mt-16">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30"></div>
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-center mb-20 animate-fade-in text-white">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-center mb-12 md:mb-20 animate-fade-in text-white">
             왜 로컬독스인가요?
           </h2>
           
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
             {/* Feature 1 - Citations */}
-            <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500" style={{
+            <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-10 md:p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500 animate-fade-in" style={{
             animationDelay: '0ms'
           }}>
               <div className="flex flex-col items-center text-center">
@@ -385,7 +390,7 @@ const Defense = () => {
             </div>
 
             {/* Feature 2 - Table Recognition */}
-            <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500" style={{
+            <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-10 md:p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500 animate-fade-in" style={{
             animationDelay: '200ms'
           }}>
               <div className="flex flex-col items-center text-center">
@@ -426,7 +431,7 @@ const Defense = () => {
             </div>
 
             {/* Feature 3 - Offline */}
-            <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500" style={{
+            <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-10 md:p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500 animate-fade-in" style={{
             animationDelay: '400ms'
           }}>
               <div className="flex flex-col items-center text-center">
@@ -475,7 +480,7 @@ const Defense = () => {
             </div>
 
             {/* Feature 4 - Multiple Documents */}
-            <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500" style={{
+            <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-10 md:p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500 animate-fade-in" style={{
             animationDelay: '600ms'
           }}>
               <div className="flex flex-col items-center text-center">
@@ -514,9 +519,9 @@ const Defense = () => {
       </section>
 
       {/* Use Cases Section */}
-      <section id="use-cases" className="py-24 px-4 bg-navy">
+      <section id="use-cases" className="py-20 md:py-32 px-4 bg-navy scroll-mt-16">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 animate-fade-in">
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-12 md:mb-16 animate-fade-in">
             실제로 어떻게 활용하나요?
           </h2>
           
@@ -573,30 +578,35 @@ const Defense = () => {
       </section>
 
       {/* Security Section */}
-      <section id="security" className="py-24 px-4 bg-navy-dark relative overflow-hidden">
+      <section id="security" className="py-20 md:py-32 px-4 bg-navy-dark relative overflow-hidden scroll-mt-16">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-20"></div>
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 animate-fade-in">
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-12 md:mb-16 animate-fade-in">
             보안이 최우선입니다
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-12">
             {[{
             icon: "💻",
             title: "모든 데이터는 로컬에만",
-            points: ["인터넷 연결 불필요", "문서와 AI 모델 모두 로컬 저장", "외부 서버 전송 없음", "폐쇄망 환경 완벽 지원"]
+            points: ["인터넷 연결 불필요", "문서와 AI 모델 모두 로컬 저장", "외부 서버 전송 없음", "폐쇄망 환경 완벽 지원"],
+            delay: "0ms"
           }, {
             icon: "🔒",
             title: "민감 정보 완벽 보호",
-            points: ["업로드한 문서는 로컬에만 저장", "클라우드 동기화 없음", "삭제 시 완전히 제거", "보안 규정 준수"]
+            points: ["업로드한 문서는 로컬에만 저장", "클라우드 동기화 없음", "삭제 시 완전히 제거", "보안 규정 준수"],
+            delay: "100ms"
           }, {
             icon: "✅",
             title: "국방/금융권 적용 사례",
-            points: ["보안에 민감한 기관에서 검증", "폐쇄망 환경 실전 테스트 완료", "안전한 AI 문서 분석 솔루션"]
-          }].map((security, idx) => <div key={idx} className="bg-gray-800/50 backdrop-blur-sm p-10 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/20 transition-all duration-300">
-                <div className="text-6xl mb-6 text-center animate-pulse">{security.icon}</div>
-                <h3 className="text-2xl font-bold text-center mb-6">{security.title}</h3>
+            points: ["보안에 민감한 기관에서 검증", "폐쇄망 환경 실전 테스트 완료", "안전한 AI 문서 분석 솔루션"],
+            delay: "200ms"
+          }].map((security, idx) => <div key={idx} className="bg-gray-800/50 backdrop-blur-sm p-8 md:p-10 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/20 transition-all duration-300 animate-fade-in" style={{
+            animationDelay: security.delay
+          }}>
+                <div className="text-5xl md:text-6xl mb-6 text-center">{security.icon}</div>
+                <h3 className="text-xl md:text-2xl font-bold text-center mb-6">{security.title}</h3>
                 <ul className="space-y-3">
                   {security.points.map((point, i) => <li key={i} className="flex items-start text-gray-200">
                       <span className="text-teal mr-3 flex-shrink-0">•</span>
@@ -618,9 +628,9 @@ const Defense = () => {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-24 px-4 bg-navy">
+      <section id="pricing" className="py-20 md:py-32 px-4 bg-navy scroll-mt-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-white">
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-4 text-white">
             도입 문의
           </h2>
           <p className="text-xl text-gray-300 text-center mb-16">
@@ -662,7 +672,7 @@ const Defense = () => {
               </Button>
               
               {/* Bottom Text */}
-              <p className="text-sm text-gray-400 mt-8">데모 무료 시연 | 맞춤형 견적 상담</p>
+              <p className="text-xs md:text-sm text-gray-400 mt-8">데모 무료 시연 | 맞춤형 견적 상담</p>
             </div>
           </div>
         </div>
@@ -672,9 +682,9 @@ const Defense = () => {
       <CTASection />
 
       {/* FAQ Section */}
-      <section id="faq" className="py-24 px-4 bg-[#0f1419]">
+      <section id="faq" className="py-20 md:py-32 px-4 bg-[#0f1419] scroll-mt-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-white">
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-12 md:mb-16 text-white">
             자주 묻는 질문
           </h2>
           <div className="space-y-4">
@@ -696,7 +706,9 @@ const Defense = () => {
           }, {
             question: "기술 지원은 제공되나요?",
             answer: "네, 설치부터 운영까지 전 과정에서 기술 지원을 제공합니다. 이메일, 전화, 원격 지원 등 다양한 방법으로 도움을 드립니다."
-          }].map((faq, idx) => <details key={idx} className="group bg-gray-900 border border-teal/20 rounded-xl overflow-hidden hover:border-teal/50 hover:shadow-lg hover:shadow-teal/10 transition-all duration-300">
+          }].map((faq, idx) => <details key={idx} className="group bg-gray-900 border border-teal/20 rounded-xl overflow-hidden hover:border-teal/50 hover:shadow-lg hover:shadow-teal/10 transition-all duration-300 animate-fade-in" style={{
+            animationDelay: `${idx * 50}ms`
+          }}>
                 <summary className="flex items-center justify-between px-8 py-6 cursor-pointer list-none hover:bg-gray-800/50 transition-colors">
                   <span className="text-lg font-bold text-white pr-4">{faq.question}</span>
                   <ChevronDown className="w-5 h-5 text-teal flex-shrink-0 transition-transform duration-300 group-open:rotate-180" />

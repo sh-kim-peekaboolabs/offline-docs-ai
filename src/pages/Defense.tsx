@@ -787,8 +787,7 @@ const Defense = () => {
                   "폐쇄망 완전 지원",
                   "온프레미스 설치",
                   "무제한 사용자",
-                  "기술 지원 포함",
-                  "보안 컨설팅 제공"
+                  "기술 지원 포함"
                 ].map((feature, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-200 text-lg">
                     <CheckCircle className="w-6 h-6 text-teal flex-shrink-0" />

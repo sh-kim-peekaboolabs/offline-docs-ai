@@ -109,7 +109,7 @@ const Financial = () => {
         
         {/* Logo - Top Left */}
         <div className="absolute top-6 left-6 z-10">
-          <div className="text-2xl font-bold text-gray-900">
+          <div className="text-lg font-bold text-gray-900">
             LocalDocs
           </div>
         </div>

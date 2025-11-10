@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { ArrowRight, Clock, Lock, FileText, Target, Zap, Shield, CheckCircle, Database, Users } from "lucide-react";
+import { ArrowRight, Clock, Lock, FileText, Target, Zap, Shield, CheckCircle, Database, Users, ChevronDown } from "lucide-react";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -819,40 +819,53 @@ const Defense = () => {
       <CTASection />
 
       {/* FAQ Section */}
-      <section id="faq" className="py-24 px-4 bg-navy-dark">
+      <section id="faq" className="py-24 px-4 bg-[#0f1419]">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-white">
             자주 묻는 질문
           </h2>
           <div className="space-y-4">
-            <details className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-teal/50 transition-all">
-              <summary className="font-medium cursor-pointer text-white text-lg">인터넷이 없어도 사용할 수 있나요?</summary>
-              <p className="mt-4 text-gray-300 leading-relaxed">네, 설치 후에는 인터넷 없이도 모든 기능이 동작합니다.</p>
-            </details>
-            <details className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-teal/50 transition-all">
-              <summary className="font-medium cursor-pointer text-white text-lg">어떤 파일 형식을 지원하나요?</summary>
-              <p className="mt-4 text-gray-300 leading-relaxed">현재는 PDF만 지원됩니다. 곧 HWP, PPTX, XLSX 등 다양한 포맷을 추가할 예정입니다.</p>
-            </details>
-            <details className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-teal/50 transition-all">
-              <summary className="font-medium cursor-pointer text-white text-lg">표·그래프도 읽을 수 있나요?</summary>
-              <p className="mt-4 text-gray-300 leading-relaxed">네, 표와 이미지, 수식까지 분석할 수 있습니다.</p>
-            </details>
-            <details className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-teal/50 transition-all">
-              <summary className="font-medium cursor-pointer text-white text-lg">답변에 출처가 표시되나요?</summary>
-              <p className="mt-4 text-gray-300 leading-relaxed">모든 답변에 출처를 제공합니다. 어떤 문서의, 어느 페이지에서 가져왔는지 확인할 수 있습니다.</p>
-            </details>
-            <details className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-teal/50 transition-all">
-              <summary className="font-medium cursor-pointer text-white text-lg">보안이 중요한 환경에서도 사용할 수 있나요?</summary>
-              <p className="mt-4 text-gray-300 leading-relaxed">네, 폐쇄망·인트라넷에서도 100% 로컬 처리로 안전하게 쓸 수 있습니다.</p>
-            </details>
-            <details className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-teal/50 transition-all">
-              <summary className="font-medium cursor-pointer text-white text-lg">무료 플랜과 유료 플랜의 차이는 무엇인가요?</summary>
-              <p className="mt-4 text-gray-300 leading-relaxed">무료는 문서/폴더 개수 제한이 있고, Pro는 무제한 + 고급 기능, Enterprise는 팀 관리·보안 기능까지 제공합니다.</p>
-            </details>
-            <details className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-teal/50 transition-all">
-              <summary className="font-medium cursor-pointer text-white text-lg">한국어 외 다른 언어도 지원하나요?</summary>
-              <p className="mt-4 text-gray-300 leading-relaxed">네, 다양한 언어의 문서를 지원하며 특히 한국어 문서에서 뛰어난 성능을 발휘합니다.</p>
-            </details>
+            {[
+              {
+                question: "폐쇄망에서 정말 사용할 수 있나요?",
+                answer: "네, 로컬독스는 인터넷 연결 없이 완전히 로컬 환경에서 작동합니다. 모든 데이터와 AI 모델이 로컬에 저장되어 폐쇄망에서도 문제없이 사용 가능합니다."
+              },
+              {
+                question: "어떤 문서 형식을 지원하나요?",
+                answer: "PDF, Word, Excel, PowerPoint, 텍스트 파일 등 대부분의 문서 형식을 지원합니다. 표, 이미지, 수식이 포함된 복잡한 문서도 정확하게 인식합니다."
+              },
+              {
+                question: "설치가 어렵지 않나요?",
+                answer: "설치부터 사용까지 5분이면 충분합니다. 간단한 설치 프로그램을 실행하면 자동으로 설정되며, 별도의 기술 지식이 필요하지 않습니다."
+              },
+              {
+                question: "보안은 어떻게 보장되나요?",
+                answer: "모든 데이터는 로컬에만 저장되며 외부로 전송되지 않습니다. 클라우드 동기화가 없고, 삭제 시 완전히 제거되어 보안이 완벽하게 보장됩니다."
+              },
+              {
+                question: "가격은 어떻게 되나요?",
+                answer: "조직 규모와 필요에 따라 맞춤형 견적을 제공합니다. POC(개념 검증)는 무료로 제공되며, 도입 문의를 통해 상담받으실 수 있습니다."
+              },
+              {
+                question: "기술 지원은 제공되나요?",
+                answer: "네, 설치부터 운영까지 전 과정에서 기술 지원을 제공합니다. 이메일, 전화, 원격 지원 등 다양한 방법으로 도움을 드립니다."
+              }
+            ].map((faq, idx) => (
+              <details 
+                key={idx} 
+                className="group bg-gray-900 border border-teal/20 rounded-xl overflow-hidden hover:border-teal/50 hover:shadow-lg hover:shadow-teal/10 transition-all duration-300"
+              >
+                <summary className="flex items-center justify-between px-8 py-6 cursor-pointer list-none hover:bg-gray-800/50 transition-colors">
+                  <span className="text-lg font-bold text-white pr-4">{faq.question}</span>
+                  <ChevronDown className="w-5 h-5 text-teal flex-shrink-0 transition-transform duration-300 group-open:rotate-180" />
+                </summary>
+                <div className="px-8 pb-6 pt-2 border-t border-teal/10 animate-accordion-down">
+                  <p className="text-gray-300 leading-relaxed text-base">
+                    {faq.answer}
+                  </p>
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </section>

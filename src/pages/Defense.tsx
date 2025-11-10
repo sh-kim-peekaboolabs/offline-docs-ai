@@ -188,9 +188,7 @@ const CTASection = () => {
           {!isSubmitSuccessful && errors.consent && <p className="text-sm text-red-300 mt-2">{errors.consent.message}</p>}
         </form>
         
-        <p className="text-white/70 text-sm mb-8">
-          신용카드 등록 불필요 • 언제든 취소 가능
-        </p>
+        
         
         <div className="flex flex-wrap justify-center gap-6 text-sm">
           {[{

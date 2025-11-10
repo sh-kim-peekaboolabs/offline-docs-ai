@@ -408,8 +408,9 @@ const Financial = () => {
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   질문하고 정확한 답변 + 출처 확인
                 </h3>
-                <p className="text-lg text-gray-600 mb-6">평소에 혼자 생각했던 질문 그대로 물어보세요.
-문장 단위로 출처를 확인할 수 있습니다.<br />
+                <p className="text-lg text-gray-600 mb-6">평소에 혼자 생각했던 질문 그대로 물어보세요. 
+문장 단위로 출처를 확인할 수 있습니다.
+                <br />
                   문장 단위로 출처를 확인하며 신뢰할 수 있는 인사이트를 얻습니다.
                 </p>
                 <div className="space-y-2 text-sm mb-6">

@@ -7,24 +7,32 @@ import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
 import qaScreen from "@/assets/qa-screen.png";
 import uploadScreen from "@/assets/upload-screen.png";
-const waitlistSchema = z.object({
+const emailSignupSchema = z.object({
   email: z.string().trim().email({
     message: "유효한 이메일을 입력해주세요"
   }).max(255),
   consent: z.boolean().refine(val => val === true, {
     message: "개인정보 수집 및 이용에 동의해주세요"
   }),
+  page_source: z.string().optional(),
   utm_source: z.string().optional(),
   utm_medium: z.string().optional(),
-  utm_campaign: z.string().optional(),
+  utm_campaign_name: z.string().optional(),
   utm_term: z.string().optional(),
   utm_content: z.string().optional(),
   utm_campaign_id: z.string().optional(),
+  utm_adset_id: z.string().optional(),
+  utm_adset_name: z.string().optional(),
+  utm_ad_id: z.string().optional(),
+  utm_ad_name: z.string().optional(),
   linkedin_campaign_name: z.string().optional(),
-  linkedin_creative_id: z.string().optional(),
-  linkedin_campaign_id: z.string().optional()
+  linkedin_campaign_id: z.string().optional(),
+  linkedin_campaign_group_id: z.string().optional(),
+  linkedin_campaign_group_name: z.string().optional(),
+  linkedin_ad_id: z.string().optional(),
+  linkedin_ad_name: z.string().optional()
 });
-type WaitlistFormData = z.infer<typeof waitlistSchema>;
+type EmailSignupFormData = z.infer<typeof emailSignupSchema>;
 const Financial = () => {
   const {
     toast
@@ -47,46 +55,64 @@ const Financial = () => {
     },
     reset,
     setValue
-  } = useForm<WaitlistFormData>({
-    resolver: zodResolver(waitlistSchema),
+  } = useForm<EmailSignupFormData>({
+    resolver: zodResolver(emailSignupSchema),
     defaultValues: {
-      consent: false
+      consent: false,
+      page_source: '/financial'
     }
   });
 
   // Capture URL parameters
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    setValue("page_source", "/financial");
     setValue("utm_source", params.get("utm_source") || undefined);
     setValue("utm_medium", params.get("utm_medium") || undefined);
-    setValue("utm_campaign", params.get("utm_campaign") || undefined);
+    setValue("utm_campaign_name", params.get("utm_campaign_name") || undefined);
     setValue("utm_term", params.get("utm_term") || undefined);
     setValue("utm_content", params.get("utm_content") || undefined);
     setValue("utm_campaign_id", params.get("utm_campaign_id") || undefined);
+    setValue("utm_adset_id", params.get("utm_adset_id") || undefined);
+    setValue("utm_adset_name", params.get("utm_adset_name") || undefined);
+    setValue("utm_ad_id", params.get("utm_ad_id") || undefined);
+    setValue("utm_ad_name", params.get("utm_ad_name") || undefined);
     setValue("linkedin_campaign_name", params.get("linkedin_campaign_name") || undefined);
-    setValue("linkedin_creative_id", params.get("linkedin_creative_id") || undefined);
     setValue("linkedin_campaign_id", params.get("linkedin_campaign_id") || undefined);
+    setValue("linkedin_campaign_group_id", params.get("linkedin_campaign_group_id") || undefined);
+    setValue("linkedin_campaign_group_name", params.get("linkedin_campaign_group_name") || undefined);
+    setValue("linkedin_ad_id", params.get("linkedin_ad_id") || undefined);
+    setValue("linkedin_ad_name", params.get("linkedin_ad_name") || undefined);
   }, [setValue]);
-  const onSubmit = async (data: WaitlistFormData) => {
+  const onSubmit = async (data: EmailSignupFormData) => {
     try {
       const insertData: any = {
         email: data.email,
-        consent: data.consent
+        consent: data.consent,
+        page_source: data.page_source
       };
 
-      // Add UTM parameters if present
+      // Add UTM and LinkedIn parameters if present
       if (data.utm_source) insertData.utm_source = data.utm_source;
       if (data.utm_medium) insertData.utm_medium = data.utm_medium;
-      if (data.utm_campaign) insertData.utm_campaign = data.utm_campaign;
+      if (data.utm_campaign_name) insertData.utm_campaign_name = data.utm_campaign_name;
       if (data.utm_term) insertData.utm_term = data.utm_term;
       if (data.utm_content) insertData.utm_content = data.utm_content;
       if (data.utm_campaign_id) insertData.utm_campaign_id = data.utm_campaign_id;
+      if (data.utm_adset_id) insertData.utm_adset_id = data.utm_adset_id;
+      if (data.utm_adset_name) insertData.utm_adset_name = data.utm_adset_name;
+      if (data.utm_ad_id) insertData.utm_ad_id = data.utm_ad_id;
+      if (data.utm_ad_name) insertData.utm_ad_name = data.utm_ad_name;
       if (data.linkedin_campaign_name) insertData.linkedin_campaign_name = data.linkedin_campaign_name;
-      if (data.linkedin_creative_id) insertData.linkedin_creative_id = data.linkedin_creative_id;
       if (data.linkedin_campaign_id) insertData.linkedin_campaign_id = data.linkedin_campaign_id;
+      if (data.linkedin_campaign_group_id) insertData.linkedin_campaign_group_id = data.linkedin_campaign_group_id;
+      if (data.linkedin_campaign_group_name) insertData.linkedin_campaign_group_name = data.linkedin_campaign_group_name;
+      if (data.linkedin_ad_id) insertData.linkedin_ad_id = data.linkedin_ad_id;
+      if (data.linkedin_ad_name) insertData.linkedin_ad_name = data.linkedin_ad_name;
+
       const {
         error
-      } = await (supabase as any).from("waitlist").insert([insertData]);
+      } = await (supabase as any).from("email_signups").insert([insertData]);
       if (error) throw error;
       toast({
         title: "등록 완료!",
@@ -94,7 +120,7 @@ const Financial = () => {
       });
       reset();
     } catch (error: any) {
-      console.error("Waitlist submission error:", error);
+      console.error("Email signup submission error:", error);
       toast({
         variant: "destructive",
         title: "오류 발생",
@@ -151,16 +177,24 @@ const Financial = () => {
                 </label>
               </div>
               
-              {/* Hidden fields for UTM parameters */}
+              {/* Hidden fields for tracking parameters */}
+              <input type="hidden" {...register("page_source")} />
               <input type="hidden" {...register("utm_source")} />
               <input type="hidden" {...register("utm_medium")} />
-              <input type="hidden" {...register("utm_campaign")} />
+              <input type="hidden" {...register("utm_campaign_name")} />
               <input type="hidden" {...register("utm_term")} />
               <input type="hidden" {...register("utm_content")} />
               <input type="hidden" {...register("utm_campaign_id")} />
+              <input type="hidden" {...register("utm_adset_id")} />
+              <input type="hidden" {...register("utm_adset_name")} />
+              <input type="hidden" {...register("utm_ad_id")} />
+              <input type="hidden" {...register("utm_ad_name")} />
               <input type="hidden" {...register("linkedin_campaign_name")} />
-              <input type="hidden" {...register("linkedin_creative_id")} />
               <input type="hidden" {...register("linkedin_campaign_id")} />
+              <input type="hidden" {...register("linkedin_campaign_group_id")} />
+              <input type="hidden" {...register("linkedin_campaign_group_name")} />
+              <input type="hidden" {...register("linkedin_ad_id")} />
+              <input type="hidden" {...register("linkedin_ad_name")} />
               
               {errors.email && <p className="text-sm text-red-600">{errors.email.message}</p>}
               {errors.consent && <p className="text-sm text-red-600">{errors.consent.message}</p>}
@@ -218,7 +252,7 @@ const Financial = () => {
           </div>
           
           <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-            <video controls poster="/videos/demo-poster.png" className="w-full">
+            <video autoPlay loop muted playsInline poster="/videos/demo-poster.png" className="w-full">
               <source src="/videos/localdocs-demo.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
@@ -1019,16 +1053,24 @@ const Financial = () => {
                 </label>
               </div>
               
-              {/* Hidden fields for UTM parameters */}
+              {/* Hidden fields for tracking parameters */}
+              <input type="hidden" {...register("page_source")} />
               <input type="hidden" {...register("utm_source")} />
               <input type="hidden" {...register("utm_medium")} />
-              <input type="hidden" {...register("utm_campaign")} />
+              <input type="hidden" {...register("utm_campaign_name")} />
               <input type="hidden" {...register("utm_term")} />
               <input type="hidden" {...register("utm_content")} />
               <input type="hidden" {...register("utm_campaign_id")} />
+              <input type="hidden" {...register("utm_adset_id")} />
+              <input type="hidden" {...register("utm_adset_name")} />
+              <input type="hidden" {...register("utm_ad_id")} />
+              <input type="hidden" {...register("utm_ad_name")} />
               <input type="hidden" {...register("linkedin_campaign_name")} />
-              <input type="hidden" {...register("linkedin_creative_id")} />
               <input type="hidden" {...register("linkedin_campaign_id")} />
+              <input type="hidden" {...register("linkedin_campaign_group_id")} />
+              <input type="hidden" {...register("linkedin_campaign_group_name")} />
+              <input type="hidden" {...register("linkedin_ad_id")} />
+              <input type="hidden" {...register("linkedin_ad_name")} />
               
               {errors.email && <p className="text-sm text-red-200">{errors.email.message}</p>}
               {errors.consent && <p className="text-sm text-red-200">{errors.consent.message}</p>}

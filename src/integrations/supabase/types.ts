@@ -27,6 +27,7 @@ export type Database = {
           linkedin_campaign_group_name: string | null
           linkedin_campaign_id: string | null
           linkedin_campaign_name: string | null
+          page_source: string | null
           scheduled_at: string | null
           status: string | null
           utm_ad_id: string | null
@@ -50,6 +51,7 @@ export type Database = {
           linkedin_campaign_group_name?: string | null
           linkedin_campaign_id?: string | null
           linkedin_campaign_name?: string | null
+          page_source?: string | null
           scheduled_at?: string | null
           status?: string | null
           utm_ad_id?: string | null
@@ -73,6 +75,7 @@ export type Database = {
           linkedin_campaign_group_name?: string | null
           linkedin_campaign_id?: string | null
           linkedin_campaign_name?: string | null
+          page_source?: string | null
           scheduled_at?: string | null
           status?: string | null
           utm_ad_id?: string | null

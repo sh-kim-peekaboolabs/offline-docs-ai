@@ -249,8 +249,8 @@ const Defense = () => {
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-            폐쇄망에서도 안전하게 작동하는 AI 문서 분석<br />
-            인터넷 연결 없이, 민감한 자료도 외부 유출 걱정 없이
+            폐쇄망에서도 동작하는 AI 문서 분석 솔루션<br />
+            민감한 자료도 외부 유출 걱정 없이 사용하세요
           </p>
           
           {/* Video Placeholder */}

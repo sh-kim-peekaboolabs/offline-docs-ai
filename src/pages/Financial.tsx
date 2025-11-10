@@ -123,7 +123,9 @@ const Financial = () => {
           
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-gray-900 mb-8">400페이지 공시보고서,
-10초면 충분합니다.<br />
+10초면 충분합니다.
+
+          <br />
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
               10초면 충분합니다.
             </span>
@@ -229,11 +231,7 @@ const Financial = () => {
           </div>
           
           <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-            <video 
-              controls 
-              poster="/videos/demo-poster.png"
-              className="w-full"
-            >
+            <video controls poster="/videos/demo-poster.png" className="w-full">
               <source src="/videos/localdocs-demo.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>

@@ -1106,12 +1106,9 @@ const Financial = () => {
           
           {/* Bottom Bar */}
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-gray-400">
-              © 2025 LocalDocs. All rights reserved.
-            </p>
-            <p className="text-sm text-gray-400">
-              회사명: (주)피카부랩스
-            </p>
+            <p className="text-sm text-gray-400">© 2025 LocalDocs. All rights reserved.
+PeekabooLabs</p>
+            
           </div>
         </div>
       </footer>

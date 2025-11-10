@@ -1056,10 +1056,22 @@ const Financial = () => {
                 </button>
               </div>
               
+              {/* Error messages - display at top for better visibility */}
+              {(ctaForm.formState.errors.email || ctaForm.formState.errors.consent) && (
+                <div className="bg-red-500/10 border border-red-300 rounded-lg p-3 space-y-1">
+                  {ctaForm.formState.errors.email && (
+                    <p className="text-sm text-white font-medium">{ctaForm.formState.errors.email.message}</p>
+                  )}
+                  {ctaForm.formState.errors.consent && (
+                    <p className="text-sm text-white font-medium">{ctaForm.formState.errors.consent.message}</p>
+                  )}
+                </div>
+              )}
+              
               {/* Consent checkbox */}
               <div className="flex items-start gap-2 text-left">
-                <input type="checkbox" {...ctaForm.register("consent")} id="financial-consent" className="mt-1" />
-                <label htmlFor="financial-consent" className="text-sm text-blue-100">
+                <input type="checkbox" {...ctaForm.register("consent")} id="financial-consent" className="mt-1 w-4 h-4" />
+                <label htmlFor="financial-consent" className="text-sm text-blue-100 cursor-pointer">
                   개인정보 수집 및 이용에 동의합니다
                 </label>
               </div>
@@ -1082,9 +1094,6 @@ const Financial = () => {
               <input type="hidden" {...ctaForm.register("linkedin_campaign_group_name")} />
               <input type="hidden" {...ctaForm.register("linkedin_ad_id")} />
               <input type="hidden" {...ctaForm.register("linkedin_ad_name")} />
-              
-              {ctaForm.formState.errors.email && <p className="text-sm text-red-200">{ctaForm.formState.errors.email.message}</p>}
-              {ctaForm.formState.errors.consent && <p className="text-sm text-red-200">{ctaForm.formState.errors.consent.message}</p>}
             </form>
             
             {/* Trust badges */}

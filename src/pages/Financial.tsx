@@ -333,7 +333,7 @@ const Financial = () => {
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 복잡한 주석 표를 엑셀로<br />
                 복사하면 서식 깨짐<br />
-                <strong className="text-gray-900">1.5시간 / 표</strong>
+                <strong className="text-gray-900">1.5시간</strong>
               </p>
               
               <div className="bg-blue-50 border-l-4 border-blue-600 p-4 rounded mb-4">

@@ -7,11 +7,12 @@ import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
 import qaScreen from "@/assets/qa-screen.png";
 import uploadScreen from "@/assets/upload-screen.png";
-
 const waitlistSchema = z.object({
-  email: z.string().trim().email({ message: "유효한 이메일을 입력해주세요" }).max(255),
-  consent: z.boolean().refine((val) => val === true, {
-    message: "개인정보 수집 및 이용에 동의해주세요",
+  email: z.string().trim().email({
+    message: "유효한 이메일을 입력해주세요"
+  }).max(255),
+  consent: z.boolean().refine(val => val === true, {
+    message: "개인정보 수집 및 이용에 동의해주세요"
   }),
   utm_source: z.string().optional(),
   utm_medium: z.string().optional(),
@@ -21,32 +22,36 @@ const waitlistSchema = z.object({
   utm_campaign_id: z.string().optional(),
   linkedin_campaign_name: z.string().optional(),
   linkedin_creative_id: z.string().optional(),
-  linkedin_campaign_id: z.string().optional(),
+  linkedin_campaign_id: z.string().optional()
 });
-
 type WaitlistFormData = z.infer<typeof waitlistSchema>;
-
 const Financial = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
   const scrollToWaitlist = () => {
     const waitlistSection = document.getElementById('waitlist-section');
     if (waitlistSection) {
-      waitlistSection.scrollIntoView({ behavior: 'smooth' });
+      waitlistSection.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
   };
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: {
+      errors,
+      isSubmitting
+    },
     reset,
-    setValue,
+    setValue
   } = useForm<WaitlistFormData>({
     resolver: zodResolver(waitlistSchema),
     defaultValues: {
-      consent: false,
-    },
+      consent: false
+    }
   });
 
   // Capture URL parameters
@@ -62,12 +67,11 @@ const Financial = () => {
     setValue("linkedin_creative_id", params.get("linkedin_creative_id") || undefined);
     setValue("linkedin_campaign_id", params.get("linkedin_campaign_id") || undefined);
   }, [setValue]);
-
   const onSubmit = async (data: WaitlistFormData) => {
     try {
       const insertData: any = {
         email: data.email,
-        consent: data.consent,
+        consent: data.consent
       };
 
       // Add UTM parameters if present
@@ -80,28 +84,25 @@ const Financial = () => {
       if (data.linkedin_campaign_name) insertData.linkedin_campaign_name = data.linkedin_campaign_name;
       if (data.linkedin_creative_id) insertData.linkedin_creative_id = data.linkedin_creative_id;
       if (data.linkedin_campaign_id) insertData.linkedin_campaign_id = data.linkedin_campaign_id;
-
-      const { error } = await (supabase as any).from("waitlist").insert([insertData]);
-
+      const {
+        error
+      } = await (supabase as any).from("waitlist").insert([insertData]);
       if (error) throw error;
-
       toast({
         title: "등록 완료!",
-        description: "출시 소식을 가장 먼저 받아보실 수 있습니다.",
+        description: "출시 소식을 가장 먼저 받아보실 수 있습니다."
       });
-
       reset();
     } catch (error: any) {
       console.error("Waitlist submission error:", error);
       toast({
         variant: "destructive",
         title: "오류 발생",
-        description: error.message || "등록 중 오류가 발생했습니다. 다시 시도해주세요.",
+        description: error.message || "등록 중 오류가 발생했습니다. 다시 시도해주세요."
       });
     }
   };
-  return (
-    <div className="min-h-screen bg-white">
+  return <div className="min-h-screen bg-white">
       {/* SECTION 1: Hero - Waitlist Focus */}
       <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
         {/* Background gradient */}
@@ -117,15 +118,13 @@ const Financial = () => {
         <div className="relative max-w-5xl mx-auto px-6 py-20 text-center">
           {/* Tagline */}
           <div className="mb-8">
-            <p className="text-lg md:text-xl text-blue-600 font-semibold tracking-tight">
-              DART 공시분석의 새로운 기준
-            </p>
+            <p className="text-lg md:text-xl text-blue-600 font-semibold tracking-tight">인터넷 없이 동작하는 PDF 검색・요약 AI</p>
           </div>
           
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-gray-900 mb-8">
             300페이지 공시보고서,
-            <br/>
+            <br />
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
               10초면 충분합니다.
             </span>
@@ -133,7 +132,7 @@ const Financial = () => {
           
           {/* Sub Headline */}
           <p className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-12 max-w-2xl mx-auto">
-            "삼성전자 상반기 매출 얼마야?" 물어보면<br/>
+            "삼성전자 상반기 매출 얼마야?" 물어보면<br />
             답변 + 출처까지 자동 표시.
           </p>
           
@@ -141,30 +140,15 @@ const Financial = () => {
           <div className="max-w-xl mx-auto mb-10">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="flex flex-col sm:flex-row gap-3 items-stretch">
-                <input 
-                  type="email" 
-                  {...register("email")}
-                  placeholder="work@company.com"
-                  disabled={isSubmitting}
-                  className="flex-1 px-6 py-4 rounded-xl text-gray-900 text-lg border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 bg-white shadow-sm"
-                />
-                <button 
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-lg font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all hover:shadow-xl whitespace-nowrap disabled:opacity-50 shadow-lg"
-                >
+                <input type="email" {...register("email")} placeholder="work@company.com" disabled={isSubmitting} className="flex-1 px-6 py-4 rounded-xl text-gray-900 text-lg border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 bg-white shadow-sm" />
+                <button type="submit" disabled={isSubmitting} className="px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-lg font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all hover:shadow-xl whitespace-nowrap disabled:opacity-50 shadow-lg">
                   {isSubmitting ? "등록 중..." : "무료 체험 신청"}
                 </button>
               </div>
               
               {/* Consent checkbox */}
               <div className="flex items-start gap-3 text-left justify-center">
-                <input
-                  type="checkbox"
-                  {...register("consent")}
-                  id="hero-consent"
-                  className="mt-1.5 w-4 h-4"
-                />
+                <input type="checkbox" {...register("consent")} id="hero-consent" className="mt-1.5 w-4 h-4" />
                 <label htmlFor="hero-consent" className="text-sm text-gray-600">
                   개인정보 수집 및 이용에 동의합니다
                 </label>
@@ -181,12 +165,8 @@ const Financial = () => {
               <input type="hidden" {...register("linkedin_creative_id")} />
               <input type="hidden" {...register("linkedin_campaign_id")} />
               
-              {errors.email && (
-                <p className="text-sm text-red-600">{errors.email.message}</p>
-              )}
-              {errors.consent && (
-                <p className="text-sm text-red-600">{errors.consent.message}</p>
-              )}
+              {errors.email && <p className="text-sm text-red-600">{errors.email.message}</p>}
+              {errors.consent && <p className="text-sm text-red-600">{errors.consent.message}</p>}
             </form>
             
             {/* Social proof */}
@@ -223,15 +203,14 @@ const Financial = () => {
           </div>
           
           {/* Scroll indicator */}
-          <button
-            onClick={() => {
-              const nextSection = document.querySelector('#pain-section');
-              if (nextSection) {
-                nextSection.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="inline-flex flex-col items-center gap-2 text-gray-400 hover:text-gray-600 transition-colors mt-8"
-          >
+          <button onClick={() => {
+          const nextSection = document.querySelector('#pain-section');
+          if (nextSection) {
+            nextSection.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }
+        }} className="inline-flex flex-col items-center gap-2 text-gray-400 hover:text-gray-600 transition-colors mt-8">
             <span className="text-sm">자세히 보기</span>
             <ChevronDown className="w-6 h-6 animate-bounce" />
           </button>
@@ -262,8 +241,8 @@ const Financial = () => {
                 정보 찾기
               </h3>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                300페이지 보고서에서<br/>
-                원하는 숫자 하나 찾는데<br/>
+                300페이지 보고서에서<br />
+                원하는 숫자 하나 찾는데<br />
                 <strong className="text-gray-900">30분</strong>
               </p>
               
@@ -287,8 +266,8 @@ const Financial = () => {
                 계정과목 통일
               </h3>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                연도별로 바뀌는 계정과목<br/>
-                5개년 수작업 대조에<br/>
+                연도별로 바뀌는 계정과목<br />
+                5개년 수작업 대조에<br />
                 <strong className="text-gray-900">4-6시간</strong>
               </p>
               
@@ -311,8 +290,8 @@ const Financial = () => {
                 주석 표 정리
               </h3>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                복잡한 주석 표를 엑셀로<br/>
-                복사하면 서식 깨짐<br/>
+                복잡한 주석 표를 엑셀로<br />
+                복사하면 서식 깨짐<br />
                 <strong className="text-gray-900">1.5시간 / 표</strong>
               </p>
               
@@ -377,11 +356,7 @@ const Financial = () => {
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
-                <img 
-                  src={uploadScreen} 
-                  alt="문서 업로드 화면" 
-                  className="w-full rounded-2xl shadow-2xl border border-gray-200"
-                />
+                <img src={uploadScreen} alt="문서 업로드 화면" className="w-full rounded-2xl shadow-2xl border border-gray-200" />
               </div>
             </div>
           </div>
@@ -390,11 +365,7 @@ const Financial = () => {
           <div className="mb-16">
             <div className="flex flex-col md:flex-row gap-12 items-center">
               <div className="flex-1">
-                <img 
-                  src={qaScreen} 
-                  alt="질문하고 답변 받는 화면" 
-                  className="w-full rounded-2xl shadow-2xl border border-gray-200"
-                />
+                <img src={qaScreen} alt="질문하고 답변 받는 화면" className="w-full rounded-2xl shadow-2xl border border-gray-200" />
               </div>
               <div className="flex-1">
                 <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-lg">
@@ -404,7 +375,7 @@ const Financial = () => {
                   질문하고 정확한 답변 + 출처 확인
                 </h3>
                 <p className="text-lg text-gray-600 mb-6">
-                  평소 하던 방식 그대로 자연어로 질문하세요.<br/>
+                  평소 하던 방식 그대로 자연어로 질문하세요.<br />
                   문장 단위로 출처를 확인하며 신뢰할 수 있는 인사이트를 얻습니다.
                 </p>
                 <div className="space-y-2 text-sm mb-6">
@@ -427,10 +398,7 @@ const Financial = () => {
           
           {/* CTA */}
           <div className="text-center">
-            <button 
-              onClick={scrollToWaitlist}
-              className="px-10 py-4 bg-blue-600 text-white font-semibold text-lg rounded-lg hover:bg-blue-700 transition-all hover:shadow-xl"
-            >
+            <button onClick={scrollToWaitlist} className="px-10 py-4 bg-blue-600 text-white font-semibold text-lg rounded-lg hover:bg-blue-700 transition-all hover:shadow-xl">
               지금 무료로 시작하기 →
             </button>
             <p className="mt-4 text-sm text-gray-500">
@@ -541,10 +509,7 @@ const Financial = () => {
             <p className="text-2xl font-bold text-gray-900 mb-6">
               금융권이 선택해야 하는 이유가 명확합니다.
             </p>
-            <button 
-              onClick={scrollToWaitlist}
-              className="px-8 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all"
-            >
+            <button onClick={scrollToWaitlist} className="px-8 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all">
               차이를 직접 확인하기 →
             </button>
           </div>
@@ -708,7 +673,7 @@ const Financial = () => {
                 완전 오프라인
               </h3>
               <p className="text-sm text-gray-300">
-                인터넷 연결 없이 동작<br/>
+                인터넷 연결 없이 동작<br />
                 폐쇄망에서도 사용 가능
               </p>
             </div>
@@ -719,7 +684,7 @@ const Financial = () => {
                 로컬 저장
               </h3>
               <p className="text-sm text-gray-300">
-                모든 데이터는 당신의 PC에만<br/>
+                모든 데이터는 당신의 PC에만<br />
                 클라우드 업로드 절대 없음
               </p>
             </div>
@@ -730,7 +695,7 @@ const Financial = () => {
                 외부 전송 차단
               </h3>
               <p className="text-sm text-gray-300">
-                문서 내용이 외부로 나가지 않음<br/>
+                문서 내용이 외부로 나가지 않음<br />
                 AI 처리도 로컬에서만
               </p>
             </div>
@@ -741,7 +706,7 @@ const Financial = () => {
                 완전 삭제
               </h3>
               <p className="text-sm text-gray-300">
-                삭제하면 복구 불가능하게 제거<br/>
+                삭제하면 복구 불가능하게 제거<br />
                 흔적 남지 않음
               </p>
             </div>
@@ -798,10 +763,7 @@ const Financial = () => {
                 </li>
               </ul>
               
-              <button 
-                onClick={scrollToWaitlist}
-                className="w-full py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all"
-              >
+              <button onClick={scrollToWaitlist} className="w-full py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all">
                 Waitlist 등록하기
               </button>
             </div>
@@ -848,10 +810,7 @@ const Financial = () => {
                 </li>
               </ul>
               
-              <button 
-                onClick={scrollToWaitlist}
-                className="w-full py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-50 transition-all"
-              >
+              <button onClick={scrollToWaitlist} className="w-full py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-50 transition-all">
                 Waitlist 등록하기
               </button>
             </div>
@@ -890,10 +849,7 @@ const Financial = () => {
                 </li>
               </ul>
               
-              <button 
-                onClick={scrollToWaitlist}
-                className="w-full py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all"
-              >
+              <button onClick={scrollToWaitlist} className="w-full py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all">
                 Waitlist 등록하기
               </button>
             </div>
@@ -922,128 +878,93 @@ const Financial = () => {
             
             {/* FAQ 1 */}
             <div className="bg-white rounded-lg border border-gray-200">
-              <button
-                onClick={() => setOpenFaq(openFaq === 1 ? null : 1)}
-                className="w-full flex justify-between items-center p-6 text-left"
-              >
+              <button onClick={() => setOpenFaq(openFaq === 1 ? null : 1)} className="w-full flex justify-between items-center p-6 text-left">
                 <span className="font-semibold text-gray-900">인터넷이 없어도 사용할 수 있나요?</span>
                 <ChevronDown className={`w-5 h-5 transform transition-transform ${openFaq === 1 ? 'rotate-180' : ''}`} />
               </button>
-              {openFaq === 1 && (
-                <div className="px-6 pb-6">
+              {openFaq === 1 && <div className="px-6 pb-6">
                   <p className="text-gray-600">
                     네, 설치 후에는 인터넷 없이도 모든 기능이 동작합니다.
                   </p>
-                </div>
-              )}
+                </div>}
             </div>
             
             {/* FAQ 2 */}
             <div className="bg-white rounded-lg border border-gray-200">
-              <button
-                onClick={() => setOpenFaq(openFaq === 2 ? null : 2)}
-                className="w-full flex justify-between items-center p-6 text-left"
-              >
+              <button onClick={() => setOpenFaq(openFaq === 2 ? null : 2)} className="w-full flex justify-between items-center p-6 text-left">
                 <span className="font-semibold text-gray-900">어떤 파일 형식을 지원하나요?</span>
                 <ChevronDown className={`w-5 h-5 transform transition-transform ${openFaq === 2 ? 'rotate-180' : ''}`} />
               </button>
-              {openFaq === 2 && (
-                <div className="px-6 pb-6">
+              {openFaq === 2 && <div className="px-6 pb-6">
                   <p className="text-gray-600">
                     현재는 PDF만 지원됩니다. 곧 HWP, PPTX, XLSX 등 다양한 포맷을 추가할 예정입니다.
                   </p>
-                </div>
-              )}
+                </div>}
             </div>
             
             {/* FAQ 3 */}
             <div className="bg-white rounded-lg border border-gray-200">
-              <button
-                onClick={() => setOpenFaq(openFaq === 3 ? null : 3)}
-                className="w-full flex justify-between items-center p-6 text-left"
-              >
+              <button onClick={() => setOpenFaq(openFaq === 3 ? null : 3)} className="w-full flex justify-between items-center p-6 text-left">
                 <span className="font-semibold text-gray-900">표·그래프도 읽을 수 있나요?</span>
                 <ChevronDown className={`w-5 h-5 transform transition-transform ${openFaq === 3 ? 'rotate-180' : ''}`} />
               </button>
-              {openFaq === 3 && (
-                <div className="px-6 pb-6">
+              {openFaq === 3 && <div className="px-6 pb-6">
                   <p className="text-gray-600">
                     네, 표와 이미지, 수식까지 분석할 수 있습니다.
                   </p>
-                </div>
-              )}
+                </div>}
             </div>
             
             {/* FAQ 4 */}
             <div className="bg-white rounded-lg border border-gray-200">
-              <button
-                onClick={() => setOpenFaq(openFaq === 4 ? null : 4)}
-                className="w-full flex justify-between items-center p-6 text-left"
-              >
+              <button onClick={() => setOpenFaq(openFaq === 4 ? null : 4)} className="w-full flex justify-between items-center p-6 text-left">
                 <span className="font-semibold text-gray-900">답변에 출처가 표시되나요?</span>
                 <ChevronDown className={`w-5 h-5 transform transition-transform ${openFaq === 4 ? 'rotate-180' : ''}`} />
               </button>
-              {openFaq === 4 && (
-                <div className="px-6 pb-6">
+              {openFaq === 4 && <div className="px-6 pb-6">
                   <p className="text-gray-600">
                     모든 답변에 출처를 제공합니다. 어떤 문서의, 어느 페이지에서 가져왔는지 확인할 수 있습니다.
                   </p>
-                </div>
-              )}
+                </div>}
             </div>
             
             {/* FAQ 5 */}
             <div className="bg-white rounded-lg border border-gray-200">
-              <button
-                onClick={() => setOpenFaq(openFaq === 5 ? null : 5)}
-                className="w-full flex justify-between items-center p-6 text-left"
-              >
+              <button onClick={() => setOpenFaq(openFaq === 5 ? null : 5)} className="w-full flex justify-between items-center p-6 text-left">
                 <span className="font-semibold text-gray-900">보안이 중요한 환경에서도 사용할 수 있나요?</span>
                 <ChevronDown className={`w-5 h-5 transform transition-transform ${openFaq === 5 ? 'rotate-180' : ''}`} />
               </button>
-              {openFaq === 5 && (
-                <div className="px-6 pb-6">
+              {openFaq === 5 && <div className="px-6 pb-6">
                   <p className="text-gray-600">
                     네, 폐쇄망·인트라넷에서도 100% 로컬 처리로 안전하게 쓸 수 있습니다.
                   </p>
-                </div>
-              )}
+                </div>}
             </div>
             
             {/* FAQ 6 */}
             <div className="bg-white rounded-lg border border-gray-200">
-              <button
-                onClick={() => setOpenFaq(openFaq === 6 ? null : 6)}
-                className="w-full flex justify-between items-center p-6 text-left"
-              >
+              <button onClick={() => setOpenFaq(openFaq === 6 ? null : 6)} className="w-full flex justify-between items-center p-6 text-left">
                 <span className="font-semibold text-gray-900">무료 플랜과 유료 플랜의 차이는 무엇인가요?</span>
                 <ChevronDown className={`w-5 h-5 transform transition-transform ${openFaq === 6 ? 'rotate-180' : ''}`} />
               </button>
-              {openFaq === 6 && (
-                <div className="px-6 pb-6">
+              {openFaq === 6 && <div className="px-6 pb-6">
                   <p className="text-gray-600">
                     무료는 문서/폴더 개수 제한이 있고, Pro는 무제한 + 고급 기능, Enterprise는 팀 관리·보안 기능까지 제공합니다.
                   </p>
-                </div>
-              )}
+                </div>}
             </div>
             
             {/* FAQ 7 */}
             <div className="bg-white rounded-lg border border-gray-200">
-              <button
-                onClick={() => setOpenFaq(openFaq === 7 ? null : 7)}
-                className="w-full flex justify-between items-center p-6 text-left"
-              >
+              <button onClick={() => setOpenFaq(openFaq === 7 ? null : 7)} className="w-full flex justify-between items-center p-6 text-left">
                 <span className="font-semibold text-gray-900">한국어 외 다른 언어도 지원하나요?</span>
                 <ChevronDown className={`w-5 h-5 transform transition-transform ${openFaq === 7 ? 'rotate-180' : ''}`} />
               </button>
-              {openFaq === 7 && (
-                <div className="px-6 pb-6">
+              {openFaq === 7 && <div className="px-6 pb-6">
                   <p className="text-gray-600">
                     네, 다양한 언어의 문서를 지원하며 특히 한국어 문서에서 뛰어난 성능을 발휘합니다.
                   </p>
-                </div>
-              )}
+                </div>}
             </div>
             
           </div>
@@ -1053,10 +974,7 @@ const Financial = () => {
             <p className="text-white text-lg mb-4">
               더 궁금하신 점이 있으신가요?
             </p>
-            <button 
-              onClick={scrollToWaitlist}
-              className="px-8 py-3 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-100 transition-all"
-            >
+            <button onClick={scrollToWaitlist} className="px-8 py-3 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-100 transition-all">
               Waitlist 등록하고 문의하기 →
             </button>
           </div>
@@ -1093,30 +1011,15 @@ const Financial = () => {
           <div className="max-w-md mx-auto">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="flex flex-col sm:flex-row gap-3">
-                <input 
-                  type="email" 
-                  {...register("email")}
-                  placeholder="이메일을 입력하세요"
-                  disabled={isSubmitting}
-                  className="flex-1 px-6 py-4 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-50"
-                />
-                <button 
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="px-8 py-4 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-all whitespace-nowrap disabled:opacity-50"
-                >
+                <input type="email" {...register("email")} placeholder="이메일을 입력하세요" disabled={isSubmitting} className="flex-1 px-6 py-4 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-50" />
+                <button type="submit" disabled={isSubmitting} className="px-8 py-4 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-all whitespace-nowrap disabled:opacity-50">
                   {isSubmitting ? "등록 중..." : "등록하기"}
                 </button>
               </div>
               
               {/* Consent checkbox */}
               <div className="flex items-start gap-2 text-left">
-                <input
-                  type="checkbox"
-                  {...register("consent")}
-                  id="financial-consent"
-                  className="mt-1"
-                />
+                <input type="checkbox" {...register("consent")} id="financial-consent" className="mt-1" />
                 <label htmlFor="financial-consent" className="text-sm text-blue-100">
                   개인정보 수집 및 이용에 동의합니다
                 </label>
@@ -1133,12 +1036,8 @@ const Financial = () => {
               <input type="hidden" {...register("linkedin_creative_id")} />
               <input type="hidden" {...register("linkedin_campaign_id")} />
               
-              {errors.email && (
-                <p className="text-sm text-red-200">{errors.email.message}</p>
-              )}
-              {errors.consent && (
-                <p className="text-sm text-red-200">{errors.consent.message}</p>
-              )}
+              {errors.email && <p className="text-sm text-red-200">{errors.email.message}</p>}
+              {errors.consent && <p className="text-sm text-red-200">{errors.consent.message}</p>}
             </form>
             
             {/* Trust badges */}
@@ -1211,8 +1110,6 @@ const Financial = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Financial;

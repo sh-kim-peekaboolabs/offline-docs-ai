@@ -9,7 +9,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
-
 const formSchema = z.object({
   email: z.string().email("유효한 이메일을 입력해 주세요.").max(255, "이메일은 255자 이하여야 합니다."),
   consent: z.boolean().refine(val => val === true, {
@@ -32,17 +31,17 @@ const formSchema = z.object({
   linkedin_campaign_id: z.string().max(100).optional(),
   linkedin_ad_name: z.string().max(200).optional()
 });
-
 type FormValues = z.infer<typeof formSchema>;
-
 const CTASection = () => {
   const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
-  
   const {
     register,
     handleSubmit,
     control,
-    formState: { errors, isSubmitting },
+    formState: {
+      errors,
+      isSubmitting
+    },
     reset,
     setValue
   } = useForm<FormValues>({
@@ -52,10 +51,9 @@ const CTASection = () => {
       page_source: '/defense'
     }
   });
-
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    
+
     // UTM parameters
     const utmParams = {
       'utm_source': 'utm_source',
@@ -67,7 +65,6 @@ const CTASection = () => {
       'utm_ad_id': 'utm_ad_id',
       'utm_ad_name': 'utm_ad_name'
     };
-    
     Object.entries(utmParams).forEach(([paramName, fieldName]) => {
       const value = params.get(paramName);
       if (value) {
@@ -84,7 +81,6 @@ const CTASection = () => {
       'utm_content': 'linkedin_ad_id',
       'creative_name': 'linkedin_ad_name'
     };
-    
     Object.entries(linkedinParams).forEach(([paramName, fieldName]) => {
       const value = params.get(paramName);
       if (value) {
@@ -92,14 +88,12 @@ const CTASection = () => {
       }
     });
   }, [setValue]);
-
   const onSubmit = async (values: FormValues) => {
     try {
       if (values.honeypot) {
         toast.error("잘못된 요청입니다.");
         return;
       }
-
       const insertData = {
         email: values.email,
         consent: values.consent,
@@ -119,15 +113,13 @@ const CTASection = () => {
         linkedin_campaign_id: values.linkedin_campaign_id || null,
         linkedin_ad_name: values.linkedin_ad_name || null
       };
-
-      const { error } = await supabase.from("email_signups").insert([insertData]);
-
+      const {
+        error
+      } = await supabase.from("email_signups").insert([insertData]);
       if (error) throw error;
-
       toast.success("등록이 완료되었습니다! 곧 연락드리겠습니다.");
       setIsSubmitSuccessful(true);
       reset();
-      
       setTimeout(() => {
         setIsSubmitSuccessful(false);
       }, 3000);
@@ -136,9 +128,7 @@ const CTASection = () => {
       toast.error("등록 중 오류가 발생했습니다. 다시 시도해주세요.");
     }
   };
-
-  return (
-    <section id="cta" className="py-24 px-4 bg-gradient-to-br from-navy to-teal-dark relative overflow-hidden">
+  return <section id="cta" className="py-24 px-4 bg-gradient-to-br from-navy to-teal-dark relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-teal/10 to-transparent animate-pulse"></div>
       
       <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -154,35 +144,22 @@ const CTASection = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl mx-auto mb-8">
           <div className="flex flex-col md:flex-row gap-4 items-start">
             <div className="flex-1 w-full">
-              <Input
-                type="email"
-                placeholder="이메일 주소를 입력하세요"
-                {...register("email")}
-                className="h-14 text-lg bg-white text-navy border-0"
-                disabled={isSubmitting}
-              />
-              {!isSubmitSuccessful && errors.email && (
-                <p className="text-sm text-red-300 mt-2 text-left">{errors.email.message}</p>
-              )}
+              <Input type="email" placeholder="이메일 주소를 입력하세요" {...register("email")} className="h-14 text-lg bg-white text-navy border-0" disabled={isSubmitting} />
+              {!isSubmitSuccessful && errors.email && <p className="text-sm text-red-300 mt-2 text-left">{errors.email.message}</p>}
             </div>
             
-            <Button 
-              type="submit"
-              size="lg"
-              disabled={isSubmitting}
-              className="bg-white text-navy hover:bg-gray-100 h-14 px-8 text-lg font-bold rounded-lg shadow-2xl hover:shadow-white/30 hover:scale-105 transition-all whitespace-nowrap"
-            >
+            <Button type="submit" size="lg" disabled={isSubmitting} className="bg-white text-navy hover:bg-gray-100 h-14 px-8 text-lg font-bold rounded-lg shadow-2xl hover:shadow-white/30 hover:scale-105 transition-all whitespace-nowrap">
               {isSubmitting ? "등록 중..." : "무료로 시작하기"} 
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
 
           <input type="text" {...register("honeypot")} style={{
-            position: 'absolute',
-            left: '-9999px',
-            width: '1px',
-            height: '1px'
-          }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
+          position: 'absolute',
+          left: '-9999px',
+          width: '1px',
+          height: '1px'
+        }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
           
           <input type="hidden" {...register("page_source")} />
           <input type="hidden" {...register("utm_source")} />
@@ -201,25 +178,14 @@ const CTASection = () => {
           <input type="hidden" {...register("linkedin_ad_name")} />
 
           <div className="flex items-start gap-3 mt-4 justify-center">
-            <Controller
-              name="consent"
-              control={control}
-              render={({ field }) => (
-                <Checkbox 
-                  id="defense-consent" 
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                  className="mt-1 border-white data-[state=checked]:bg-white data-[state=checked]:text-navy" 
-                />
-              )}
-            />
+            <Controller name="consent" control={control} render={({
+            field
+          }) => <Checkbox id="defense-consent" checked={field.value} onCheckedChange={field.onChange} className="mt-1 border-white data-[state=checked]:bg-white data-[state=checked]:text-navy" />} />
             <Label htmlFor="defense-consent" className="text-sm text-white/90 cursor-pointer leading-relaxed text-left">
               개인정보 수집 및 이용에 동의합니다
             </Label>
           </div>
-          {!isSubmitSuccessful && errors.consent && (
-            <p className="text-sm text-red-300 mt-2">{errors.consent.message}</p>
-          )}
+          {!isSubmitSuccessful && errors.consent && <p className="text-sm text-red-300 mt-2">{errors.consent.message}</p>}
         </form>
         
         <p className="text-white/70 text-sm mb-8">
@@ -227,61 +193,49 @@ const CTASection = () => {
         </p>
         
         <div className="flex flex-wrap justify-center gap-6 text-sm">
-          {[
-            { icon: <Lock className="w-4 h-4" />, text: "완전 보안" },
-            { icon: <Clock className="w-4 h-4" />, text: "5분 설치" },
-            { icon: <CheckCircle className="w-4 h-4" />, text: "무료 체험" }
-          ].map((item, idx) => (
-            <div key={idx} className="flex items-center gap-2 text-white/80">
+          {[{
+          icon: <Lock className="w-4 h-4" />,
+          text: "완전 보안"
+        }, {
+          icon: <Clock className="w-4 h-4" />,
+          text: "5분 설치"
+        }, {
+          icon: <CheckCircle className="w-4 h-4" />,
+          text: "무료 체험"
+        }].map((item, idx) => <div key={idx} className="flex items-center gap-2 text-white/80">
               {item.icon}
               <span>{item.text}</span>
-            </div>
-          ))}
+            </div>)}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId);
   if (element) {
     const headerOffset = 64;
     const elementPosition = element.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
     window.scrollTo({
       top: offsetPosition,
       behavior: 'smooth'
     });
   }
 };
-
 const Header = () => {
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-navy-dark/80 backdrop-blur-lg border-b border-white/10">
+  return <header className="fixed top-0 left-0 right-0 z-50 bg-navy-dark/80 backdrop-blur-lg border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
-        <button 
-          onClick={() => scrollToSection('hero')}
-          className="text-xl font-bold text-white hover:text-teal transition-colors"
-        >
+        <button onClick={() => scrollToSection('hero')} className="text-xl font-bold text-white hover:text-teal transition-colors">
           로컬독스
         </button>
-        <Button 
-          size="sm"
-          onClick={() => scrollToSection('cta')}
-          className="bg-teal hover:bg-teal-light text-white"
-        >
+        <Button size="sm" onClick={() => scrollToSection('cta')} className="bg-teal hover:bg-teal-light text-white">
           무료 체험하기
         </Button>
       </div>
-    </header>
-  );
+    </header>;
 };
-
 const Defense = () => {
-  return (
-    <div className="min-h-screen bg-navy-dark text-white">
+  return <div className="min-h-screen bg-navy-dark text-white">
       <Header />
       
       {/* Hero Section */}
@@ -310,11 +264,7 @@ const Defense = () => {
             </div>
           </div>
           
-          <Button 
-            size="lg" 
-            onClick={() => scrollToSection('cta')}
-            className="bg-teal hover:bg-teal-light text-white px-12 py-6 text-lg font-bold rounded-xl shadow-lg hover:shadow-teal/50 transition-all hover:scale-105"
-          >
+          <Button size="lg" onClick={() => scrollToSection('cta')} className="bg-teal hover:bg-teal-light text-white px-12 py-6 text-lg font-bold rounded-xl shadow-lg hover:shadow-teal/50 transition-all hover:scale-105">
             무료 체험하기 <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </div>
@@ -328,36 +278,28 @@ const Defense = () => {
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <Clock className="w-12 h-12 text-orange-500" />,
-                title: "400페이지 교범에서 Ctrl+F로 8시간",
-                content: "작전 준비 시간은 촉박한데, 필요한 절차를 찾으려면 교범 여러 권을 뒤적이며 몇 시간씩 허비합니다.",
-                delay: "0ms"
-              },
-              {
-                icon: <Lock className="w-12 h-12 text-red-500" />,
-                title: "ChatGPT에 올릴 수 없는 민감 자료",
-                content: "일반 AI 서비스는 인터넷이 필요하고, 보안 규정상 민감한 군사문서를 외부에 업로드할 수 없습니다.",
-                delay: "100ms"
-              },
-              {
-                icon: <FileText className="w-12 h-12 text-blue-500" />,
-                title: "표와 수식이 뒤섞인 기술문서",
-                content: "복잡한 표, 수식, 도표가 섞인 문서는 단순 검색으로는 정확한 정보를 찾기 어렵습니다.",
-                delay: "200ms"
-              }
-            ].map((item, idx) => (
-              <div 
-                key={idx}
-                className="bg-gray-800 p-10 rounded-2xl border border-gray-700 hover:border-gray-600 hover:shadow-xl hover:scale-105 transition-all duration-300"
-                style={{ animationDelay: item.delay }}
-              >
+            {[{
+            icon: <Clock className="w-12 h-12 text-orange-500" />,
+            title: "400페이지 교범에서 Ctrl+F로 8시간",
+            content: "작전 준비 시간은 촉박한데, 필요한 절차를 찾으려면 교범 여러 권을 뒤적이며 몇 시간씩 허비합니다.",
+            delay: "0ms"
+          }, {
+            icon: <Lock className="w-12 h-12 text-red-500" />,
+            title: "ChatGPT에 올릴 수 없는 민감 자료",
+            content: "일반 AI 서비스는 인터넷이 필요하고, 보안 규정상 민감한 군사문서를 외부에 업로드할 수 없습니다.",
+            delay: "100ms"
+          }, {
+            icon: <FileText className="w-12 h-12 text-blue-500" />,
+            title: "표와 수식이 뒤섞인 기술문서",
+            content: "복잡한 표, 수식, 도표가 섞인 문서는 단순 검색으로는 정확한 정보를 찾기 어렵습니다.",
+            delay: "200ms"
+          }].map((item, idx) => <div key={idx} className="bg-gray-800 p-10 rounded-2xl border border-gray-700 hover:border-gray-600 hover:shadow-xl hover:scale-105 transition-all duration-300" style={{
+            animationDelay: item.delay
+          }}>
                 <div className="mb-6">{item.icon}</div>
                 <h3 className="text-xl font-bold mb-4">{item.title}</h3>
                 <p className="text-gray-300 leading-relaxed">{item.content}</p>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -370,32 +312,23 @@ const Defense = () => {
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <Zap className="w-12 h-12 text-teal" />,
-                title: "8시간 → 10초",
-                content: "400페이지 교범에서 필요한 절차를 10초 만에 찾아 정확한 출처와 함께 제공합니다."
-              },
-              {
-                icon: <Shield className="w-12 h-12 text-teal" />,
-                title: "폐쇄망에서도 동작",
-                content: "인터넷 연결 없이 로컬에서만 작동. 민감한 군사문서도 외부 유출 걱정 없이 안전하게 분석할 수 있습니다."
-              },
-              {
-                icon: <Target className="w-12 h-12 text-teal" />,
-                title: "표, 수식도 완벽 인식",
-                content: "복잡한 표, 기술 수식, 다이어그램도 정확하게 인식하고 분석합니다. 페이지가 넘어가는 내용도 놓치지 않습니다."
-              }
-            ].map((item, idx) => (
-              <div 
-                key={idx}
-                className="bg-gradient-to-br from-gray-800 to-gray-900 p-10 rounded-2xl border-2 border-teal/50 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-105 transition-all duration-300"
-              >
+            {[{
+            icon: <Zap className="w-12 h-12 text-teal" />,
+            title: "8시간 → 10초",
+            content: "400페이지 교범에서 필요한 절차를 10초 만에 찾아 정확한 출처와 함께 제공합니다."
+          }, {
+            icon: <Shield className="w-12 h-12 text-teal" />,
+            title: "폐쇄망에서도 동작",
+            content: "인터넷 연결 없이 로컬에서만 작동. 민감한 군사문서도 외부 유출 걱정 없이 안전하게 분석할 수 있습니다."
+          }, {
+            icon: <Target className="w-12 h-12 text-teal" />,
+            title: "표, 수식도 완벽 인식",
+            content: "복잡한 표, 기술 수식, 다이어그램도 정확하게 인식하고 분석합니다. 페이지가 넘어가는 내용도 놓치지 않습니다."
+          }].map((item, idx) => <div key={idx} className="bg-gradient-to-br from-gray-800 to-gray-900 p-10 rounded-2xl border-2 border-teal/50 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-105 transition-all duration-300">
                 <div className="mb-6">{item.icon}</div>
                 <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
                 <p className="text-gray-200 leading-relaxed">{item.content}</p>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -412,10 +345,9 @@ const Defense = () => {
           
           <div className="grid md:grid-cols-2 gap-12">
             {/* Feature 1 - Citations */}
-            <div 
-              className="group bg-gradient-to-br from-gray-800 to-gray-900 p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500"
-              style={{ animationDelay: '0ms' }}
-            >
+            <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500" style={{
+            animationDelay: '0ms'
+          }}>
               <div className="flex flex-col items-center text-center">
                 {/* Icon Circle */}
                 <div className="w-24 h-24 rounded-full bg-teal/10 flex items-center justify-center mb-8 group-hover:rotate-12 transition-transform duration-500">
@@ -453,10 +385,9 @@ const Defense = () => {
             </div>
 
             {/* Feature 2 - Table Recognition */}
-            <div 
-              className="group bg-gradient-to-br from-gray-800 to-gray-900 p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500"
-              style={{ animationDelay: '200ms' }}
-            >
+            <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500" style={{
+            animationDelay: '200ms'
+          }}>
               <div className="flex flex-col items-center text-center">
                 {/* Icon Circle */}
                 <div className="w-24 h-24 rounded-full bg-teal/10 flex items-center justify-center mb-8 group-hover:rotate-12 transition-transform duration-500">
@@ -495,10 +426,9 @@ const Defense = () => {
             </div>
 
             {/* Feature 3 - Offline */}
-            <div 
-              className="group bg-gradient-to-br from-gray-800 to-gray-900 p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500"
-              style={{ animationDelay: '400ms' }}
-            >
+            <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500" style={{
+            animationDelay: '400ms'
+          }}>
               <div className="flex flex-col items-center text-center">
                 {/* Icon Circle */}
                 <div className="w-24 h-24 rounded-full bg-teal/10 flex items-center justify-center mb-8 group-hover:rotate-12 transition-transform duration-500">
@@ -545,10 +475,9 @@ const Defense = () => {
             </div>
 
             {/* Feature 4 - Multiple Documents */}
-            <div 
-              className="group bg-gradient-to-br from-gray-800 to-gray-900 p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500"
-              style={{ animationDelay: '600ms' }}
-            >
+            <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-14 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/30 hover:scale-[1.03] transition-all duration-500" style={{
+            animationDelay: '600ms'
+          }}>
               <div className="flex flex-col items-center text-center">
                 {/* Icon Circle */}
                 <div className="w-24 h-24 rounded-full bg-teal/10 flex items-center justify-center mb-8 group-hover:rotate-12 transition-transform duration-500">
@@ -566,19 +495,13 @@ const Defense = () => {
                 {/* Visual Mockup */}
                 <div className="w-full h-52 bg-gray-900 rounded-xl border border-teal/20 p-6 flex items-center justify-center group-hover:translate-y-[-4px] transition-transform duration-300">
                   <div className="relative flex items-center justify-center">
-                    {[1, 2, 3, 4].map((num, i) => (
-                      <div 
-                        key={num}
-                        className="absolute w-20 h-28 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg border-2 border-teal/40 flex flex-col items-center justify-center text-lg font-bold transition-transform duration-300"
-                        style={{ 
-                          transform: `translateX(${(i - 1.5) * 32}px) translateY(${i * 4}px) rotate(${(i - 1.5) * 8}deg)`,
-                          zIndex: 4 - i
-                        }}
-                      >
+                    {[1, 2, 3, 4].map((num, i) => <div key={num} className="absolute w-20 h-28 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg border-2 border-teal/40 flex flex-col items-center justify-center text-lg font-bold transition-transform duration-300" style={{
+                    transform: `translateX(${(i - 1.5) * 32}px) translateY(${i * 4}px) rotate(${(i - 1.5) * 8}deg)`,
+                    zIndex: 4 - i
+                  }}>
                         <span className="text-3xl mb-2">📄</span>
                         <span className="text-teal">{num}</span>
-                      </div>
-                    ))}
+                      </div>)}
                   </div>
                   <div className="absolute bottom-8">
                     <span className="text-teal font-bold text-sm">통합 검색 가능</span>
@@ -598,48 +521,22 @@ const Defense = () => {
           </h2>
           
           <div className="space-y-12">
-            {[
-              {
-                situation: "긴급 작전 명령이 떨어졌는데, 관련 교범 내용을 빠르게 확인해야 할 때",
-                label: "작전 계획 수립",
-                before: [
-                  "교범 5권을 뒤적이며 8시간 소요",
-                  "중요한 절차를 놓칠 위험"
-                ],
-                after: [
-                  "'방어 작전 체크리스트는?' 질문으로 10초 해결",
-                  "출처와 함께 정확한 절차 확인",
-                  "작전 계획 수립 시간 8시간 단축"
-                ]
-              },
-              {
-                situation: "장비 고장 시 기술교범에서 정비 절차를 찾아야 할 때",
-                label: "장비 정비",
-                before: [
-                  "300페이지 기술교범을 Ctrl+F로 검색",
-                  "표로 되어있는 부품 번호 찾기 어려움"
-                ],
-                after: [
-                  "'XX 부품 교체 절차는?' 질문으로 즉시 해결",
-                  "표 안의 부품 번호도 정확히 인식",
-                  "정비 시간 2시간 단축"
-                ]
-              },
-              {
-                situation: "신병 교육을 위해 교범 내용을 정리해야 할 때",
-                label: "교육 자료 준비",
-                before: [
-                  "여러 교범에서 관련 내용 수작업 복사",
-                  "출처 정리에 시간 소요"
-                ],
-                after: [
-                  "'기본 전술 개념 요약해줘' 질문으로 요약 생성",
-                  "출처가 자동으로 포함되어 교육자료 완성",
-                  "자료 준비 시간 5시간 단축"
-                ]
-              }
-            ].map((useCase, idx) => (
-              <div key={idx} className="bg-gray-800 p-10 rounded-3xl border-2 border-teal/30 hover:border-teal/50 transition-all">
+            {[{
+            situation: "긴급 작전 명령이 떨어졌는데, 관련 교범 내용을 빠르게 확인해야 할 때",
+            label: "작전 계획 수립",
+            before: ["교범 5권을 뒤적이며 8시간 소요", "중요한 절차를 놓칠 위험"],
+            after: ["'방어 작전 체크리스트는?' 질문으로 10초 해결", "출처와 함께 정확한 절차 확인", "작전 계획 수립 시간 8시간 단축"]
+          }, {
+            situation: "장비 고장 시 기술교범에서 정비 절차를 찾아야 할 때",
+            label: "장비 정비",
+            before: ["300페이지 기술교범을 Ctrl+F로 검색", "표로 되어있는 부품 번호 찾기 어려움"],
+            after: ["'XX 부품 교체 절차는?' 질문으로 즉시 해결", "표 안의 부품 번호도 정확히 인식", "정비 시간 2시간 단축"]
+          }, {
+            situation: "신병 교육을 위해 교범 내용을 정리해야 할 때",
+            label: "교육 자료 준비",
+            before: ["여러 교범에서 관련 내용 수작업 복사", "출처 정리에 시간 소요"],
+            after: ["'기본 전술 개념 요약해줘' 질문으로 요약 생성", "출처가 자동으로 포함되어 교육자료 완성", "자료 준비 시간 5시간 단축"]
+          }].map((useCase, idx) => <div key={idx} className="bg-gray-800 p-10 rounded-3xl border-2 border-teal/30 hover:border-teal/50 transition-all">
                 <div className="inline-block bg-teal px-6 py-2 rounded-full text-sm font-bold mb-6">
                   {useCase.label}
                 </div>
@@ -651,12 +548,10 @@ const Defense = () => {
                       <span className="mr-2">Before</span>
                     </h4>
                     <ul className="space-y-3">
-                      {useCase.before.map((item, i) => (
-                        <li key={i} className="flex items-start text-gray-300">
+                      {useCase.before.map((item, i) => <li key={i} className="flex items-start text-gray-300">
                           <span className="text-red-400 mr-3">❌</span>
                           <span>{item}</span>
-                        </li>
-                      ))}
+                        </li>)}
                     </ul>
                   </div>
                   
@@ -665,17 +560,14 @@ const Defense = () => {
                       <span className="mr-2">After</span>
                     </h4>
                     <ul className="space-y-3">
-                      {useCase.after.map((item, i) => (
-                        <li key={i} className="flex items-start text-gray-200">
+                      {useCase.after.map((item, i) => <li key={i} className="flex items-start text-gray-200">
                           <span className="text-green-400 mr-3">✅</span>
                           <span className={item.includes('단축') ? 'font-bold text-teal' : ''}>{item}</span>
-                        </li>
-                      ))}
+                        </li>)}
                     </ul>
                   </div>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -690,53 +582,28 @@ const Defense = () => {
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {[
-              {
-                icon: "💻",
-                title: "모든 데이터는 로컬에만",
-                points: [
-                  "인터넷 연결 불필요",
-                  "문서와 AI 모델 모두 로컬 저장",
-                  "외부 서버 전송 없음",
-                  "폐쇄망 환경 완벽 지원"
-                ]
-              },
-              {
-                icon: "🔒",
-                title: "민감 정보 완벽 보호",
-                points: [
-                  "업로드한 문서는 로컬에만 저장",
-                  "클라우드 동기화 없음",
-                  "삭제 시 완전히 제거",
-                  "보안 규정 준수"
-                ]
-              },
-              {
-                icon: "✅",
-                title: "국방/금융권 적용 사례",
-                points: [
-                  "보안에 민감한 기관에서 검증",
-                  "폐쇄망 환경 실전 테스트 완료",
-                  "안전한 AI 문서 분석 솔루션"
-                ]
-              }
-            ].map((security, idx) => (
-              <div 
-                key={idx}
-                className="bg-gray-800/50 backdrop-blur-sm p-10 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/20 transition-all duration-300"
-              >
+            {[{
+            icon: "💻",
+            title: "모든 데이터는 로컬에만",
+            points: ["인터넷 연결 불필요", "문서와 AI 모델 모두 로컬 저장", "외부 서버 전송 없음", "폐쇄망 환경 완벽 지원"]
+          }, {
+            icon: "🔒",
+            title: "민감 정보 완벽 보호",
+            points: ["업로드한 문서는 로컬에만 저장", "클라우드 동기화 없음", "삭제 시 완전히 제거", "보안 규정 준수"]
+          }, {
+            icon: "✅",
+            title: "국방/금융권 적용 사례",
+            points: ["보안에 민감한 기관에서 검증", "폐쇄망 환경 실전 테스트 완료", "안전한 AI 문서 분석 솔루션"]
+          }].map((security, idx) => <div key={idx} className="bg-gray-800/50 backdrop-blur-sm p-10 rounded-3xl border-2 border-teal/30 hover:border-teal hover:shadow-2xl hover:shadow-teal/20 transition-all duration-300">
                 <div className="text-6xl mb-6 text-center animate-pulse">{security.icon}</div>
                 <h3 className="text-2xl font-bold text-center mb-6">{security.title}</h3>
                 <ul className="space-y-3">
-                  {security.points.map((point, i) => (
-                    <li key={i} className="flex items-start text-gray-200">
+                  {security.points.map((point, i) => <li key={i} className="flex items-start text-gray-200">
                       <span className="text-teal mr-3 flex-shrink-0">•</span>
                       <span>{point}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
-              </div>
-            ))}
+              </div>)}
           </div>
           
           <div className="flex justify-center">
@@ -783,32 +650,19 @@ const Defense = () => {
               
               {/* Features */}
               <ul className="space-y-4 mb-12 text-left max-w-md mx-auto">
-                {[
-                  "폐쇄망 완전 지원",
-                  "온프레미스 설치",
-                  "무제한 사용자",
-                  "기술 지원 포함"
-                ].map((feature, idx) => (
-                  <li key={idx} className="flex items-center gap-3 text-gray-200 text-lg">
+                {["폐쇄망 완전 지원", "온프레미스 설치", "무제한 사용자", "기술 지원 포함"].map((feature, idx) => <li key={idx} className="flex items-center gap-3 text-gray-200 text-lg">
                     <CheckCircle className="w-6 h-6 text-teal flex-shrink-0" />
                     <span>{feature}</span>
-                  </li>
-                ))}
+                  </li>)}
               </ul>
               
               {/* CTA Button */}
-              <Button 
-                size="lg"
-                onClick={() => scrollToSection('cta')}
-                className="bg-teal hover:bg-teal-light text-white px-12 py-6 text-lg font-bold rounded-xl shadow-lg hover:shadow-teal/50 transition-all hover:scale-105"
-              >
+              <Button size="lg" onClick={() => scrollToSection('cta')} className="bg-teal hover:bg-teal-light text-white px-12 py-6 text-lg font-bold rounded-xl shadow-lg hover:shadow-teal/50 transition-all hover:scale-105">
                 도입 문의하기 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               
               {/* Bottom Text */}
-              <p className="text-sm text-gray-400 mt-8">
-                POC(개념 검증) 무료 제공 | 맞춤형 견적 상담
-              </p>
+              <p className="text-sm text-gray-400 mt-8">데모 무료 시연 | 맞춤형 견적 상담</p>
             </div>
           </div>
         </div>
@@ -824,36 +678,25 @@ const Defense = () => {
             자주 묻는 질문
           </h2>
           <div className="space-y-4">
-            {[
-              {
-                question: "폐쇄망에서 정말 사용할 수 있나요?",
-                answer: "네, 로컬독스는 인터넷 연결 없이 완전히 로컬 환경에서 작동합니다. 모든 데이터와 AI 모델이 로컬에 저장되어 폐쇄망에서도 문제없이 사용 가능합니다."
-              },
-              {
-                question: "어떤 문서 형식을 지원하나요?",
-                answer: "PDF, Word, Excel, PowerPoint, 텍스트 파일 등 대부분의 문서 형식을 지원합니다. 표, 이미지, 수식이 포함된 복잡한 문서도 정확하게 인식합니다."
-              },
-              {
-                question: "설치가 어렵지 않나요?",
-                answer: "설치부터 사용까지 5분이면 충분합니다. 간단한 설치 프로그램을 실행하면 자동으로 설정되며, 별도의 기술 지식이 필요하지 않습니다."
-              },
-              {
-                question: "보안은 어떻게 보장되나요?",
-                answer: "모든 데이터는 로컬에만 저장되며 외부로 전송되지 않습니다. 클라우드 동기화가 없고, 삭제 시 완전히 제거되어 보안이 완벽하게 보장됩니다."
-              },
-              {
-                question: "가격은 어떻게 되나요?",
-                answer: "조직 규모와 필요에 따라 맞춤형 견적을 제공합니다. POC(개념 검증)는 무료로 제공되며, 도입 문의를 통해 상담받으실 수 있습니다."
-              },
-              {
-                question: "기술 지원은 제공되나요?",
-                answer: "네, 설치부터 운영까지 전 과정에서 기술 지원을 제공합니다. 이메일, 전화, 원격 지원 등 다양한 방법으로 도움을 드립니다."
-              }
-            ].map((faq, idx) => (
-              <details 
-                key={idx} 
-                className="group bg-gray-900 border border-teal/20 rounded-xl overflow-hidden hover:border-teal/50 hover:shadow-lg hover:shadow-teal/10 transition-all duration-300"
-              >
+            {[{
+            question: "폐쇄망에서 정말 사용할 수 있나요?",
+            answer: "네, 로컬독스는 인터넷 연결 없이 완전히 로컬 환경에서 작동합니다. 모든 데이터와 AI 모델이 로컬에 저장되어 폐쇄망에서도 문제없이 사용 가능합니다."
+          }, {
+            question: "어떤 문서 형식을 지원하나요?",
+            answer: "PDF, Word, Excel, PowerPoint, 텍스트 파일 등 대부분의 문서 형식을 지원합니다. 표, 이미지, 수식이 포함된 복잡한 문서도 정확하게 인식합니다."
+          }, {
+            question: "설치가 어렵지 않나요?",
+            answer: "설치부터 사용까지 5분이면 충분합니다. 간단한 설치 프로그램을 실행하면 자동으로 설정되며, 별도의 기술 지식이 필요하지 않습니다."
+          }, {
+            question: "보안은 어떻게 보장되나요?",
+            answer: "모든 데이터는 로컬에만 저장되며 외부로 전송되지 않습니다. 클라우드 동기화가 없고, 삭제 시 완전히 제거되어 보안이 완벽하게 보장됩니다."
+          }, {
+            question: "가격은 어떻게 되나요?",
+            answer: "조직 규모와 필요에 따라 맞춤형 견적을 제공합니다. POC(개념 검증)는 무료로 제공되며, 도입 문의를 통해 상담받으실 수 있습니다."
+          }, {
+            question: "기술 지원은 제공되나요?",
+            answer: "네, 설치부터 운영까지 전 과정에서 기술 지원을 제공합니다. 이메일, 전화, 원격 지원 등 다양한 방법으로 도움을 드립니다."
+          }].map((faq, idx) => <details key={idx} className="group bg-gray-900 border border-teal/20 rounded-xl overflow-hidden hover:border-teal/50 hover:shadow-lg hover:shadow-teal/10 transition-all duration-300">
                 <summary className="flex items-center justify-between px-8 py-6 cursor-pointer list-none hover:bg-gray-800/50 transition-colors">
                   <span className="text-lg font-bold text-white pr-4">{faq.question}</span>
                   <ChevronDown className="w-5 h-5 text-teal flex-shrink-0 transition-transform duration-300 group-open:rotate-180" />
@@ -863,13 +706,10 @@ const Defense = () => {
                     {faq.answer}
                   </p>
                 </div>
-              </details>
-            ))}
+              </details>)}
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Defense;

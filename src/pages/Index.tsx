@@ -20,6 +20,7 @@ const formSchema = z.object({
   }),
   honeypot: z.string().max(0).optional(),
   // Anti-spam honeypot field
+  page_source: z.string().optional(),
   utm_source: z.string().max(100).optional(),
   utm_campaign_id: z.string().max(100).optional(),
   utm_medium: z.string().max(100).optional(),
@@ -89,7 +90,8 @@ const Hero = () => {
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      consent: false
+      consent: false,
+      page_source: '/'
     }
   });
   
@@ -135,6 +137,7 @@ const Hero = () => {
       const insertData = {
         email: values.email,
         consent: values.consent,
+        page_source: values.page_source || '/',
         utm_source: values.utm_source || null,
         utm_campaign_id: values.utm_campaign_id || null,
         utm_medium: values.utm_medium || null,
@@ -199,7 +202,8 @@ const Hero = () => {
               height: '1px'
             }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
               
-              {/* Hidden UTM 필드들 */}
+              {/* Hidden fields for tracking */}
+              <input type="hidden" {...register("page_source")} />
               <input type="hidden" {...register("utm_source")} />
               <input type="hidden" {...register("utm_campaign_id")} />
               <input type="hidden" {...register("utm_medium")} />

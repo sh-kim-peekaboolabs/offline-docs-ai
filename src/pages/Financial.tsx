@@ -695,9 +695,7 @@ const Financial = () => {
           
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">
-              금융 문서, 안심하고 사용하세요
-            </h2>
+            <h2 className="text-4xl font-bold text-white mb-4">금융 문서, 안심하고 사용하세요</h2>
           </div>
           
           {/* 4 cards */}

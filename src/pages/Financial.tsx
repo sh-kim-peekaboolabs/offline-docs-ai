@@ -1,10 +1,12 @@
-import { Check, Clock } from "lucide-react";
+import { Check, Clock, ChevronDown } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import qaScreen from "@/assets/qa-screen.png";
+import uploadScreen from "@/assets/upload-screen.png";
 
 const waitlistSchema = z.object({
   email: z.string().trim().email({ message: "유효한 이메일을 입력해주세요" }).max(255),
@@ -26,6 +28,14 @@ type WaitlistFormData = z.infer<typeof waitlistSchema>;
 
 const Financial = () => {
   const { toast } = useToast();
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const scrollToWaitlist = () => {
+    const waitlistSection = document.getElementById('waitlist-section');
+    if (waitlistSection) {
+      waitlistSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   const {
     register,
     handleSubmit,
@@ -92,121 +102,127 @@ const Financial = () => {
   };
   return (
     <div className="min-h-screen bg-white">
-      {/* SECTION 1: Hero + Demo */}
-      <section className="relative min-h-screen bg-white overflow-hidden">
-        {/* Background gradient - YC style */}
+      {/* SECTION 1: Hero - Waitlist Focus */}
+      <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
+        {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50" />
         
-        <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-16">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Left: Copy */}
-            <div className="space-y-8">
-              {/* Eyebrow */}
-              <div className="inline-block">
-                <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">
-                  DART 공시 분석의 새로운 기준
-                </span>
-              </div>
-              
-              {/* Main Headline */}
-              <h1 className="text-5xl md:text-6xl font-bold leading-tight text-gray-900">
-                300페이지 공시보고서,
-                <span className="text-blue-600"> 10초면 충분합니다.</span>
-              </h1>
-              
-              {/* Sub Headline */}
-              <p className="text-xl text-gray-600 leading-relaxed">
-                "삼성전자 상반기 매출 얼마야?" 물어보면<br/>
-                답변 + 출처까지 자동 표시.
-              </p>
-              
-              {/* Pain Point */}
-              <p className="text-base text-gray-500 italic">
-                더 이상 Ctrl+F로 30분씩 문서 뒤지지 마세요.
-              </p>
-              
-              {/* Value Props - Checklist */}
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <Check className="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-medium text-gray-900">문장 단위 출처 제공</p>
-                    <p className="text-sm text-gray-600">Page 22 자동 이동 + 원문 하이라이트</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-3">
-                  <Check className="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-medium text-gray-900">표·수식 완벽 인식</p>
-                    <p className="text-sm text-gray-600">재무제표 수백 개 셀, 정확하게 추출</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-3">
-                  <Check className="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-medium text-gray-900">100% 로컬 처리</p>
-                    <p className="text-sm text-gray-600">인터넷 없이, 데이터 외부 전송 0%</p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <button className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all hover:shadow-lg">
-                  📊 지금 바로 체험하기
-                </button>
-                <button className="px-8 py-4 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all">
-                  팀 도입 상담하기 →
-                </button>
-              </div>
-              
-              {/* Trust Badge */}
-              <p className="text-sm text-gray-500">
-                신용카드 필요 없음 · 5분 안에 시작
-              </p>
-            </div>
-            
-            {/* Right: Demo Video */}
-            <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-                <video 
-                  autoPlay 
-                  loop 
-                  muted 
-                  playsInline
-                  controls
-                  poster="/videos/demo-poster.png"
-                  className="w-full h-auto"
-                >
-                  <source src="/videos/localdocs-demo.mp4" type="video/mp4" />
-                </video>
-                
-                {/* Video overlay caption */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                  <p className="text-white text-sm font-medium">
-                    🎥 실제 데모: 삼성전자 반기보고서 분석 · 처리 시간: 10초
-                  </p>
-                </div>
-              </div>
-              
-              {/* Trust Badge */}
-              <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-600">
-                <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-                <span>데이터 외부 전송 0% · 로컬 디바이스에서만 처리</span>
-              </div>
-            </div>
-            
+        <div className="relative max-w-4xl mx-auto px-6 py-20 text-center">
+          {/* Eyebrow */}
+          <div className="inline-block mb-6">
+            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">
+              DART 공시 분석의 새로운 기준
+            </span>
           </div>
+          
+          {/* Main Headline */}
+          <h1 className="text-5xl md:text-6xl font-bold leading-tight text-gray-900 mb-6">
+            300페이지 공시보고서,
+            <br/>
+            <span className="text-blue-600">10초면 충분합니다.</span>
+          </h1>
+          
+          {/* Sub Headline */}
+          <p className="text-xl text-gray-600 leading-relaxed mb-8">
+            "삼성전자 상반기 매출 얼마야?" 물어보면<br/>
+            답변 + 출처까지 자동 표시.
+          </p>
+          
+          {/* Waitlist Form */}
+          <div className="max-w-md mx-auto mb-8">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input 
+                  type="email" 
+                  {...register("email")}
+                  placeholder="이메일을 입력하세요"
+                  disabled={isSubmitting}
+                  className="flex-1 px-6 py-4 rounded-lg text-gray-900 border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent disabled:opacity-50"
+                />
+                <button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all hover:shadow-lg whitespace-nowrap disabled:opacity-50"
+                >
+                  {isSubmitting ? "등록 중..." : "Waitlist 등록"}
+                </button>
+              </div>
+              
+              {/* Consent checkbox */}
+              <div className="flex items-start gap-2 text-left">
+                <input
+                  type="checkbox"
+                  {...register("consent")}
+                  id="hero-consent"
+                  className="mt-1"
+                />
+                <label htmlFor="hero-consent" className="text-sm text-gray-600">
+                  개인정보 수집 및 이용에 동의합니다
+                </label>
+              </div>
+              
+              {/* Hidden fields for UTM parameters */}
+              <input type="hidden" {...register("utm_source")} />
+              <input type="hidden" {...register("utm_medium")} />
+              <input type="hidden" {...register("utm_campaign")} />
+              <input type="hidden" {...register("utm_term")} />
+              <input type="hidden" {...register("utm_content")} />
+              <input type="hidden" {...register("utm_campaign_id")} />
+              <input type="hidden" {...register("linkedin_campaign_name")} />
+              <input type="hidden" {...register("linkedin_creative_id")} />
+              <input type="hidden" {...register("linkedin_campaign_id")} />
+              
+              {errors.email && (
+                <p className="text-sm text-red-600">{errors.email.message}</p>
+              )}
+              {errors.consent && (
+                <p className="text-sm text-red-600">{errors.consent.message}</p>
+              )}
+            </form>
+            
+            {/* Social proof */}
+            <p className="mt-4 text-gray-600">
+              💬 이미 <strong className="text-blue-600">250명 이상</strong>이 등록했습니다
+            </p>
+            <p className="mt-2 text-sm text-gray-500">
+              ⚡ 11월 중 정식 론칭 예정
+            </p>
+          </div>
+          
+          {/* Value Props */}
+          <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-8">
+            <div className="flex flex-col items-center gap-2">
+              <Check className="w-6 h-6 text-green-500" />
+              <p className="font-medium text-gray-900">문장 단위 출처</p>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Check className="w-6 h-6 text-green-500" />
+              <p className="font-medium text-gray-900">표·수식 완벽 인식</p>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Check className="w-6 h-6 text-green-500" />
+              <p className="font-medium text-gray-900">100% 로컬 처리</p>
+            </div>
+          </div>
+          
+          {/* Scroll indicator */}
+          <button
+            onClick={() => {
+              const nextSection = document.querySelector('#pain-section');
+              if (nextSection) {
+                nextSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="inline-flex flex-col items-center gap-2 text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            <span className="text-sm">자세히 보기</span>
+            <ChevronDown className="w-6 h-6 animate-bounce" />
+          </button>
         </div>
       </section>
 
       {/* SECTION 2: Pain (3-column) */}
-      <section className="py-24 bg-gray-50">
+      <section id="pain-section" className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           
           {/* Section Header */}
@@ -316,7 +332,7 @@ const Financial = () => {
         </div>
       </section>
 
-      {/* SECTION 3: Solution (3-Step) */}
+      {/* SECTION 3: Solution - With Screenshots */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           
@@ -330,108 +346,78 @@ const Financial = () => {
             </p>
           </div>
           
-          {/* 3-Step Flow */}
-          <div className="grid md:grid-cols-3 gap-8 relative">
-            
-            {/* Step 1 */}
-            <div className="relative z-10">
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg">
-                1
+          {/* Step 1: Upload */}
+          <div className="mb-20">
+            <div className="flex flex-col md:flex-row gap-12 items-center">
+              <div className="flex-1 order-2 md:order-1">
+                <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-lg">
+                  1
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  문서 업로드
+                </h3>
+                <p className="text-lg text-gray-600 mb-6">
+                  공시보고서, 재무제표, 감사보고서를 드래그 앤 드롭.
+                </p>
+                <div className="bg-green-50 border border-green-500 text-green-700 text-sm px-4 py-3 rounded-lg inline-block mb-6">
+                  🔒 인터넷 연결 불필요 · 로컬에서만 처리
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
-                문서 업로드
-              </h3>
-              <p className="text-gray-600 text-center mb-6">
-                공시보고서, 재무제표, 감사보고서를 드래그 앤 드롭.
-              </p>
-              
-              <div className="bg-green-50 border border-green-500 text-green-700 text-sm px-4 py-2 rounded-lg text-center mb-6">
-                🔒 인터넷 연결 불필요
-              </div>
-              
-              <div className="bg-gray-100 rounded-lg p-8 text-center border-2 border-dashed border-gray-300">
-                <svg className="w-12 h-12 mx-auto text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                </svg>
-                <p className="text-sm text-gray-500">드래그 앤 드롭</p>
+              <div className="flex-1 order-1 md:order-2">
+                <img 
+                  src={uploadScreen} 
+                  alt="문서 업로드 화면" 
+                  className="w-full rounded-2xl shadow-2xl border border-gray-200"
+                />
               </div>
             </div>
-            
-            {/* Step 2 */}
-            <div className="relative z-10">
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg">
-                2
+          </div>
+          
+          {/* Step 2: Q&A */}
+          <div className="mb-16">
+            <div className="flex flex-col md:flex-row gap-12 items-center">
+              <div className="flex-1">
+                <img 
+                  src={qaScreen} 
+                  alt="질문하고 답변 받는 화면" 
+                  className="w-full rounded-2xl shadow-2xl border border-gray-200"
+                />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
-                질문하기
-              </h3>
-              <p className="text-gray-600 text-center mb-6">
-                평소 하던 방식 그대로 자연어로 질문하세요.
-              </p>
-              
-              <div className="bg-blue-50 border border-blue-600 p-4 rounded-lg mb-6">
-                <p className="text-sm font-semibold text-blue-600 mb-2">💬 예시:</p>
-                <p className="text-sm text-gray-700">
-                  "삼성전자와 SK하이닉스의 2023년 부채비율을 비교해줘"
+              <div className="flex-1">
+                <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-lg">
+                  2
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  질문하고 정확한 답변 + 출처 확인
+                </h3>
+                <p className="text-lg text-gray-600 mb-6">
+                  평소 하던 방식 그대로 자연어로 질문하세요.<br/>
+                  문장 단위로 출처를 확인하며 신뢰할 수 있는 인사이트를 얻습니다.
                 </p>
-              </div>
-              
-              <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
-                <div className="flex items-center gap-2">
-                  <div className="flex-1 bg-gray-100 rounded px-3 py-2 text-sm text-gray-500">
-                    질문을 입력하세요...
+                <div className="space-y-2 text-sm mb-6">
+                  <div className="flex items-center gap-2 text-gray-700">
+                    <Check className="w-4 h-4 text-green-500" />
+                    <span>표, 수식까지 정확 인식</span>
                   </div>
-                  <button className="bg-blue-600 text-white p-2 rounded">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                    </svg>
-                  </button>
+                  <div className="flex items-center gap-2 text-gray-700">
+                    <Check className="w-4 h-4 text-green-500" />
+                    <span>페이지 넘어가도 완벽 추적</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-700">
+                    <Check className="w-4 h-4 text-green-500" />
+                    <span>한 문장씩 출처 확인 가능</span>
+                  </div>
                 </div>
               </div>
             </div>
-            
-            {/* Step 3 */}
-            <div className="relative z-10">
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg">
-                3
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
-                정확한 답변 + 출처
-              </h3>
-              <p className="text-gray-600 text-center mb-6">
-                문장 단위로 출처를 확인하며 신뢰할 수 있는 인사이트 확보.
-              </p>
-              
-              <div className="space-y-2 text-sm mb-6">
-                <div className="flex items-center gap-2 text-gray-700">
-                  <Check className="w-4 h-4 text-green-500" />
-                  <span>표, 수식까지 정확 인식</span>
-                </div>
-                <div className="flex items-center gap-2 text-gray-700">
-                  <Check className="w-4 h-4 text-green-500" />
-                  <span>페이지 넘어가도 완벽 추적</span>
-                </div>
-                <div className="flex items-center gap-2 text-gray-700">
-                  <Check className="w-4 h-4 text-green-500" />
-                  <span>한 문장씩 출처 확인 가능</span>
-                </div>
-              </div>
-              
-              <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
-                <p className="text-sm text-gray-700 mb-2">
-                  삼성전자 2024년 상반기 매출은 <strong>153조 7,068억원</strong>입니다.
-                </p>
-                <button className="text-xs text-blue-600 hover:underline flex items-center gap-1">
-                  📄 출처: Page 22 보기
-                </button>
-              </div>
-            </div>
-            
           </div>
           
           {/* CTA */}
-          <div className="mt-16 text-center">
-            <button className="px-10 py-4 bg-blue-600 text-white font-semibold text-lg rounded-lg hover:bg-blue-700 transition-all hover:shadow-xl">
+          <div className="text-center">
+            <button 
+              onClick={scrollToWaitlist}
+              className="px-10 py-4 bg-blue-600 text-white font-semibold text-lg rounded-lg hover:bg-blue-700 transition-all hover:shadow-xl"
+            >
               지금 무료로 시작하기 →
             </button>
             <p className="mt-4 text-sm text-gray-500">
@@ -542,7 +528,10 @@ const Financial = () => {
             <p className="text-2xl font-bold text-gray-900 mb-6">
               금융권이 선택해야 하는 이유가 명확합니다.
             </p>
-            <button className="px-8 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all">
+            <button 
+              onClick={scrollToWaitlist}
+              className="px-8 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all"
+            >
               차이를 직접 확인하기 →
             </button>
           </div>
@@ -749,8 +738,321 @@ const Financial = () => {
         </div>
       </section>
 
-      {/* SECTION 7: CTA - Waitlist */}
-      <section className="py-24 bg-gradient-to-br from-blue-600 to-blue-700">
+      {/* SECTION 6: Pricing */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              나에게 맞는 요금제를 선택하세요
+            </h2>
+            <p className="text-lg text-gray-600">
+              모든 플랜에 100% 로컬 처리가 포함됩니다
+            </p>
+          </div>
+          
+          {/* Pricing Cards */}
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            
+            {/* Free Plan */}
+            <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+              <div className="mb-6">
+                <span className="text-sm font-semibold text-gray-600 uppercase">Free</span>
+                <h3 className="text-4xl font-bold text-gray-900 mt-2">무료</h3>
+              </div>
+              
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-start gap-2 text-sm">
+                  <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span>PDF 업로드 및 대화 기능</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm">
+                  <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span>폴더 1개 생성</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm">
+                  <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span>폴더에 PDF 최대 3개 업로드</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm">
+                  <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span>표·이미지·수식 텍스트 지원</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm">
+                  <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span>이메일 CS 지원</span>
+                </li>
+              </ul>
+              
+              <button 
+                onClick={scrollToWaitlist}
+                className="w-full py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all"
+              >
+                Waitlist 등록하기
+              </button>
+            </div>
+            
+            {/* Pro Plan - Highlighted */}
+            <div className="bg-blue-600 border-2 border-blue-600 rounded-2xl p-8 relative transform scale-105 shadow-2xl">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                <span className="bg-yellow-400 text-gray-900 text-sm font-bold px-4 py-1 rounded-full">
+                  추천
+                </span>
+              </div>
+              
+              <div className="mb-6">
+                <span className="text-sm font-semibold text-blue-100 uppercase">Pro</span>
+                <h3 className="text-4xl font-bold text-white mt-2">
+                  $12<span className="text-lg font-normal">/월</span>
+                </h3>
+              </div>
+              
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-start gap-2 text-sm text-white">
+                  <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                  <span>Free 플랜 모든 포함</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm text-white">
+                  <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                  <span>폴더 무제한 생성</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm text-white">
+                  <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                  <span>폴더당 문서 최대 50개 업로드</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm text-white">
+                  <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                  <span>HWP·PPTX·XLSX (지원 예정)</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm text-white">
+                  <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                  <span>글과 내보내기 (지원 예정)</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm text-white">
+                  <Check className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                  <span>이메일 CS 우선 지원</span>
+                </li>
+              </ul>
+              
+              <button 
+                onClick={scrollToWaitlist}
+                className="w-full py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-50 transition-all"
+              >
+                Waitlist 등록하기
+              </button>
+            </div>
+            
+            {/* Enterprise Plan */}
+            <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+              <div className="mb-6">
+                <span className="text-sm font-semibold text-gray-600 uppercase">Enterprise</span>
+                <h3 className="text-4xl font-bold text-gray-900 mt-2">별도 협의</h3>
+              </div>
+              
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-start gap-2 text-sm">
+                  <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span>Pro 플랜 모든 포함</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm">
+                  <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span>사내 시스템 연동</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm">
+                  <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span>폴더 공유 기능</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm">
+                  <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span>기업 맞춤형 고객 지원</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm">
+                  <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span>SSO 등 결제 방식 관리</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm">
+                  <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span>전담 기술 지원팀 및 온보딩</span>
+                </li>
+              </ul>
+              
+              <button 
+                onClick={scrollToWaitlist}
+                className="w-full py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all"
+              >
+                Waitlist 등록하기
+              </button>
+            </div>
+            
+          </div>
+          
+        </div>
+      </section>
+
+      {/* SECTION 7: FAQ */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-3xl mx-auto px-6">
+          
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              자주 묻는 질문
+            </h2>
+            <p className="text-lg text-gray-600">
+              궁금하신 점이 있으신가요? 여기에서 답을 찾아보세요.
+            </p>
+          </div>
+          
+          {/* FAQ Items */}
+          <div className="space-y-4">
+            
+            {/* FAQ 1 */}
+            <div className="bg-white rounded-lg border border-gray-200">
+              <button
+                onClick={() => setOpenFaq(openFaq === 1 ? null : 1)}
+                className="w-full flex justify-between items-center p-6 text-left"
+              >
+                <span className="font-semibold text-gray-900">인터넷이 없어도 사용할 수 있나요?</span>
+                <ChevronDown className={`w-5 h-5 transform transition-transform ${openFaq === 1 ? 'rotate-180' : ''}`} />
+              </button>
+              {openFaq === 1 && (
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600">
+                    네, 설치 후에는 인터넷 없이도 모든 기능이 동작합니다.
+                  </p>
+                </div>
+              )}
+            </div>
+            
+            {/* FAQ 2 */}
+            <div className="bg-white rounded-lg border border-gray-200">
+              <button
+                onClick={() => setOpenFaq(openFaq === 2 ? null : 2)}
+                className="w-full flex justify-between items-center p-6 text-left"
+              >
+                <span className="font-semibold text-gray-900">어떤 파일 형식을 지원하나요?</span>
+                <ChevronDown className={`w-5 h-5 transform transition-transform ${openFaq === 2 ? 'rotate-180' : ''}`} />
+              </button>
+              {openFaq === 2 && (
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600">
+                    현재는 PDF만 지원됩니다. 곧 HWP, PPTX, XLSX 등 다양한 포맷을 추가할 예정입니다.
+                  </p>
+                </div>
+              )}
+            </div>
+            
+            {/* FAQ 3 */}
+            <div className="bg-white rounded-lg border border-gray-200">
+              <button
+                onClick={() => setOpenFaq(openFaq === 3 ? null : 3)}
+                className="w-full flex justify-between items-center p-6 text-left"
+              >
+                <span className="font-semibold text-gray-900">표·그래프도 읽을 수 있나요?</span>
+                <ChevronDown className={`w-5 h-5 transform transition-transform ${openFaq === 3 ? 'rotate-180' : ''}`} />
+              </button>
+              {openFaq === 3 && (
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600">
+                    네, 표와 이미지, 수식까지 분석할 수 있습니다.
+                  </p>
+                </div>
+              )}
+            </div>
+            
+            {/* FAQ 4 */}
+            <div className="bg-white rounded-lg border border-gray-200">
+              <button
+                onClick={() => setOpenFaq(openFaq === 4 ? null : 4)}
+                className="w-full flex justify-between items-center p-6 text-left"
+              >
+                <span className="font-semibold text-gray-900">답변에 출처가 표시되나요?</span>
+                <ChevronDown className={`w-5 h-5 transform transition-transform ${openFaq === 4 ? 'rotate-180' : ''}`} />
+              </button>
+              {openFaq === 4 && (
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600">
+                    모든 답변에 출처를 제공합니다. 어떤 문서의, 어느 페이지에서 가져왔는지 확인할 수 있습니다.
+                  </p>
+                </div>
+              )}
+            </div>
+            
+            {/* FAQ 5 */}
+            <div className="bg-white rounded-lg border border-gray-200">
+              <button
+                onClick={() => setOpenFaq(openFaq === 5 ? null : 5)}
+                className="w-full flex justify-between items-center p-6 text-left"
+              >
+                <span className="font-semibold text-gray-900">보안이 중요한 환경에서도 사용할 수 있나요?</span>
+                <ChevronDown className={`w-5 h-5 transform transition-transform ${openFaq === 5 ? 'rotate-180' : ''}`} />
+              </button>
+              {openFaq === 5 && (
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600">
+                    네, 폐쇄망·인트라넷에서도 100% 로컬 처리로 안전하게 쓸 수 있습니다.
+                  </p>
+                </div>
+              )}
+            </div>
+            
+            {/* FAQ 6 */}
+            <div className="bg-white rounded-lg border border-gray-200">
+              <button
+                onClick={() => setOpenFaq(openFaq === 6 ? null : 6)}
+                className="w-full flex justify-between items-center p-6 text-left"
+              >
+                <span className="font-semibold text-gray-900">무료 플랜과 유료 플랜의 차이는 무엇인가요?</span>
+                <ChevronDown className={`w-5 h-5 transform transition-transform ${openFaq === 6 ? 'rotate-180' : ''}`} />
+              </button>
+              {openFaq === 6 && (
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600">
+                    무료는 문서/폴더 개수 제한이 있고, Pro는 무제한 + 고급 기능, Enterprise는 팀 관리·보안 기능까지 제공합니다.
+                  </p>
+                </div>
+              )}
+            </div>
+            
+            {/* FAQ 7 */}
+            <div className="bg-white rounded-lg border border-gray-200">
+              <button
+                onClick={() => setOpenFaq(openFaq === 7 ? null : 7)}
+                className="w-full flex justify-between items-center p-6 text-left"
+              >
+                <span className="font-semibold text-gray-900">한국어 외 다른 언어도 지원하나요?</span>
+                <ChevronDown className={`w-5 h-5 transform transition-transform ${openFaq === 7 ? 'rotate-180' : ''}`} />
+              </button>
+              {openFaq === 7 && (
+                <div className="px-6 pb-6">
+                  <p className="text-gray-600">
+                    네, 다양한 언어의 문서를 지원하며 특히 한국어 문서에서 뛰어난 성능을 발휘합니다.
+                  </p>
+                </div>
+              )}
+            </div>
+            
+          </div>
+          
+          {/* Bottom CTA */}
+          <div className="mt-12 text-center bg-gray-900 rounded-xl p-8">
+            <p className="text-white text-lg mb-4">
+              더 궁금하신 점이 있으신가요?
+            </p>
+            <button 
+              onClick={scrollToWaitlist}
+              className="px-8 py-3 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-100 transition-all"
+            >
+              Waitlist 등록하고 문의하기 →
+            </button>
+          </div>
+          
+        </div>
+      </section>
+
+      {/* SECTION 8: CTA - Waitlist */}
+      <section id="waitlist-section" className="py-24 bg-gradient-to-br from-indigo-500 via-purple-500 to-blue-500">
         <div className="max-w-4xl mx-auto px-6 text-center">
           
           {/* Headline */}
@@ -834,8 +1136,11 @@ const Financial = () => {
             </div>
             
             {/* Social proof */}
-            <p className="mt-6 text-blue-100">
-              💬 이미 <strong>1,234명</strong>이 등록했습니다
+            <p className="mt-6 text-purple-100">
+              💬 이미 <strong>250명 이상</strong>이 등록했습니다
+            </p>
+            <p className="mt-2 text-sm text-purple-100">
+              ⚡ 11월 중 정식 론칭 예정
             </p>
           </div>
           

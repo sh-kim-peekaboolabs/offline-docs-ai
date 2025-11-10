@@ -105,66 +105,65 @@ const Financial = () => {
       {/* SECTION 1: Hero - Waitlist Focus */}
       <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
         {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50" />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50/30" />
         
-        <div className="relative max-w-4xl mx-auto px-6 py-20 text-center">
-          {/* Product Name & Tagline */}
+        {/* Logo - Top Left */}
+        <div className="absolute top-6 left-6 z-10">
+          <div className="text-2xl font-bold text-gray-900">
+            LocalDocs
+          </div>
+        </div>
+        
+        <div className="relative max-w-5xl mx-auto px-6 py-20 text-center">
+          {/* Tagline */}
           <div className="mb-8">
-            <h1 className="text-6xl md:text-7xl font-extrabold text-gray-900 mb-4">
-              LocalDocs
-            </h1>
-            <p className="text-xl md:text-2xl text-blue-600 font-semibold">
-              AI 기반 로컬 문서 분석 솔루션
+            <p className="text-lg md:text-xl text-blue-600 font-semibold tracking-tight">
+              DART 공시분석의 새로운 기준
             </p>
           </div>
           
-          {/* Eyebrow */}
-          <div className="inline-block mb-6">
-            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">
-              DART 공시 분석의 새로운 기준
-            </span>
-          </div>
-          
           {/* Main Headline */}
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight text-gray-900 mb-6">
+          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-gray-900 mb-8">
             300페이지 공시보고서,
             <br/>
-            <span className="text-blue-600">10초면 충분합니다.</span>
-          </h2>
+            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              10초면 충분합니다.
+            </span>
+          </h1>
           
           {/* Sub Headline */}
-          <p className="text-xl text-gray-600 leading-relaxed mb-8">
+          <p className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-12 max-w-2xl mx-auto">
             "삼성전자 상반기 매출 얼마야?" 물어보면<br/>
             답변 + 출처까지 자동 표시.
           </p>
           
           {/* Waitlist Form */}
-          <div className="max-w-md mx-auto mb-8">
+          <div className="max-w-xl mx-auto mb-10">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-3 items-stretch">
                 <input 
                   type="email" 
                   {...register("email")}
-                  placeholder="이메일을 입력하세요"
+                  placeholder="work@company.com"
                   disabled={isSubmitting}
-                  className="flex-1 px-6 py-4 rounded-lg text-gray-900 border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent disabled:opacity-50"
+                  className="flex-1 px-6 py-4 rounded-xl text-gray-900 text-lg border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 bg-white shadow-sm"
                 />
                 <button 
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all hover:shadow-lg whitespace-nowrap disabled:opacity-50"
+                  className="px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-lg font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all hover:shadow-xl whitespace-nowrap disabled:opacity-50 shadow-lg"
                 >
-                  {isSubmitting ? "등록 중..." : "Waitlist 등록"}
+                  {isSubmitting ? "등록 중..." : "무료 체험 신청"}
                 </button>
               </div>
               
               {/* Consent checkbox */}
-              <div className="flex items-start gap-2 text-left">
+              <div className="flex items-start gap-3 text-left justify-center">
                 <input
                   type="checkbox"
                   {...register("consent")}
                   id="hero-consent"
-                  className="mt-1"
+                  className="mt-1.5 w-4 h-4"
                 />
                 <label htmlFor="hero-consent" className="text-sm text-gray-600">
                   개인정보 수집 및 이용에 동의합니다
@@ -191,27 +190,35 @@ const Financial = () => {
             </form>
             
             {/* Social proof */}
-            <p className="mt-4 text-gray-600">
-              💬 이미 <strong className="text-blue-600">250명 이상</strong>이 등록했습니다
-            </p>
-            <p className="mt-2 text-sm text-gray-500">
-              ⚡ 11월 중 정식 론칭 예정
-            </p>
+            <div className="mt-6 space-y-2">
+              <p className="text-gray-700 font-medium">
+                ✨ 이미 <strong className="text-blue-600">250명 이상</strong>이 대기 중
+              </p>
+              <p className="text-sm text-gray-500">
+                🚀 11월 중 정식 론칭 예정
+              </p>
+            </div>
           </div>
           
           {/* Value Props */}
-          <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-8">
-            <div className="flex flex-col items-center gap-2">
-              <Check className="w-6 h-6 text-green-500" />
-              <p className="font-medium text-gray-900">문장 단위 출처</p>
+          <div className="grid md:grid-cols-3 gap-8 max-w-3xl mx-auto mb-12">
+            <div className="flex flex-col items-center gap-3 p-4">
+              <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                <Check className="w-6 h-6 text-green-600" />
+              </div>
+              <p className="font-semibold text-gray-900">문장 단위 출처</p>
             </div>
-            <div className="flex flex-col items-center gap-2">
-              <Check className="w-6 h-6 text-green-500" />
-              <p className="font-medium text-gray-900">표·수식 완벽 인식</p>
+            <div className="flex flex-col items-center gap-3 p-4">
+              <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                <Check className="w-6 h-6 text-green-600" />
+              </div>
+              <p className="font-semibold text-gray-900">표·수식 완벽 인식</p>
             </div>
-            <div className="flex flex-col items-center gap-2">
-              <Check className="w-6 h-6 text-green-500" />
-              <p className="font-medium text-gray-900">100% 로컬 처리</p>
+            <div className="flex flex-col items-center gap-3 p-4">
+              <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                <Check className="w-6 h-6 text-green-600" />
+              </div>
+              <p className="font-semibold text-gray-900">100% 로컬 처리</p>
             </div>
           </div>
           
@@ -223,7 +230,7 @@ const Financial = () => {
                 nextSection.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className="inline-flex flex-col items-center gap-2 text-gray-400 hover:text-gray-600 transition-colors"
+            className="inline-flex flex-col items-center gap-2 text-gray-400 hover:text-gray-600 transition-colors mt-8"
           >
             <span className="text-sm">자세히 보기</span>
             <ChevronDown className="w-6 h-6 animate-bounce" />

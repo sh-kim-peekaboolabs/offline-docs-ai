@@ -219,7 +219,7 @@ const DemoVideo = () => {
   }, []);
 
   return (
-    <section className="section bg-gradient-to-br from-gray-50 to-white -mt-32 pt-12" aria-labelledby="demo-heading">
+    <section className="section bg-gradient-subtle -mt-32 pt-12" aria-labelledby="demo-heading">
       <div className="container">
         <div className="text-center mb-6">
           <h2 id="demo-heading" className="text-xl md:text-2xl font-semibold">

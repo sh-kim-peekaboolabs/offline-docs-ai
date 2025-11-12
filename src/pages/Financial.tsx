@@ -811,8 +811,9 @@ const Financial = () => {
               <div className="mb-6">
                 <span className="text-sm font-semibold text-blue-100 uppercase">Pro</span>
                 <h3 className="text-4xl font-bold text-white mt-2">
-                  $12<span className="text-lg font-normal">/월</span>
+                  $199<span className="text-lg font-normal">/월</span>
                 </h3>
+                <p className="text-sm text-blue-100 font-semibold mt-2">Waitlist 신청 시 3개월 무료 체험</p>
               </div>
               
               <ul className="space-y-3 mb-8">

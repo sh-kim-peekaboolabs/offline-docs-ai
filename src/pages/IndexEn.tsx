@@ -597,8 +597,8 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
               Pro
               <span className="bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium">Recommended</span>
             </h3>
-            <div className="text-3xl font-bold mb-2">$12<span className="text-lg font-normal">/month</span></div>
-            <div className="text-sm text-muted-foreground h-5"></div>
+            <div className="text-3xl font-bold mb-2">$199<span className="text-lg font-normal">/month</span></div>
+            <div className="text-sm text-primary font-semibold">3 months free trial with waitlist signup</div>
           </div>
           <ul className="space-y-3 flex-1 text-sm">
             <li className="flex items-start gap-2">

@@ -670,7 +670,7 @@ const Defense = () => {
               </Button>
               
               {/* Bottom Text */}
-              <p className="text-xs md:text-sm text-gray-400 mt-8">데모 무료 시연 | 맞춤형 견적 상담</p>
+              <p className="text-xs md:text-sm text-gray-400 mt-8">데모 무료 시연 | 맞춤형 견적 상담 | Waitlist 신청 시 3개월 무료 체험</p>
             </div>
           </div>
         </div>

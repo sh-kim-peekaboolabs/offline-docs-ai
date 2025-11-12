@@ -646,8 +646,8 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
               Pro
               <span className="bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium">추천</span>
             </h3>
-            <div className="text-3xl font-bold mb-2">$12<span className="text-lg font-normal">/월</span></div>
-            <div className="text-sm text-muted-foreground h-5"></div>
+            <div className="text-3xl font-bold mb-2">$199<span className="text-lg font-normal">/월</span></div>
+            <div className="text-sm text-primary font-semibold">Waitlist 신청 시 3개월 무료 체험</div>
           </div>
           <ul className="space-y-3 flex-1 text-sm">
             <li className="flex items-start gap-2">

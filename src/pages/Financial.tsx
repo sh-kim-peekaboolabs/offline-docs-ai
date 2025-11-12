@@ -178,12 +178,7 @@ const Financial = () => {
               </div>
               
               {/* Consent checkbox */}
-              <div className="flex items-center gap-3 text-left justify-center">
-                <input type="checkbox" {...heroForm.register("consent")} id="hero-consent" className="w-4 h-4" />
-                <label htmlFor="hero-consent" className="text-sm text-gray-600">
-                  개인정보 수집 및 이용에 동의합니다
-                </label>
-              </div>
+              
               
               {/* Hidden fields for tracking parameters */}
               <input type="hidden" {...heroForm.register("page_source")} />

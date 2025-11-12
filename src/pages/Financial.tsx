@@ -1024,8 +1024,8 @@ const Financial = () => {
               정식 출시 알림을 가장 먼저 받습니다
             </p>
             <p className="text-lg text-blue-100 flex items-center justify-center gap-2">
-얼리버드 할인 혜택을 드립니다<Check className="w-5 h-5" />
-              얼리버드 할인 혜택을 드립니다
+              <Check className="w-5 h-5" />
+              3개월 무료체험 혜택을 드립니다
             </p>
             <p className="text-lg text-blue-100 flex items-center justify-center gap-2">
               <Check className="w-5 h-5" />

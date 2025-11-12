@@ -172,7 +172,7 @@ const Hero = () => {
       toast.error("등록 중 오류가 발생했습니다.");
     }
   };
-  return <section className="relative overflow-hidden bg-gradient-subtle">
+  return <section className="relative overflow-hidden">
       <div className="container relative py-12 md:py-16 pb-4 text-center">
         <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">
           PDF 검색·요약 AI, 로컬독스
@@ -218,7 +218,7 @@ const DemoVideo = () => {
   }, []);
 
   return (
-    <section className="section bg-gradient-subtle -mt-32 pt-12" aria-labelledby="demo-heading">
+    <section className="section -mt-32 pt-12" aria-labelledby="demo-heading">
       <div className="container">
         <div className="text-center mb-6">
           <h2 id="demo-heading" className="text-xl md:text-2xl font-semibold">
@@ -925,8 +925,10 @@ const Index = () => {
   return <div>
     <Nav />
     <main>
-      <Hero />
-      <DemoVideo />
+      <div className="bg-gradient-subtle">
+        <Hero />
+        <DemoVideo />
+      </div>
       <HowItWorks />
       <Features />
       <Scenarios />

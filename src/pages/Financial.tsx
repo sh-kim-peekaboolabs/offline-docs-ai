@@ -170,7 +170,7 @@ const Financial = () => {
           {/* Waitlist Form */}
           <div className="max-w-xl mx-auto mb-10">
             <form onSubmit={heroForm.handleSubmit(data => onSubmit(data, heroForm))} className="space-y-4">
-              <div className="flex flex-col sm:flex-row gap-3 items-stretch">
+              <div className="flex flex-col sm:flex-row gap-3 items-stretch justify-center">
                 
                 <button type="submit" disabled={heroForm.formState.isSubmitting} className="px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-lg font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all hover:shadow-xl whitespace-nowrap disabled:opacity-50 shadow-lg">
                   {heroForm.formState.isSubmitting ? "등록 중..." : "무료 체험 신청"}

@@ -172,8 +172,7 @@ const Hero = () => {
       toast.error("등록 중 오류가 발생했습니다.");
     }
   };
-  return <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
+  return <section className="relative overflow-hidden bg-gradient-subtle">
       <div className="container relative py-12 md:py-16 pb-4 text-center">
         <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">
           PDF 검색·요약 AI, 로컬독스

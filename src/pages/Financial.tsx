@@ -839,7 +839,7 @@ const Financial = () => {
               </ul>
               
               <button onClick={scrollToWaitlist} className="w-full py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-50 transition-all">
-                Waitlist 등록하기
+                무료체험 신청하기
               </button>
             </div>
             
@@ -878,7 +878,7 @@ const Financial = () => {
               </ul>
               
               <button onClick={scrollToWaitlist} className="w-full py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all">
-                Waitlist 등록하기
+                무료체험 신청하기
               </button>
             </div>
             

@@ -231,13 +231,13 @@ const DemoVideo = () => {
   }, []);
 
   return (
-    <section className="section bg-gradient-to-br from-gray-50 to-white -mt-20" aria-labelledby="demo-heading">
+    <section className="section bg-gradient-to-br from-gray-50 to-white -mt-40 pt-20" aria-labelledby="demo-heading">
       <div className="container">
         <div className="text-center mb-8">
           <h2 id="demo-heading" className="text-2xl md:text-3xl font-semibold mb-3">
-            로컬독스 실제 사용 모습을 확인하세요
+            실제 사용 모습
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">430p 삼성전자 반기 보고서에서 원하는 정보를 몇 초 만에 찾는 과정을 직접 확인해보세요.</p>
+          <p className="text-muted-foreground max-w-2xl mx-auto">430p 삼성전자 반기 보고서에서 필요한 정보를 빠르게 찾습니다.</p>
         </div>
         <div className="max-w-4xl mx-auto">
           <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">

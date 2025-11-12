@@ -185,67 +185,14 @@ const Hero = () => {
           인터넷 연결 없이 작동하며, 모든 데이터는 절대 외부로 전송되지 않습니다
         </p>
         
-        {/* Waitlist 신청 폼 */}
-        <form onSubmit={handleSubmit(onSubmit)} className="mt-8 max-w-2xl mx-auto">
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 p-8">
-            <div className="flex flex-col gap-5">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Input type="email" placeholder="이메일 주소를 입력하세요" className="flex-1 h-14 text-base px-5 rounded-xl border-2 focus:border-primary transition-colors" {...register("email")} />
-                <Button type="submit" variant="hero" className="h-14 px-8 text-base font-semibold rounded-xl whitespace-nowrap" disabled={isSubmitting}>
-                  {isSubmitting ? "등록 중..." : "Waitlist 등록하기"}
-                </Button>
-              </div>
-              
-              {!isSubmitSuccessful && errors.email && <p className="text-sm text-destructive -mt-2">{errors.email.message}</p>}
-              
-              {/* Honeypot field */}
-              <input type="text" {...register("honeypot")} style={{
-              position: 'absolute',
-              left: '-9999px',
-              width: '1px',
-              height: '1px'
-            }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
-              
-              {/* Hidden fields for tracking */}
-              <input type="hidden" {...register("page_source")} />
-              <input type="hidden" {...register("utm_source")} />
-              <input type="hidden" {...register("utm_campaign_id")} />
-              <input type="hidden" {...register("utm_medium")} />
-              <input type="hidden" {...register("utm_campaign_name")} />
-              <input type="hidden" {...register("utm_adset_id")} />
-              <input type="hidden" {...register("utm_adset_name")} />
-              <input type="hidden" {...register("utm_ad_id")} />
-              <input type="hidden" {...register("utm_ad_name")} />
-              
-              {/* Hidden LinkedIn 필드들 */}
-              <input type="hidden" {...register("linkedin_campaign_name")} />
-              <input type="hidden" {...register("linkedin_ad_id")} />
-              <input type="hidden" {...register("linkedin_campaign_group_id")} />
-              <input type="hidden" {...register("linkedin_campaign_group_name")} />
-              <input type="hidden" {...register("linkedin_campaign_id")} />
-              <input type="hidden" {...register("linkedin_ad_name")} />
-              
-              <div className="flex items-start gap-3 -mt-1">
-                <Controller
-                  name="consent"
-                  control={control}
-                  render={({ field }) => (
-                    <Checkbox 
-                      id="hero-consent" 
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                      className="mt-1" 
-                    />
-                  )}
-                />
-                <Label htmlFor="hero-consent" className="text-sm text-muted-foreground cursor-pointer leading-relaxed">
-                  개인정보 수집 및 이용에 동의합니다
-                </Label>
-              </div>
-              {!isSubmitSuccessful && errors.consent && <p className="text-sm text-destructive -mt-2">{errors.consent.message}</p>}
-            </div>
-          </div>
-        </form>
+        {/* Waitlist 등록 버튼 */}
+        <div className="mt-8">
+          <a href="#cta">
+            <Button variant="hero" size="lg" className="h-14 px-10 text-lg font-semibold">
+              Waitlist 등록하기
+            </Button>
+          </a>
+        </div>
 
         <div className="mt-6 flex flex-col items-center justify-center gap-3">
           <p className="text-sm font-medium text-primary">🚀 2025년 11월 중 론칭 예정</p>
@@ -284,7 +231,7 @@ const DemoVideo = () => {
   }, []);
 
   return (
-    <section className="section bg-gradient-to-br from-gray-50 to-white" aria-labelledby="demo-heading">
+    <section className="section bg-gradient-to-br from-gray-50 to-white -mt-20" aria-labelledby="demo-heading">
       <div className="container">
         <div className="text-center mb-8">
           <h2 id="demo-heading" className="text-2xl md:text-3xl font-semibold mb-3">

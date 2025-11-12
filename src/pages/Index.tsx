@@ -176,7 +176,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
       <div className="container relative py-20 md:py-28 text-center">
         <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">
-          보안이 중요한 팀을 위한 PDF 검색·요약 AI, 로컬독스
+          PDF 검색·요약 AI, 로컬독스
         </div>
         <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">
           수십 개의 PDF에서 필요한 정보를<br />한 번에 찾아보세요

@@ -188,7 +188,7 @@ const Hero = () => {
         <div className="mt-6 mb-2">
           <a href="#cta">
             <Button variant="hero" size="lg" className="h-14 px-10 text-lg font-semibold">
-              무료 체험하기
+              Waitlist 등록하기
             </Button>
           </a>
         </div>

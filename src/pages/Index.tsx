@@ -78,7 +78,6 @@ const Nav = () => {
 };
 const Hero = () => {
   const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
-  
   const {
     register,
     handleSubmit,
@@ -96,32 +95,9 @@ const Hero = () => {
       page_source: '/'
     }
   });
-  
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const paramMapping = [
-      ['utm_source', 'utm_source'],
-      ['utm_campaign_id', 'utm_campaign_id'],
-      ['campaignid', 'utm_campaign_id'],
-      ['utm_medium', 'utm_medium'],
-      ['utm_campaign_name', 'utm_campaign_name'],
-      ['utm_campaign', 'utm_campaign_name'],
-      ['utm_adset_id', 'utm_adset_id'],
-      ['adsetid', 'utm_adset_id'],
-      ['utm_adset_name', 'utm_adset_name'],
-      ['adsetname', 'utm_adset_name'],
-      ['utm_ad_id', 'utm_ad_id'],
-      ['adid', 'utm_ad_id'],
-      ['utm_ad_name', 'utm_ad_name'],
-      ['adname', 'utm_ad_name'],
-      ['linkedin_campaign_name', 'linkedin_campaign_name'],
-      ['linkedin_ad_id', 'linkedin_ad_id'],
-      ['linkedin_campaign_group_id', 'linkedin_campaign_group_id'],
-      ['linkedin_campaign_group_name', 'linkedin_campaign_group_name'],
-      ['linkedin_campaign_id', 'linkedin_campaign_id'],
-      ['linkedin_ad_name', 'linkedin_ad_name']
-    ];
-    
+    const paramMapping = [['utm_source', 'utm_source'], ['utm_campaign_id', 'utm_campaign_id'], ['campaignid', 'utm_campaign_id'], ['utm_medium', 'utm_medium'], ['utm_campaign_name', 'utm_campaign_name'], ['utm_campaign', 'utm_campaign_name'], ['utm_adset_id', 'utm_adset_id'], ['adsetid', 'utm_adset_id'], ['utm_adset_name', 'utm_adset_name'], ['adsetname', 'utm_adset_name'], ['utm_ad_id', 'utm_ad_id'], ['adid', 'utm_ad_id'], ['utm_ad_name', 'utm_ad_name'], ['adname', 'utm_ad_name'], ['linkedin_campaign_name', 'linkedin_campaign_name'], ['linkedin_ad_id', 'linkedin_ad_id'], ['linkedin_campaign_group_id', 'linkedin_campaign_group_id'], ['linkedin_campaign_group_name', 'linkedin_campaign_group_name'], ['linkedin_campaign_id', 'linkedin_campaign_id'], ['linkedin_ad_name', 'linkedin_ad_name']];
     paramMapping.forEach(([paramName, fieldName]) => {
       const value = urlParams.get(paramName);
       if (value) {
@@ -129,7 +105,6 @@ const Hero = () => {
       }
     });
   }, [setValue]);
-  
   const onSubmit = async (values: FormValues) => {
     try {
       if (values.honeypot) {
@@ -198,45 +173,28 @@ const Hero = () => {
 const DemoVideo = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '500px' }
-    );
-
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        setIsVisible(true);
+        observer.disconnect();
+      }
+    }, {
+      rootMargin: '500px'
+    });
     if (videoRef.current) {
       observer.observe(videoRef.current);
     }
-
     return () => observer.disconnect();
   }, []);
-
-  return (
-    <section className="section -mt-32 pt-12" aria-labelledby="demo-heading">
+  return <section className="section -mt-32 pt-12" aria-labelledby="demo-heading">
       <div className="container">
         <div className="text-center mb-6">
-          <h2 id="demo-heading" className="text-xl md:text-2xl font-semibold">
-            실제 사용 모습
-          </h2>
+          
         </div>
         <div className="max-w-4xl mx-auto">
           <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-            <video 
-              ref={videoRef}
-              className="w-full h-auto" 
-              controls 
-              autoPlay 
-              muted 
-              loop 
-              playsInline
-              poster="/videos/demo-poster.png"
-            >
+            <video ref={videoRef} className="w-full h-auto" controls autoPlay muted loop playsInline poster="/videos/demo-poster.png">
               {isVisible && <source src="/videos/localdocs-demo.mp4" type="video/mp4" />}
               <p className="text-muted-foreground p-8">
                 브라우저가 비디오 재생을 지원하지 않습니다.
@@ -245,8 +203,7 @@ const DemoVideo = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
 const HowItWorks = () => <section className="section bg-white" aria-labelledby="how-it-works-heading">
     <div className="container">

@@ -186,24 +186,12 @@ const Hero = () => {
         </p>
         
         {/* Waitlist 등록 버튼 */}
-        <div className="mt-8">
+        <div className="mt-8 mb-4">
           <a href="#cta">
             <Button variant="hero" size="lg" className="h-14 px-10 text-lg font-semibold">
               Waitlist 등록하기
             </Button>
           </a>
-        </div>
-
-        <div className="mt-6 flex flex-col items-center justify-center gap-3">
-          <p className="text-sm font-medium text-primary">🚀 2025년 11월 중 론칭 예정</p>
-          <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
-            <span className="text-sm font-medium text-green-700">🔥 200명+ 신청 완료!</span>
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{
-            animationDelay: '0.2s'
-          }}></div>
-          </div>
-          <p className="text-xs text-muted-foreground/70 animate-fade-in">* 한정된 베타 테스터 모집 중 *</p>
         </div>
       </div>
     </section>;
@@ -231,13 +219,12 @@ const DemoVideo = () => {
   }, []);
 
   return (
-    <section className="section bg-gradient-to-br from-gray-50 to-white -mt-40 pt-20" aria-labelledby="demo-heading">
+    <section className="section bg-gradient-to-br from-gray-50 to-white -mt-32 pt-12" aria-labelledby="demo-heading">
       <div className="container">
-        <div className="text-center mb-8">
-          <h2 id="demo-heading" className="text-2xl md:text-3xl font-semibold mb-3">
+        <div className="text-center mb-6">
+          <h2 id="demo-heading" className="text-xl md:text-2xl font-semibold">
             실제 사용 모습
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">430p 삼성전자 반기 보고서에서 필요한 정보를 빠르게 찾습니다.</p>
         </div>
         <div className="max-w-4xl mx-auto">
           <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
@@ -256,11 +243,6 @@ const DemoVideo = () => {
                 브라우저가 비디오 재생을 지원하지 않습니다.
               </p>
             </video>
-          </div>
-          <div className="mt-6 text-center">
-            <p className="text-sm text-muted-foreground">
-              💡 실제 업무 환경에서 로컬독스가 어떻게 작동하는지 확인하세요
-            </p>
           </div>
         </div>
       </div>

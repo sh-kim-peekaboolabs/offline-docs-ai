@@ -1119,7 +1119,7 @@ const Financial = () => {
             {/* Contact */}
             <div>
               <h4 className="text-white font-semibold mb-4">문의</h4>
-              <p className="text-sm text-gray-400">contact@localdocs.ai</p>
+              <p className="text-sm text-gray-400">contact@peekaboolabs.ai</p>
             </div>
             
           </div>

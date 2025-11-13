@@ -152,18 +152,19 @@ const Financial = () => {
         
         <div className="relative max-w-5xl mx-auto px-6 py-20 text-center">
           {/* Tagline */}
-          <div className="mb-8">
-            <p className="text-lg md:text-xl text-blue-600 font-semibold tracking-tight">인터넷 없이 동작하는 PDF 검색・요약 AI</p>
+          <div className="mb-6 md:mb-8">
+            <p className="text-base md:text-xl text-blue-600 font-semibold tracking-tight">인터넷 없이 동작하는 PDF 검색・요약 AI</p>
           </div>
           
           {/* Main Headline */}
-          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-gray-900 mb-8">400페이지 공시보고서 분석,<br />
+          <h1 className="text-3xl sm:text-4xl md:text-7xl font-extrabold leading-tight text-gray-900 mb-6 md:mb-8">
+            400페이지 공시보고서 분석,<br />
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">10초면 충분합니다.</span>
           </h1>
           
           {/* Sub Headline */}
-          <p className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-12 max-w-2xl mx-auto">"삼성전자 상반기 매출 얼마야?" 물어보면
-답변 + 출처까지 제공합니다.<br />
+          <p className="text-base md:text-2xl text-gray-600 leading-relaxed mb-8 md:mb-12 max-w-2xl mx-auto px-4">
+            "삼성전자 상반기 매출 얼마야?" 물어보면<br className="hidden sm:block" />
             답변 + 출처까지 자동 표시.
           </p>
           
@@ -243,13 +244,13 @@ const Financial = () => {
       </section>
 
       {/* Demo Video Section */}
-      <section className="py-16 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">
+          <div className="text-center mb-6 md:mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 md:mb-3">
               실제 동작 화면을 확인해보세요
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-base md:text-lg text-gray-600">
               공시보고서 분석이 얼마나 빨라지는지 직접 확인하세요
             </p>
           </div>
@@ -264,15 +265,15 @@ const Financial = () => {
       </section>
 
       {/* SECTION 2: Pain (3-column) */}
-      <section id="pain-section" className="py-24 bg-gray-50">
+      <section id="pain-section" className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           
           {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
               매주 반복되는 고통
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-base md:text-xl text-gray-600">
               증권사·자산운용사 실무자들의 현실
             </p>
           </div>
@@ -281,12 +282,12 @@ const Financial = () => {
           <div className="grid md:grid-cols-3 gap-8">
             
             {/* Card 1 */}
-            <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-4xl mb-4">📄</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <div className="bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-3xl md:text-4xl mb-3 md:mb-4">📄</div>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">
                 정보 찾기
               </h3>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+              <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6 leading-relaxed">
                 300페이지 보고서에서<br />
                 원하는 숫자 하나 찾는데<br />
                 <strong className="text-gray-900">30분</strong>
@@ -301,12 +302,12 @@ const Financial = () => {
             </div>
             
             {/* Card 2 */}
-            <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-4xl mb-4">📊</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <div className="bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-3xl md:text-4xl mb-3 md:mb-4">📊</div>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">
                 계정과목 통일
               </h3>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+              <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6 leading-relaxed">
                 연도별로 바뀌는 계정과목<br />
                 5개년 수작업 대조에<br />
                 <strong className="text-gray-900">4-6시간</strong>
@@ -320,12 +321,12 @@ const Financial = () => {
             </div>
             
             {/* Card 3 */}
-            <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-4xl mb-4">📑</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <div className="bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-3xl md:text-4xl mb-3 md:mb-4">📑</div>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">
                 주석 표 정리
               </h3>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+              <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6 leading-relaxed">
                 복잡한 주석 표를 엑셀로<br />
                 복사하면 서식 깨짐<br />
                 <strong className="text-gray-900">1.5시간</strong>
@@ -341,10 +342,10 @@ const Financial = () => {
           </div>
           
           {/* Transition Box */}
-          <div className="mt-16 text-center">
-            <div className="inline-block bg-gray-900 text-white px-8 py-6 rounded-xl">
-              <p className="text-2xl font-bold mb-2">이제 이 모든 작업을 5분으로 줄입니다.</p>
-              <svg className="w-8 h-8 mx-auto mt-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="mt-12 md:mt-16 text-center">
+            <div className="inline-block bg-gray-900 text-white px-6 md:px-8 py-4 md:py-6 rounded-xl">
+              <p className="text-lg md:text-2xl font-bold mb-2">이제 이 모든 작업을 5분으로 줄입니다.</p>
+              <svg className="w-6 h-6 md:w-8 md:h-8 mx-auto mt-3 md:mt-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
             </div>
@@ -354,30 +355,30 @@ const Financial = () => {
       </section>
 
       {/* SECTION 3: Solution - With Screenshots */}
-      <section className="py-24 bg-white">
+      <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
               2단계면 끝납니다.
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-base md:text-lg text-gray-600">
               복잡한 설정도, 학습 시간도 필요 없습니다.
             </p>
           </div>
           
           {/* Step 1: Upload */}
-          <div className="mb-20">
-            <div className="flex flex-col md:flex-row gap-12 items-center">
+          <div className="mb-12 md:mb-20">
+            <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
               <div className="flex-1 order-2 md:order-1">
-                <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-lg">
+                <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center text-xl md:text-2xl font-bold mb-4 md:mb-6 shadow-lg">
                   1
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">
                   문서 업로드
                 </h3>
-                <p className="text-lg text-gray-600 mb-6">
+                <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6">
                   공시보고서, 재무제표, 감사보고서를 드래그 앤 드롭.
                 </p>
                 <div className="bg-green-50 border border-green-500 text-green-700 text-sm px-4 py-3 rounded-lg inline-block mb-6">
@@ -391,20 +392,20 @@ const Financial = () => {
           </div>
           
           {/* Step 2: Q&A */}
-          <div className="mb-16">
-            <div className="flex flex-col md:flex-row gap-12 items-center">
+          <div className="mb-12 md:mb-16">
+            <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
               <div className="flex-1">
                 <img src={qaScreen} alt="질문하고 답변 받는 화면" className="w-full rounded-2xl shadow-2xl border border-gray-200" />
               </div>
               <div className="flex-1">
-                <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-lg">
+                <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center text-xl md:text-2xl font-bold mb-4 md:mb-6 shadow-lg">
                   2
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">
                   질문하고 정확한 답변 + 출처 확인
                 </h3>
-                <p className="text-lg text-gray-600 mb-6">
-                  평소에 혼자 생각했던 질문 그대로 물어보세요.<br />
+                <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6">
+                  평소에 혼자 생각했던 질문 그대로 물어보세요.<br className="hidden sm:block" />
                   문장 단위로 출처를 확인할 수 있습니다.
                 </p>
                 <div className="space-y-2 text-sm mb-6">
@@ -439,15 +440,15 @@ const Financial = () => {
       </section>
 
       {/* SECTION 4: Comparison Table */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
           
           {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
               왜 로컬독스인가
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-base md:text-lg text-gray-600">
               비교하면 답이 보입니다.
             </p>
           </div>
@@ -534,11 +535,11 @@ const Financial = () => {
           </div>
           
           {/* Bottom emphasis */}
-          <div className="mt-12 text-center">
-            <p className="text-2xl font-bold text-gray-900 mb-6">
+          <div className="mt-8 md:mt-12 text-center">
+            <p className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6 px-4">
               금융권이 선택해야 하는 이유가 명확합니다.
             </p>
-            <button onClick={scrollToWaitlist} className="px-8 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all">
+            <button onClick={scrollToWaitlist} className="px-6 md:px-8 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all text-sm md:text-base">
               차이를 직접 확인하기 →
             </button>
           </div>
@@ -547,15 +548,15 @@ const Financial = () => {
       </section>
 
       {/* SECTION 5: Before/After */}
-      <section className="py-24 bg-white">
+      <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           
           {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              5개년 공시 분석, 얼마나 달라질까요?
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4 leading-tight">
+              5개년 공시 분석,<br className="sm:hidden" /> 얼마나 달라질까요?
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-base md:text-lg text-gray-600">
               실제 작업 시간을 비교해보세요
             </p>
           </div>
@@ -672,10 +673,10 @@ const Financial = () => {
           </div>
           
           {/* Comparison emphasis */}
-          <div className="mt-12 text-center">
-            <div className="inline-block bg-gradient-to-r from-red-500 to-green-500 text-white px-12 py-6 rounded-xl">
-              <p className="text-4xl font-bold mb-2">4시간 → 5분</p>
-              <p className="text-lg">당신의 시간을 돌려드립니다.</p>
+          <div className="mt-8 md:mt-12 text-center">
+            <div className="inline-block bg-gradient-to-r from-red-500 to-green-500 text-white px-8 md:px-12 py-4 md:py-6 rounded-xl">
+              <p className="text-2xl md:text-4xl font-bold mb-1 md:mb-2">4시간 → 5분</p>
+              <p className="text-base md:text-lg">당신의 시간을 돌려드립니다.</p>
             </div>
           </div>
           
@@ -683,12 +684,14 @@ const Financial = () => {
       </section>
 
       {/* SECTION 6: Security */}
-      <section className="py-24 bg-gray-900">
+      <section className="py-16 md:py-24 bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           
           {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">금융 문서, 안심하고 사용하세요</h2>
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-3 md:mb-4 leading-tight">
+              금융 문서,<br className="sm:hidden" /> 안심하고 사용하세요
+            </h2>
           </div>
           
           {/* 4 cards */}
@@ -744,15 +747,15 @@ const Financial = () => {
       </section>
 
       {/* SECTION 6: Pricing */}
-      <section className="py-24 bg-white">
+      <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           
           {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              나에게 맞는 요금제를 선택하세요
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4 leading-tight">
+              나에게 맞는<br className="sm:hidden" /> 요금제를 선택하세요
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-base md:text-lg text-gray-600">
               모든 플랜에 100% 로컬 처리가 포함됩니다
             </p>
           </div>
@@ -888,15 +891,15 @@ const Financial = () => {
       </section>
 
       {/* SECTION 7: FAQ */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-3xl mx-auto px-6">
           
           {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
               자주 묻는 질문
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-base md:text-lg text-gray-600">
               궁금하신 점이 있으신가요? 여기에서 답을 찾아보세요.
             </p>
           </div>
@@ -1009,12 +1012,12 @@ const Financial = () => {
       </section>
 
       {/* SECTION 8: CTA - Waitlist */}
-      <section id="waitlist-section" className="py-24 bg-gradient-to-br from-indigo-500 via-purple-500 to-blue-500">
+      <section id="waitlist-section" className="py-16 md:py-24 bg-gradient-to-br from-indigo-500 via-purple-500 to-blue-500">
         <div className="max-w-4xl mx-auto px-6 text-center">
           
           {/* Headline */}
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            출시 소식을 가장 먼저 받아보세요
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6 leading-tight">
+            출시 소식을<br className="sm:hidden" /> 가장 먼저 받아보세요
           </h2>
           
           {/* Benefits list */}

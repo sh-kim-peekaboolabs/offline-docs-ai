@@ -7,7 +7,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield, Star, ChevronDown, Settings, BarChart3 } from "lucide-react";
+import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield, Star, ChevronDown, Settings, Users, BarChart3, Menu } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import uploadScreen from "@/assets/upload-screen.png";
 import qaScreen from "@/assets/qa-screen.png";
@@ -37,43 +37,95 @@ const formSchema = z.object({
 });
 type FormValues = z.infer<typeof formSchema>;
 const Nav = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
+    setMobileMenuOpen(false);
   };
-  return <header className="sticky top-0 z-40 bg-background/80 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b">
-    <div className="container flex items-center justify-between py-4">
-      <div className="flex items-center gap-3 cursor-pointer" onClick={scrollToTop}>
-        <img src={logo} alt="localdocs 3D document stack logo" width={40} height={40} className="logo-interactive" loading="lazy" />
-        <div className="text-xl font-bold text-primary">Localdocs</div>
-      </div>
-      <nav className="hidden md:flex items-center gap-6 text-sm">
-        <a href="#features" className="story-link">Features</a>
-        <a href="#scenarios" className="story-link">Use Cases</a>
-        <a href="#security" className="story-link">Security</a>
-        <a href="#pricing" className="story-link">Pricing</a>
-        <a href="#faq" className="story-link">FAQ</a>
-        <a href="#cta" className="story-link">Join Waitlist</a>
-      </nav>
-      <div className="flex items-center gap-4">
-        <div className="relative group">
-          <button className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-accent transition-colors">
-            <span className="text-sm">EN</span>
-            <ChevronDown className="w-4 h-4" />
-          </button>
-          <div className="absolute right-0 top-full mt-1 w-32 bg-popover border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <a href="/" className="block px-3 py-2 text-sm hover:bg-accent rounded-md">한국어 (KR)</a>
-            <span className="block px-3 py-2 text-sm text-muted-foreground bg-accent rounded-md">English (EN)</span>
+  
+  const handleNavClick = () => {
+    setMobileMenuOpen(false);
+  };
+  
+  return <>
+      <header className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b">
+        <div className="container flex items-center justify-between py-3 md:py-4">
+          <div className="flex items-center gap-2 md:gap-3 cursor-pointer" onClick={scrollToTop}>
+            <img src={logo} alt="localdocs 3D document stack logo" width={40} height={40} className="logo-interactive" loading="eager" />
+            <div className="text-lg md:text-xl font-bold text-primary">Localdocs</div>
+          </div>
+          
+          <nav className="hidden md:flex items-center gap-6 text-sm">
+            <a href="#features" className="story-link">Features</a>
+            <a href="#scenarios" className="story-link">Use Cases</a>
+            <a href="#security" className="story-link">Security</a>
+            <a href="#pricing" className="story-link">Pricing</a>
+            <a href="#faq" className="story-link">FAQ</a>
+            <a href="#cta" className="story-link">Join Waitlist</a>
+          </nav>
+          
+          <div className="flex items-center gap-2 md:gap-4">
+            <div className="relative group">
+              <button className="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-md hover:bg-accent transition-colors text-sm">
+                <span className="hidden sm:inline">English</span>
+                <span className="sm:hidden">EN</span>
+                <ChevronDown className="w-4 h-4" />
+              </button>
+              <div className="absolute right-0 top-full mt-1 w-32 bg-popover border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <a href="/" className="block px-3 py-2 text-sm hover:bg-accent rounded-md">한국어 (KR)</a>
+                <span className="block px-3 py-2 text-sm text-muted-foreground bg-accent rounded-md">English (EN)</span>
+              </div>
+            </div>
+            
+            <div className="hidden md:block">
+              <a href="#cta"><Button variant="hero" size="lg">Join Waitlist</Button></a>
+            </div>
+            
+            <button 
+              className="md:hidden p-2 hover:bg-accent rounded-md transition-colors" 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Open menu"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
           </div>
         </div>
-        <div className="hidden md:block">
-          <a href="#cta"><Button variant="hero" size="lg">Join Waitlist</Button></a>
+      </header>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          <div 
+            className="fixed inset-0 bg-background/80 backdrop-blur-sm" 
+            onClick={() => setMobileMenuOpen(false)} 
+          />
+          <nav className="fixed top-0 right-0 bottom-0 w-64 bg-background border-l shadow-lg p-6 overflow-y-auto">
+            <div className="flex justify-end mb-6">
+              <button 
+                onClick={() => setMobileMenuOpen(false)} 
+                className="p-2 hover:bg-accent rounded-md"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <div className="flex flex-col gap-4">
+              <a href="#features" className="text-base py-2 hover:text-primary transition-colors" onClick={handleNavClick}>Features</a>
+              <a href="#scenarios" className="text-base py-2 hover:text-primary transition-colors" onClick={handleNavClick}>Use Cases</a>
+              <a href="#security" className="text-base py-2 hover:text-primary transition-colors" onClick={handleNavClick}>Security</a>
+              <a href="#pricing" className="text-base py-2 hover:text-primary transition-colors" onClick={handleNavClick}>Pricing</a>
+              <a href="#faq" className="text-base py-2 hover:text-primary transition-colors" onClick={handleNavClick}>FAQ</a>
+              <a href="#cta" onClick={handleNavClick}>
+                <Button variant="hero" size="lg" className="w-full mt-4">Join Waitlist</Button>
+              </a>
+            </div>
+          </nav>
         </div>
-      </div>
-    </div>
-  </header>;
+      )}
+    </>;
 };
 const Hero = () => {
   const {
@@ -166,89 +218,24 @@ const Hero = () => {
     }
   };
   return <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-subtle" aria-hidden />
-      <div className="container relative py-20 md:py-28 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">
+      <div className="container relative py-8 md:py-16 pb-4 text-center px-4">
+        <div className="inline-flex items-center gap-2 rounded-full px-3 md:px-4 py-1.5 md:py-2 bg-accent text-primary text-xs md:text-sm font-medium mb-4 md:mb-6">
           Offline ChatPDF, Localdocs
         </div>
-        <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">
+        <h1 className="mx-auto max-w-3xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight md:leading-normal px-4 text-xl font-extrabold">
           Find Answers in Dozens of PDFs at Once, Locally
         </h1>
-        <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-          Simply upload your PDFs and get accurate answers with page numbers.
+        <p className="mt-4 md:mt-5 text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
+          Works without internet connection, all data stays completely private on your device
         </p>
         
-        {/* Waitlist Form */}
-        <form onSubmit={handleSubmit(onSubmit)} className="mt-8 max-w-2xl mx-auto">
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 p-8">
-            <div className="flex flex-col gap-5">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Input type="email" placeholder="Enter your email address" className="flex-1 h-14 text-base px-5 rounded-xl border-2 focus:border-primary transition-colors" {...register("email")} />
-                <Button type="submit" variant="hero" className="h-14 px-8 text-base font-semibold rounded-xl whitespace-nowrap" disabled={isSubmitting}>
-                  {isSubmitting ? "Joining..." : "Join Waitlist"}
-                </Button>
-              </div>
-              
-              {errors.email && <p className="text-sm text-destructive -mt-2">{errors.email.message}</p>}
-              
-              {/* Honeypot field */}
-              <input type="text" {...register("honeypot")} style={{
-              position: 'absolute',
-              left: '-9999px',
-              width: '1px',
-              height: '1px'
-            }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
-              
-              {/* Hidden UTM fields */}
-              <input type="hidden" {...register("utm_source")} />
-              <input type="hidden" {...register("utm_campaign_id")} />
-              <input type="hidden" {...register("utm_medium")} />
-              <input type="hidden" {...register("utm_campaign_name")} />
-              <input type="hidden" {...register("utm_adset_id")} />
-              <input type="hidden" {...register("utm_adset_name")} />
-              <input type="hidden" {...register("utm_ad_id")} />
-              <input type="hidden" {...register("utm_ad_name")} />
-              
-              {/* Hidden LinkedIn fields */}
-              <input type="hidden" {...register("linkedin_campaign_name")} />
-              <input type="hidden" {...register("linkedin_ad_id")} />
-              <input type="hidden" {...register("linkedin_campaign_group_id")} />
-              <input type="hidden" {...register("linkedin_campaign_group_name")} />
-              <input type="hidden" {...register("linkedin_campaign_id")} />
-              <input type="hidden" {...register("linkedin_ad_name")} />
-              
-              <div className="flex items-start gap-3 -mt-1">
-                <Controller
-                  name="consent"
-                  control={control}
-                  render={({ field }) => (
-                    <Checkbox 
-                      id="hero-consent" 
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                      className="mt-1" 
-                    />
-                  )}
-                />
-                <Label htmlFor="hero-consent" className="text-sm text-muted-foreground cursor-pointer leading-relaxed">
-                  I agree to the collection and use of personal information
-                </Label>
-              </div>
-              {errors.consent && <p className="text-sm text-destructive -mt-2">{errors.consent.message}</p>}
-            </div>
-          </div>
-        </form>
-
-        <div className="mt-6 flex flex-col items-center justify-center gap-3">
-          <p className="text-sm font-medium text-primary">🚀 Launching in November 2025</p>
-          <div className="flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full border border-green-200 animate-pulse">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
-            <span className="text-sm font-medium text-green-700">🔥 200+ submitted!</span>
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{
-            animationDelay: '0.2s'
-          }}></div>
-          </div>
-          <p className="text-xs text-muted-foreground/70 animate-fade-in">* Limited beta testers recruitment *</p>
+        {/* Waitlist 등록 버튼 */}
+        <div className="mt-6 md:mt-8 mb-2">
+          <a href="#cta">
+            <Button variant="hero" size="lg" className="h-12 md:h-14 px-6 md:px-10 text-base md:text-lg font-semibold">
+              Join Waitlist
+            </Button>
+          </a>
         </div>
       </div>
     </section>;
@@ -276,12 +263,10 @@ const DemoVideo = () => {
   }, []);
 
   return (
-    <section className="section bg-gradient-to-br from-gray-50 to-white" aria-labelledby="demo-heading">
+    <section className="section pt-8 md:pt-12" aria-labelledby="demo-heading">
       <div className="container">
-        <div className="text-center mb-8">
-          <h2 id="demo-heading" className="text-2xl md:text-3xl font-semibold mb-3">See LocalDocs in Action</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">Watch how LocalDocs finds the information you need in seconds from 
-430p Samsung Half-year Business Report</p>
+        <div className="text-center mb-6">
+          
         </div>
         <div className="max-w-4xl mx-auto">
           <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
@@ -300,11 +285,6 @@ const DemoVideo = () => {
                 Your browser does not support video playback.
               </p>
             </video>
-          </div>
-          <div className="mt-6 text-center">
-            <p className="text-sm text-muted-foreground">
-              💡 See how Localdocs works in a real work environment
-            </p>
           </div>
         </div>
       </div>
@@ -340,7 +320,7 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
             <p className="text-muted-foreground leading-relaxed mb-4">
               Upload your files.<br />Explore even 430-page documents seamlessly, all at once.
             </p>
-            <img src={uploadScreen} alt="File upload screen" className="w-full h-64 object-contain rounded-lg shadow-md mb-4" loading="lazy" />
+            <img src={uploadScreen} alt="File upload screen" width="800" height="600" className="w-full h-48 md:h-64 object-contain rounded-lg shadow-md mb-4" loading="lazy" />
             <div className="flex items-center gap-2 text-sm text-blue-600 font-medium">
               <Zap className="w-4 h-4" />
               <span>Simple drag and drop</span>
@@ -364,7 +344,7 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">Ask 'Samsung Electronics 2025 H1 Sales by Division'.<br />
 Every page is carefully read, with sources provided!</p>
-            <img src={qaScreen} alt="Q&A screen" className="w-full h-64 object-contain rounded-lg shadow-md mb-4" loading="lazy" />
+            <img src={qaScreen} alt="Q&A screen" width="800" height="600" className="w-full h-48 md:h-64 object-contain rounded-lg shadow-md mb-4" loading="lazy" />
             <div className="flex items-center gap-2 text-sm text-purple-600 font-medium">
               <CheckCircle className="w-4 h-4" />
               <span>Precise sources with page numbers</span>

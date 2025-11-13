@@ -157,7 +157,7 @@ const Financial = () => {
           </div>
           
           {/* Main Headline */}
-          <h1 className="text-3xl sm:text-4xl md:text-7xl font-extrabold leading-tight text-gray-900 mb-6 md:mb-8">
+          <h1 className="sm:text-4xl md:text-7xl font-extrabold leading-tight text-gray-900 mb-6 md:mb-8 text-2xl">
             400페이지 공시보고서 분석,<br />
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">10초면 충분합니다.</span>
           </h1>

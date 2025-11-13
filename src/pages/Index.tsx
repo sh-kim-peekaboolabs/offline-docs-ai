@@ -39,7 +39,6 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 const Nav = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -47,13 +46,10 @@ const Nav = () => {
     });
     setMobileMenuOpen(false);
   };
-
   const handleNavClick = () => {
     setMobileMenuOpen(false);
   };
-  
-  return (
-    <>
+  return <>
       <header className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b">
         <div className="container flex items-center justify-between py-3 md:py-4">
           <div className="flex items-center gap-2 md:gap-3 cursor-pointer" onClick={scrollToTop}>
@@ -87,11 +83,7 @@ const Nav = () => {
               <a href="#cta"><Button variant="hero" size="lg">Waitlist 등록하기</Button></a>
             </div>
             
-            <button 
-              className="md:hidden p-2 hover:bg-accent rounded-md transition-colors"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="메뉴 열기"
-            >
+            <button className="md:hidden p-2 hover:bg-accent rounded-md transition-colors" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="메뉴 열기">
               <Menu className="w-6 h-6" />
             </button>
           </div>
@@ -99,8 +91,7 @@ const Nav = () => {
       </header>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 md:hidden">
+      {mobileMenuOpen && <div className="fixed inset-0 z-50 md:hidden">
           <div className="fixed inset-0 bg-background/80 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
           <nav className="fixed top-0 right-0 bottom-0 w-64 bg-background border-l shadow-lg p-6 overflow-y-auto">
             <div className="flex justify-end mb-6">
@@ -119,10 +110,8 @@ const Nav = () => {
               </a>
             </div>
           </nav>
-        </div>
-      )}
-    </>
-  );
+        </div>}
+    </>;
 };
 const Hero = () => {
   const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
@@ -200,7 +189,7 @@ const Hero = () => {
         <div className="inline-flex items-center gap-2 rounded-full px-3 md:px-4 py-1.5 md:py-2 bg-accent text-primary text-xs md:text-sm font-medium mb-4 md:mb-6">
           PDF 검색·요약 AI, 로컬독스
         </div>
-        <h1 className="mx-auto max-w-3xl text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight md:leading-normal font-bold px-4">
+        <h1 className="mx-auto max-w-3xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight md:leading-normal px-4 text-xl font-extrabold">
           수십 개의 PDF에서 필요한 정보를 <br />한 번에 찾아보세요
         </h1>
         <p className="mt-4 md:mt-5 text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">

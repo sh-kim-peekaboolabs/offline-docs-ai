@@ -164,8 +164,7 @@ const Financial = () => {
           
           {/* Sub Headline */}
           <p className="text-base md:text-2xl text-gray-600 leading-relaxed mb-8 md:mb-12 max-w-2xl mx-auto px-4">
-            "삼성전자 상반기 매출 얼마야?" 물어보면
-답변 + 출처까지 자동 표시.<br className="hidden sm:block" />
+            "삼성전자 상반기 매출 얼마야?" 물어보면<br />
             답변 + 출처까지 자동 표시.
           </p>
           

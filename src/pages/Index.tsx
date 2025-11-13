@@ -879,7 +879,7 @@ const CTA = () => {
           <input type="hidden" {...register("linkedin_ad_name")} />
           
           <div className="flex items-center gap-2">
-            <Checkbox id="consent" checked={watch("consent")} onCheckedChange={checked => setValue("consent", !!checked)} className="w-4 h-4" />
+            <Checkbox id="consent" checked={watch("consent")} onCheckedChange={checked => setValue("consent", !!checked)} className="w-3 h-3" />
             <Label htmlFor="consent" className="text-sm text-muted-foreground">개인정보 수집 및 알림 수신에 동의합니다.</Label>
           </div>
           {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}

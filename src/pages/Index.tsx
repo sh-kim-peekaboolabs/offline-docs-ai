@@ -201,8 +201,8 @@ const Hero = () => {
           PDF 검색·요약 AI, 로컬독스
         </div>
         <h1 className="mx-auto max-w-3xl text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight md:leading-normal font-bold px-4">
-          수십 개의 PDF에서<br className="sm:hidden" />
-          필요한 정보를 한 번에 찾아보세요
+          수십 개의 PDF에서 필요한 정보를<br />
+          한 번에 찾아보세요
         </h1>
         <p className="mt-4 md:mt-5 text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
           인터넷 연결 없이 작동하며, 모든 데이터는 절대 외부로 전송되지 않습니다

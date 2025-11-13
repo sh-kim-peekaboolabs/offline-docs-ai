@@ -883,7 +883,7 @@ const CTA = () => {
           <input type="hidden" {...register("linkedin_ad_name")} />
           
           <div className="flex items-start space-x-2">
-            <Checkbox id="consent" {...register('consent')} className="w-2.5 h-2.5 mt-0.5" />
+            <Checkbox id="consent" {...register('consent')} className="shrink-0 mt-0.5" style={{ width: '14px', height: '14px', minWidth: '14px', minHeight: '14px' }} />
             <Label htmlFor="consent" className="text-sm text-muted-foreground leading-relaxed">
               I agree to receive product updates and marketing emails.
             </Label>

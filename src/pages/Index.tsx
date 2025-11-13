@@ -7,7 +7,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield, Star, ChevronDown, Settings, Users, BarChart3 } from "lucide-react";
+import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield, Star, ChevronDown, Settings, Users, BarChart3, Menu } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import uploadScreen from "@/assets/upload-screen.png";
 import qaScreen from "@/assets/qa-screen.png";
@@ -38,43 +38,91 @@ const formSchema = z.object({
 });
 type FormValues = z.infer<typeof formSchema>;
 const Nav = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
+    setMobileMenuOpen(false);
   };
-  return <header className="sticky top-0 z-40 bg-background/80 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b">
-    <div className="container flex items-center justify-between py-4">
-      <div className="flex items-center gap-3 cursor-pointer" onClick={scrollToTop}>
-        <img src={logo} alt="localdocs 3D 문서 스택 로고" width={40} height={40} className="logo-interactive" loading="lazy" />
-        <div className="text-xl font-bold text-primary">Localdocs</div>
-      </div>
-      <nav className="hidden md:flex items-center gap-6 text-sm">
-        <a href="#features" className="story-link">제품 특징</a>
-        <a href="#scenarios" className="story-link">사용 시나리오</a>
-        <a href="#security" className="story-link">보안</a>
-        <a href="#pricing" className="story-link">요금제</a>
-        <a href="#faq" className="story-link">FAQ</a>
-        <a href="#cta" className="story-link">Waitlist 등록</a>
-      </nav>
-      <div className="flex items-center gap-4">
-        <div className="relative group">
-          <button className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-accent transition-colors">
-            <span className="text-sm">한국어</span>
-            <ChevronDown className="w-4 h-4" />
-          </button>
-          <div className="absolute right-0 top-full mt-1 w-32 bg-popover border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <span className="block px-3 py-2 text-sm text-muted-foreground bg-accent rounded-md">한국어 (KR)</span>
-            <a href="/en" className="block px-3 py-2 text-sm hover:bg-accent rounded-md">English (EN)</a>
+
+  const handleNavClick = () => {
+    setMobileMenuOpen(false);
+  };
+  
+  return (
+    <>
+      <header className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b">
+        <div className="container flex items-center justify-between py-3 md:py-4">
+          <div className="flex items-center gap-2 md:gap-3 cursor-pointer" onClick={scrollToTop}>
+            <img src={logo} alt="localdocs 3D 문서 스택 로고" width={40} height={40} className="logo-interactive" loading="eager" />
+            <div className="text-lg md:text-xl font-bold text-primary">Localdocs</div>
+          </div>
+          
+          <nav className="hidden md:flex items-center gap-6 text-sm">
+            <a href="#features" className="story-link">제품 특징</a>
+            <a href="#scenarios" className="story-link">사용 시나리오</a>
+            <a href="#security" className="story-link">보안</a>
+            <a href="#pricing" className="story-link">요금제</a>
+            <a href="#faq" className="story-link">FAQ</a>
+            <a href="#cta" className="story-link">Waitlist 등록</a>
+          </nav>
+          
+          <div className="flex items-center gap-2 md:gap-4">
+            <div className="relative group">
+              <button className="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-md hover:bg-accent transition-colors text-sm">
+                <span className="hidden sm:inline">한국어</span>
+                <span className="sm:hidden">KR</span>
+                <ChevronDown className="w-4 h-4" />
+              </button>
+              <div className="absolute right-0 top-full mt-1 w-32 bg-popover border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <span className="block px-3 py-2 text-sm text-muted-foreground bg-accent rounded-md">한국어 (KR)</span>
+                <a href="/en" className="block px-3 py-2 text-sm hover:bg-accent rounded-md">English (EN)</a>
+              </div>
+            </div>
+            
+            <div className="hidden md:block">
+              <a href="#cta"><Button variant="hero" size="lg">Waitlist 등록하기</Button></a>
+            </div>
+            
+            <button 
+              className="md:hidden p-2 hover:bg-accent rounded-md transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="메뉴 열기"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
           </div>
         </div>
-        <div className="hidden md:block">
-          <a href="#cta"><Button variant="hero" size="lg">Waitlist 등록하기</Button></a>
+      </header>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          <div className="fixed inset-0 bg-background/80 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
+          <nav className="fixed top-0 right-0 bottom-0 w-64 bg-background border-l shadow-lg p-6 overflow-y-auto">
+            <div className="flex justify-end mb-6">
+              <button onClick={() => setMobileMenuOpen(false)} className="p-2 hover:bg-accent rounded-md">
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <div className="flex flex-col gap-4">
+              <a href="#features" className="text-base py-2 hover:text-primary transition-colors" onClick={handleNavClick}>제품 특징</a>
+              <a href="#scenarios" className="text-base py-2 hover:text-primary transition-colors" onClick={handleNavClick}>사용 시나리오</a>
+              <a href="#security" className="text-base py-2 hover:text-primary transition-colors" onClick={handleNavClick}>보안</a>
+              <a href="#pricing" className="text-base py-2 hover:text-primary transition-colors" onClick={handleNavClick}>요금제</a>
+              <a href="#faq" className="text-base py-2 hover:text-primary transition-colors" onClick={handleNavClick}>FAQ</a>
+              <a href="#cta" onClick={handleNavClick}>
+                <Button variant="hero" size="lg" className="w-full mt-4">Waitlist 등록하기</Button>
+              </a>
+            </div>
+          </nav>
         </div>
-      </div>
-    </div>
-  </header>;
+      )}
+    </>
+  );
 };
 const Hero = () => {
   const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
@@ -148,21 +196,21 @@ const Hero = () => {
     }
   };
   return <section className="relative overflow-hidden">
-      <div className="container relative py-12 md:py-16 pb-4 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-6">
+      <div className="container relative py-8 md:py-16 pb-4 text-center px-4">
+        <div className="inline-flex items-center gap-2 rounded-full px-3 md:px-4 py-1.5 md:py-2 bg-accent text-primary text-xs md:text-sm font-medium mb-4 md:mb-6">
           PDF 검색·요약 AI, 로컬독스
         </div>
-        <h1 className="mx-auto max-w-3xl text-3xl sm:text-4xl leading-normal md:text-5xl font-bold">
-          수십 개의 PDF에서 필요한 정보를<br />한 번에 찾아보세요
+        <h1 className="mx-auto max-w-3xl text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight md:leading-normal font-bold px-4">
+          수십 개의 PDF에서 필요한 정보를<br className="hidden sm:block" />한 번에 찾아보세요
         </h1>
-        <p className="mt-5 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+        <p className="mt-4 md:mt-5 text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
           인터넷 연결 없이 작동하며, 모든 데이터는 절대 외부로 전송되지 않습니다
         </p>
         
         {/* Waitlist 등록 버튼 */}
-        <div className="mt-6 mb-2">
+        <div className="mt-6 md:mt-8 mb-2">
           <a href="#cta">
-            <Button variant="hero" size="lg" className="h-14 px-10 text-lg font-semibold">
+            <Button variant="hero" size="lg" className="h-12 md:h-14 px-6 md:px-10 text-base md:text-lg font-semibold">
               Waitlist 등록하기
             </Button>
           </a>
@@ -232,7 +280,7 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
             <p className="text-muted-foreground leading-relaxed mb-4">
               파일을 업로드하세요.<br />430p 짜리 문서도 한번에, 끊김없이 탐색합니다.
             </p>
-            <img src={uploadScreen} alt="파일 업로드 화면" className="w-full h-64 object-contain rounded-lg shadow-md mb-4" loading="lazy" />
+            <img src={uploadScreen} alt="파일 업로드 화면" width="800" height="600" className="w-full h-48 md:h-64 object-contain rounded-lg shadow-md mb-4" loading="lazy" />
             <div className="flex items-center gap-2 text-sm text-blue-600 font-medium">
               <Zap className="w-4 h-4" />
               <span>드래그 앤 드롭으로 간편하게</span>
@@ -258,7 +306,7 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
               '삼성전자 2025년도 상반기 사업부문별 매출'을 물어보세요.<br />
               반기보고서를 꼼꼼하게 읽고, 출처까지 알아서 딱!
             </p>
-            <img src={qaScreen} alt="Q&A 화면" className="w-full h-64 object-contain rounded-lg shadow-md mb-4" loading="lazy" />
+            <img src={qaScreen} alt="Q&A 화면" width="800" height="600" className="w-full h-48 md:h-64 object-contain rounded-lg shadow-md mb-4" loading="lazy" />
             <div className="flex items-center gap-2 text-sm text-purple-600 font-medium">
               <CheckCircle className="w-4 h-4" />
               <span>페이지 번호와 함께 정확한 출처 제공</span>

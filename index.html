@@ -2,11 +2,15 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>LocalDocs — AI search for PDFs, in seconds, locally.</title>
     <meta name="description" content="Offline AI search for PDFs Your data never leaves your device.">
     <meta name="author" content="PeekabooLabs" />
     <link rel="canonical" href="/" />
+    
+    <!-- DNS Prefetch & Preconnect for faster font loading -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png?v=1">
@@ -32,10 +36,12 @@
     <!-- Critical CSS inlined to prevent render-blocking -->
     <style>
       /* Critical above-the-fold styles */
-      body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+      body { margin: 0; font-family: system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
       .min-h-screen { min-height: 100vh; }
-      .bg-background { background-color: hsl(var(--background)); }
-      .text-foreground { color: hsl(var(--foreground)); }
+      .bg-background { background-color: hsl(210 20% 98%); }
+      .text-foreground { color: hsl(222.2 47.4% 11.2%); }
+      /* Prevent layout shift */
+      img { height: auto; }
     </style>
     
   

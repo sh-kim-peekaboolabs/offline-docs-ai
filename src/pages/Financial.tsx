@@ -453,8 +453,123 @@ const Financial = () => {
             </p>
           </div>
           
-          {/* Comparison Table */}
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          {/* Mobile View - Cards */}
+          <div className="md:hidden space-y-6">
+            {/* 인터넷 연결 */}
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              <h3 className="font-bold text-gray-900 mb-4 text-lg">인터넷 연결</h3>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3 pb-3 border-b border-gray-100">
+                  <span className="text-xs text-gray-500 w-24 flex-shrink-0 pt-1">일반 AI</span>
+                  <div>
+                    <div className="text-red-500 font-semibold text-sm mb-1">❌ 필수</div>
+                    <div className="text-xs text-gray-500">클라우드 업로드</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 pb-3 border-b border-gray-100">
+                  <span className="text-xs text-gray-500 w-24 flex-shrink-0 pt-1">NotebookLM</span>
+                  <div>
+                    <div className="text-red-500 font-semibold text-sm mb-1">❌ 필수</div>
+                    <div className="text-xs text-gray-500">구글 서버 전송</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 bg-blue-50 -mx-6 -mb-6 p-6 rounded-b-xl">
+                  <span className="text-xs text-gray-700 w-24 flex-shrink-0 pt-1 font-semibold">로컬독스</span>
+                  <div>
+                    <div className="text-green-500 font-semibold text-sm mb-1">✅ 불필요</div>
+                    <div className="text-xs text-gray-700">100% 로컬 처리</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 출처 정확도 */}
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              <h3 className="font-bold text-gray-900 mb-4 text-lg">출처 정확도</h3>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3 pb-3 border-b border-gray-100">
+                  <span className="text-xs text-gray-500 w-24 flex-shrink-0 pt-1">일반 AI</span>
+                  <div>
+                    <div className="text-red-500 font-semibold text-sm mb-1">❌ 모호함</div>
+                    <div className="text-xs text-gray-500">"어딘가 있음"</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 pb-3 border-b border-gray-100">
+                  <span className="text-xs text-gray-500 w-24 flex-shrink-0 pt-1">NotebookLM</span>
+                  <div>
+                    <div className="text-yellow-500 font-semibold text-sm mb-1">⚠️ 페이지 단위</div>
+                    <div className="text-xs text-gray-500">"15페이지에"</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 bg-blue-50 -mx-6 -mb-6 p-6 rounded-b-xl">
+                  <span className="text-xs text-gray-700 w-24 flex-shrink-0 pt-1 font-semibold">로컬독스</span>
+                  <div>
+                    <div className="text-green-500 font-semibold text-sm mb-1">✅ 문장 단위</div>
+                    <div className="text-xs text-gray-700">"15p 3문단 3줄"</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 표·수식 인식 */}
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              <h3 className="font-bold text-gray-900 mb-4 text-lg">표·수식 인식</h3>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3 pb-3 border-b border-gray-100">
+                  <span className="text-xs text-gray-500 w-24 flex-shrink-0 pt-1">일반 AI</span>
+                  <div>
+                    <div className="text-red-500 font-semibold text-sm mb-1">❌ 약함</div>
+                    <div className="text-xs text-gray-500">텍스트만</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 pb-3 border-b border-gray-100">
+                  <span className="text-xs text-gray-500 w-24 flex-shrink-0 pt-1">NotebookLM</span>
+                  <div>
+                    <div className="text-yellow-500 font-semibold text-sm mb-1">⚠️ 부분 지원</div>
+                    <div className="text-xs text-gray-500">간단한 표만</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 bg-blue-50 -mx-6 -mb-6 p-6 rounded-b-xl">
+                  <span className="text-xs text-gray-700 w-24 flex-shrink-0 pt-1 font-semibold">로컬독스</span>
+                  <div>
+                    <div className="text-green-500 font-semibold text-sm mb-1">✅ 완벽</div>
+                    <div className="text-xs text-gray-700">재무제표 + 수식</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 폐쇄망 지원 */}
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              <h3 className="font-bold text-gray-900 mb-4 text-lg">폐쇄망 지원</h3>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3 pb-3 border-b border-gray-100">
+                  <span className="text-xs text-gray-500 w-24 flex-shrink-0 pt-1">일반 AI</span>
+                  <div>
+                    <div className="text-red-500 font-semibold text-sm mb-1">❌ 불가능</div>
+                    <div className="text-xs text-gray-500">인터넷 필수</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 pb-3 border-b border-gray-100">
+                  <span className="text-xs text-gray-500 w-24 flex-shrink-0 pt-1">NotebookLM</span>
+                  <div>
+                    <div className="text-red-500 font-semibold text-sm mb-1">❌ 불가능</div>
+                    <div className="text-xs text-gray-500">인터넷 필수</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 bg-blue-50 -mx-6 -mb-6 p-6 rounded-b-xl">
+                  <span className="text-xs text-gray-700 w-24 flex-shrink-0 pt-1 font-semibold">로컬독스</span>
+                  <div>
+                    <div className="text-green-500 font-semibold text-sm mb-1">✅ 완벽 지원</div>
+                    <div className="text-xs text-gray-700">Air-gapped OK</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop View - Table */}
+          <div className="hidden md:block bg-white rounded-2xl shadow-lg overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>

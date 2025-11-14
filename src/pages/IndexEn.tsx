@@ -386,7 +386,7 @@ const Features = () => <section id="features" className="section bg-secondary-li
             </div>
             <h3 className="font-semibold">Advanced Analysis</h3>
           </div>
-          <p className="text-sm text-muted-foreground">Analyzes tables, images, and formulas as well.</p>
+          <p className="text-sm text-muted-foreground">Analyzes tables and formulas as well.</p>
         </div>
         <div className="feature-card bg-white/80 backdrop-blur-sm border border-orange-200/50 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <div className="flex items-center gap-3 mb-3">
@@ -595,7 +595,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Full table, image, formula support</span>
+              <span>Full table and formula support</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
@@ -686,7 +686,7 @@ const FAQ = () => {
       name: 'Can it read tables and graphs?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes, it can analyze tables, images, and formulas.'
+        text: 'Yes, it can analyze tables and formulas.'
       }
     }, {
       '@type': 'Question',
@@ -735,7 +735,7 @@ const FAQ = () => {
         </details>
         <details className="feature-card">
           <summary className="font-medium cursor-pointer">Can it read tables and graphs?</summary>
-          <p className="mt-2 text-muted-foreground">Yes, it can analyze tables, images, and formulas.</p>
+          <p className="mt-2 text-muted-foreground">Yes, it can analyze tables and formulas.</p>
         </details>
         <details className="feature-card">
           <summary className="font-medium cursor-pointer">Are sources provided for answers?</summary>

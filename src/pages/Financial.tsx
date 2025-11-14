@@ -908,7 +908,7 @@ const Financial = () => {
                 </li>
                 <li className="flex items-start gap-2 text-sm">
                   <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span>표·이미지·수식 텍스트 지원</span>
+                  <span>표·수식 텍스트 지원</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm">
                   <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
@@ -1064,7 +1064,7 @@ const Financial = () => {
               </button>
               {openFaq === 3 && <div className="px-6 pb-6">
                   <p className="text-gray-600">
-                    네, 표와 이미지, 수식까지 분석할 수 있습니다.
+                    네, 표와 수식까지 분석할 수 있습니다.
                   </p>
                 </div>}
             </div>

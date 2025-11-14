@@ -338,7 +338,7 @@ const Features = () => <section id="features" className="section bg-secondary-li
             </div>
             <div>
               <h3 className="font-semibold mb-2">다양한 콘텐츠 분석</h3>
-              <p className="text-sm text-muted-foreground">표·이미지·수식까지 분석해줍니다.</p>
+              <p className="text-sm text-muted-foreground">표·수식까지 분석해줍니다.</p>
             </div>
           </div>
         </div>
@@ -547,7 +547,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>표·이미지·수식 완전 지원</span>
+              <span>표·수식 완전 지원</span>
             </li>
             <li className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
@@ -677,7 +677,7 @@ const FAQ = () => {
       name: '표·그래프도 읽을 수 있나요?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: '네, 표와 이미지, 수식까지 분석할 수 있습니다.'
+        text: '네, 표와 수식까지 분석할 수 있습니다.'
       }
     }, {
       '@type': 'Question',
@@ -723,7 +723,7 @@ const FAQ = () => {
         </details>
         <details className="feature-card">
           <summary className="font-medium cursor-pointer">표·그래프도 읽을 수 있나요?</summary>
-          <p className="mt-2 text-muted-foreground">네, 표와 이미지, 수식까지 분석할 수 있습니다.</p>
+          <p className="mt-2 text-muted-foreground">네, 표와 수식까지 분석할 수 있습니다.</p>
         </details>
         <details className="feature-card">
           <summary className="font-medium cursor-pointer">답변에 출처가 표시되나요?</summary>

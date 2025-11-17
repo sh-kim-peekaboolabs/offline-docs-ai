@@ -822,6 +822,7 @@ const CTA = () => {
       const insertData = {
         email: values.email,
         consent: values.consent,
+        page_source: '/en',
         utm_source: values.utm_source || null,
         utm_campaign_id: values.utm_campaign_id || null,
         utm_medium: values.utm_medium || null,

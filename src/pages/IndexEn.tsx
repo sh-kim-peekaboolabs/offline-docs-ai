@@ -132,7 +132,7 @@ const Hero = () => {
   const {
     register,
     handleSubmit,
-    control,
+    watch,
     formState: {
       errors,
       isSubmitting
@@ -766,6 +766,7 @@ const CTA = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: {
       errors,
       isSubmitting
@@ -773,7 +774,10 @@ const CTA = () => {
     reset,
     setValue
   } = useForm<FormValues>({
-    resolver: zodResolver(formSchema)
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      consent: false
+    }
   });
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -885,7 +889,7 @@ const CTA = () => {
           <input type="hidden" {...register("linkedin_ad_name")} />
           
           <div className="flex items-start space-x-2">
-            <Checkbox id="consent" {...register('consent')} className="shrink-0 mt-0.5" style={{ width: '14px', height: '14px', minWidth: '14px', minHeight: '14px' }} />
+            <Checkbox id="consent" checked={watch("consent")} onCheckedChange={checked => setValue("consent", !!checked)} className="shrink-0 mt-0.5" style={{ width: '14px', height: '14px', minWidth: '14px', minHeight: '14px' }} />
             <Label htmlFor="consent" className="text-sm text-muted-foreground leading-relaxed">
               I agree to receive product updates and marketing emails.
             </Label>

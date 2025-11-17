@@ -20,6 +20,7 @@ const formSchema = z.object({
   }),
   honeypot: z.string().max(0).optional(),
   // Anti-spam honeypot field
+  page_source: z.string().optional(),
   utm_source: z.string().max(100).optional(),
   utm_campaign_id: z.string().max(100).optional(),
   utm_medium: z.string().max(100).optional(),
@@ -187,6 +188,7 @@ const Hero = () => {
       const insertData = {
         email: values.email,
         consent: values.consent,
+        page_source: '/en',
         utm_source: values.utm_source || null,
         utm_campaign_id: values.utm_campaign_id || null,
         utm_medium: values.utm_medium || null,

@@ -13,6 +13,7 @@ import uploadScreen from "@/assets/upload-screen.png";
 import qaScreen from "@/assets/qa-screen.png";
 import { useEffect, useState, useRef } from "react";
 import { usePageTracking, useSectionTracking } from "@/hooks/useAnalytics";
+import { trackLead } from "@/lib/facebook-pixel";
 const formSchema = z.object({
   email: z.string().email("유효한 이메일을 입력해 주세요.").max(255, "이메일은 255자 이하여야 합니다."),
   consent: z.boolean().refine(val => val === true, {
@@ -176,6 +177,10 @@ const Hero = () => {
         }
         return;
       }
+      
+      // Facebook Pixel Lead 이벤트 추적
+      trackLead(values.email);
+      
       setIsSubmitSuccessful(true);
       toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
       reset();
@@ -834,6 +839,10 @@ const CTA = () => {
         }
         return;
       }
+      
+      // Facebook Pixel Lead 이벤트 추적
+      trackLead(values.email);
+      
       toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
       reset();
     } catch (error) {

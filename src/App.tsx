@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AnalyticsProvider } from "@/components/AnalyticsProvider";
+import { FacebookPixelProvider } from "@/components/FacebookPixelProvider";
 import Index from "./pages/Index";
 import IndexEn from "./pages/IndexEn";
 import Financial from "./pages/Financial";
@@ -17,22 +18,24 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AnalyticsProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/en" element={<IndexEn />} />
-            <Route path="/financial" element={<Financial />} />
-            <Route path="/defense" element={<Defense />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/privacy" element={<Privacy />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+      <FacebookPixelProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/en" element={<IndexEn />} />
+              <Route path="/financial" element={<Financial />} />
+              <Route path="/defense" element={<Defense />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/privacy" element={<Privacy />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </FacebookPixelProvider>
     </AnalyticsProvider>
   </QueryClientProvider>
 );

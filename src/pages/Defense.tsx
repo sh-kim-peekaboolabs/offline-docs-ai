@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
+import { trackLead } from "@/lib/facebook-pixel";
 const formSchema = z.object({
   email: z.string().email("유효한 이메일을 입력해 주세요.").max(255, "이메일은 255자 이하여야 합니다."),
   consent: z.boolean().refine(val => val === true, {
@@ -117,6 +118,10 @@ const CTASection = () => {
         error
       } = await supabase.from("email_signups").insert([insertData]);
       if (error) throw error;
+      
+      // Facebook Pixel Lead 이벤트 추적
+      trackLead(values.email);
+      
       toast.success("등록이 완료되었습니다! 곧 연락드리겠습니다.");
       setIsSubmitSuccessful(true);
       reset();

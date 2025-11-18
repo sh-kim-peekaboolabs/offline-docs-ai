@@ -1,14 +1,18 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { trackPageView } from '@/lib/analytics';
+import { trackPageView as trackFBPageView } from '@/lib/facebook-pixel';
 
 // 페이지뷰 자동 추적 훅
 export const usePageTracking = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // 페이지 변경 시 자동으로 추적
+    // Google Analytics 페이지뷰 추적
     trackPageView(location.pathname + location.search, document.title);
+    
+    // Facebook Pixel 페이지뷰 추적
+    trackFBPageView();
   }, [location]);
 };
 

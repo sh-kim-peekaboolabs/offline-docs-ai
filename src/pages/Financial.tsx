@@ -7,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
 import qaScreen from "@/assets/qa-screen.png";
 import uploadScreen from "@/assets/upload-screen.png";
+import { trackLead } from "@/lib/facebook-pixel";
 const emailSignupSchema = z.object({
   email: z.string().trim().email({
     message: "유효한 이메일을 입력해주세요"
@@ -123,6 +124,10 @@ const Financial = () => {
         error
       } = await (supabase as any).from("email_signups").insert([insertData]);
       if (error) throw error;
+      
+      // Facebook Pixel Lead 이벤트 추적
+      trackLead(data.email);
+      
       toast({
         title: "등록 완료!",
         description: "출시 소식을 가장 먼저 받아보실 수 있습니다."

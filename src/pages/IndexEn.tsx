@@ -11,6 +11,7 @@ import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, 
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { useEffect, useState } from "react";
 import { usePageTracking, useSectionTracking } from "@/hooks/useAnalytics";
+import { trackLead } from "@/lib/facebook-pixel";
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address.").max(255, "Email must be less than 255 characters."),
   consent: z.boolean().refine(val => val === true, {
@@ -211,6 +212,10 @@ const Hero = () => {
         }
         return;
       }
+      
+      // Facebook Pixel Lead 이벤트 추적
+      trackLead(values.email);
+      
       toast.success("Successfully registered! We'll keep you updated.");
       reset();
     } catch (error) {
@@ -787,6 +792,10 @@ const CTA = () => {
         error
       } = await supabase.from('email_signups').insert([insertData]);
       if (error) throw error;
+      
+      // Facebook Pixel Lead 이벤트 추적
+      trackLead(values.email);
+      
       toast.success("Successfully joined the waitlist!");
       reset();
     } catch (error) {

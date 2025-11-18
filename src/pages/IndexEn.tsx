@@ -9,9 +9,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { ShieldCheck, WifiOff, FileText, Link as LinkIcon, Quote, Search, Lock, Download, AlertTriangle, Cloud, X, CheckCircle, Zap, Brain, Building2, Scale, TrendingUp, Shield, Star, ChevronDown, Settings, Users, BarChart3, Menu } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
-import uploadScreen from "@/assets/upload-screen.png";
-import qaScreen from "@/assets/qa-screen.png";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { usePageTracking, useSectionTracking } from "@/hooks/useAnalytics";
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address.").max(255, "Email must be less than 255 characters."),
@@ -242,57 +240,6 @@ const Hero = () => {
       </div>
     </section>;
 };
-const DemoVideo = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '500px' }
-    );
-
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <section className="section pt-8 md:pt-12" aria-labelledby="demo-heading">
-      <div className="container">
-        <div className="text-center mb-6">
-          
-        </div>
-        <div className="max-w-4xl mx-auto">
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-            <video 
-              ref={videoRef}
-              className="w-full h-auto" 
-              controls 
-              autoPlay 
-              muted 
-              loop 
-              playsInline
-              poster="/videos/demo-poster.png"
-            >
-              {isVisible && <source src="/videos/localdocs-demo.mp4" type="video/mp4" />}
-              <p className="text-muted-foreground p-8">
-                Your browser does not support video playback.
-              </p>
-            </video>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
 const HowItWorks = () => <section className="section bg-white" aria-labelledby="how-it-works-heading">
     <div className="container">
       <div className="text-center mb-12">
@@ -322,7 +269,6 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
             <p className="text-muted-foreground leading-relaxed mb-4">
               Upload your files.<br />Explore even 430-page documents seamlessly, all at once.
             </p>
-            <img src={uploadScreen} alt="File upload screen" width="800" height="600" className="w-full h-48 md:h-64 object-contain rounded-lg shadow-md mb-4" loading="lazy" />
             <div className="flex items-center gap-2 text-sm text-blue-600 font-medium">
               <Zap className="w-4 h-4" />
               <span>Simple drag and drop</span>
@@ -346,7 +292,6 @@ const HowItWorks = () => <section className="section bg-white" aria-labelledby="
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">Ask 'Samsung Electronics 2025 H1 Sales by Division'.<br />
 Every page is carefully read, with sources provided!</p>
-            <img src={qaScreen} alt="Q&A screen" width="800" height="600" className="w-full h-48 md:h-64 object-contain rounded-lg shadow-md mb-4" loading="lazy" />
             <div className="flex items-center gap-2 text-sm text-purple-600 font-medium">
               <CheckCircle className="w-4 h-4" />
               <span>Precise sources with page numbers</span>
@@ -935,7 +880,6 @@ export default function IndexEn() {
       <Nav />
       <main>
         <Hero />
-        <DemoVideo />
         <HowItWorks />
         <Features />
         <Scenarios />

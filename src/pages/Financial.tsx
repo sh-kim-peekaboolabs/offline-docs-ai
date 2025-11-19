@@ -937,7 +937,7 @@ const Financial = () => {
               <div className="mb-6">
                 <span className="text-sm font-semibold text-blue-100 uppercase">Pro</span>
                 <h3 className="text-4xl font-bold text-white mt-2">
-                  $199<span className="text-lg font-normal">/월</span>
+                  $29<span className="text-lg font-normal">/월</span>
                 </h3>
                 
               </div>

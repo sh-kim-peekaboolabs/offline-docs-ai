@@ -618,6 +618,51 @@ const FAQ = () => {
     </div>
   </section>;
 };
+const Testimonials = () => {
+  return <section className="section bg-white" aria-labelledby="testimonials-heading">
+    <div className="container">
+      <div className="text-center mb-12">
+        <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-accent text-primary text-sm font-medium mb-4">Testimonials</div>
+        <h2 id="testimonials-heading" className="text-2xl md:text-3xl font-semibold mb-4">What Users Say</h2>
+        <p className="text-lg text-muted-foreground">Real feedback from our community</p>
+      </div>
+      
+      <div className="max-w-4xl mx-auto">
+        <a 
+          href="https://x.com/sakshi_codess/status/1987857907283886434?s=20" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="block"
+        >
+          <div className="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/50">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                  S
+                </div>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-2">
+                  <h3 className="font-bold text-foreground">@sakshi_codess</h3>
+                  <svg className="w-5 h-5 text-blue-500 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  Been using Hypernote for a while now, truly one of the best AI apps I've used all year. Like they said, the best thing since sliced bread
+                </p>
+              </div>
+            </div>
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              <LinkIcon className="w-5 h-5 text-muted-foreground" />
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>;
+};
+
 const CTA = () => {
   const {
     register,
@@ -706,11 +751,18 @@ const CTA = () => {
   };
   return <section id="cta" className="section bg-gradient-to-br from-primary/5 to-secondary/10" aria-labelledby="cta-heading">
     <div className="container">
-      <div className="text-center mb-12">
+      <div className="text-center mb-8">
+        <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm font-bold mb-4 animate-pulse">
+          🔥 Only for the first 50 users
+        </div>
         <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-4">Chat Directly with Your PDFs</h2>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+        <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-4">
           Localdocs with no data leak concerns. Join the waitlist now and experience it first.
         </p>
+        <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+          <Users className="w-4 h-4" />
+          <span className="font-medium">Over 250 people already on the waitlist</span>
+        </div>
       </div>
       <div className="max-w-md mx-auto">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -757,6 +809,20 @@ const CTA = () => {
             {isSubmitting ? "Joining..." : "Join Waitlist"}
           </Button>
         </form>
+        
+        <div className="mt-6 p-4 rounded-lg bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200">
+          <div className="flex items-start gap-3">
+            <div className="flex-shrink-0 mt-0.5">
+              <Star className="w-5 h-5 text-green-600" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-green-900 mb-1">🎁 Special Launch Offer</p>
+              <p className="text-sm text-green-800">
+                Join now and receive a <span className="font-bold">1-month free promo code</span> when we launch!
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>;
@@ -796,6 +862,7 @@ export default function IndexEn() {
         <Scenarios />
         <Security />
         <Pricing />
+        <Testimonials />
         <CTA />
         <FAQ />
       </main>

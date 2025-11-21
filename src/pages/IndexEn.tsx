@@ -755,10 +755,7 @@ const CTA = () => {
           </p>
           
           {/* Social Proof */}
-          <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
-            <Users className="w-4 h-4" />
-            <span>Over 250 people already on the waitlist</span>
-          </div>
+          
         </div>
 
         {/* Form */}
@@ -817,7 +814,7 @@ const CTA = () => {
           <div className="flex items-start gap-3">
             <Star className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
             <div>
-              <p className="font-bold text-green-900 mb-1">🎁 Special Launch Offer</p>
+              <p className="font-bold text-green-900 mb-1">🎁 Special Offer</p>
               <p className="text-sm text-green-800">
                 Join now and receive a <span className="font-bold">1-month free promo code</span> when we launch!
               </p>

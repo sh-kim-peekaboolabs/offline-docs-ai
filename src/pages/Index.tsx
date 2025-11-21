@@ -717,13 +717,11 @@ const CTA = () => {
       }
     });
 
-    // LinkedIn 파라미터 매핑
+    // LinkedIn 파라미터 매핑 (LinkedIn 전용 파라미터만)
     const linkedinParams = {
       'campaign_group_id': 'linkedin_campaign_group_id',
       'campaign_group_name': 'linkedin_campaign_group_name',
       'campaign_id': 'linkedin_campaign_id',
-      'utm_campaign': 'linkedin_campaign_name',
-      'utm_content': 'linkedin_ad_id',
       'creative_name': 'linkedin_ad_name'
     };
     Object.entries(linkedinParams).forEach(([paramName, fieldName]) => {

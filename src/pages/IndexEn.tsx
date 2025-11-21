@@ -210,7 +210,8 @@ const Hero = () => {
           Find Answers in Dozens of PDFs at Once, Locally
         </h1>
         <p className="mt-4 md:mt-5 text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
-          Works without internet connection, all data stays completely private on your device
+          Works without internet connection, <br />
+          all data stays completely private on your device
         </p>
 
         {/* Waitlist 등록 버튼 */}

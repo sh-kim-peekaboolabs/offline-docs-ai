@@ -740,9 +740,7 @@ const CTA = () => {
       <div className="max-w-xl mx-auto">
         {/* Urgency Badge */}
         <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm font-bold shadow-md">
-            🔥 Only for the first 50 users
-          </div>
+          <div className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm font-bold shadow-md">🔥 Only for the first 50 users</div>
         </div>
 
         {/* Main Heading */}

@@ -749,7 +749,8 @@ const CTA = () => {
             Chat Directly with Your PDFs
           </h2>
           <p className="text-lg text-muted-foreground mb-4">
-            Localdocs with no data leak concerns. Join the waitlist now and experience it first.
+            Localdocs with no data leak concerns. 
+Join the waitlist now and experience it first.
           </p>
           
           {/* Social Proof */}

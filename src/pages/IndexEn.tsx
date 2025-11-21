@@ -646,13 +646,11 @@ const CTA = () => {
     const utmAdId = urlParams.get('utm_ad_id') || urlParams.get('adid');
     const utmAdName = urlParams.get('utm_ad_name') || urlParams.get('adname');
 
-    // LinkedIn specific parameters
-    const linkedinCampaignName = urlParams.get('linkedin_campaign_name');
-    const linkedinAdId = urlParams.get('linkedin_ad_id');
-    const linkedinCampaignGroupId = urlParams.get('linkedin_campaign_group_id');
-    const linkedinCampaignGroupName = urlParams.get('linkedin_campaign_group_name');
-    const linkedinCampaignId = urlParams.get('linkedin_campaign_id');
-    const linkedinAdName = urlParams.get('linkedin_ad_name');
+    // LinkedIn specific parameters (LinkedIn 전용만)
+    const linkedinCampaignGroupId = urlParams.get('campaign_group_id');
+    const linkedinCampaignGroupName = urlParams.get('campaign_group_name');
+    const linkedinCampaignId = urlParams.get('campaign_id');
+    const linkedinAdName = urlParams.get('creative_name');
     if (utmSource) setValue('utm_source', utmSource);
     if (utmCampaignId) setValue('utm_campaign_id', utmCampaignId);
     if (utmMedium) setValue('utm_medium', utmMedium);
@@ -661,8 +659,6 @@ const CTA = () => {
     if (utmAdsetName) setValue('utm_adset_name', utmAdsetName);
     if (utmAdId) setValue('utm_ad_id', utmAdId);
     if (utmAdName) setValue('utm_ad_name', utmAdName);
-    if (linkedinCampaignName) setValue('linkedin_campaign_name', linkedinCampaignName);
-    if (linkedinAdId) setValue('linkedin_ad_id', linkedinAdId);
     if (linkedinCampaignGroupId) setValue('linkedin_campaign_group_id', linkedinCampaignGroupId);
     if (linkedinCampaignGroupName) setValue('linkedin_campaign_group_name', linkedinCampaignGroupName);
     if (linkedinCampaignId) setValue('linkedin_campaign_id', linkedinCampaignId);

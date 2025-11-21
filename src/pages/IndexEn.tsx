@@ -133,6 +133,12 @@ const Hero = () => {
         <div className="inline-flex items-center gap-2 rounded-full px-3 md:px-4 py-1.5 md:py-2 bg-accent text-primary text-xs md:text-sm font-medium mb-4 md:mb-6">
           Offline ChatPDF, Localdocs
         </div>
+        
+        {/* Urgency Badge */}
+        <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm font-bold mb-4 shadow-lg animate-pulse">
+          🔥 Deadline Approaching - Only 50 More Spots Left
+        </div>
+        
         <h1 className="mx-auto max-w-3xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight md:leading-normal px-4 text-xl font-extrabold">
           Find Answers in Dozens of PDFs at Once, Locally
         </h1>
@@ -749,25 +755,50 @@ const CTA = () => {
       toast.error("An error occurred. Please try again.");
     }
   };
-  return <section id="cta" className="section bg-gradient-to-br from-primary/5 to-secondary/10" aria-labelledby="cta-heading">
-    <div className="container">
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm font-bold mb-4 animate-pulse">
-          🔥 Only for the first 50 users
+  return <section id="cta" className="section relative overflow-hidden" aria-labelledby="cta-heading">
+    {/* Background Gradient Effects */}
+    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/10"></div>
+    <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+    <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+    
+    <div className="container relative z-10">
+      <div className="max-w-2xl mx-auto">
+        {/* Urgency Badge */}
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white text-sm font-bold shadow-lg animate-pulse">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+            </span>
+            🔥 Only for the first 50 users
+          </div>
         </div>
-        <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-4">Chat Directly with Your PDFs</h2>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-4">
-          Localdocs with no data leak concerns. Join the waitlist now and experience it first.
-        </p>
-        <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
-          <Users className="w-4 h-4" />
-          <span className="font-medium">Over 250 people already on the waitlist</span>
-        </div>
-      </div>
-      <div className="max-w-md mx-auto">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+
+        {/* Main Content Card */}
+        <div className="bg-background/80 backdrop-blur-xl border-2 border-primary/20 rounded-3xl p-8 md:p-10 shadow-2xl">
+          <div className="text-center mb-8">
+            <h2 id="cta-heading" className="text-2xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Chat Directly with Your PDFs
+            </h2>
+            <p className="text-base md:text-lg text-muted-foreground mb-6">
+              Localdocs with no data leak concerns. Join the waitlist now and experience it first.
+            </p>
+            
+            {/* Social Proof */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/50 rounded-full text-sm font-medium">
+              <Users className="w-4 h-4 text-primary" />
+              <span>Over 250 people already joined</span>
+            </div>
+          </div>
+
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div>
-            <Input type="email" placeholder="Enter your email" {...register('email')} className="w-full" />
+            <Input 
+              type="email" 
+              placeholder="Enter your email" 
+              {...register('email')} 
+              className="w-full h-12 text-base border-2 focus:border-primary transition-colors" 
+            />
             {errors.email && <p className="text-sm text-destructive mt-1">{errors.email.message}</p>}
           </div>
           
@@ -805,23 +836,33 @@ const CTA = () => {
           </div>
           {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}
 
-          <Button type="submit" variant="hero" size="lg" className="w-full" disabled={isSubmitting}>
-            {isSubmitting ? "Joining..." : "Join Waitlist"}
+          <Button 
+            type="submit" 
+            variant="hero" 
+            size="lg" 
+            className="w-full h-12 text-base font-bold shadow-lg hover:shadow-xl transition-all" 
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Joining..." : "Join Waitlist Now"}
           </Button>
         </form>
         
-        <div className="mt-6 p-4 rounded-lg bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200">
-          <div className="flex items-start gap-3">
-            <div className="flex-shrink-0 mt-0.5">
-              <Star className="w-5 h-5 text-green-600" />
+        {/* Promo Offer Card */}
+        <div className="mt-6 p-5 rounded-2xl bg-gradient-to-r from-emerald-50 to-green-50 border-2 border-green-200 shadow-md">
+          <div className="flex items-start gap-4">
+            <div className="flex-shrink-0">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-lg">
+                <Star className="w-6 h-6 text-white fill-white" />
+              </div>
             </div>
-            <div>
-              <p className="text-sm font-semibold text-green-900 mb-1">🎁 Special Launch Offer</p>
-              <p className="text-sm text-green-800">
-                Join now and receive a <span className="font-bold">1-month free promo code</span> when we launch!
+            <div className="flex-1">
+              <p className="text-base font-bold text-green-900 mb-1">🎁 Special Launch Offer</p>
+              <p className="text-sm text-green-800 leading-relaxed">
+                Join now and receive a <span className="font-bold text-green-900">1-month free promo code</span> when we launch!
               </p>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

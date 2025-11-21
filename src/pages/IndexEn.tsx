@@ -38,7 +38,6 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 const Nav = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -46,11 +45,9 @@ const Nav = () => {
     });
     setMobileMenuOpen(false);
   };
-  
   const handleNavClick = () => {
     setMobileMenuOpen(false);
   };
-  
   return <>
       <header className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:backdrop-blur border-b">
         <div className="container flex items-center justify-between py-3 md:py-4">
@@ -85,11 +82,7 @@ const Nav = () => {
               <a href="#cta"><Button variant="hero" size="lg">Join Waitlist</Button></a>
             </div>
             
-            <button 
-              className="md:hidden p-2 hover:bg-accent rounded-md transition-colors" 
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Open menu"
-            >
+            <button className="md:hidden p-2 hover:bg-accent rounded-md transition-colors" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Open menu">
               <Menu className="w-6 h-6" />
             </button>
           </div>
@@ -97,18 +90,11 @@ const Nav = () => {
       </header>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 md:hidden">
-          <div 
-            className="fixed inset-0 bg-background/80 backdrop-blur-sm" 
-            onClick={() => setMobileMenuOpen(false)} 
-          />
+      {mobileMenuOpen && <div className="fixed inset-0 z-50 md:hidden">
+          <div className="fixed inset-0 bg-background/80 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
           <nav className="fixed top-0 right-0 bottom-0 w-64 bg-background border-l shadow-lg p-6 overflow-y-auto">
             <div className="flex justify-end mb-6">
-              <button 
-                onClick={() => setMobileMenuOpen(false)} 
-                className="p-2 hover:bg-accent rounded-md"
-              >
+              <button onClick={() => setMobileMenuOpen(false)} className="p-2 hover:bg-accent rounded-md">
                 <X className="w-6 h-6" />
               </button>
             </div>
@@ -123,8 +109,7 @@ const Nav = () => {
               </a>
             </div>
           </nav>
-        </div>
-      )}
+        </div>}
     </>;
 };
 const Hero = () => {
@@ -153,7 +138,7 @@ const Hero = () => {
         {/* Urgency Badge - Below Button */}
         <div className="mt-4">
           <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm font-bold shadow-lg animate-pulse">
-            🔥 Deadline Approaching - Only 50 More Spots Left
+            🔥 Only 50 More Spots Left
           </div>
         </div>
       </div>
@@ -636,12 +621,7 @@ const Testimonials = () => {
       </div>
       
       <div className="max-w-4xl mx-auto">
-        <a 
-          href="https://x.com/sakshi_codess/status/1987857907283886434?s=20" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="block"
-        >
+        <a href="https://x.com/sakshi_codess/status/1987857907283886434?s=20" target="_blank" rel="noopener noreferrer" className="block">
           <div className="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/50">
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0">
@@ -653,7 +633,7 @@ const Testimonials = () => {
                 <div className="flex items-center gap-2 mb-2">
                   <h3 className="font-bold text-foreground">@sakshi_codess</h3>
                   <svg className="w-5 h-5 text-blue-500 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
                 </div>
                 <p className="text-muted-foreground leading-relaxed">
@@ -670,7 +650,6 @@ const Testimonials = () => {
     </div>
   </section>;
 };
-
 const CTA = () => {
   const {
     register,
@@ -747,10 +726,9 @@ const CTA = () => {
         error
       } = await supabase.from('email_signups').insert([insertData]);
       if (error) throw error;
-      
+
       // Facebook Pixel Lead 이벤트 추적
       trackLead(values.email);
-      
       toast.success("Successfully joined the waitlist!");
       reset();
     } catch (error) {
@@ -786,12 +764,7 @@ const CTA = () => {
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <Input 
-              type="email" 
-              placeholder="Enter your email" 
-              {...register('email')} 
-              className="w-full h-14 text-base px-4" 
-            />
+            <Input type="email" placeholder="Enter your email" {...register('email')} className="w-full h-14 text-base px-4" />
             {errors.email && <p className="text-sm text-destructive mt-1">{errors.email.message}</p>}
           </div>
           
@@ -822,20 +795,19 @@ const CTA = () => {
           <input type="hidden" {...register("linkedin_ad_name")} />
           
           <div className="flex items-start space-x-2">
-            <Checkbox id="consent" checked={watch("consent")} onCheckedChange={checked => setValue("consent", !!checked)} className="shrink-0 mt-0.5" style={{ width: '14px', height: '14px', minWidth: '14px', minHeight: '14px' }} />
+            <Checkbox id="consent" checked={watch("consent")} onCheckedChange={checked => setValue("consent", !!checked)} className="shrink-0 mt-0.5" style={{
+              width: '14px',
+              height: '14px',
+              minWidth: '14px',
+              minHeight: '14px'
+            }} />
             <Label htmlFor="consent" className="text-sm text-muted-foreground leading-relaxed">
               I agree to receive product updates and marketing emails.
             </Label>
           </div>
           {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}
 
-          <Button 
-            type="submit" 
-            variant="hero" 
-            size="lg" 
-            className="w-full h-14 text-lg font-semibold" 
-            disabled={isSubmitting}
-          >
+          <Button type="submit" variant="hero" size="lg" className="w-full h-14 text-lg font-semibold" disabled={isSubmitting}>
             {isSubmitting ? "Joining..." : "Join Waitlist"}
           </Button>
         </form>

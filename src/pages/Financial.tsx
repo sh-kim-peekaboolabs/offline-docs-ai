@@ -48,15 +48,6 @@ const Financial = () => {
     }
   };
 
-  // Hero section form
-  const heroForm = useForm<EmailSignupFormData>({
-    resolver: zodResolver(emailSignupSchema),
-    defaultValues: {
-      consent: false,
-      page_source: '/financial'
-    }
-  });
-
   // CTA section form
   const ctaForm = useForm<EmailSignupFormData>({
     resolver: zodResolver(emailSignupSchema),
@@ -66,17 +57,16 @@ const Financial = () => {
     }
   });
 
-  // Capture URL parameters for both forms
+  // Capture URL parameters for CTA form
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const utmParams = {
       page_source: "/financial",
       utm_source: params.get("utm_source") || undefined,
       utm_medium: params.get("utm_medium") || undefined,
-      utm_campaign_name: params.get("utm_campaign_name") || undefined,
+      utm_campaign_name: params.get("utm_campaign_name") || params.get("utm_campaign") || undefined,
       utm_term: params.get("utm_term") || undefined,
-      utm_content: params.get("utm_content") || undefined,
-      utm_campaign_id: params.get("utm_campaign_id") || undefined,
+      utm_campaign_id: params.get("utm_campaign_id") || params.get("utm_content") || undefined,
       utm_adset_id: params.get("utm_adset_id") || undefined,
       utm_adset_name: params.get("utm_adset_name") || undefined,
       utm_ad_id: params.get("utm_ad_id") || undefined,
@@ -89,12 +79,11 @@ const Financial = () => {
       linkedin_ad_name: params.get("linkedin_ad_name") || undefined
     };
 
-    // Set values for both forms
+    // Set values for CTA form
     Object.entries(utmParams).forEach(([key, value]) => {
-      heroForm.setValue(key as any, value);
       ctaForm.setValue(key as any, value);
     });
-  }, [heroForm, ctaForm]);
+  }, [ctaForm]);
   const onSubmit = async (data: EmailSignupFormData, formInstance: any) => {
     try {
       const insertData: any = {
@@ -173,42 +162,11 @@ const Financial = () => {
             답변 + 출처까지 자동 표시.
           </p>
           
-          {/* Waitlist Form */}
+          {/* Waitlist Button */}
           <div className="max-w-xl mx-auto mb-10">
-            <form onSubmit={heroForm.handleSubmit(data => onSubmit(data, heroForm))} className="space-y-4">
-              <div className="flex flex-col sm:flex-row gap-3 items-stretch justify-center">
-                
-                <button type="button" onClick={scrollToWaitlist} className="px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-lg font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all hover:shadow-xl whitespace-nowrap shadow-lg">
-                  무료 체험 신청
-                </button>
-              </div>
-              
-              {/* Consent checkbox */}
-              
-              
-              {/* Hidden fields for tracking parameters */}
-              <input type="hidden" {...heroForm.register("page_source")} />
-              <input type="hidden" {...heroForm.register("utm_source")} />
-              <input type="hidden" {...heroForm.register("utm_medium")} />
-              <input type="hidden" {...heroForm.register("utm_campaign_name")} />
-              <input type="hidden" {...heroForm.register("utm_term")} />
-              <input type="hidden" {...heroForm.register("utm_content")} />
-              <input type="hidden" {...heroForm.register("utm_campaign_id")} />
-              <input type="hidden" {...heroForm.register("utm_adset_id")} />
-              <input type="hidden" {...heroForm.register("utm_adset_name")} />
-              <input type="hidden" {...heroForm.register("utm_ad_id")} />
-              <input type="hidden" {...heroForm.register("utm_ad_name")} />
-              <input type="hidden" {...heroForm.register("linkedin_campaign_name")} />
-              <input type="hidden" {...heroForm.register("linkedin_campaign_id")} />
-              <input type="hidden" {...heroForm.register("linkedin_campaign_group_id")} />
-              <input type="hidden" {...heroForm.register("linkedin_campaign_group_name")} />
-              <input type="hidden" {...heroForm.register("linkedin_ad_id")} />
-              <input type="hidden" {...heroForm.register("linkedin_ad_name")} />
-              
-              {heroForm.formState.errors.email && <p className="text-sm text-red-600">{heroForm.formState.errors.email.message}</p>}
-              {heroForm.formState.errors.consent && <p className="text-sm text-red-600">{heroForm.formState.errors.consent.message}</p>}
-            </form>
-            
+            <button type="button" onClick={scrollToWaitlist} className="px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-lg font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all hover:shadow-xl whitespace-nowrap shadow-lg">
+              무료 체험 신청
+            </button>
           </div>
           
           {/* Value Props */}

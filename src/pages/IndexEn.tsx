@@ -128,100 +128,6 @@ const Nav = () => {
     </>;
 };
 const Hero = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: {
-      errors,
-      isSubmitting
-    },
-    reset,
-    setValue
-  } = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      consent: false
-    }
-  });
-  
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const paramMapping = [
-      ['utm_source', 'utm_source'],
-      ['utm_campaign_id', 'utm_campaign_id'],
-      ['campaignid', 'utm_campaign_id'],
-      ['utm_medium', 'utm_medium'],
-      ['utm_campaign_name', 'utm_campaign_name'],
-      ['utm_campaign', 'utm_campaign_name'],
-      ['utm_adset_id', 'utm_adset_id'],
-      ['adsetid', 'utm_adset_id'],
-      ['utm_adset_name', 'utm_adset_name'],
-      ['adsetname', 'utm_adset_name'],
-      ['utm_ad_id', 'utm_ad_id'],
-      ['adid', 'utm_ad_id'],
-      ['utm_ad_name', 'utm_ad_name'],
-      ['adname', 'utm_ad_name'],
-      ['linkedin_campaign_name', 'linkedin_campaign_name'],
-      ['linkedin_ad_id', 'linkedin_ad_id'],
-      ['linkedin_campaign_group_id', 'linkedin_campaign_group_id'],
-      ['linkedin_campaign_group_name', 'linkedin_campaign_group_name'],
-      ['linkedin_campaign_id', 'linkedin_campaign_id'],
-      ['linkedin_ad_name', 'linkedin_ad_name']
-    ];
-    
-    paramMapping.forEach(([paramName, fieldName]) => {
-      const value = urlParams.get(paramName);
-      if (value) {
-        setValue(fieldName as keyof FormValues, value);
-      }
-    });
-  }, [setValue]);
-  
-  const onSubmit = async (values: FormValues) => {
-    try {
-      if (values.honeypot) {
-        toast.error("Invalid request.");
-        return;
-      }
-      const insertData = {
-        email: values.email,
-        consent: values.consent,
-        page_source: '/en',
-        utm_source: values.utm_source || null,
-        utm_campaign_id: values.utm_campaign_id || null,
-        utm_medium: values.utm_medium || null,
-        utm_campaign_name: values.utm_campaign_name || null,
-        utm_adset_id: values.utm_adset_id || null,
-        utm_adset_name: values.utm_adset_name || null,
-        utm_ad_id: values.utm_ad_id || null,
-        utm_ad_name: values.utm_ad_name || null,
-        linkedin_campaign_name: values.linkedin_campaign_name || null,
-        linkedin_ad_id: values.linkedin_ad_id || null,
-        linkedin_campaign_group_id: values.linkedin_campaign_group_id || null,
-        linkedin_campaign_group_name: values.linkedin_campaign_group_name || null,
-        linkedin_campaign_id: values.linkedin_campaign_id || null,
-        linkedin_ad_name: values.linkedin_ad_name || null
-      };
-      const result = await supabase.from('email_signups').insert([insertData]);
-      if (result.error) {
-        if (result.error.code === '23505') {
-          toast.error("This email is already registered.");
-        } else {
-          toast.error("An error occurred during registration.");
-        }
-        return;
-      }
-      
-      // Facebook Pixel Lead 이벤트 추적
-      trackLead(values.email);
-      
-      toast.success("Successfully registered! We'll keep you updated.");
-      reset();
-    } catch (error) {
-      toast.error("An error occurred during registration.");
-    }
-  };
   return <section className="relative overflow-hidden">
       <div className="container relative py-8 md:py-16 pb-4 text-center px-4">
         <div className="inline-flex items-center gap-2 rounded-full px-3 md:px-4 py-1.5 md:py-2 bg-accent text-primary text-xs md:text-sm font-medium mb-4 md:mb-6">
@@ -732,7 +638,7 @@ const CTA = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const utmSource = urlParams.get('utm_source');
-    const utmCampaignId = urlParams.get('utm_campaign_id') || urlParams.get('campaignid');
+    const utmCampaignId = urlParams.get('utm_campaign_id') || urlParams.get('campaignid') || urlParams.get('utm_content');
     const utmMedium = urlParams.get('utm_medium');
     const utmCampaignName = urlParams.get('utm_campaign_name') || urlParams.get('utm_campaign');
     const utmAdsetId = urlParams.get('utm_adset_id') || urlParams.get('adsetid');

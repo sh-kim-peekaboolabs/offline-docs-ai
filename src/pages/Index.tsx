@@ -115,80 +115,6 @@ const Nav = () => {
     </>;
 };
 const Hero = () => {
-  const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: {
-      errors,
-      isSubmitting
-    },
-    reset,
-    setValue
-  } = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      consent: false,
-      page_source: '/'
-    }
-  });
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const paramMapping = [['utm_source', 'utm_source'], ['utm_campaign_id', 'utm_campaign_id'], ['campaignid', 'utm_campaign_id'], ['utm_medium', 'utm_medium'], ['utm_campaign_name', 'utm_campaign_name'], ['utm_campaign', 'utm_campaign_name'], ['utm_adset_id', 'utm_adset_id'], ['adsetid', 'utm_adset_id'], ['utm_adset_name', 'utm_adset_name'], ['adsetname', 'utm_adset_name'], ['utm_ad_id', 'utm_ad_id'], ['adid', 'utm_ad_id'], ['utm_ad_name', 'utm_ad_name'], ['adname', 'utm_ad_name'], ['linkedin_campaign_name', 'linkedin_campaign_name'], ['linkedin_ad_id', 'linkedin_ad_id'], ['linkedin_campaign_group_id', 'linkedin_campaign_group_id'], ['linkedin_campaign_group_name', 'linkedin_campaign_group_name'], ['linkedin_campaign_id', 'linkedin_campaign_id'], ['linkedin_ad_name', 'linkedin_ad_name']];
-    paramMapping.forEach(([paramName, fieldName]) => {
-      const value = urlParams.get(paramName);
-      if (value) {
-        setValue(fieldName as keyof FormValues, value);
-      }
-    });
-  }, [setValue]);
-  const onSubmit = async (values: FormValues) => {
-    try {
-      if (values.honeypot) {
-        toast.error("잘못된 요청입니다.");
-        return;
-      }
-      const insertData = {
-        email: values.email,
-        consent: values.consent,
-        page_source: values.page_source || '/',
-        utm_source: values.utm_source || null,
-        utm_campaign_id: values.utm_campaign_id || null,
-        utm_medium: values.utm_medium || null,
-        utm_campaign_name: values.utm_campaign_name || null,
-        utm_adset_id: values.utm_adset_id || null,
-        utm_adset_name: values.utm_adset_name || null,
-        utm_ad_id: values.utm_ad_id || null,
-        utm_ad_name: values.utm_ad_name || null,
-        linkedin_campaign_name: values.linkedin_campaign_name || null,
-        linkedin_ad_id: values.linkedin_ad_id || null,
-        linkedin_campaign_group_id: values.linkedin_campaign_group_id || null,
-        linkedin_campaign_group_name: values.linkedin_campaign_group_name || null,
-        linkedin_campaign_id: values.linkedin_campaign_id || null,
-        linkedin_ad_name: values.linkedin_ad_name || null
-      };
-      const result = await supabase.from('email_signups').insert([insertData]);
-      if (result.error) {
-        if (result.error.code === '23505') {
-          toast.error("이미 등록된 이메일입니다.");
-        } else {
-          toast.error("등록 중 오류가 발생했습니다.");
-        }
-        return;
-      }
-      
-      // Facebook Pixel Lead 이벤트 추적
-      trackLead(values.email);
-      
-      setIsSubmitSuccessful(true);
-      toast.success("알림 신청이 완료되었습니다. 곧 소식을 전해 드릴게요!");
-      reset();
-      setTimeout(() => setIsSubmitSuccessful(false), 3000);
-    } catch (error) {
-      toast.error("등록 중 오류가 발생했습니다.");
-    }
-  };
   return <section className="relative overflow-hidden">
       <div className="container relative py-8 md:py-16 pb-4 text-center px-4">
         <div className="inline-flex items-center gap-2 rounded-full px-3 md:px-4 py-1.5 md:py-2 bg-accent text-primary text-xs md:text-sm font-medium mb-4 md:mb-6">
@@ -774,9 +700,11 @@ const CTA = () => {
     // UTM 파라미터 매핑
     const utmParams = {
       'utm_source': 'utm_source',
-      'utm_campaign': 'utm_campaign_id',
+      'utm_campaign': 'utm_campaign_name',
+      'utm_content': 'utm_campaign_id',
       'utm_medium': 'utm_medium',
       'utm_campaign_name': 'utm_campaign_name',
+      'utm_campaign_id': 'utm_campaign_id',
       'utm_adset_id': 'utm_adset_id',
       'utm_adset_name': 'utm_adset_name',
       'utm_ad_id': 'utm_ad_id',

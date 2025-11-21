@@ -58,9 +58,11 @@ const CTASection = () => {
     // UTM parameters
     const utmParams = {
       'utm_source': 'utm_source',
-      'utm_campaign': 'utm_campaign_id',
+      'utm_campaign': 'utm_campaign_name',
+      'utm_content': 'utm_campaign_id',
       'utm_medium': 'utm_medium',
       'utm_campaign_name': 'utm_campaign_name',
+      'utm_campaign_id': 'utm_campaign_id',
       'utm_adset_id': 'utm_adset_id',
       'utm_adset_name': 'utm_adset_name',
       'utm_ad_id': 'utm_ad_id',

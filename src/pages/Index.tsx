@@ -64,7 +64,7 @@ const Nav = () => {
             <a href="#security" className="story-link">보안</a>
             <a href="#pricing" className="story-link">요금제</a>
             <a href="#faq" className="story-link">FAQ</a>
-            <a href="#cta" className="story-link">Early Access 등록</a>
+            <a href="#cta" className="story-link">Early Access 신청</a>
           </nav>
           
           <div className="flex items-center gap-2 md:gap-4">
@@ -81,7 +81,7 @@ const Nav = () => {
             </div>
             
             <div className="hidden md:block">
-              <a href="#cta"><Button variant="hero" size="lg">Early Access 등록하기</Button></a>
+              <a href="#cta"><Button variant="hero" size="lg">Early Access 신청하기</Button></a>
             </div>
             
             <button className="md:hidden p-2 hover:bg-accent rounded-md transition-colors" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="메뉴 열기">
@@ -107,7 +107,7 @@ const Nav = () => {
               <a href="#pricing" className="text-base py-2 hover:text-primary transition-colors" onClick={handleNavClick}>요금제</a>
               <a href="#faq" className="text-base py-2 hover:text-primary transition-colors" onClick={handleNavClick}>FAQ</a>
               <a href="#cta" onClick={handleNavClick}>
-                <Button variant="hero" size="lg" className="w-full mt-4">Early Access 등록하기</Button>
+                <Button variant="hero" size="lg" className="w-full mt-4">Early Access 신청하기</Button>
               </a>
             </div>
           </nav>
@@ -127,11 +127,11 @@ const Hero = () => {
           인터넷 연결 없이 작동하며, 모든 데이터는 절대 외부로 전송되지 않습니다
         </p>
         
-        {/* Early Access 등록 버튼 */}
+        {/* Early Access 신청 버튼 */}
         <div className="mt-6 md:mt-8 mb-2">
           <a href="#cta">
             <Button variant="hero" size="lg" className="h-12 md:h-14 px-6 md:px-10 text-base md:text-lg font-semibold">
-              Early Access 등록하기
+              Early Access 신청하기
             </Button>
           </a>
         </div>
@@ -487,7 +487,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
           </ul>
           <div className="mt-6">
             <a href="#cta" className="w-full">
-              <Button variant="outline" className="w-full">Early Access 등록하기</Button>
+              <Button variant="outline" className="w-full">Early Access 신청하기</Button>
             </a>
           </div>
         </div>
@@ -530,7 +530,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
           </ul>
           <div className="mt-6">
             <a href="#cta" className="w-full">
-              <Button variant="hero" className="w-full">Early Access 등록하기</Button>
+              <Button variant="hero" className="w-full">Early Access 신청하기</Button>
             </a>
           </div>
         </div>
@@ -578,7 +578,7 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
           </ul>
           <div className="mt-6">
             <a href="#cta" className="w-full">
-              <Button variant="outline" className="w-full">Early Access 등록하기</Button>
+              <Button variant="outline" className="w-full">Early Access 신청하기</Button>
             </a>
           </div>
         </div>
@@ -778,7 +778,7 @@ const CTA = () => {
   return <section id="cta" className="section" aria-labelledby="cta-heading">
     <div className="container">
       <h2 id="cta-heading" className="text-2xl md:text-3xl font-semibold mb-3 text-center">내 PDF와 안전하게 대화하세요</h2>
-      <p className="text-muted-foreground mb-6 text-center">데이터 유출 걱정 없는 로컬독스, 지금 Early Access 등록하고 먼저 경험해 보세요.</p>
+      <p className="text-muted-foreground mb-6 text-center">데이터 유출 걱정 없는 로컬독스, 지금 Early Access 신청하고 먼저 경험해 보세요.</p>
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto">
         <div className="space-y-4">
           <div>
@@ -819,7 +819,7 @@ const CTA = () => {
           </div>
           {errors.consent && <p className="text-sm text-destructive">{errors.consent.message}</p>}
           <div>
-            <Button type="submit" variant="hero" size="lg" disabled={isSubmitting} className="w-full">Early Access 등록하기</Button>
+            <Button type="submit" variant="hero" size="lg" disabled={isSubmitting} className="w-full">Early Access 신청하기</Button>
           </div>
         </div>
         <p className="text-xs text-muted-foreground text-center mt-4">제출하신 이메일은 베타 알림과 안내 외 용도로 사용하지 않습니다.</p>

@@ -106,7 +106,7 @@ const Nav = () => {
               FAQ
             </a>
             <a href="#cta" className="story-link">
-              Join Waitlist
+              Join Early Access
             </a>
           </nav>
 
@@ -128,7 +128,7 @@ const Nav = () => {
             <div className="hidden md:block">
               <a href="#cta">
                 <Button variant="hero" size="lg">
-                  Join Waitlist
+                  Join Early Access
                 </Button>
               </a>
             </div>
@@ -188,7 +188,7 @@ const Nav = () => {
               </a>
               <a href="#cta" onClick={handleNavClick}>
                 <Button variant="hero" size="lg" className="w-full mt-4">
-                  Join Waitlist
+                  Join Early Access
                 </Button>
               </a>
             </div>
@@ -214,11 +214,11 @@ const Hero = () => {
           all data stays completely private on your device
         </p>
 
-        {/* Waitlist 등록 버튼 */}
+        {/* Early Access 등록 버튼 */}
         <div className="mt-6 md:mt-8">
           <a href="#cta">
             <Button variant="hero" size="lg" className="h-12 md:h-14 px-6 md:px-10 text-base md:text-lg font-semibold">
-              Join Waitlist
+              Join Early Access
             </Button>
           </a>
         </div>
@@ -472,7 +472,7 @@ const Scenarios = () => {
               size="xl"
               className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary shadow-2xl"
             >
-              Join Waitlist Now →
+              Join Early Access Now →
             </Button>
           </a>
         </div>
@@ -575,7 +575,7 @@ const Pricing = () => (
           <div className="mt-6">
             <a href="#cta" className="w-full">
               <Button variant="outline" className="w-full">
-                Join Waitlist
+                Join Early Access
               </Button>
             </a>
           </div>
@@ -593,7 +593,7 @@ const Pricing = () => (
             <div className="text-3xl font-bold mb-2">
               $29<span className="text-lg font-normal">/month</span>
             </div>
-            <div className="text-sm text-primary font-semibold">3 months free trial with waitlist signup</div>
+            <div className="text-sm text-primary font-semibold">1 month free Pro plan trial during Early Access</div>
           </div>
           <ul className="space-y-3 flex-1 text-sm">
             <li className="flex items-start gap-2">
@@ -628,7 +628,7 @@ const Pricing = () => (
           <div className="mt-6">
             <a href="#cta" className="w-full">
               <Button variant="hero" className="w-full">
-                Join Waitlist
+                Join Early Access
               </Button>
             </a>
           </div>
@@ -953,7 +953,7 @@ const CTA = () => {
 
       // Facebook Pixel Lead 이벤트 추적
       trackLead(values.email);
-      toast.success("Successfully joined the waitlist!");
+      toast.success("Successfully joined the Early Access!");
       reset();
     } catch (error) {
       toast.error("An error occurred. Please try again.");
@@ -978,7 +978,7 @@ const CTA = () => {
             <p className="text-lg text-muted-foreground mb-4">
               Localdocs with no data leak concerns.
               <br />
-              Join the waitlist now and experience it first.
+              Join the Early Access now and experience it first.
             </p>
 
             {/* Social Proof */}
@@ -1055,7 +1055,7 @@ const CTA = () => {
               className="w-full h-14 text-lg font-semibold"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Joining..." : "Join Waitlist"}
+              {isSubmitting ? "Joining..." : "Join Early Access"}
             </Button>
           </form>
 
@@ -1066,7 +1066,7 @@ const CTA = () => {
               <div>
                 <p className="font-bold text-green-900 mb-1">🎁 Special Offer</p>
                 <p className="text-sm text-green-800">
-                  Join now and receive a <span className="font-bold">1-month free promo code</span> when we launch!
+                  Join now and get <span className="font-bold">1 month free Pro plan trial</span> when we launch!
                 </p>
               </div>
             </div>

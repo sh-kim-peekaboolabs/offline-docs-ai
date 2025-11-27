@@ -379,21 +379,20 @@ const Scenarios = () => {
       </div>
 
       <div className="text-center mt-16">
-        <div className="inline-flex flex-col items-center gap-4">
-          <p className="text-gray-300 text-lg">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-gray-300 text-lg mb-6">
             당신의 업무 효율을 10배 높여줄 로컬독스를 지금 바로 도입하세요
           </p>
-          <a href="#cta">
-            <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold overflow-hidden hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300">
-              <span className="relative z-10 flex items-center gap-2">
-                바로 시작하기
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </button>
-          </a>
+          <div className="rounded-lg overflow-hidden shadow-xl">
+            <iframe 
+              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2-hJ5qeJ14i4EdlOOS2WDSo9doxwMo_qiVRsfyiGUHLWpiD4Shl-c6U9Lk0FQFFboq6zCNvaiQ?gv=true" 
+              style={{ border: 0 }} 
+              width="100%" 
+              height="600" 
+              frameBorder="0"
+              title="Google Calendar 예약"
+            />
+          </div>
         </div>
       </div>
     </div>

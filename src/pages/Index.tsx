@@ -383,15 +383,19 @@ const Scenarios = () => {
           <p className="text-gray-300 text-lg mb-6">
             당신의 업무 효율을 10배 높여줄 로컬독스를 지금 바로 도입하세요
           </p>
-          <div className="rounded-lg overflow-hidden shadow-xl">
-            <iframe 
-              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2-hJ5qeJ14i4EdlOOS2WDSo9doxwMo_qiVRsfyiGUHLWpiD4Shl-c6U9Lk0FQFFboq6zCNvaiQ?gv=true" 
-              style={{ border: 0 }} 
-              width="100%" 
-              height="600" 
-              frameBorder="0"
-              title="Google Calendar 예약"
-            />
+          <div className="bg-white rounded-2xl p-6 md:p-8 shadow-2xl">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">상담 예약하기</h3>
+            <p className="text-gray-600 mb-6">원하는 시간을 선택하여 1:1 상담을 예약하세요</p>
+            <div className="rounded-lg overflow-hidden">
+              <iframe 
+                src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2-hJ5qeJ14i4EdlOOS2WDSo9doxwMo_qiVRsfyiGUHLWpiD4Shl-c6U9Lk0FQFFboq6zCNvaiQ?gv=true" 
+                style={{ border: 0 }} 
+                width="100%" 
+                height="600" 
+                frameBorder="0"
+                title="Google Calendar 예약"
+              />
+            </div>
           </div>
         </div>
       </div>

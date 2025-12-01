@@ -254,7 +254,7 @@ const Features = memo(() => {
             </div>
             <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Instant Search</h3>
             <p className="text-[#666] leading-relaxed">
-              Find information across hundreds of pages in milliseconds. No more manual searching through documents.
+              Find information across hundreds of pages in seconds. No more manual searching through documents.
             </p>
           </div>
 

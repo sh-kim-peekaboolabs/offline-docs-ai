@@ -527,7 +527,7 @@ const Pricing = () => (
           <div className="mt-6">
             <a href="#cta" className="w-full">
               <Button variant="outline" className="w-full">
-                Download for Mac
+                Contact us
               </Button>
             </a>
           </div>

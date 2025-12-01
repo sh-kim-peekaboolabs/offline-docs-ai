@@ -734,11 +734,11 @@ const Footer = () => (
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="text-muted-foreground">© PeekabooLabs. All rights reserved. 2025</div>
         <div className="flex items-center gap-4">
-          <a href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a href="/en/terms" className="text-muted-foreground hover:text-foreground transition-colors">
             Terms of Service
           </a>
           <span className="text-muted-foreground">|</span>
-          <a href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a href="/en/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
             Privacy Policy
           </a>
           <span className="text-muted-foreground hidden md:inline">|</span>

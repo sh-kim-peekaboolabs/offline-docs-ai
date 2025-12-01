@@ -63,7 +63,7 @@ const Nav = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-100/60">
+      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-white/10">
         <div className="px-6 flex items-center justify-between h-16">
           <div className="flex items-center gap-3 cursor-pointer" onClick={scrollToTop}>
             <img src={logo} alt="Localdocs logo" width={32} height={32} loading="eager" />
@@ -88,7 +88,7 @@ const Nav = () => {
                 <span className="hidden sm:inline">EN</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
-              <div className="absolute right-0 top-full mt-2 w-32 bg-white border border-gray-200 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+              <div className="absolute right-0 top-full mt-2 w-32 bg-white border border-white/10 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
                 <a href="/" className="block px-4 py-2.5 text-sm text-[#666] hover:bg-gray-50 rounded-t-xl">한국어</a>
                 <span className="block px-4 py-2.5 text-sm text-[#111] bg-gray-50 rounded-b-xl font-medium">English</span>
               </div>
@@ -186,7 +186,7 @@ const Hero = () => {
             </button>
           </a>
           <a href="#features">
-            <button className="px-8 py-3.5 bg-white text-[#111] text-base font-medium rounded-lg border border-gray-100 hover:bg-gray-50 transition-colors">
+            <button className="px-8 py-3.5 bg-white text-[#111] text-base font-medium rounded-lg border border-white/10 hover:bg-gray-50 transition-colors">
               See Features
             </button>
           </a>
@@ -194,7 +194,7 @@ const Hero = () => {
 
         {/* App Screenshot */}
         <div className="max-w-4xl mx-auto">
-          <div className="relative rounded-xl border border-gray-100 shadow-2xl overflow-hidden bg-gradient-to-b from-gray-50 to-white aspect-[16/10]">
+          <div className="relative rounded-xl border border-white/10 shadow-2xl overflow-hidden bg-gradient-to-b from-gray-50 to-white aspect-[16/10]">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center">
                 <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -258,7 +258,7 @@ const Features = () => {
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Large Card */}
-          <div className="md:col-span-2 lg:col-span-2 bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100/80 p-8 hover:border-gray-200 hover:bg-white/80 transition-all">
+          <div className="md:col-span-2 lg:col-span-2 bg-white/60 backdrop-blur-sm rounded-xl border border-white/10 p-8 hover:border-gray-50 hover:bg-white/80 transition-all">
             <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
               <Zap className="w-6 h-6 text-[#111]" />
             </div>
@@ -269,7 +269,7 @@ const Features = () => {
           </div>
 
           {/* Small Card */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100/80 p-8 hover:border-gray-200 hover:bg-white/80 transition-all">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-white/10 p-8 hover:border-gray-50 hover:bg-white/80 transition-all">
             <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
               <Lock className="w-6 h-6 text-[#111]" />
             </div>
@@ -280,7 +280,7 @@ const Features = () => {
           </div>
 
           {/* Small Card */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100/80 p-8 hover:border-gray-200 hover:bg-white/80 transition-all">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-white/10 p-8 hover:border-gray-50 hover:bg-white/80 transition-all">
             <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
               <Shield className="w-6 h-6 text-[#111]" />
             </div>
@@ -291,7 +291,7 @@ const Features = () => {
           </div>
 
           {/* Medium Card */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100/80 p-8 hover:border-gray-200 hover:bg-white/80 transition-all">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-white/10 p-8 hover:border-gray-50 hover:bg-white/80 transition-all">
             <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
               <FileText className="w-6 h-6 text-[#111]" />
             </div>
@@ -302,7 +302,7 @@ const Features = () => {
           </div>
 
           {/* Medium Card */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100/80 p-8 hover:border-gray-200 hover:bg-white/80 transition-all">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-white/10 p-8 hover:border-gray-50 hover:bg-white/80 transition-all">
             <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
               <Search className="w-6 h-6 text-[#111]" />
             </div>
@@ -352,7 +352,7 @@ const UseCases = () => {
           {cases.map((item, index) => (
             <div
               key={index}
-              className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100/80 p-8 hover:border-gray-200 hover:bg-white/80 transition-all"
+              className="bg-white/60 backdrop-blur-sm rounded-xl border border-white/10 p-8 hover:border-gray-50 hover:bg-white/80 transition-all"
             >
               <h3 className="text-lg font-semibold text-[#111] tracking-tight mb-2">{item.title}</h3>
               <p className="text-[#666] leading-relaxed">{item.description}</p>
@@ -387,7 +387,7 @@ const Security = () => {
           {points.map((point, index) => (
             <div
               key={index}
-              className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100/80 p-6 hover:border-gray-200 hover:bg-white/80 transition-all"
+              className="bg-white/60 backdrop-blur-sm rounded-xl border border-white/10 p-6 hover:border-gray-50 hover:bg-white/80 transition-all"
             >
               <div className="w-10 h-10 bg-green-50/80 rounded-lg flex items-center justify-center mb-4">
                 <CheckCircle className="w-5 h-5 text-green-600" />
@@ -444,7 +444,7 @@ const Pricing = () => {
             <div
               key={index}
               className={`bg-white/60 backdrop-blur-sm rounded-xl border p-8 transition-all ${
-                plan.featured ? "border-[#111]/80 ring-1 ring-[#111]/80 bg-white/80" : "border-gray-100/80 hover:border-gray-200 hover:bg-white/80"
+                plan.featured ? "border-[#111]/80 ring-1 ring-[#111]/80 bg-white/80" : "border-white/10 hover:border-gray-50 hover:bg-white/80"
               }`}
             >
               {plan.featured && (
@@ -469,7 +469,7 @@ const Pricing = () => {
                   className={`w-full py-3 rounded-lg font-medium transition-colors ${
                     plan.featured
                       ? "bg-[#111] text-white hover:bg-[#333]"
-                      : "bg-white/80 text-[#111] border border-gray-100 hover:bg-gray-50"
+                      : "bg-white/80 text-[#111] border border-white/10 hover:bg-gray-50"
                   }`}
                 >
                   Get Started
@@ -517,7 +517,7 @@ const FAQ = () => {
           {faqs.map((faq, index) => (
             <details
               key={index}
-              className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100/80 p-6 group hover:bg-white/80 transition-all"
+              className="bg-white/60 backdrop-blur-sm rounded-xl border border-white/10 p-6 group hover:bg-white/80 transition-all"
             >
               <summary className="font-medium text-[#111] cursor-pointer list-none flex items-center justify-between">
                 {faq.q}
@@ -681,7 +681,7 @@ const Footer = () => (
 
 // Section Divider with Plus Icons
 const SectionDivider = () => (
-  <div className="relative w-full border-b border-gray-100/50">
+  <div className="relative w-full border-b border-white/10">
     {/* Left Plus Icon */}
     <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 flex items-center justify-center">
       <span className="text-gray-200 text-lg font-light">+</span>
@@ -703,17 +703,17 @@ const TechnicalGridBackground = ({ children }: { children: React.ReactNode }) =>
     }}
   >
     {/* Dot Pattern Layer with Center Fade Mask */}
-    <div 
+    <div
       className="fixed inset-0 pointer-events-none"
-      style={{ 
-        backgroundImage: `radial-gradient(circle, rgba(229, 231, 235, 0.4) 1px, transparent 1px)`,
+      style={{
+        backgroundImage: `radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px)`,
         backgroundSize: '20px 20px',
-        maskImage: 'radial-gradient(ellipse 80% 50% at 50% 30%, transparent 30%, black 80%)',
-        WebkitMaskImage: 'radial-gradient(ellipse 80% 50% at 50% 30%, transparent 30%, black 80%)',
+        maskImage: 'radial-gradient(ellipse at 50% 30%, transparent 40%, black 100%)',
+        WebkitMaskImage: 'radial-gradient(ellipse at 50% 30%, transparent 40%, black 100%)',
       }}
     />
     {/* Main Content Container with Vertical Borders */}
-    <div className="relative max-w-6xl mx-auto bg-white/80 backdrop-blur-[1px] border-x border-gray-100/60 min-h-screen">
+    <div className="relative max-w-6xl mx-auto bg-white/80 backdrop-blur-[1px] border-x border-white/10 min-h-screen">
       {/* Top Left Corner Dot */}
       <div className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-gray-200 rounded-full" />
       {/* Top Right Corner Dot */}

@@ -63,7 +63,7 @@ const Nav = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200">
+      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-100/60">
         <div className="px-6 flex items-center justify-between h-16">
           <div className="flex items-center gap-3 cursor-pointer" onClick={scrollToTop}>
             <img src={logo} alt="Localdocs logo" width={32} height={32} loading="eager" />
@@ -147,19 +147,28 @@ const Nav = () => {
 // Linear-style Hero
 const Hero = () => {
   return (
-    <section className="bg-white pt-20 pb-24 md:pt-32 md:pb-32">
-      <div className="max-w-4xl mx-auto px-8 text-center">
+    <section className="relative bg-transparent pt-20 pb-24 md:pt-32 md:pb-32 overflow-hidden">
+      {/* Ambient Glow */}
+      <div 
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.04) 40%, transparent 70%)',
+          filter: 'blur(60px)',
+        }}
+      />
+      
+      <div className="relative max-w-4xl mx-auto px-8 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 text-[#666] text-sm font-medium rounded-full mb-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100/80 text-[#666] text-sm font-medium rounded-full mb-8 backdrop-blur-sm">
           <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
           Launching December 2024
         </div>
 
         {/* Massive H1 */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#111] tracking-[-0.02em] leading-[1.1] mb-6">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#111] tracking-tighter leading-[1.05] mb-6">
           AI-Powered PDF Search
           <br />
-          <span className="text-[#666]">100% Offline</span>
+          <span className="text-[#9ca3af]">100% Offline</span>
         </h1>
 
         {/* Subheadline */}
@@ -171,13 +180,13 @@ const Hero = () => {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <a href="#cta">
-            <button className="px-8 py-3.5 bg-[#111] text-white text-base font-medium rounded-lg hover:bg-[#333] transition-colors flex items-center gap-2">
+            <button className="px-8 py-3.5 bg-[#111] text-white text-base font-medium rounded-lg hover:bg-[#333] transition-colors flex items-center gap-2 shadow-lg shadow-black/10">
               Join Early Access
               <ArrowRight className="w-4 h-4" />
             </button>
           </a>
           <a href="#features">
-            <button className="px-8 py-3.5 bg-white text-[#111] text-base font-medium rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+            <button className="px-8 py-3.5 bg-white text-[#111] text-base font-medium rounded-lg border border-gray-100 hover:bg-gray-50 transition-colors">
               See Features
             </button>
           </a>
@@ -185,13 +194,13 @@ const Hero = () => {
 
         {/* App Screenshot */}
         <div className="max-w-4xl mx-auto">
-          <div className="relative rounded-xl border border-gray-200 shadow-2xl overflow-hidden bg-gray-50 aspect-[16/10]">
+          <div className="relative rounded-xl border border-gray-100 shadow-2xl overflow-hidden bg-gradient-to-b from-gray-50 to-white aspect-[16/10]">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center">
-                <div className="w-16 h-16 bg-gray-200 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <FileSearch className="w-8 h-8 text-[#666]" />
+                <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <FileSearch className="w-8 h-8 text-[#9ca3af]" />
                 </div>
-                <p className="text-[#666] font-medium">Product Demo Coming Soon</p>
+                <p className="text-[#9ca3af] font-medium">Product Demo Coming Soon</p>
               </div>
             </div>
           </div>
@@ -249,55 +258,55 @@ const Features = () => {
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Large Card */}
-          <div className="md:col-span-2 lg:col-span-2 bg-white rounded-xl border border-gray-200 p-8 hover:border-gray-300 transition-colors">
-            <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center mb-6">
+          <div className="md:col-span-2 lg:col-span-2 bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100/80 p-8 hover:border-gray-200 hover:bg-white/80 transition-all">
+            <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
               <Zap className="w-6 h-6 text-[#111]" />
             </div>
-            <h3 className="text-xl font-semibold text-[#111] tracking-[-0.02em] mb-2">Instant Search</h3>
+            <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Instant Search</h3>
             <p className="text-[#666] leading-relaxed">
               Find information across hundreds of pages in milliseconds. No more manual searching through documents.
             </p>
           </div>
 
           {/* Small Card */}
-          <div className="bg-white rounded-xl border border-gray-200 p-8 hover:border-gray-300 transition-colors">
-            <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center mb-6">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100/80 p-8 hover:border-gray-200 hover:bg-white/80 transition-all">
+            <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
               <Lock className="w-6 h-6 text-[#111]" />
             </div>
-            <h3 className="text-xl font-semibold text-[#111] tracking-[-0.02em] mb-2">100% Offline</h3>
+            <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">100% Offline</h3>
             <p className="text-[#666] leading-relaxed">
               Runs entirely on your computer. No internet required.
             </p>
           </div>
 
           {/* Small Card */}
-          <div className="bg-white rounded-xl border border-gray-200 p-8 hover:border-gray-300 transition-colors">
-            <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center mb-6">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100/80 p-8 hover:border-gray-200 hover:bg-white/80 transition-all">
+            <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
               <Shield className="w-6 h-6 text-[#111]" />
             </div>
-            <h3 className="text-xl font-semibold text-[#111] tracking-[-0.02em] mb-2">Zero Data Leaks</h3>
+            <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Zero Data Leaks</h3>
             <p className="text-[#666] leading-relaxed">
               Your documents never leave your device. Complete privacy.
             </p>
           </div>
 
           {/* Medium Card */}
-          <div className="bg-white rounded-xl border border-gray-200 p-8 hover:border-gray-300 transition-colors">
-            <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center mb-6">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100/80 p-8 hover:border-gray-200 hover:bg-white/80 transition-all">
+            <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
               <FileText className="w-6 h-6 text-[#111]" />
             </div>
-            <h3 className="text-xl font-semibold text-[#111] tracking-[-0.02em] mb-2">Source Citations</h3>
+            <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Source Citations</h3>
             <p className="text-[#666] leading-relaxed">
               Every answer includes the exact document and page number.
             </p>
           </div>
 
           {/* Medium Card */}
-          <div className="bg-white rounded-xl border border-gray-200 p-8 hover:border-gray-300 transition-colors">
-            <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center mb-6">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100/80 p-8 hover:border-gray-200 hover:bg-white/80 transition-all">
+            <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
               <Search className="w-6 h-6 text-[#111]" />
             </div>
-            <h3 className="text-xl font-semibold text-[#111] tracking-[-0.02em] mb-2">Table Analysis</h3>
+            <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Table Analysis</h3>
             <p className="text-[#666] leading-relaxed">
               Accurately reads tables, charts, and financial data.
             </p>
@@ -343,9 +352,9 @@ const UseCases = () => {
           {cases.map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl border border-gray-200 p-8 hover:border-gray-300 transition-colors"
+              className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100/80 p-8 hover:border-gray-200 hover:bg-white/80 transition-all"
             >
-              <h3 className="text-lg font-semibold text-[#111] tracking-[-0.02em] mb-2">{item.title}</h3>
+              <h3 className="text-lg font-semibold text-[#111] tracking-tight mb-2">{item.title}</h3>
               <p className="text-[#666] leading-relaxed">{item.description}</p>
             </div>
           ))}
@@ -378,12 +387,12 @@ const Security = () => {
           {points.map((point, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl border border-gray-200 p-6 hover:border-gray-300 transition-colors"
+              className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100/80 p-6 hover:border-gray-200 hover:bg-white/80 transition-all"
             >
-              <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-10 h-10 bg-green-50/80 rounded-lg flex items-center justify-center mb-4">
                 <CheckCircle className="w-5 h-5 text-green-600" />
               </div>
-              <h3 className="text-base font-semibold text-[#111] tracking-[-0.02em] mb-1">{point.title}</h3>
+              <h3 className="text-base font-semibold text-[#111] tracking-tight mb-1">{point.title}</h3>
               <p className="text-sm text-[#666] leading-relaxed">{point.description}</p>
             </div>
           ))}
@@ -434,8 +443,8 @@ const Pricing = () => {
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`bg-white rounded-xl border p-8 ${
-                plan.featured ? "border-[#111] ring-1 ring-[#111]" : "border-gray-200"
+              className={`bg-white/60 backdrop-blur-sm rounded-xl border p-8 transition-all ${
+                plan.featured ? "border-[#111]/80 ring-1 ring-[#111]/80 bg-white/80" : "border-gray-100/80 hover:border-gray-200 hover:bg-white/80"
               }`}
             >
               {plan.featured && (
@@ -444,7 +453,7 @@ const Pricing = () => {
               <h3 className="text-lg font-semibold text-[#111] mb-1">{plan.name}</h3>
               <p className="text-sm text-[#666] mb-4">{plan.description}</p>
               <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-4xl font-bold text-[#111]">{plan.price}</span>
+                <span className="text-4xl font-extrabold text-[#111] tracking-tight">{plan.price}</span>
                 {plan.period && <span className="text-[#666]">{plan.period}</span>}
               </div>
               <ul className="space-y-3 mb-8">
@@ -460,7 +469,7 @@ const Pricing = () => {
                   className={`w-full py-3 rounded-lg font-medium transition-colors ${
                     plan.featured
                       ? "bg-[#111] text-white hover:bg-[#333]"
-                      : "bg-white text-[#111] border border-gray-200 hover:bg-gray-50"
+                      : "bg-white/80 text-[#111] border border-gray-100 hover:bg-gray-50"
                   }`}
                 >
                   Get Started
@@ -508,11 +517,11 @@ const FAQ = () => {
           {faqs.map((faq, index) => (
             <details
               key={index}
-              className="bg-white rounded-xl border border-gray-200 p-6 group"
+              className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-100/80 p-6 group hover:bg-white/80 transition-all"
             >
               <summary className="font-medium text-[#111] cursor-pointer list-none flex items-center justify-between">
                 {faq.q}
-                <ChevronDown className="w-5 h-5 text-[#666] group-open:rotate-180 transition-transform" />
+                <ChevronDown className="w-5 h-5 text-[#9ca3af] group-open:rotate-180 transition-transform" />
               </summary>
               <p className="mt-4 text-[#666] leading-relaxed">{faq.a}</p>
             </details>
@@ -672,35 +681,43 @@ const Footer = () => (
 
 // Section Divider with Plus Icons
 const SectionDivider = () => (
-  <div className="relative w-full border-b border-gray-200">
+  <div className="relative w-full border-b border-gray-100/50">
     {/* Left Plus Icon */}
     <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 flex items-center justify-center">
-      <span className="text-gray-300 text-lg font-light">+</span>
+      <span className="text-gray-200 text-lg font-light">+</span>
     </div>
     {/* Right Plus Icon */}
     <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-4 h-4 flex items-center justify-center">
-      <span className="text-gray-300 text-lg font-light">+</span>
+      <span className="text-gray-200 text-lg font-light">+</span>
     </div>
   </div>
 );
 
-// Technical Grid Background with Dot Pattern
+// Technical Grid Background with Dot Pattern and Center Mask
 const TechnicalGridBackground = ({ children }: { children: React.ReactNode }) => (
   <div 
     className="min-h-screen relative"
     style={{ 
       fontFamily: "'Inter', sans-serif",
-      backgroundImage: `radial-gradient(circle, #d1d5db 1px, transparent 1px)`,
-      backgroundSize: '24px 24px',
-      backgroundColor: '#f9fafb'
+      backgroundColor: '#ffffff'
     }}
   >
+    {/* Dot Pattern Layer with Center Fade Mask */}
+    <div 
+      className="fixed inset-0 pointer-events-none"
+      style={{ 
+        backgroundImage: `radial-gradient(circle, rgba(229, 231, 235, 0.4) 1px, transparent 1px)`,
+        backgroundSize: '20px 20px',
+        maskImage: 'radial-gradient(ellipse 80% 50% at 50% 30%, transparent 30%, black 80%)',
+        WebkitMaskImage: 'radial-gradient(ellipse 80% 50% at 50% 30%, transparent 30%, black 80%)',
+      }}
+    />
     {/* Main Content Container with Vertical Borders */}
-    <div className="relative max-w-6xl mx-auto bg-white border-x border-gray-200 min-h-screen">
+    <div className="relative max-w-6xl mx-auto bg-white/80 backdrop-blur-[1px] border-x border-gray-100/60 min-h-screen">
       {/* Top Left Corner Dot */}
-      <div className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gray-300 rounded-full" />
+      <div className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-gray-200 rounded-full" />
       {/* Top Right Corner Dot */}
-      <div className="absolute right-0 top-0 translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gray-300 rounded-full" />
+      <div className="absolute right-0 top-0 translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-gray-200 rounded-full" />
       {children}
     </div>
   </div>

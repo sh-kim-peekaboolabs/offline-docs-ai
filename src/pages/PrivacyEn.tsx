@@ -19,7 +19,7 @@ const PrivacyEn = () => {
           <section className="bg-muted/30 p-6 rounded-lg border border-border">
             <h3 className="text-xl font-bold mb-4">TL;DR</h3>
             <p className="text-muted-foreground mb-4">
-              Peekaboo Labs, Inc. aims to provide a privacy-centric <strong>Offline-first</strong> service.
+              PeekabooLabs, Inc. aims to provide a privacy-centric <strong>Offline-first</strong> service.
             </p>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
               <li>

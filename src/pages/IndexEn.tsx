@@ -89,14 +89,18 @@ const Nav = () => {
                 <ChevronDown className="w-4 h-4" />
               </button>
               <div className="absolute right-0 top-full mt-2 w-32 bg-white border border-white/10 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                <a href="/" className="block px-4 py-2.5 text-sm text-[#666] hover:bg-gray-50 rounded-t-xl">한국어</a>
-                <span className="block px-4 py-2.5 text-sm text-[#111] bg-gray-50 rounded-b-xl font-medium">English</span>
+                <a href="/" className="block px-4 py-2.5 text-sm text-[#666] hover:bg-gray-50 rounded-t-xl">
+                  한국어
+                </a>
+                <span className="block px-4 py-2.5 text-sm text-[#111] bg-gray-50 rounded-b-xl font-medium">
+                  English
+                </span>
               </div>
             </div>
 
             <a href="#cta" className="hidden md:block">
               <button className="px-5 py-2 bg-[#111] text-white text-sm font-medium rounded-lg hover:bg-[#333] transition-colors">
-                Get Early Access
+                Download for Mac
               </button>
             </a>
 
@@ -133,7 +137,7 @@ const Nav = () => {
               ))}
               <a href="#cta" onClick={() => setMobileMenuOpen(false)} className="mt-4">
                 <button className="w-full px-5 py-3 bg-[#111] text-white text-base font-medium rounded-lg">
-                  Get Early Access
+                  Download for Mac
                 </button>
               </a>
             </div>
@@ -144,63 +148,51 @@ const Nav = () => {
   );
 };
 
-// Linear-style Hero
+// Linear-style Hero (Glow Removed)
 const Hero = () => {
   return (
     <section className="relative bg-transparent pt-20 pb-24 md:pt-32 md:pb-32 overflow-hidden">
-      {/* Ambient Glow */}
-      <div 
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse at center, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.04) 40%, transparent 70%)',
-          filter: 'blur(60px)',
-        }}
-      />
-      
+      {/* Ambient Glow 제거됨 (깨끗한 흰색 배경) */}
+
       <div className="relative max-w-4xl mx-auto px-8 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100/80 text-[#666] text-sm font-medium rounded-full mb-8 backdrop-blur-sm">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-50 text-[#666] text-sm font-medium rounded-full mb-8 border border-gray-100">
           <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          Launching December 2024
+          Get early access and try it now!
         </div>
 
         {/* Massive H1 */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#111] tracking-tighter leading-[1.05] mb-6">
-          AI-Powered PDF Search
-          <br />
-          <span className="text-[#9ca3af]">100% Offline</span>
+        <h1 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#111] tracking-tighter leading-[1.05] mb-6">
+          On-Device AI <br />
+          PDF Search Assistant
         </h1>
 
         {/* Subheadline */}
         <p className="text-lg md:text-xl text-[#666] leading-relaxed max-w-2xl mx-auto mb-10">
-          Search and chat with your documents without uploading anything. 
-          Your data never leaves your computer.
+          LocalDocs gives instant, cited answers from your files
+          <br />
+          without sending any data to the cloud.
         </p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <a href="#cta">
             <button className="px-8 py-3.5 bg-[#111] text-white text-base font-medium rounded-lg hover:bg-[#333] transition-colors flex items-center gap-2 shadow-lg shadow-black/10">
-              Join Early Access
+              Download for Mac
               <ArrowRight className="w-4 h-4" />
-            </button>
-          </a>
-          <a href="#features">
-            <button className="px-8 py-3.5 bg-white text-[#111] text-base font-medium rounded-lg border border-white/10 hover:bg-gray-50 transition-colors">
-              See Features
             </button>
           </a>
         </div>
 
-        {/* App Screenshot */}
+        {/* App Screenshot Placeholder */}
         <div className="max-w-4xl mx-auto">
-          <div className="relative rounded-xl border border-white/10 shadow-2xl overflow-hidden bg-gradient-to-b from-gray-50 to-white aspect-[16/10]">
+          <div className="relative rounded-xl border border-gray-200 shadow-2xl overflow-hidden bg-white aspect-[16/10]">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center">
-                <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <FileSearch className="w-8 h-8 text-[#9ca3af]" />
+                <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <FileSearch className="w-8 h-8 text-gray-300" />
                 </div>
-                <p className="text-[#9ca3af] font-medium">Product Demo Coming Soon</p>
+                <p className="text-gray-400 font-medium">Product Demo Coming Soon</p>
               </div>
             </div>
           </div>
@@ -258,7 +250,7 @@ const Features = () => {
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Large Card */}
-          <div className="md:col-span-2 lg:col-span-2 bg-white/60 backdrop-blur-sm rounded-xl border border-white/10 p-8 hover:border-gray-50 hover:bg-white/80 transition-all">
+          <div className="md:col-span-2 lg:col-span-2 bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-8 hover:border-gray-300 hover:bg-white/80 transition-all">
             <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
               <Zap className="w-6 h-6 text-[#111]" />
             </div>
@@ -269,47 +261,39 @@ const Features = () => {
           </div>
 
           {/* Small Card */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-white/10 p-8 hover:border-gray-50 hover:bg-white/80 transition-all">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-8 hover:border-gray-300 hover:bg-white/80 transition-all">
             <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
               <Lock className="w-6 h-6 text-[#111]" />
             </div>
             <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">100% Offline</h3>
-            <p className="text-[#666] leading-relaxed">
-              Runs entirely on your computer. No internet required.
-            </p>
+            <p className="text-[#666] leading-relaxed">Runs entirely on your computer. No internet required.</p>
           </div>
 
           {/* Small Card */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-white/10 p-8 hover:border-gray-50 hover:bg-white/80 transition-all">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-8 hover:border-gray-300 hover:bg-white/80 transition-all">
             <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
               <Shield className="w-6 h-6 text-[#111]" />
             </div>
             <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Zero Data Leaks</h3>
-            <p className="text-[#666] leading-relaxed">
-              Your documents never leave your device. Complete privacy.
-            </p>
+            <p className="text-[#666] leading-relaxed">Your documents never leave your device. Complete privacy.</p>
           </div>
 
           {/* Medium Card */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-white/10 p-8 hover:border-gray-50 hover:bg-white/80 transition-all">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-8 hover:border-gray-300 hover:bg-white/80 transition-all">
             <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
               <FileText className="w-6 h-6 text-[#111]" />
             </div>
             <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Source Citations</h3>
-            <p className="text-[#666] leading-relaxed">
-              Every answer includes the exact document and page number.
-            </p>
+            <p className="text-[#666] leading-relaxed">Every answer includes the exact document and page number.</p>
           </div>
 
           {/* Medium Card */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-white/10 p-8 hover:border-gray-50 hover:bg-white/80 transition-all">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-8 hover:border-gray-300 hover:bg-white/80 transition-all">
             <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
               <Search className="w-6 h-6 text-[#111]" />
             </div>
             <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Table Analysis</h3>
-            <p className="text-[#666] leading-relaxed">
-              Accurately reads tables, charts, and financial data.
-            </p>
+            <p className="text-[#666] leading-relaxed">Accurately reads tables, charts, and financial data.</p>
           </div>
         </div>
       </div>
@@ -352,7 +336,7 @@ const UseCases = () => {
           {cases.map((item, index) => (
             <div
               key={index}
-              className="bg-white/60 backdrop-blur-sm rounded-xl border border-white/10 p-8 hover:border-gray-50 hover:bg-white/80 transition-all"
+              className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-8 hover:border-gray-300 hover:bg-white/80 transition-all"
             >
               <h3 className="text-lg font-semibold text-[#111] tracking-tight mb-2">{item.title}</h3>
               <p className="text-[#666] leading-relaxed">{item.description}</p>
@@ -387,7 +371,7 @@ const Security = () => {
           {points.map((point, index) => (
             <div
               key={index}
-              className="bg-white/60 backdrop-blur-sm rounded-xl border border-white/10 p-6 hover:border-gray-50 hover:bg-white/80 transition-all"
+              className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-6 hover:border-gray-300 hover:bg-white/80 transition-all"
             >
               <div className="w-10 h-10 bg-green-50/80 rounded-lg flex items-center justify-center mb-4">
                 <CheckCircle className="w-5 h-5 text-green-600" />
@@ -444,7 +428,9 @@ const Pricing = () => {
             <div
               key={index}
               className={`bg-white/60 backdrop-blur-sm rounded-xl border p-8 transition-all ${
-                plan.featured ? "border-[#111]/80 ring-1 ring-[#111]/80 bg-white/80" : "border-white/10 hover:border-gray-50 hover:bg-white/80"
+                plan.featured
+                  ? "border-[#111]/80 ring-1 ring-[#111]/80 bg-white/80"
+                  : "border-gray-200 hover:border-gray-300 hover:bg-white/80"
               }`}
             >
               {plan.featured && (
@@ -490,7 +476,10 @@ const FAQ = () => {
     { q: "What file formats are supported?", a: "Currently PDF. HWP, PPTX, and XLSX coming soon." },
     { q: "Can it read tables and charts?", a: "Yes, it accurately analyzes tables and financial data." },
     { q: "Are sources provided?", a: "Yes, every answer includes document name and page number." },
-    { q: "Is it secure for sensitive documents?", a: "Yes, 100% local processing means no data ever leaves your device." },
+    {
+      q: "Is it secure for sensitive documents?",
+      a: "Yes, 100% local processing means no data ever leaves your device.",
+    },
   ];
 
   const faqJsonLd = {
@@ -517,7 +506,7 @@ const FAQ = () => {
           {faqs.map((faq, index) => (
             <details
               key={index}
-              className="bg-white/60 backdrop-blur-sm rounded-xl border border-white/10 p-6 group hover:bg-white/80 transition-all"
+              className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-6 group hover:border-gray-300 hover:bg-white/80 transition-all"
             >
               <summary className="font-medium text-[#111] cursor-pointer list-none flex items-center justify-between">
                 {faq.q}
@@ -574,25 +563,27 @@ const CTA = () => {
         toast.error("Invalid request.");
         return;
       }
-      const { error } = await supabase.from("email_signups").insert([{
-        email: values.email,
-        consent: values.consent,
-        page_source: "/en",
-        utm_source: values.utm_source || null,
-        utm_campaign_id: values.utm_campaign_id || null,
-        utm_medium: values.utm_medium || null,
-        utm_campaign_name: values.utm_campaign_name || null,
-        utm_adset_id: values.utm_adset_id || null,
-        utm_adset_name: values.utm_adset_name || null,
-        utm_ad_id: values.utm_ad_id || null,
-        utm_ad_name: values.utm_ad_name || null,
-        linkedin_campaign_name: values.linkedin_campaign_name || null,
-        linkedin_ad_id: values.linkedin_ad_id || null,
-        linkedin_campaign_group_id: values.linkedin_campaign_group_id || null,
-        linkedin_campaign_group_name: values.linkedin_campaign_group_name || null,
-        linkedin_campaign_id: values.linkedin_campaign_id || null,
-        linkedin_ad_name: values.linkedin_ad_name || null,
-      }]);
+      const { error } = await supabase.from("email_signups").insert([
+        {
+          email: values.email,
+          consent: values.consent,
+          page_source: "/en",
+          utm_source: values.utm_source || null,
+          utm_campaign_id: values.utm_campaign_id || null,
+          utm_medium: values.utm_medium || null,
+          utm_campaign_name: values.utm_campaign_name || null,
+          utm_adset_id: values.utm_adset_id || null,
+          utm_adset_name: values.utm_adset_name || null,
+          utm_ad_id: values.utm_ad_id || null,
+          utm_ad_name: values.utm_ad_name || null,
+          linkedin_campaign_name: values.linkedin_campaign_name || null,
+          linkedin_ad_id: values.linkedin_ad_id || null,
+          linkedin_campaign_group_id: values.linkedin_campaign_group_id || null,
+          linkedin_campaign_group_name: values.linkedin_campaign_group_name || null,
+          linkedin_campaign_id: values.linkedin_campaign_id || null,
+          linkedin_ad_name: values.linkedin_ad_name || null,
+        },
+      ]);
       if (error) throw error;
       trackLead(values.email);
       toast.success("Successfully joined Early Access!");
@@ -605,12 +596,8 @@ const CTA = () => {
   return (
     <section id="cta" className="bg-[#111] py-20 md:py-32">
       <div className="px-8 max-w-xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white tracking-[-0.02em] mb-4">
-          Get Early Access
-        </h2>
-        <p className="text-lg text-gray-400 mb-8">
-          Join the waitlist and get 1 month free Pro when we launch.
-        </p>
+        <h2 className="text-3xl md:text-4xl font-bold text-white tracking-[-0.02em] mb-4">Get Early Access</h2>
+        <p className="text-lg text-gray-400 mb-8">Join the waitlist and get 1 month free Pro when we launch.</p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
@@ -623,7 +610,14 @@ const CTA = () => {
             {errors.email && <p className="text-sm text-red-400 mt-2 text-left">{errors.email.message}</p>}
           </div>
 
-          <input type="text" {...register("honeypot")} className="absolute -left-[9999px] w-px h-px" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+          <input
+            type="text"
+            {...register("honeypot")}
+            className="absolute -left-[9999px] w-px h-px"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
           <input type="hidden" {...register("utm_source")} />
           <input type="hidden" {...register("utm_campaign_id")} />
           <input type="hidden" {...register("utm_medium")} />
@@ -640,7 +634,11 @@ const CTA = () => {
           <input type="hidden" {...register("linkedin_ad_name")} />
 
           <div className="flex items-start gap-3">
-            <Checkbox id="consent" {...register("consent")} className="mt-1 border-gray-600 data-[state=checked]:bg-white data-[state=checked]:text-[#111]" />
+            <Checkbox
+              id="consent"
+              {...register("consent")}
+              className="mt-1 border-gray-600 data-[state=checked]:bg-white data-[state=checked]:text-[#111]"
+            />
             <Label htmlFor="consent" className="text-sm text-gray-400 text-left leading-relaxed cursor-pointer">
               I agree to receive product updates and marketing emails.
             </Label>
@@ -670,8 +668,12 @@ const Footer = () => (
           <span className="text-sm font-medium text-[#111]">LocalDocs</span>
         </div>
         <div className="flex items-center gap-6">
-          <a href="/privacy" className="text-sm text-[#666] hover:text-[#111] transition-colors">Privacy</a>
-          <a href="/terms" className="text-sm text-[#666] hover:text-[#111] transition-colors">Terms</a>
+          <a href="/privacy" className="text-sm text-[#666] hover:text-[#111] transition-colors">
+            Privacy
+          </a>
+          <a href="/terms" className="text-sm text-[#666] hover:text-[#111] transition-colors">
+            Terms
+          </a>
         </div>
         <p className="text-sm text-[#666]">© 2024 PeekabooLabs. All rights reserved.</p>
       </div>
@@ -693,33 +695,29 @@ const SectionDivider = () => (
   </div>
 );
 
-// Technical Grid Background with Dot Pattern and Center Mask
+// Technical Grid Background (Solid Border)
 const TechnicalGridBackground = ({ children }: { children: React.ReactNode }) => (
-  <div 
+  <div
     className="min-h-screen relative"
-    style={{ 
+    style={{
       fontFamily: "'Inter', sans-serif",
-      backgroundColor: '#ffffff'
+      backgroundColor: "#ffffff",
     }}
   >
-    {/* Dot Pattern Layer with Center Fade Mask */}
+    {/* High-Density Dot Pattern */}
     <div
       className="fixed inset-0 pointer-events-none"
       style={{
-        backgroundImage: `radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px)`,
-        backgroundSize: '20px 20px',
-        maskImage: 'radial-gradient(ellipse at 50% 30%, transparent 40%, black 100%)',
-        WebkitMaskImage: 'radial-gradient(ellipse at 50% 30%, transparent 40%, black 100%)',
+        backgroundImage: `radial-gradient(circle, rgba(148, 163, 184, 0.15) 1px, transparent 1px)`,
+        backgroundSize: "14px 14px",
+        maskImage: "radial-gradient(ellipse at center, transparent 40%, black 100%)",
+        WebkitMaskImage: "radial-gradient(ellipse at center, transparent 40%, black 100%)",
       }}
     />
-    {/* Main Content Container with Vertical Borders */}
-    <div className="relative max-w-6xl mx-auto bg-white/80 backdrop-blur-[1px] border-x border-white/10 min-h-screen">
-      {/* Top Left Corner Dot */}
-      <div className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-gray-200 rounded-full" />
-      {/* Top Right Corner Dot */}
-      <div className="absolute right-0 top-0 translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-gray-200 rounded-full" />
-      {children}
-    </div>
+
+    {/* Main Content Container */}
+    {/* [수정] border-dashed 삭제 -> 실선(기본값) 적용 / 색상은 gray-200 유지 */}
+    <div className="relative max-w-6xl mx-auto bg-transparent min-h-screen border-x border-gray-200">{children}</div>
   </div>
 );
 

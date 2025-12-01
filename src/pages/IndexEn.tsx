@@ -6,18 +6,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import {
-  FileText,
-  Lock,
-  CheckCircle,
-  Zap,
-  ChevronDown,
-  Menu,
-  X,
-  ArrowRight,
-  Search,
-  Shield,
-} from "lucide-react";
+import { FileText, Lock, CheckCircle, Zap, ChevronDown, Menu, X, ArrowRight, Search, Shield } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { useEffect, useState, memo } from "react";
 import { usePageTracking } from "@/hooks/useAnalytics";
@@ -167,7 +156,7 @@ const Hero = () => {
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-50 text-[#666] text-sm font-medium rounded-full mb-8 border border-gray-100">
           <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          try it now!
+          Try it now!
         </div>
 
         {/* Massive H1 */}
@@ -309,7 +298,7 @@ const Features = memo(() => {
     </section>
   );
 });
-Features.displayName = 'Features';
+Features.displayName = "Features";
 
 // Use Cases Section - Memoized
 const UseCases = memo(() => {
@@ -357,7 +346,7 @@ const UseCases = memo(() => {
     </section>
   );
 });
-UseCases.displayName = 'UseCases';
+UseCases.displayName = "UseCases";
 
 // Security Section - Memoized
 const Security = memo(() => {
@@ -396,7 +385,7 @@ const Security = memo(() => {
     </section>
   );
 });
-Security.displayName = 'Security';
+Security.displayName = "Security";
 
 // Pricing - Memoized
 const Pricing = memo(() => (
@@ -549,7 +538,7 @@ const Pricing = memo(() => (
     </div>
   </section>
 ));
-Pricing.displayName = 'Pricing';
+Pricing.displayName = "Pricing";
 
 // FAQ Section - Memoized
 const FAQ = memo(() => {
@@ -604,7 +593,7 @@ const FAQ = memo(() => {
     </section>
   );
 });
-FAQ.displayName = 'FAQ';
+FAQ.displayName = "FAQ";
 
 // CTA Section
 const CTA = () => {
@@ -782,7 +771,7 @@ const SectionDivider = memo(() => (
     </div>
   </div>
 ));
-SectionDivider.displayName = 'SectionDivider';
+SectionDivider.displayName = "SectionDivider";
 
 // Technical Grid Background (Solid Border) - Memoized for performance
 const TechnicalGridBackground = memo(({ children }: { children: React.ReactNode }) => (
@@ -793,7 +782,7 @@ const TechnicalGridBackground = memo(({ children }: { children: React.ReactNode 
     <div className="relative max-w-6xl mx-auto bg-transparent min-h-screen border-x border-gray-200">{children}</div>
   </div>
 ));
-TechnicalGridBackground.displayName = 'TechnicalGridBackground';
+TechnicalGridBackground.displayName = "TechnicalGridBackground";
 
 // Main Page Component
 const IndexEn = () => {

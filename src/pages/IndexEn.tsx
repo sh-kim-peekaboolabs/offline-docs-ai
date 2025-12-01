@@ -151,62 +151,73 @@ const Nav = () => {
   );
 };
 
-// Alert Banner
-const AlertBanner = () => (
-  <div className="w-full bg-gradient-to-r from-[#FEF2F2] to-[#FEE2E2] border-b border-[#FECACA]">
-    <div className="max-w-[1200px] mx-auto px-6 py-4 flex items-center justify-center gap-3">
-      <span className="text-xl">⚠️</span>
-      <p className="text-base font-semibold text-[#991B1B]">
-        Using ChatGPT for confidential documents? Every upload is a compliance violation.
-      </p>
-    </div>
-  </div>
-);
-
-// Hero Section
+// Hero Section - Problem → Solution
 const Hero = () => {
   const features = [
-    { text: "Works 100% offline", subtext: "(no internet needed)" },
-    { text: "Zero data ever leaves your computer", subtext: null },
-    { text: "Reads tables from financial documents", subtext: null },
-    { text: "Shows exact sources for every answer", subtext: null },
+    "100% offline (no internet needed)",
+    "Zero data ever leaves your computer",
+    "Reads tables from financial documents",
+    "Shows exact sources for every answer",
   ];
 
   return (
-    <>
-      <AlertBanner />
-      <section className="bg-gradient-to-b from-white to-[#F9FAFB] pt-20 pb-[120px] px-6">
+    <section className="bg-gradient-to-b from-[#FEF2F2] to-white">
+      {/* Problem Statement */}
+      <div className="pt-20 pb-[60px] px-6">
         <div className="max-w-[1200px] mx-auto text-center">
-          {/* Badge */}
-          <div className="inline-block bg-[#DBEAFE] text-[#1E40AF] text-sm font-semibold px-4 py-2 rounded-[20px] mb-6">
-            🚀 Launching December 10, 2024
-          </div>
-
-          {/* Headline */}
-          <h1 className="text-4xl md:text-5xl lg:text-[72px] font-bold text-[#111827] tracking-[-0.03em] leading-[1.1] mb-6 max-w-[900px] mx-auto">
-            Stop Risking Compliance Violations
+          {/* Warning Question */}
+          <h1 className="text-3xl md:text-4xl lg:text-[48px] font-bold text-[#991B1B] tracking-[-0.02em] leading-[1.2] mb-6 max-w-[900px] mx-auto">
+            🚨 Are Your Employees Uploading Confidential Documents to ChatGPT Right Now?
           </h1>
 
+          {/* Warning Subtext */}
+          <div className="space-y-2 mb-10">
+            <p className="text-lg md:text-xl font-semibold text-[#DC2626] leading-[1.5]">
+              Every upload = Compliance violation
+            </p>
+            <p className="text-lg md:text-xl font-semibold text-[#DC2626] leading-[1.5]">
+              Every ChatGPT conversation = Data leak risk
+            </p>
+          </div>
+
+          {/* Divider */}
+          <div className="w-[200px] h-[2px] bg-[#E5E7EB] mx-auto" />
+        </div>
+      </div>
+
+      {/* Solution Statement */}
+      <div className="pb-20 px-6">
+        <div className="max-w-[1200px] mx-auto text-center">
+          {/* Safe Alternative Badge */}
+          <div className="inline-block bg-[#D1FAE5] text-[#065F46] text-sm font-semibold px-4 py-2 rounded-[20px] mb-6 mt-10">
+            ✅ The Safe Alternative
+          </div>
+
+          {/* Main Headline */}
+          <h2 className="text-3xl md:text-4xl lg:text-[56px] font-bold text-[#111827] tracking-[-0.02em] leading-[1.2] mb-6 max-w-[900px] mx-auto">
+            LocalDocs: AI Document Search That Never Leaves Your Computer
+          </h2>
+
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-[#4B5563] leading-[1.6] mb-12 max-w-[700px] mx-auto">
-            AI-powered PDF search that runs 100% on your computer. Zero uploads. Zero cloud. Just instant answers from your documents.
-          </p>
+          <div className="max-w-[700px] mx-auto mb-12">
+            <p className="text-lg md:text-xl text-[#4B5563] leading-[1.6]">
+              No uploads. No cloud. No compliance risk.
+            </p>
+            <p className="text-lg md:text-xl text-[#4B5563] leading-[1.6]">
+              Just instant answers from your PDFs, completely offline.
+            </p>
+          </div>
 
           {/* Features Grid 2x2 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[700px] mx-auto mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-[800px] mx-auto mb-12">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-white p-5 rounded-xl border border-[#E5E7EB] shadow-[0_1px_2px_rgba(0,0,0,0.05)] text-left"
+                className="bg-white p-5 rounded-xl border-2 border-[#10B981] shadow-[0_2px_4px_rgba(0,0,0,0.05)] text-left"
               >
-                <div className="flex items-start gap-3">
-                  <span className="text-[#10B981] text-lg font-bold mt-0.5">✓</span>
-                  <div>
-                    <span className="text-base font-semibold text-[#111827]">{feature.text}</span>
-                    {feature.subtext && (
-                      <span className="text-sm text-[#6B7280] ml-1">{feature.subtext}</span>
-                    )}
-                  </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-[#10B981] text-lg font-bold">✓</span>
+                  <span className="text-base font-semibold text-[#111827]">{feature}</span>
                 </div>
               </div>
             ))}
@@ -216,19 +227,19 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
             <a href="#cta">
               <button className="px-9 py-[18px] bg-[#111827] text-white text-base font-semibold rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.1)] hover:bg-[#1F2937] hover:shadow-[0_6px_12px_rgba(0,0,0,0.15)] hover:-translate-y-0.5 transition-all duration-200">
-                Join Early Access
+                Get Early Access Now
               </button>
             </a>
             <a href="#demo">
-              <button className="px-9 py-[18px] bg-transparent text-[#111827] text-base font-semibold rounded-lg border-2 border-[#E5E7EB] hover:bg-[#F9FAFB] hover:border-[#D1D5DB] hover:-translate-y-0.5 transition-all duration-200">
-                Watch Demo
+              <button className="px-9 py-[18px] bg-transparent text-[#111827] text-base font-semibold rounded-lg border-2 border-[#D1D5DB] hover:bg-[#F9FAFB] hover:-translate-y-0.5 transition-all duration-200">
+                See How It Works
               </button>
             </a>
           </div>
 
           {/* Urgency Text */}
-          <p className="text-sm font-medium text-[#EF4444] mb-16">
-            🔥 Only 50 spots left · Get 1 month free Pro when we launch
+          <p className="text-sm font-semibold text-[#DC2626] mb-16">
+            🔥 50 spots left · Free Pro for 1 month when we launch Dec 10
           </p>
 
           {/* Product Screenshot Placeholder */}
@@ -251,8 +262,8 @@ const Hero = () => {
             </div>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

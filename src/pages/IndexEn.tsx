@@ -151,43 +151,110 @@ const Nav = () => {
   );
 };
 
-// Hero Section
-const Hero = () => (
-  <section className="bg-gradient-to-b from-white to-[#F9FAFB] py-20 md:py-32">
-    <div className="max-w-[1200px] mx-auto px-6 text-center">
-      <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#F3F4F6] rounded-full text-sm font-medium text-[#4B5563] mb-8">
-        <span className="w-2 h-2 bg-[#10B981] rounded-full animate-pulse" />
-        Offline ChatPDF — Privacy First
-      </div>
-
-      <h1 className="text-4xl md:text-5xl lg:text-[64px] font-bold text-[#111827] tracking-[-0.02em] leading-[1.1] mb-6 max-w-4xl mx-auto">
-        Find Answers in Dozens of PDFs at Once, Locally
-      </h1>
-
-      <p className="text-lg md:text-xl text-[#4B5563] leading-relaxed mb-10 max-w-2xl mx-auto">
-        Works without internet connection. All data stays completely private on your device.
+// Alert Banner
+const AlertBanner = () => (
+  <div className="w-full bg-gradient-to-r from-[#FEF2F2] to-[#FEE2E2] border-b border-[#FECACA]">
+    <div className="max-w-[1200px] mx-auto px-6 py-4 flex items-center justify-center gap-3">
+      <span className="text-xl">⚠️</span>
+      <p className="text-base font-semibold text-[#991B1B]">
+        Using ChatGPT for confidential documents? Every upload is a compliance violation.
       </p>
-
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-        <a href="#cta">
-          <button className="px-8 py-4 bg-[#111827] text-white text-base font-semibold rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.1)] hover:bg-[#1F2937] hover:shadow-[0_6px_12px_rgba(0,0,0,0.15)] hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2">
-            Join Early Access
-            <ArrowRight className="w-5 h-5" />
-          </button>
-        </a>
-        <a href="#features">
-          <button className="px-8 py-4 bg-transparent text-[#111827] text-base font-semibold rounded-lg border-2 border-[#E5E7EB] hover:bg-[#F9FAFB] hover:border-[#D1D5DB] hover:-translate-y-0.5 transition-all duration-200">
-            Learn More
-          </button>
-        </a>
-      </div>
-
-      <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm font-bold rounded-full shadow-lg">
-        🔥 Only 50 More Spots Left
-      </div>
     </div>
-  </section>
+  </div>
 );
+
+// Hero Section
+const Hero = () => {
+  const features = [
+    { text: "Works 100% offline", subtext: "(no internet needed)" },
+    { text: "Zero data ever leaves your computer", subtext: null },
+    { text: "Reads tables from financial documents", subtext: null },
+    { text: "Shows exact sources for every answer", subtext: null },
+  ];
+
+  return (
+    <>
+      <AlertBanner />
+      <section className="bg-gradient-to-b from-white to-[#F9FAFB] pt-20 pb-[120px] px-6">
+        <div className="max-w-[1200px] mx-auto text-center">
+          {/* Badge */}
+          <div className="inline-block bg-[#DBEAFE] text-[#1E40AF] text-sm font-semibold px-4 py-2 rounded-[20px] mb-6">
+            🚀 Launching December 10, 2024
+          </div>
+
+          {/* Headline */}
+          <h1 className="text-4xl md:text-5xl lg:text-[72px] font-bold text-[#111827] tracking-[-0.03em] leading-[1.1] mb-6 max-w-[900px] mx-auto">
+            Stop Risking Compliance Violations
+          </h1>
+
+          {/* Subheadline */}
+          <p className="text-lg md:text-xl text-[#4B5563] leading-[1.6] mb-12 max-w-[700px] mx-auto">
+            AI-powered PDF search that runs 100% on your computer. Zero uploads. Zero cloud. Just instant answers from your documents.
+          </p>
+
+          {/* Features Grid 2x2 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[700px] mx-auto mb-12">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="bg-white p-5 rounded-xl border border-[#E5E7EB] shadow-[0_1px_2px_rgba(0,0,0,0.05)] text-left"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="text-[#10B981] text-lg font-bold mt-0.5">✓</span>
+                  <div>
+                    <span className="text-base font-semibold text-[#111827]">{feature.text}</span>
+                    {feature.subtext && (
+                      <span className="text-sm text-[#6B7280] ml-1">{feature.subtext}</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
+            <a href="#cta">
+              <button className="px-9 py-[18px] bg-[#111827] text-white text-base font-semibold rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.1)] hover:bg-[#1F2937] hover:shadow-[0_6px_12px_rgba(0,0,0,0.15)] hover:-translate-y-0.5 transition-all duration-200">
+                Join Early Access
+              </button>
+            </a>
+            <a href="#demo">
+              <button className="px-9 py-[18px] bg-transparent text-[#111827] text-base font-semibold rounded-lg border-2 border-[#E5E7EB] hover:bg-[#F9FAFB] hover:border-[#D1D5DB] hover:-translate-y-0.5 transition-all duration-200">
+                Watch Demo
+              </button>
+            </a>
+          </div>
+
+          {/* Urgency Text */}
+          <p className="text-sm font-medium text-[#EF4444] mb-16">
+            🔥 Only 50 spots left · Get 1 month free Pro when we launch
+          </p>
+
+          {/* Product Screenshot Placeholder */}
+          <div className="max-w-[1000px] mx-auto mb-8">
+            <div className="w-full aspect-[5/3] bg-[#F3F4F6] rounded-xl shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)] flex items-center justify-center">
+              <span className="text-base font-medium text-[#9CA3AF]">Product Demo Coming Soon</span>
+            </div>
+          </div>
+
+          {/* Trust Badges */}
+          <div className="flex flex-col items-center gap-4">
+            <span className="text-sm text-[#9CA3AF]">Technology Partners</span>
+            <div className="flex items-center justify-center gap-8">
+              <div className="w-[120px] h-10 bg-[#E5E7EB] rounded opacity-50 grayscale flex items-center justify-center text-xs text-[#9CA3AF]">
+                Intel
+              </div>
+              <div className="w-[120px] h-10 bg-[#E5E7EB] rounded opacity-50 grayscale flex items-center justify-center text-xs text-[#9CA3AF]">
+                LG
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
 
 // How It Works Section
 const HowItWorks = () => (

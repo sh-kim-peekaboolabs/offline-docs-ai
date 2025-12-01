@@ -38,7 +38,7 @@ const PrivacyEn = () => {
           <hr className="border-border" />
 
           <p className="text-muted-foreground">
-            Peekaboo Labs, Inc. (hereinafter referred to as the "Company") complies with the "Personal Information
+            peekabooLabs, Inc. (hereinafter referred to as the "Company") complies with the "Personal Information
             Protection Act" and relevant laws to protect the freedom and rights of data subjects, and processes personal
             information transparently and safely. The Company establishes and discloses this Privacy Policy in
             accordance with Article 30 of the "Personal Information Protection Act" to guide data subjects on matters

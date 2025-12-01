@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
@@ -8,8 +7,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import {
-  ShieldCheck,
-  WifiOff,
   FileText,
   Lock,
   CheckCircle,
@@ -19,13 +16,25 @@ import {
   X,
   ArrowRight,
   Search,
-  FileSearch,
   Shield,
 } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { usePageTracking } from "@/hooks/useAnalytics";
 import { trackLead } from "@/lib/facebook-pixel";
+
+// Memoized background styles to prevent re-renders
+const DOT_PATTERN_STYLE = {
+  backgroundImage: `radial-gradient(circle, rgba(148, 163, 184, 0.15) 1px, transparent 1px)`,
+  backgroundSize: "14px 14px",
+  maskImage: "radial-gradient(ellipse at center, transparent 40%, black 100%)",
+  WebkitMaskImage: "radial-gradient(ellipse at center, transparent 40%, black 100%)",
+} as const;
+
+const CONTAINER_STYLE = {
+  fontFamily: "'Inter', system-ui, sans-serif",
+  backgroundColor: "#ffffff",
+} as const;
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address.").max(255, "Email must be less than 255 characters."),
@@ -202,8 +211,8 @@ const Hero = () => {
   );
 };
 
-// Bento Grid Features
-const Features = () => {
+// Bento Grid Features - Memoized
+const Features = memo(() => {
   const features = [
     {
       icon: Zap,
@@ -299,10 +308,11 @@ const Features = () => {
       </div>
     </section>
   );
-};
+});
+Features.displayName = 'Features';
 
-// Use Cases Section
-const UseCases = () => {
+// Use Cases Section - Memoized
+const UseCases = memo(() => {
   const cases = [
     {
       title: "Legal Teams",
@@ -346,10 +356,11 @@ const UseCases = () => {
       </div>
     </section>
   );
-};
+});
+UseCases.displayName = 'UseCases';
 
-// Security Section
-const Security = () => {
+// Security Section - Memoized
+const Security = memo(() => {
   const points = [
     { title: "Local Processing", description: "All AI processing happens on your PC. Nothing transmitted externally." },
     { title: "Air-Gapped Ready", description: "Works in secure environments with no internet connection." },
@@ -384,9 +395,11 @@ const Security = () => {
       </div>
     </section>
   );
-};
+});
+Security.displayName = 'Security';
 
-const Pricing = () => (
+// Pricing - Memoized
+const Pricing = memo(() => (
   <section id="pricing" className="section" aria-labelledby="pricing-heading">
     <div className="container">
       <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4 text-center">
@@ -535,10 +548,11 @@ const Pricing = () => (
       </div>
     </div>
   </section>
-);
+));
+Pricing.displayName = 'Pricing';
 
-// FAQ Section
-const FAQ = () => {
+// FAQ Section - Memoized
+const FAQ = memo(() => {
   const faqs = [
     { q: "Can I use it without internet?", a: "Yes, all features work completely offline after installation." },
     { q: "What file formats are supported?", a: "Currently PDF. HWP, PPTX, and XLSX coming soon." },
@@ -589,7 +603,8 @@ const FAQ = () => {
       </div>
     </section>
   );
-};
+});
+FAQ.displayName = 'FAQ';
 
 // CTA Section
 const CTA = () => {
@@ -754,8 +769,8 @@ const Footer = () => (
   </footer>
 );
 
-// Section Divider with Plus Icons
-const SectionDivider = () => (
+// Section Divider with Plus Icons - Memoized
+const SectionDivider = memo(() => (
   <div className="relative w-full border-b border-white/10">
     {/* Left Plus Icon */}
     <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 flex items-center justify-center">
@@ -766,33 +781,19 @@ const SectionDivider = () => (
       <span className="text-gray-200 text-lg font-light">+</span>
     </div>
   </div>
-);
+));
+SectionDivider.displayName = 'SectionDivider';
 
-// Technical Grid Background (Solid Border)
-const TechnicalGridBackground = ({ children }: { children: React.ReactNode }) => (
-  <div
-    className="min-h-screen relative"
-    style={{
-      fontFamily: "'Inter', sans-serif",
-      backgroundColor: "#ffffff",
-    }}
-  >
-    {/* High-Density Dot Pattern */}
-    <div
-      className="fixed inset-0 pointer-events-none"
-      style={{
-        backgroundImage: `radial-gradient(circle, rgba(148, 163, 184, 0.15) 1px, transparent 1px)`,
-        backgroundSize: "14px 14px",
-        maskImage: "radial-gradient(ellipse at center, transparent 40%, black 100%)",
-        WebkitMaskImage: "radial-gradient(ellipse at center, transparent 40%, black 100%)",
-      }}
-    />
-
+// Technical Grid Background (Solid Border) - Memoized for performance
+const TechnicalGridBackground = memo(({ children }: { children: React.ReactNode }) => (
+  <div className="min-h-screen relative" style={CONTAINER_STYLE}>
+    {/* High-Density Dot Pattern - Uses static style object */}
+    <div className="fixed inset-0 pointer-events-none" style={DOT_PATTERN_STYLE} />
     {/* Main Content Container */}
-    {/* [수정] border-dashed 삭제 -> 실선(기본값) 적용 / 색상은 gray-200 유지 */}
     <div className="relative max-w-6xl mx-auto bg-transparent min-h-screen border-x border-gray-200">{children}</div>
   </div>
-);
+));
+TechnicalGridBackground.displayName = 'TechnicalGridBackground';
 
 // Main Page Component
 const IndexEn = () => {

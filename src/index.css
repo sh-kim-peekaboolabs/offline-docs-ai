@@ -3,13 +3,8 @@
 @tailwind utilities;
 
 /* Design System - HSL only */
-/* Fonts - optimized for faster loading */
-@import url("https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/pretendard.css");
-
-@font-face {
-  font-family: 'Pretendard';
-  font-display: swap;
-}
+/* Fonts - Using system fonts + Inter for maximum performance */
+/* Pretendard removed - was causing render-blocking @import */
 
 @layer base {
   :root {
@@ -117,7 +112,7 @@
 
 @layer base {
   * { @apply border-border; }
-  body { @apply bg-background text-foreground; font-family: 'Pretendard', Inter, -apple-system, BlinkMacSystemFont, sans-serif; }
+  body { @apply bg-background text-foreground; font-family: Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
 }
 
 @layer utilities {

@@ -63,8 +63,8 @@ const Nav = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200">
+        <div className="px-6 flex items-center justify-between h-16">
           <div className="flex items-center gap-3 cursor-pointer" onClick={scrollToTop}>
             <img src={logo} alt="Localdocs logo" width={32} height={32} loading="eager" />
             <span className="text-lg font-semibold text-[#111] tracking-[-0.02em]">LocalDocs</span>
@@ -148,7 +148,7 @@ const Nav = () => {
 const Hero = () => {
   return (
     <section className="bg-white pt-20 pb-24 md:pt-32 md:pb-32">
-      <div className="max-w-4xl mx-auto px-6 text-center">
+      <div className="max-w-4xl mx-auto px-8 text-center">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 text-[#666] text-sm font-medium rounded-full mb-8">
           <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -238,7 +238,7 @@ const Features = () => {
 
   return (
     <section id="features" className="bg-white py-20 md:py-32">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="px-8">
         <div className="text-center mb-16">
           <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">Features</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] tracking-[-0.02em]">
@@ -330,8 +330,8 @@ const UseCases = () => {
   ];
 
   return (
-    <section id="use-cases" className="bg-gray-50 py-20 md:py-32">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="use-cases" className="bg-[#fafafa] py-20 md:py-32">
+      <div className="px-8">
         <div className="text-center mb-16">
           <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">Use Cases</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] tracking-[-0.02em]">
@@ -366,7 +366,7 @@ const Security = () => {
 
   return (
     <section id="security" className="bg-white py-20 md:py-32">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="px-8">
         <div className="text-center mb-16">
           <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">Security</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] tracking-[-0.02em]">
@@ -421,8 +421,8 @@ const Pricing = () => {
   ];
 
   return (
-    <section id="pricing" className="bg-gray-50 py-20 md:py-32">
-      <div className="max-w-5xl mx-auto px-6">
+    <section id="pricing" className="bg-[#fafafa] py-20 md:py-32">
+      <div className="px-8 max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">Pricing</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] tracking-[-0.02em]">
@@ -496,7 +496,7 @@ const FAQ = () => {
 
   return (
     <section id="faq" className="bg-white py-20 md:py-32">
-      <div className="max-w-3xl mx-auto px-6">
+      <div className="px-8 max-w-3xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">FAQ</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] tracking-[-0.02em]">
@@ -595,7 +595,7 @@ const CTA = () => {
 
   return (
     <section id="cta" className="bg-[#111] py-20 md:py-32">
-      <div className="max-w-xl mx-auto px-6 text-center">
+      <div className="px-8 max-w-xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-white tracking-[-0.02em] mb-4">
           Get Early Access
         </h2>
@@ -653,8 +653,8 @@ const CTA = () => {
 
 // Footer
 const Footer = () => (
-  <footer className="bg-white border-t border-gray-200 py-12">
-    <div className="max-w-6xl mx-auto px-6">
+  <footer className="bg-white py-12">
+    <div className="px-8">
       <div className="flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-3">
           <img src={logo} alt="Localdocs" width={24} height={24} />
@@ -670,22 +670,68 @@ const Footer = () => (
   </footer>
 );
 
+// Section Divider with Plus Icons
+const SectionDivider = () => (
+  <div className="relative w-full border-b border-gray-200">
+    {/* Left Plus Icon */}
+    <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 flex items-center justify-center">
+      <span className="text-gray-300 text-lg font-light">+</span>
+    </div>
+    {/* Right Plus Icon */}
+    <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-4 h-4 flex items-center justify-center">
+      <span className="text-gray-300 text-lg font-light">+</span>
+    </div>
+  </div>
+);
+
+// Technical Grid Background with Dot Pattern
+const TechnicalGridBackground = ({ children }: { children: React.ReactNode }) => (
+  <div 
+    className="min-h-screen relative"
+    style={{ 
+      fontFamily: "'Inter', sans-serif",
+      backgroundImage: `radial-gradient(circle, #d1d5db 1px, transparent 1px)`,
+      backgroundSize: '24px 24px',
+      backgroundColor: '#f9fafb'
+    }}
+  >
+    {/* Main Content Container with Vertical Borders */}
+    <div className="relative max-w-6xl mx-auto bg-white border-x border-gray-200 min-h-screen">
+      {/* Top Left Corner Dot */}
+      <div className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gray-300 rounded-full" />
+      {/* Top Right Corner Dot */}
+      <div className="absolute right-0 top-0 translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gray-300 rounded-full" />
+      {children}
+    </div>
+  </div>
+);
+
 // Main Page Component
 const IndexEn = () => {
   usePageTracking();
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>
+    <TechnicalGridBackground>
       <Nav />
       <Hero />
+      <SectionDivider />
       <Features />
+      <SectionDivider />
       <UseCases />
+      <SectionDivider />
       <Security />
+      <SectionDivider />
       <Pricing />
+      <SectionDivider />
       <FAQ />
+      <SectionDivider />
       <CTA />
+      <SectionDivider />
       <Footer />
-    </div>
+      {/* Bottom Corner Dots */}
+      <div className="absolute left-0 bottom-0 -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-gray-300 rounded-full" />
+      <div className="absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2 w-2 h-2 bg-gray-300 rounded-full" />
+    </TechnicalGridBackground>
   );
 };
 

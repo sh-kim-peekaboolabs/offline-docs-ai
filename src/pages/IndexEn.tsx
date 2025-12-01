@@ -151,14 +151,14 @@ const Nav = () => {
 // Linear-style Hero (Glow Removed)
 const Hero = () => {
   return (
-    <section className="relative bg-transparent pt-20 pb-24 md:pt-32 md:pb-32 overflow-hidden">
+    <section className="relative bg-transparent pt-12 pb-24 md:pt-20 md:pb-32 overflow-hidden">
       {/* Ambient Glow 제거됨 (깨끗한 흰색 배경) */}
 
       <div className="relative max-w-4xl mx-auto px-8 text-center">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-50 text-[#666] text-sm font-medium rounded-full mb-8 border border-gray-100">
           <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          Get early access and try it now!
+          try it now!
         </div>
 
         {/* Massive H1 */}
@@ -184,7 +184,7 @@ const Hero = () => {
           </a>
         </div>
 
-        {/* App Screenshot Placeholder */}
+        {/* App Screenshot Placeholder
         <div className="max-w-4xl mx-auto">
           <div className="relative rounded-xl border border-gray-200 shadow-2xl overflow-hidden bg-white aspect-[16/10]">
             <div className="absolute inset-0 flex items-center justify-center">
@@ -196,7 +196,7 @@ const Hero = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
@@ -386,88 +386,156 @@ const Security = () => {
   );
 };
 
-// Pricing Section
-const Pricing = () => {
-  const plans = [
-    {
-      name: "Free",
-      price: "$0",
-      description: "For personal use",
-      features: ["3 documents", "1 folder", "Basic search"],
-      featured: false,
-    },
-    {
-      name: "Pro",
-      price: "$29",
-      period: "/mo",
-      description: "For professionals",
-      features: ["50 documents", "Unlimited folders", "Table analysis", "Priority support"],
-      featured: true,
-    },
-    {
-      name: "Enterprise",
-      price: "Custom",
-      description: "For teams",
-      features: ["Unlimited documents", "SSO integration", "Custom training", "Dedicated support"],
-      featured: false,
-    },
-  ];
+const Pricing = () => (
+  <section id="pricing" className="section" aria-labelledby="pricing-heading">
+    <div className="container">
+      <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4 text-center">
+        Choose the plan that works for you
+      </h2>
+      <div className="grid md:grid-cols-3 gap-6 pt-8">
+        {/* Free Plan */}
+        <div className="pricing-card h-full flex flex-col border border-gray-200 rounded-lg p-6 bg-white">
+          <div className="text-center mb-6">
+            <h3 className="text-xl font-semibold mb-2">Free</h3>
+            <div className="text-3xl font-bold mb-2">Free</div>
+            <div className="text-sm text-muted-foreground h-5"></div>
+          </div>
+          <ul className="space-y-3 flex-1 text-sm">
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Upload PDF & Chat</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Create 1 Folder</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Up to 3 PDFs per folder</span>
+            </li>
 
-  return (
-    <section id="pricing" className="bg-[#fafafa] py-20 md:py-32">
-      <div className="px-8 max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">Pricing</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] tracking-[-0.02em]">
-            Simple, transparent pricing
-          </h2>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Full support for tables & formulas</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Email Support</span>
+            </li>
+          </ul>
+          <div className="mt-6">
+            <a href="#cta" className="w-full">
+              <Button variant="outline" className="w-full">
+                Download for Mac
+              </Button>
+            </a>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4">
-          {plans.map((plan, index) => (
-            <div
-              key={index}
-              className={`bg-white/60 backdrop-blur-sm rounded-xl border p-8 transition-all ${
-                plan.featured
-                  ? "border-[#111]/80 ring-1 ring-[#111]/80 bg-white/80"
-                  : "border-gray-200 hover:border-gray-300 hover:bg-white/80"
-              }`}
-            >
-              {plan.featured && (
-                <div className="text-xs font-medium text-[#111] uppercase tracking-wider mb-4">Most Popular</div>
-              )}
-              <h3 className="text-lg font-semibold text-[#111] mb-1">{plan.name}</h3>
-              <p className="text-sm text-[#666] mb-4">{plan.description}</p>
-              <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-4xl font-extrabold text-[#111] tracking-tight">{plan.price}</span>
-                {plan.period && <span className="text-[#666]">{plan.period}</span>}
-              </div>
-              <ul className="space-y-3 mb-8">
-                {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-[#666]">
-                    <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <a href="#cta" className="block">
-                <button
-                  className={`w-full py-3 rounded-lg font-medium transition-colors ${
-                    plan.featured
-                      ? "bg-[#111] text-white hover:bg-[#333]"
-                      : "bg-white/80 text-[#111] border border-white/10 hover:bg-gray-50"
-                  }`}
-                >
-                  Get Started
-                </button>
-              </a>
+        {/* Pro Plan */}
+        <div className="pricing-card h-full flex flex-col border-2 border-primary rounded-lg p-6 bg-white relative">
+          <div className="text-center mb-6">
+            <h3 className="text-xl font-semibold mb-2 flex items-center justify-center gap-2">
+              Pro
+              <span className="bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium">
+                Recommended
+              </span>
+            </h3>
+            <div className="text-3xl font-bold mb-2">
+              $29<span className="text-lg font-normal">/mo</span>
             </div>
-          ))}
+            <div className="text-sm text-primary font-semibold">
+              1 Month Free Trial of Pro Plan during closed beta period
+            </div>
+          </div>
+          <ul className="space-y-3 flex-1 text-sm">
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Everything in Free</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Unlimited Folders</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Up to 50 PDFs per folder</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>HWPX·PPTX·XLSX (Coming Soon)</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Export Results (Coming Soon)</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Priority Email Support</span>
+            </li>
+          </ul>
+          <div className="mt-6">
+            <a href="#cta" className="w-full">
+              <Button variant="hero" className="w-full">
+                Download for Mac
+              </Button>
+            </a>
+          </div>
+        </div>
+
+        {/* Enterprise Plan */}
+        <div className="pricing-card h-full flex flex-col border border-gray-200 rounded-lg p-6 bg-white">
+          <div className="text-center mb-6">
+            <h3 className="text-xl font-semibold mb-2">Enterprise</h3>
+            <div className="text-3xl font-bold mb-2">Contact Us</div>
+            <div className="text-sm text-muted-foreground h-5"></div>
+          </div>
+          <ul className="space-y-3 flex-1 text-sm">
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Everything in Pro</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Internal System Integration</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Folder Sharing</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Custom AI trained on company data</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Admin Dashboard (License Management)</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Enhanced Security (SSO, etc.)</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Enterprise RAG Package Support</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Dedicated Support & Onboarding</span>
+            </li>
+          </ul>
+          <div className="mt-6">
+            <a href="#cta" className="w-full">
+              <Button variant="outline" className="w-full">
+                Download for Mac
+              </Button>
+            </a>
+          </div>
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 // FAQ Section
 const FAQ = () => {
@@ -596,8 +664,10 @@ const CTA = () => {
   return (
     <section id="cta" className="bg-[#111] py-20 md:py-32">
       <div className="px-8 max-w-xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white tracking-[-0.02em] mb-4">Get Early Access</h2>
-        <p className="text-lg text-gray-400 mb-8">Join the waitlist and get 1 month free Pro when we launch.</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-white tracking-[-0.02em] mb-4">Try it now!</h2>
+        <p className="text-lg text-gray-400 mb-8">
+          It’s currently the closed beta period, so we’re giving you a 30-day Pro plan for free.
+        </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
@@ -650,7 +720,7 @@ const CTA = () => {
             disabled={isSubmitting}
             className="w-full py-3 bg-white text-[#111] font-medium rounded-lg hover:bg-gray-100 transition-colors disabled:opacity-50"
           >
-            {isSubmitting ? "Joining..." : "Join Waitlist"}
+            {isSubmitting ? "Joining..." : "Download for Mac"}
           </button>
         </form>
       </div>
@@ -658,24 +728,27 @@ const CTA = () => {
   );
 };
 
-// Footer
 const Footer = () => (
-  <footer className="bg-white py-12">
-    <div className="px-8">
-      <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex items-center gap-3">
-          <img src={logo} alt="Localdocs" width={24} height={24} />
-          <span className="text-sm font-medium text-[#111]">LocalDocs</span>
-        </div>
-        <div className="flex items-center gap-6">
-          <a href="/privacy" className="text-sm text-[#666] hover:text-[#111] transition-colors">
-            Privacy
+  <footer className="border-t">
+    <div className="container py-8 text-sm">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="text-muted-foreground">© PeekabooLabs. All rights reserved. 2025</div>
+        <div className="flex items-center gap-4">
+          <a href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
+            Terms of Service
           </a>
-          <a href="/terms" className="text-sm text-[#666] hover:text-[#111] transition-colors">
-            Terms
+          <span className="text-muted-foreground">|</span>
+          <a href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
+            Privacy Policy
+          </a>
+          <span className="text-muted-foreground hidden md:inline">|</span>
+          <a
+            href="mailto:contact@peekaboolabs.ai"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            contact@peekaboolabs.ai
           </a>
         </div>
-        <p className="text-sm text-[#666]">© 2024 PeekabooLabs. All rights reserved.</p>
       </div>
     </div>
   </footer>

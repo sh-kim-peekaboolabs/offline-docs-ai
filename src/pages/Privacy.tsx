@@ -17,28 +17,25 @@ const Privacy = () => {
           뒤로 가기
         </Button>
 
-        <h1 className="text-4xl font-bold mb-8">개인정보처리방침</h1>
+        <h1 className="text-4xl font-bold mb-4">개인정보처리방침</h1>
 
         <div className="prose prose-slate dark:prose-invert max-w-none space-y-6">
-          <section>
-            <p className="text-muted-foreground">
-              주식회사 피카부랩스(이하 &quot;회사&quot;)는 정보주체의 자유와 권리를 보호하기 위하여 「개인정보 보호법」 및 관계 법령을 준수하며, 투명하고 안전하게 개인정보를 처리하고 있습니다. 회사는 「개인정보 보호법」 제30조에 따라 정보주체에게 개인정보 처리에 관한 사항을 안내하고, 고충을 신속하고 원활하게 처리할 수 있도록 본 개인정보 처리방침을 수립·공개합니다.
-            </p>
-            <p className="text-muted-foreground mt-4">
-              시행일자: 2025년 11월 1일
-            </p>
-            <p className="text-muted-foreground">
-              최종개정일자: 2025년 11월 1일
-            </p>
-          </section>
+          <p className="text-muted-foreground">Owner: Hansol Nam</p>
+
+          <p className="text-muted-foreground">
+            주식회사 피카부랩스(이하 "회사")는 정보주체의 자유와 권리를 보호하기 위하여 「개인정보 보호법」 및 관계 법령을 준수하며, 투명하고 안전하게 개인정보를 처리하고 있습니다. 회사는 「개인정보 보호법」 제30조에 따라 정보주체에게 개인정보 처리에 관한 사항을 안내하고, 고충을 신속하고 원활하게 처리할 수 있도록 본 개인정보 처리방침을 수립·공개합니다.
+          </p>
+
+          <p className="text-muted-foreground">시행일자: 2025년 11월 1일</p>
+          <p className="text-muted-foreground">최종개정일자: 2025년 11월 1일</p>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">1. 개인정보의 처리 목적, 항목 및 보유·이용기간</h2>
+            <h2 className="text-2xl font-bold mb-4">1. 개인정보의 처리 목적, 항목 및 보유·이용기간</h2>
             <p className="text-muted-foreground mb-4">
               회사는 서비스 제공을 위해 최소한의 개인정보를 수집·이용하며, 그 목적 외로는 이용하지 않습니다. 처리 목적이 변경될 경우, 「개인정보 보호법」 제18조에 따라 별도의 동의를 받습니다.
             </p>
 
-            <h3 className="text-xl font-semibold mb-3 mt-6">1. 정보주체의 동의를 받아 처리하는 개인정보</h3>
+            <h3 className="text-xl font-bold mb-3 mt-6">1. 정보주체의 동의를 받아 처리하는 개인정보</h3>
             <div className="overflow-x-auto">
               <table className="min-w-full border-collapse border border-border">
                 <thead>
@@ -71,12 +68,8 @@ const Privacy = () => {
                 </tbody>
               </table>
             </div>
-            <p className="text-muted-foreground mt-4">
-              ※ 회사는 개인정보 외에 서비스 제공 과정에서 사용자가 직접 업로드하거나 입력한 파일을 비롯해 생산된 콘텐츠를 처리하지 않습니다.
-              회사는 해당 정보를 일절 습득, 활용하지 않으며, 정보주체가 고객센터를 통해 별도 요청하더라도 정보를 제공해드릴 수 없습니다.
-            </p>
 
-            <h3 className="text-xl font-semibold mb-3 mt-6">2. 법령에 따른 보유</h3>
+            <h3 className="text-xl font-bold mb-3 mt-6">2. 법령에 따른 보유</h3>
             <div className="overflow-x-auto">
               <table className="min-w-full border-collapse border border-border">
                 <thead>
@@ -113,7 +106,7 @@ const Privacy = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">2. 개인정보의 제3자 제공에 관한 사항</h2>
+            <h2 className="text-2xl font-bold mb-4">2. 개인정보의 제3자 제공에 관한 사항</h2>
             <p className="text-muted-foreground mb-4">
               회사는 원칙적으로 개인정보를 제3자에게 제공하지 않습니다. 다만, 아래의 경우에는 예외로 제공합니다.
             </p>
@@ -128,7 +121,7 @@ const Privacy = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">3. 개인정보의 처리 위탁에 관한 사항</h2>
+            <h2 className="text-2xl font-bold mb-4">3. 개인정보의 처리 위탁에 관한 사항</h2>
             <p className="text-muted-foreground mb-4">
               회사는 서비스 제공을 위하여 개인정보 처리업무를 외부에 위탁하고 있습니다.
             </p>
@@ -162,7 +155,7 @@ const Privacy = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">4. 개인정보의 국외 이전에 관한 사항</h2>
+            <h2 className="text-2xl font-bold mb-4">4. 개인정보의 국외 이전에 관한 사항</h2>
             <p className="text-muted-foreground mb-4">
               회사는 서비스 운영을 위해 아래와 같이 개인정보를 국외로 이전하고 있습니다.
             </p>
@@ -184,8 +177,8 @@ const Privacy = () => {
                     <td className="border border-border px-4 py-2">Amazon Web Services, Inc.</td>
                     <td className="border border-border px-4 py-2">미국</td>
                     <td className="border border-border px-4 py-2">서비스 이용 시 서버 전송</td>
-                    <td className="border border-border px-4 py-2">aws-korea-privacy@amazon.com</td>
-                    <td className="border border-border px-4 py-2">이메일, 기기정보, 로그, 통화 데이터 등</td>
+                    <td className="border border-border px-4 py-2"><a href="mailto:aws-korea-privacy@amazon.com" className="text-primary hover:underline">aws-korea-privacy@amazon.com</a></td>
+                    <td className="border border-border px-4 py-2">이메일, 기기정보</td>
                     <td className="border border-border px-4 py-2">서버 운영 및 저장</td>
                     <td className="border border-border px-4 py-2">위탁 계약 종료 시까지</td>
                   </tr>
@@ -193,8 +186,8 @@ const Privacy = () => {
                     <td className="border border-border px-4 py-2">Google LLC</td>
                     <td className="border border-border px-4 py-2">미국</td>
                     <td className="border border-border px-4 py-2">서버를 통한 자동 전송</td>
-                    <td className="border border-border px-4 py-2">googlekrsupport@google.com</td>
-                    <td className="border border-border px-4 py-2">이메일, 기기정보, 로그 등</td>
+                    <td className="border border-border px-4 py-2"><a href="mailto:googlekrsupport@google.com" className="text-primary hover:underline">googlekrsupport@google.com</a></td>
+                    <td className="border border-border px-4 py-2">이메일, 기기정보, 행동데이터, 피드백 리포트 등</td>
                     <td className="border border-border px-4 py-2">서버 운영 및 저장</td>
                     <td className="border border-border px-4 py-2">위탁 계약 종료 시까지</td>
                   </tr>
@@ -207,7 +200,7 @@ const Privacy = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">5. 개인정보의 파기 절차 및 방법</h2>
+            <h2 className="text-2xl font-bold mb-4">5. 개인정보의 파기 절차 및 방법</h2>
             <p className="text-muted-foreground mb-4">
               회사는 개인정보 보유기간이 경과하거나 처리 목적이 달성된 경우에는 지체 없이 해당 정보를 파기합니다.
             </p>
@@ -221,7 +214,7 @@ const Privacy = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">6. 정보주체와 법정대리인의 권리·의무 및 행사방법</h2>
+            <h2 className="text-2xl font-bold mb-4">6. 정보주체와 법정대리인의 권리·의무 및 행사방법</h2>
             <p className="text-muted-foreground mb-4">
               정보주체는 언제든지 다음의 권리를 행사할 수 있습니다:
             </p>
@@ -240,7 +233,7 @@ const Privacy = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">7. 개인정보 자동 수집 장치의 설치·운영 및 거부에 관한 사항</h2>
+            <h2 className="text-2xl font-bold mb-4">7. 개인정보 자동 수집 장치의 설치·운영 및 거부에 관한 사항</h2>
             <p className="text-muted-foreground mb-4">
               회사는 서비스 제공을 위해 쿠키를 포함한 자동 수집 장치를 운영할 수 있습니다.
             </p>
@@ -254,17 +247,51 @@ const Privacy = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">8. 행태정보의 수집·이용 및 거부 등에 관한 사항</h2>
+            <h2 className="text-2xl font-bold mb-4">8. 행태정보의 수집·이용 및 거부 등에 관한 사항</h2>
             <p className="text-muted-foreground mb-4">
-              회사는 맞춤형 광고나 사용자 행동 기반 분석을 위한 행태정보를 수집하고 있지 않습니다.
+              회사는 서비스 이용과정에서 이용자로부터 다음과 같은 정보들이 자동으로 생성/수집되고 다음의 목적으로 이용될 수 있습니다.
             </p>
-            <p className="text-muted-foreground">
-              향후 행태정보를 수집하게 될 경우, 수집 항목, 이용 목적, 보유 기간, 거부 방법 등을 본 방침을 통해 별도로 고지하겠습니다.
+            <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
+              <li>개인정보 자동수집정보 사용목적
+                <ol className="list-decimal list-inside ml-6 mt-2 space-y-1">
+                  <li>관련법규의 준수 : 회사는 관련법규의 준수를 위해 이용자의 접속기록(로그인)을 보관할 의무가 있습니다.</li>
+                  <li>웹 사용성 분석 및 개선 : 방문일시, 서비스 이용기록, Cookie ID 항목을 수집하며 수집일부터 5년 까지 보유이용되며 기간 경과후 즉시 삭제됩니다.</li>
+                </ol>
+              </li>
+              <li>개인정보 자동수집안내 및 거부방법
+                <ol className="list-decimal list-inside ml-6 mt-2 space-y-1">
+                  <li>아래의 분석도구를 활용하여 이용자의 주요행동(행태정보)를 수집 및 분석합니다. 수집된 정보는 모두 비식별화됩니다.
+                    <ul className="list-disc list-inside ml-6 mt-1">
+                      <li>수탁사명 : Google LLC</li>
+                    </ul>
+                  </li>
+                  <li>개인정보 자동수집장치(쿠키 등)의 설치운영 및 거부 방법 :
+                    <p className="mt-2 ml-6">아래 방법을 통해 쿠키 등의 저장을 거부하거나 삭제할 수 있습니다.</p>
+                    <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
+                      <li>[web]
+                        <p className="ml-6 mt-1">Internet Explorer 웹 브라우저의 경우 : 웹브라우저 상단의 도구&gt;인터넷 옵션&gt;개인정보 메뉴의 옵션 설정</p>
+                        <p className="ml-6">Microsoft Edge 웹 브라우저의 경우 : 웹브라우저 상단 메뉴 &gt; 설정 &gt; 고급 설정 보기 &gt; 쿠키 메뉴의 옵션 설정</p>
+                        <p className="ml-6">Chrome 웹브라우저의 경우 : 웹브라우저 상단 메뉴 &gt; 설정 &gt; 고급 &gt; 콘텐츠 설정 &gt; 쿠키 메뉴의 옵션 설정</p>
+                        <p className="ml-6">Chrome 모바일의 경우 : 크롬 App &gt; 오른쪽상단 더보기 &gt; 방문 기록 인터넷 사용 기록 삭제 &gt; 기간선택 &gt; 쿠키 및 사이트 데이터'와 '캐시된 이미지 또는 파일' 옆의 체크박스를 선택 &gt; 인터넷 사용기록 삭제</p>
+                        <p className="ml-6">Safari 모바일의 경우 : Safari App &gt; 방문기록 및 웹사이트 데이터 지우기 &gt; 확인</p>
+                        <p className="ml-6">Naver 모바일의 경우 : Naver App &gt; 설정 &gt; 캐시삭제 + 인터넷 사용 기록 &gt; 쿠키삭제</p>
+                      </li>
+                      <li>[App]
+                        <p className="ml-6 mt-1">Window : 내PC &gt; AppData &gt; Local &gt; LocalDocs(로컬독스) &gt; 데이터 삭제</p>
+                        <p className="ml-6">Mac : Finder &gt; 응용 프로그램 &gt; LocalDocs(로컬독스) &gt; 앱 삭제</p>
+                      </li>
+                    </ul>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+            <p className="text-muted-foreground mt-4 font-bold">
+              ※ 회사는 이 외에 서비스 제공 과정에서 사용자가 직접 등록한 파일을 비롯해 AI와 대화한 내역, AI 콘텐츠는 일절 수집되지 않습니다.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">9. 개인정보 보호책임자 및 고충처리부서 안내</h2>
+            <h2 className="text-2xl font-bold mb-4">9. 개인정보 보호책임자 및 고충처리부서 안내</h2>
             <p className="text-muted-foreground mb-4">
               회사는 개인정보 관련 업무를 총괄하는 개인정보 보호책임자를 지정하고 있습니다.
             </p>
@@ -278,7 +305,7 @@ const Privacy = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">10. 보안 조치</h2>
+            <h2 className="text-2xl font-bold mb-4">10. 보안 조치</h2>
             <p className="text-muted-foreground mb-4">
               회사는 개인정보를 보호하기 위해 다음과 같은 기술적, 관리적, 물리적 조치를 취합니다:
             </p>
@@ -290,7 +317,7 @@ const Privacy = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold mb-4">11. 고지의 의무 및 방침 변경</h2>
+            <h2 className="text-2xl font-bold mb-4">11. 고지의 의무 및 방침 변경</h2>
             <p className="text-muted-foreground mb-4">
               본 개인정보 처리방침은 법령 또는 서비스 내용 변경에 따라 개정될 수 있으며, 변경 시 개정 최소 7일 전부터 사전 고지합니다.
             </p>

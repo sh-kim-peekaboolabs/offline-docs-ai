@@ -1,3 +1,7 @@
+import { SearchInput } from "@/components/ui/search-input";
+import { CitationDemo } from "@/components/demo/citation-demo";
+import { PDFViewer } from "@/components/demo/pdf-viewer";
+import { AutoCycleFiles } from "@/components/demo/auto-cycle-files";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -162,7 +166,7 @@ const Hero = () => {
 
         {/* Massive H1 */}
         <h1 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#111] tracking-tighter leading-[1.05] mb-6">
-          On-Device AI <br />
+          Local AI <br />
           PDF Search Assistant
         </h1>
 
@@ -212,16 +216,31 @@ const HowItWorksSection = () => {
       number: "02",
       title: "Ask anything",
       description: "Type your question in natural language. No need to remember exact keywords or page numbers.",
+      component: (
+        <div className="w-full h-full flex items-center justify-center p-8">
+          <SearchInput />
+        </div>
+      ),
     },
     {
       number: "03",
       title: "Answer with citation",
       description: "Get answers with sentence-level citations. Every claim is backed by the exact source.",
+      component: (
+        <div className="w-full h-full flex items-center justify-center p-8">
+          <CitationDemo />
+        </div>
+      ),
     },
     {
       number: "04",
-      title: "Check original content",
+      title: "Verify original content",
       description: "Click any citation to jump directly to the original page. Verify and explore the full context instantly.",
+      component: (
+        <div className="w-full h-full flex items-center justify-center p-8">
+          <PDFViewer />
+        </div>
+      ),
     },
   ];
 
@@ -257,44 +276,11 @@ const HowItWorksSection = () => {
               </div>
 
               {/* Right Column - Graphic */}
-              <div className="bg-gray-50 px-8 md:px-12 py-12 md:py-16 flex items-center justify-center min-h-[400px]">
+              <div className="bg-gray-50 px-8 md:px-12 py-12 md:py-16 flex items-center justify-center h-[400px]">
                 {index === 0 ? (
-                  <div className="w-full max-w-sm bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-                    <Files type="multiple" className="w-full" defaultValue={["compliance"]}>
-                      <FolderItem value="compliance">
-                        <FolderTrigger>Compliance Audit 2024</FolderTrigger>
-                        <FolderPanel>
-                          <SubFiles>
-                            <FileItem>GDPR_Assessment_Report.pdf</FileItem>
-                            <FileItem>Data_Breach_Incident_Q3.pdf</FileItem>
-                            <FileItem>Third_Party_Risk_Review.pdf</FileItem>
-                          </SubFiles>
-                        </FolderPanel>
-                      </FolderItem>
-
-                      <FolderItem value="security">
-                        <FolderTrigger>Security Reports</FolderTrigger>
-                        <FolderPanel>
-                          <SubFiles>
-                            <FileItem>Penetration_Test_Results.pdf</FileItem>
-                            <FileItem>Vulnerability_Assessment.pdf</FileItem>
-                            <FileItem>Incident_Response_Plan.pdf</FileItem>
-                          </SubFiles>
-                        </FolderPanel>
-                      </FolderItem>
-
-                      <FolderItem value="legal">
-                        <FolderTrigger>Confidential Legal</FolderTrigger>
-                        <FolderPanel>
-                          <SubFiles>
-                            <FileItem>M&A_Due_Diligence.pdf</FileItem>
-                            <FileItem>Settlement_Agreement_Draft.pdf</FileItem>
-                            <FileItem>Executive_Compensation.pdf</FileItem>
-                          </SubFiles>
-                        </FolderPanel>
-                      </FolderItem>
-                    </Files>
-                  </div>
+                  <AutoCycleFiles />
+                ) : step.component ? (
+                  step.component
                 ) : (
                   <div className="text-gray-300 text-8xl font-thin">
                     {step.number}

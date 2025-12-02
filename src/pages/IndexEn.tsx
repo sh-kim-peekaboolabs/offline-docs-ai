@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
@@ -6,24 +7,28 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { FileText, Lock, CheckCircle, Zap, ChevronDown, Menu, X, ArrowRight, Search, Shield } from "lucide-react";
+import {
+  ShieldCheck,
+  WifiOff,
+  FileText,
+  Lock,
+  CheckCircle,
+  Zap,
+  ChevronDown,
+  Menu,
+  X,
+  ArrowRight,
+  Search,
+  FileSearch,
+  Shield,
+  Upload,
+  Quote,
+} from "lucide-react";
+import { Files, FolderItem, FolderTrigger, FolderPanel, SubFiles, FileItem } from "@/components/ui/files";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
-import { useEffect, useState, memo } from "react";
+import { useEffect, useState } from "react";
 import { usePageTracking } from "@/hooks/useAnalytics";
 import { trackLead } from "@/lib/facebook-pixel";
-
-// Memoized background styles to prevent re-renders
-const DOT_PATTERN_STYLE = {
-  backgroundImage: `radial-gradient(circle, rgba(148, 163, 184, 0.15) 1px, transparent 1px)`,
-  backgroundSize: "14px 14px",
-  maskImage: "radial-gradient(ellipse at center, transparent 40%, black 100%)",
-  WebkitMaskImage: "radial-gradient(ellipse at center, transparent 40%, black 100%)",
-} as const;
-
-const CONTAINER_STYLE = {
-  fontFamily: "'Inter', system-ui, sans-serif",
-  backgroundColor: "#ffffff",
-} as const;
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address.").max(255, "Email must be less than 255 characters."),
@@ -87,12 +92,8 @@ const Nav = () => {
                 <ChevronDown className="w-4 h-4" />
               </button>
               <div className="absolute right-0 top-full mt-2 w-32 bg-white border border-white/10 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                <a href="/" className="block px-4 py-2.5 text-sm text-[#666] hover:bg-gray-50 rounded-t-xl">
-                  한국어
-                </a>
-                <span className="block px-4 py-2.5 text-sm text-[#111] bg-gray-50 rounded-b-xl font-medium">
-                  English
-                </span>
+                <a href="/" className="block px-4 py-2.5 text-sm text-[#666] hover:bg-gray-50 rounded-t-xl">한국어</a>
+                <span className="block px-4 py-2.5 text-sm text-[#111] bg-gray-50 rounded-b-xl font-medium">English</span>
               </div>
             </div>
 
@@ -168,8 +169,7 @@ const Hero = () => {
         {/* Subheadline */}
         <p className="text-lg md:text-xl text-[#666] leading-relaxed max-w-2xl mx-auto mb-10">
           LocalDocs gives instant, cited answers from your files
-          <br />
-          without sending any data to the cloud.
+          <br />without sending any data to the cloud.
         </p>
 
         {/* CTA Buttons */}
@@ -180,6 +180,7 @@ const Hero = () => {
               <ArrowRight className="w-4 h-4" />
             </button>
           </a>
+
         </div>
 
         {/* App Screenshot Placeholder
@@ -200,8 +201,116 @@ const Hero = () => {
   );
 };
 
-// Bento Grid Features - Memoized
-const Features = memo(() => {
+const HowItWorksSection = () => {
+  const steps = [
+    {
+      number: "01",
+      title: "Set a source",
+      description: "Drag and drop PDF files or select them from your PC. All embedding and vectorization happen locally.",
+    },
+    {
+      number: "02",
+      title: "Ask anything",
+      description: "Type your question in natural language. No need to remember exact keywords or page numbers.",
+    },
+    {
+      number: "03",
+      title: "Answer with citation",
+      description: "Get answers with sentence-level citations. Every claim is backed by the exact source.",
+    },
+    {
+      number: "04",
+      title: "Check original content",
+      description: "Click any citation to jump directly to the original page. Verify and explore the full context instantly.",
+    },
+  ];
+
+  return (
+    <section className="w-full bg-white">
+      <div className="max-w-7xl mx-auto">
+        {steps.map((step, index) => (
+          <div key={index} className="border-b border-gray-200">
+            {/* Header Row - Only for first step */}
+            {index === 0 && (
+              <div className="px-8 py-4 border-b border-gray-200 border-t border-gray-200 text-center">
+                <span className="text-sm font-semibold text-gray-600 tracking-widest uppercase">
+                  HOW IT WORKS
+                </span>
+              </div>
+            )}
+
+            {/* Content Row */}
+            <div className="grid grid-cols-1 md:grid-cols-2">
+              {/* Left Column - Text */}
+              <div className="px-8 md:px-12 py-12 md:py-16 border-r border-gray-200 flex flex-col justify-center">
+                <div className="space-y-4">
+                  <div className="text-sm font-mono text-gray-400">
+                    {step.number}
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
+                    {step.title}
+                  </h3>
+                  <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-md">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Column - Graphic */}
+              <div className="bg-gray-50 px-8 md:px-12 py-12 md:py-16 flex items-center justify-center min-h-[400px]">
+                {index === 0 ? (
+                  <div className="w-full max-w-sm bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                    <Files type="multiple" className="w-full" defaultValue={["compliance"]}>
+                      <FolderItem value="compliance">
+                        <FolderTrigger>Compliance Audit 2024</FolderTrigger>
+                        <FolderPanel>
+                          <SubFiles>
+                            <FileItem>GDPR_Assessment_Report.pdf</FileItem>
+                            <FileItem>Data_Breach_Incident_Q3.pdf</FileItem>
+                            <FileItem>Third_Party_Risk_Review.pdf</FileItem>
+                          </SubFiles>
+                        </FolderPanel>
+                      </FolderItem>
+
+                      <FolderItem value="security">
+                        <FolderTrigger>Security Reports</FolderTrigger>
+                        <FolderPanel>
+                          <SubFiles>
+                            <FileItem>Penetration_Test_Results.pdf</FileItem>
+                            <FileItem>Vulnerability_Assessment.pdf</FileItem>
+                            <FileItem>Incident_Response_Plan.pdf</FileItem>
+                          </SubFiles>
+                        </FolderPanel>
+                      </FolderItem>
+
+                      <FolderItem value="legal">
+                        <FolderTrigger>Confidential Legal</FolderTrigger>
+                        <FolderPanel>
+                          <SubFiles>
+                            <FileItem>M&A_Due_Diligence.pdf</FileItem>
+                            <FileItem>Settlement_Agreement_Draft.pdf</FileItem>
+                            <FileItem>Executive_Compensation.pdf</FileItem>
+                          </SubFiles>
+                        </FolderPanel>
+                      </FolderItem>
+                    </Files>
+                  </div>
+                ) : (
+                  <div className="text-gray-300 text-8xl font-thin">
+                    {step.number}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+// Bento Grid Features
+const Features = () => {
   const features = [
     {
       icon: Zap,
@@ -254,7 +363,7 @@ const Features = memo(() => {
             </div>
             <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Instant Search</h3>
             <p className="text-[#666] leading-relaxed">
-              Find information across hundreds of pages in seconds. No more manual searching through documents.
+              Find information across hundreds of pages in milliseconds. No more manual searching through documents.
             </p>
           </div>
 
@@ -264,7 +373,9 @@ const Features = memo(() => {
               <Lock className="w-6 h-6 text-[#111]" />
             </div>
             <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">100% Offline</h3>
-            <p className="text-[#666] leading-relaxed">Runs entirely on your computer. No internet required.</p>
+            <p className="text-[#666] leading-relaxed">
+              Runs entirely on your computer. No internet required.
+            </p>
           </div>
 
           {/* Small Card */}
@@ -273,7 +384,9 @@ const Features = memo(() => {
               <Shield className="w-6 h-6 text-[#111]" />
             </div>
             <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Zero Data Leaks</h3>
-            <p className="text-[#666] leading-relaxed">Your documents never leave your device. Complete privacy.</p>
+            <p className="text-[#666] leading-relaxed">
+              Your documents never leave your device. Complete privacy.
+            </p>
           </div>
 
           {/* Medium Card */}
@@ -282,7 +395,9 @@ const Features = memo(() => {
               <FileText className="w-6 h-6 text-[#111]" />
             </div>
             <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Source Citations</h3>
-            <p className="text-[#666] leading-relaxed">Every answer includes the exact document and page number.</p>
+            <p className="text-[#666] leading-relaxed">
+              Every answer includes the exact document and page number.
+            </p>
           </div>
 
           {/* Medium Card */}
@@ -291,17 +406,18 @@ const Features = memo(() => {
               <Search className="w-6 h-6 text-[#111]" />
             </div>
             <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Table Analysis</h3>
-            <p className="text-[#666] leading-relaxed">Accurately reads tables, charts, and financial data.</p>
+            <p className="text-[#666] leading-relaxed">
+              Accurately reads tables, charts, and financial data.
+            </p>
           </div>
         </div>
       </div>
     </section>
   );
-});
-Features.displayName = "Features";
+};
 
-// Use Cases Section - Memoized
-const UseCases = memo(() => {
+// Use Cases Section
+const UseCases = () => {
   const cases = [
     {
       title: "Legal Teams",
@@ -345,11 +461,10 @@ const UseCases = memo(() => {
       </div>
     </section>
   );
-});
-UseCases.displayName = "UseCases";
+};
 
-// Security Section - Memoized
-const Security = memo(() => {
+// Security Section
+const Security = () => {
   const points = [
     { title: "Local Processing", description: "All AI processing happens on your PC. Nothing transmitted externally." },
     { title: "Air-Gapped Ready", description: "Works in secure environments with no internet connection." },
@@ -384,173 +499,152 @@ const Security = memo(() => {
       </div>
     </section>
   );
-});
-Security.displayName = "Security";
+};
 
-// Pricing - Memoized
-const Pricing = memo(() => (
-  <section id="pricing" className="section" aria-labelledby="pricing-heading">
-    <div className="container">
-      <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4 text-center">
-        Choose the plan that works for you
-      </h2>
-      <div className="grid md:grid-cols-3 gap-6 pt-8">
-        {/* Free Plan */}
-        <div className="pricing-card h-full flex flex-col border border-gray-200 rounded-lg p-6 bg-white">
-          <div className="text-center mb-6">
-            <h3 className="text-xl font-semibold mb-2">Free</h3>
-            <div className="text-3xl font-bold mb-2">Free</div>
-            <div className="text-sm text-muted-foreground h-5"></div>
-          </div>
-          <ul className="space-y-3 flex-1 text-sm">
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Upload PDF & Chat</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Create 1 Folder</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Up to 3 PDFs per folder</span>
-            </li>
+const Pricing = () => <section id="pricing" className="section" aria-labelledby="pricing-heading">
+  <div className="container">
+    <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4 text-center">Choose the plan that works for you</h2>
+    <div className="grid md:grid-cols-3 gap-6 pt-8">
 
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Full support for tables & formulas</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Email Support</span>
-            </li>
-          </ul>
-          <div className="mt-6">
-            <a href="#cta" className="w-full">
-              <Button variant="outline" className="w-full">
-                Download for Mac
-              </Button>
-            </a>
-          </div>
+      {/* Free Plan */}
+      <div className="pricing-card h-full flex flex-col border border-gray-200 rounded-lg p-6 bg-white">
+        <div className="text-center mb-6">
+          <h3 className="text-xl font-semibold mb-2">Free</h3>
+          <div className="text-3xl font-bold mb-2">Free</div>
+          <div className="text-sm text-muted-foreground h-5"></div>
         </div>
+        <ul className="space-y-3 flex-1 text-sm">
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Upload PDF & Chat</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Create 1 Folder</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Up to 3 PDFs per folder</span>
+          </li>
 
-        {/* Pro Plan */}
-        <div className="pricing-card h-full flex flex-col border-2 border-primary rounded-lg p-6 bg-white relative">
-          <div className="text-center mb-6">
-            <h3 className="text-xl font-semibold mb-2 flex items-center justify-center gap-2">
-              Pro
-              <span className="bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium">
-                Recommended
-              </span>
-            </h3>
-            <div className="text-3xl font-bold mb-2">
-              $29<span className="text-lg font-normal">/mo</span>
-            </div>
-            <div className="text-sm text-primary font-semibold">
-              1 Month Free Trial of Pro Plan during closed beta period
-            </div>
-          </div>
-          <ul className="space-y-3 flex-1 text-sm">
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Everything in Free</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Unlimited Folders</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Up to 50 PDFs per folder</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>HWPX·PPTX·XLSX (Coming Soon)</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Export Results (Coming Soon)</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Priority Email Support</span>
-            </li>
-          </ul>
-          <div className="mt-6">
-            <a href="#cta" className="w-full">
-              <Button variant="hero" className="w-full">
-                Download for Mac
-              </Button>
-            </a>
-          </div>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Full support for tables & formulas</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Email Support</span>
+          </li>
+        </ul>
+        <div className="mt-6">
+          <a href="#cta" className="w-full">
+            <Button variant="outline" className="w-full">Download for Mac</Button>
+          </a>
         </div>
+      </div>
 
-        {/* Enterprise Plan */}
-        <div className="pricing-card h-full flex flex-col border border-gray-200 rounded-lg p-6 bg-white">
-          <div className="text-center mb-6">
-            <h3 className="text-xl font-semibold mb-2">Enterprise</h3>
-            <div className="text-3xl font-bold mb-2">Contact Us</div>
-            <div className="text-sm text-muted-foreground h-5"></div>
-          </div>
-          <ul className="space-y-3 flex-1 text-sm">
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Everything in Pro</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Internal System Integration</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Folder Sharing</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Custom AI trained on company data</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Admin Dashboard (License Management)</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Enhanced Security (SSO, etc.)</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Enterprise RAG Package Support</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-              <span>Dedicated Support & Onboarding</span>
-            </li>
-          </ul>
-          <div className="mt-6">
-            <a href="#cta" className="w-full">
-              <Button variant="outline" className="w-full">
-                Contact us
-              </Button>
-            </a>
-          </div>
+      {/* Pro Plan */}
+      <div className="pricing-card h-full flex flex-col border-2 border-primary rounded-lg p-6 bg-white relative">
+        <div className="text-center mb-6">
+          <h3 className="text-xl font-semibold mb-2 flex items-center justify-center gap-2">
+            Pro
+            <span className="bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium">Recommended</span>
+          </h3>
+          <div className="text-3xl font-bold mb-2">$29<span className="text-lg font-normal">/mo</span></div>
+          <div className="text-sm text-primary font-semibold">1 Month Free Trial of Pro Plan during closed beta period</div>
+        </div>
+        <ul className="space-y-3 flex-1 text-sm">
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Everything in Free</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Unlimited Folders</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Up to 50 PDFs per folder</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>HWPX·PPTX·XLSX (Coming Soon)</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Export Results (Coming Soon)</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Priority Email Support</span>
+          </li>
+        </ul>
+        <div className="mt-6">
+          <a href="#cta" className="w-full">
+            <Button variant="hero" className="w-full">Download for Mac</Button>
+          </a>
+        </div>
+      </div>
+
+      {/* Enterprise Plan */}
+      <div className="pricing-card h-full flex flex-col border border-gray-200 rounded-lg p-6 bg-white">
+        <div className="text-center mb-6">
+          <h3 className="text-xl font-semibold mb-2">Enterprise</h3>
+          <div className="text-3xl font-bold mb-2">Contact Us</div>
+          <div className="text-sm text-muted-foreground h-5"></div>
+        </div>
+        <ul className="space-y-3 flex-1 text-sm">
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Everything in Pro</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Internal System Integration</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Folder Sharing</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Custom AI trained on company data</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Admin Dashboard (License Management)</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Enhanced Security (SSO, etc.)</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Enterprise RAG Package Support</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+            <span>Dedicated Support & Onboarding</span>
+          </li>
+        </ul>
+        <div className="mt-6">
+          <a href="#cta" className="w-full">
+            <Button variant="outline" className="w-full">Download for Mac</Button>
+          </a>
         </div>
       </div>
     </div>
-  </section>
-));
-Pricing.displayName = "Pricing";
+  </div>
+</section>;
 
-// FAQ Section - Memoized
-const FAQ = memo(() => {
+// FAQ Section
+const FAQ = () => {
   const faqs = [
     { q: "Can I use it without internet?", a: "Yes, all features work completely offline after installation." },
     { q: "What file formats are supported?", a: "Currently PDF. HWP, PPTX, and XLSX coming soon." },
     { q: "Can it read tables and charts?", a: "Yes, it accurately analyzes tables and financial data." },
     { q: "Are sources provided?", a: "Yes, every answer includes document name and page number." },
-    {
-      q: "Is it secure for sensitive documents?",
-      a: "Yes, 100% local processing means no data ever leaves your device.",
-    },
+    { q: "Is it secure for sensitive documents?", a: "Yes, 100% local processing means no data ever leaves your device." },
   ];
 
   const faqJsonLd = {
@@ -592,8 +686,7 @@ const FAQ = memo(() => {
       </div>
     </section>
   );
-});
-FAQ.displayName = "FAQ";
+};
 
 // CTA Section
 const CTA = () => {
@@ -635,27 +728,25 @@ const CTA = () => {
         toast.error("Invalid request.");
         return;
       }
-      const { error } = await supabase.from("email_signups").insert([
-        {
-          email: values.email,
-          consent: values.consent,
-          page_source: "/en",
-          utm_source: values.utm_source || null,
-          utm_campaign_id: values.utm_campaign_id || null,
-          utm_medium: values.utm_medium || null,
-          utm_campaign_name: values.utm_campaign_name || null,
-          utm_adset_id: values.utm_adset_id || null,
-          utm_adset_name: values.utm_adset_name || null,
-          utm_ad_id: values.utm_ad_id || null,
-          utm_ad_name: values.utm_ad_name || null,
-          linkedin_campaign_name: values.linkedin_campaign_name || null,
-          linkedin_ad_id: values.linkedin_ad_id || null,
-          linkedin_campaign_group_id: values.linkedin_campaign_group_id || null,
-          linkedin_campaign_group_name: values.linkedin_campaign_group_name || null,
-          linkedin_campaign_id: values.linkedin_campaign_id || null,
-          linkedin_ad_name: values.linkedin_ad_name || null,
-        },
-      ]);
+      const { error } = await supabase.from("email_signups").insert([{
+        email: values.email,
+        consent: values.consent,
+        page_source: "/en",
+        utm_source: values.utm_source || null,
+        utm_campaign_id: values.utm_campaign_id || null,
+        utm_medium: values.utm_medium || null,
+        utm_campaign_name: values.utm_campaign_name || null,
+        utm_adset_id: values.utm_adset_id || null,
+        utm_adset_name: values.utm_adset_name || null,
+        utm_ad_id: values.utm_ad_id || null,
+        utm_ad_name: values.utm_ad_name || null,
+        linkedin_campaign_name: values.linkedin_campaign_name || null,
+        linkedin_ad_id: values.linkedin_ad_id || null,
+        linkedin_campaign_group_id: values.linkedin_campaign_group_id || null,
+        linkedin_campaign_group_name: values.linkedin_campaign_group_name || null,
+        linkedin_campaign_id: values.linkedin_campaign_id || null,
+        linkedin_ad_name: values.linkedin_ad_name || null,
+      }]);
       if (error) throw error;
       trackLead(values.email);
       toast.success("Successfully joined Early Access!");
@@ -668,7 +759,9 @@ const CTA = () => {
   return (
     <section id="cta" className="bg-[#111] py-20 md:py-32">
       <div className="px-8 max-w-xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white tracking-[-0.02em] mb-4">Try it now!</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-white tracking-[-0.02em] mb-4">
+          Try it now!
+        </h2>
         <p className="text-lg text-gray-400 mb-8">
           It’s currently the closed beta period, so we’re giving you a 30-day Pro plan for free.
         </p>
@@ -684,14 +777,7 @@ const CTA = () => {
             {errors.email && <p className="text-sm text-red-400 mt-2 text-left">{errors.email.message}</p>}
           </div>
 
-          <input
-            type="text"
-            {...register("honeypot")}
-            className="absolute -left-[9999px] w-px h-px"
-            tabIndex={-1}
-            autoComplete="off"
-            aria-hidden="true"
-          />
+          <input type="text" {...register("honeypot")} className="absolute -left-[9999px] w-px h-px" tabIndex={-1} autoComplete="off" aria-hidden="true" />
           <input type="hidden" {...register("utm_source")} />
           <input type="hidden" {...register("utm_campaign_id")} />
           <input type="hidden" {...register("utm_medium")} />
@@ -708,11 +794,7 @@ const CTA = () => {
           <input type="hidden" {...register("linkedin_ad_name")} />
 
           <div className="flex items-start gap-3">
-            <Checkbox
-              id="consent"
-              {...register("consent")}
-              className="mt-1 border-gray-600 data-[state=checked]:bg-white data-[state=checked]:text-[#111]"
-            />
+            <Checkbox id="consent" {...register("consent")} className="mt-1 border-gray-600 data-[state=checked]:bg-white data-[state=checked]:text-[#111]" />
             <Label htmlFor="consent" className="text-sm text-gray-400 text-left leading-relaxed cursor-pointer">
               I agree to receive product updates and marketing emails.
             </Label>
@@ -732,34 +814,29 @@ const CTA = () => {
   );
 };
 
-const Footer = () => (
-  <footer className="border-t">
-    <div className="container py-8 text-sm">
-      <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="text-muted-foreground">© PeekabooLabs. All rights reserved. 2025</div>
-        <div className="flex items-center gap-4">
-          <a href="/en/terms" className="text-muted-foreground hover:text-foreground transition-colors">
-            Terms of Service
-          </a>
-          <span className="text-muted-foreground">|</span>
-          <a href="/en/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
-            Privacy Policy
-          </a>
-          <span className="text-muted-foreground hidden md:inline">|</span>
-          <a
-            href="mailto:contact@peekaboolabs.ai"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            contact@peekaboolabs.ai
-          </a>
-        </div>
+const Footer = () => <footer className="border-t">
+  <div className="container py-8 text-sm">
+    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="text-muted-foreground">© PeekabooLabs. All rights reserved. 2025</div>
+      <div className="flex items-center gap-4">
+        <a href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
+          Terms of Service
+        </a>
+        <span className="text-muted-foreground">|</span>
+        <a href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
+          Privacy Policy
+        </a>
+        <span className="text-muted-foreground hidden md:inline">|</span>
+        <a href="mailto:contact@peekaboolabs.ai" className="text-muted-foreground hover:text-foreground transition-colors">
+          contact@peekaboolabs.ai
+        </a>
       </div>
     </div>
-  </footer>
-);
+  </div>
+</footer>;
 
-// Section Divider with Plus Icons - Memoized
-const SectionDivider = memo(() => (
+// Section Divider with Plus Icons
+const SectionDivider = () => (
   <div className="relative w-full border-b border-white/10">
     {/* Left Plus Icon */}
     <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 flex items-center justify-center">
@@ -770,19 +847,35 @@ const SectionDivider = memo(() => (
       <span className="text-gray-200 text-lg font-light">+</span>
     </div>
   </div>
-));
-SectionDivider.displayName = "SectionDivider";
+);
 
-// Technical Grid Background (Solid Border) - Memoized for performance
-const TechnicalGridBackground = memo(({ children }: { children: React.ReactNode }) => (
-  <div className="min-h-screen relative" style={CONTAINER_STYLE}>
-    {/* High-Density Dot Pattern - Uses static style object */}
-    <div className="fixed inset-0 pointer-events-none" style={DOT_PATTERN_STYLE} />
+// Technical Grid Background (Solid Border)
+const TechnicalGridBackground = ({ children }: { children: React.ReactNode }) => (
+  <div
+    className="min-h-screen relative"
+    style={{
+      fontFamily: "'Inter', sans-serif",
+      backgroundColor: '#ffffff'
+    }}
+  >
+    {/* High-Density Dot Pattern */}
+    <div
+      className="fixed inset-0 pointer-events-none"
+      style={{
+        backgroundImage: `radial-gradient(circle, rgba(148, 163, 184, 0.15) 1px, transparent 1px)`,
+        backgroundSize: '14px 14px',
+        maskImage: 'radial-gradient(ellipse at center, transparent 40%, black 100%)',
+        WebkitMaskImage: 'radial-gradient(ellipse at center, transparent 40%, black 100%)',
+      }}
+    />
+
     {/* Main Content Container */}
-    <div className="relative max-w-6xl mx-auto bg-transparent min-h-screen border-x border-gray-200">{children}</div>
+    {/* [수정] border-dashed 삭제 -> 실선(기본값) 적용 / 색상은 gray-200 유지 */}
+    <div className="relative max-w-6xl mx-auto bg-transparent min-h-screen border-x border-gray-200">
+      {children}
+    </div>
   </div>
-));
-TechnicalGridBackground.displayName = "TechnicalGridBackground";
+);
 
 // Main Page Component
 const IndexEn = () => {
@@ -792,6 +885,8 @@ const IndexEn = () => {
     <TechnicalGridBackground>
       <Nav />
       <Hero />
+      <SectionDivider />
+      <HowItWorksSection />
       <SectionDivider />
       <Features />
       <SectionDivider />

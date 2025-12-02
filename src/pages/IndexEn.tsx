@@ -719,7 +719,7 @@ const CTA = () => {
       }
       const { error } = await supabase.from("email_signups").insert([{
         email: values.email,
-        consent: values.consent,
+
         page_source: "/en",
         utm_source: values.utm_source || null,
         utm_campaign_id: values.utm_campaign_id || null,
@@ -788,13 +788,7 @@ const CTA = () => {
           <input type="hidden" {...register("linkedin_campaign_id")} />
           <input type="hidden" {...register("linkedin_ad_name")} />
 
-          <div className="flex items-start gap-3">
-            <Checkbox id="consent" {...register("consent")} className="mt-1 border-gray-600 data-[state=checked]:bg-white data-[state=checked]:text-[#111]" />
-            <Label htmlFor="consent" className="text-sm text-gray-400 text-left leading-relaxed cursor-pointer">
-              I agree to receive product updates and marketing emails.
-            </Label>
-          </div>
-          {errors.consent && <p className="text-sm text-red-400 text-left">{errors.consent.message}</p>}
+
 
           <button
             type="submit"

@@ -2,6 +2,7 @@ import { SearchInput } from "@/components/ui/search-input";
 import { CitationDemo } from "@/components/demo/citation-demo";
 import { PDFViewer } from "@/components/demo/pdf-viewer";
 import { AutoCycleFiles } from "@/components/demo/auto-cycle-files";
+import { HighlightText } from "@/components/ui/highlight-text";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -166,16 +167,20 @@ const Hero = () => {
         </div>
 
         {/* Massive H1 */}
-        <h1 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#111] tracking-tighter leading-[1.05] mb-6">
-          Local AI Assistant <br />
-          for private documents
+        <h1 className="text-4xl sm:text-4xl md:text-6xl lg:text-5xl font-extrabold text-[#111] tracking-tighter leading-[1.2] mb-7">
+          Search confidential PDFs with AI.
+          <span className="block mt-3 sm:mt-2">
+            <HighlightText className="text-[#111]" color="#fef08a">
+              No uploads. No cloud.
+            </HighlightText>
+          </span>
         </h1>
 
         {/* Subheadline */}
-        <p className="text-lg md:text-xl text-[#666] leading-relaxed max-w-2xl mx-auto mb-10">
-          LocalDocs gives instant, cited answers from your files
+        <p className="text-lg text-[#666] leading-relaxed max-w-4xl mx-auto mb-10">
+          Localdocs is an AI PDF search tool that runs entirely on your computer.
           <br />
-          without sending any data to the cloud.
+          Get instant answers from your documents with source citations.
         </p>
 
         {/* CTA Buttons */}
@@ -226,7 +231,7 @@ const HowItWorksSection = () => {
     },
     {
       number: "03",
-      title: "Answer with citation",
+      title: "Get answers with citation",
       description: "Get answers with sentence-level citations. Every claim is backed by the exact source.",
       component: (
         <div className="w-full h-full flex items-center justify-center p-8">
@@ -236,7 +241,7 @@ const HowItWorksSection = () => {
     },
     {
       number: "04",
-      title: "Verify original content",
+      title: "Verify it from original content",
       description:
         "Click any citation to jump directly to the original page. Verify and explore the full context instantly.",
       component: (

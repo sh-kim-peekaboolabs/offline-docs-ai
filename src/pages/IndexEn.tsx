@@ -4,8 +4,7 @@ import { PDFViewer } from "@/components/demo/pdf-viewer";
 import { AutoCycleFiles } from "@/components/demo/auto-cycle-files";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
+
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -36,9 +35,7 @@ import { trackLead } from "@/lib/facebook-pixel";
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address.").max(255, "Email must be less than 255 characters."),
-  consent: z.boolean().refine((val) => val === true, {
-    message: "Consent is required.",
-  }),
+
   honeypot: z.string().max(0).optional(),
   page_source: z.string().optional(),
   utm_source: z.string().max(100).optional(),
@@ -166,8 +163,8 @@ const Hero = () => {
 
         {/* Massive H1 */}
         <h1 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#111] tracking-tighter leading-[1.05] mb-6">
-          Local AI <br />
-          PDF Search Assistant
+          Local AI Assistant <br />
+          for private documents
         </h1>
 
         {/* Subheadline */}
@@ -684,7 +681,7 @@ const CTA = () => {
     setValue,
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: { consent: false },
+    defaultValues: {},
   });
 
   useEffect(() => {
@@ -716,7 +713,7 @@ const CTA = () => {
       }
       const { error } = await supabase.from("email_signups").insert([{
         email: values.email,
-        consent: values.consent,
+
         page_source: "/en",
         utm_source: values.utm_source || null,
         utm_campaign_id: values.utm_campaign_id || null,
@@ -749,7 +746,8 @@ const CTA = () => {
           Try it now!
         </h2>
         <p className="text-lg text-gray-400 mb-8">
-          It’s currently the closed beta period, so we’re giving you a 30-day Pro plan for free.
+          It’s currently in closed beta. Enter your email
+          <br></br>to get a 1-month free Pro plan.
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -779,13 +777,7 @@ const CTA = () => {
           <input type="hidden" {...register("linkedin_campaign_id")} />
           <input type="hidden" {...register("linkedin_ad_name")} />
 
-          <div className="flex items-start gap-3">
-            <Checkbox id="consent" {...register("consent")} className="mt-1 border-gray-600 data-[state=checked]:bg-white data-[state=checked]:text-[#111]" />
-            <Label htmlFor="consent" className="text-sm text-gray-400 text-left leading-relaxed cursor-pointer">
-              I agree to receive product updates and marketing emails.
-            </Label>
-          </div>
-          {errors.consent && <p className="text-sm text-red-400 text-left">{errors.consent.message}</p>}
+
 
           <button
             type="submit"

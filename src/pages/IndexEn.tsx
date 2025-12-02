@@ -93,8 +93,12 @@ const Nav = () => {
                 <ChevronDown className="w-4 h-4" />
               </button>
               <div className="absolute right-0 top-full mt-2 w-32 bg-white border border-white/10 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                <a href="/" className="block px-4 py-2.5 text-sm text-[#666] hover:bg-gray-50 rounded-t-xl">한국어</a>
-                <span className="block px-4 py-2.5 text-sm text-[#111] bg-gray-50 rounded-b-xl font-medium">English</span>
+                <a href="/" className="block px-4 py-2.5 text-sm text-[#666] hover:bg-gray-50 rounded-t-xl">
+                  한국어
+                </a>
+                <span className="block px-4 py-2.5 text-sm text-[#111] bg-gray-50 rounded-b-xl font-medium">
+                  English
+                </span>
               </div>
             </div>
 
@@ -170,7 +174,8 @@ const Hero = () => {
         {/* Subheadline */}
         <p className="text-lg md:text-xl text-[#666] leading-relaxed max-w-2xl mx-auto mb-10">
           LocalDocs gives instant, cited answers from your files
-          <br />without sending any data to the cloud.
+          <br />
+          without sending any data to the cloud.
         </p>
 
         {/* CTA Buttons */}
@@ -181,7 +186,6 @@ const Hero = () => {
               <ArrowRight className="w-4 h-4" />
             </button>
           </a>
-
         </div>
 
         {/* App Screenshot Placeholder
@@ -207,7 +211,8 @@ const HowItWorksSection = () => {
     {
       number: "01",
       title: "Set a source",
-      description: "Drag and drop PDF files or select them from your PC. All embedding and vectorization happen locally.",
+      description:
+        "Drag and drop PDF files or select them from your PC. All embedding and vectorization happen locally.",
     },
     {
       number: "02",
@@ -232,7 +237,8 @@ const HowItWorksSection = () => {
     {
       number: "04",
       title: "Verify original content",
-      description: "Click any citation to jump directly to the original page. Verify and explore the full context instantly.",
+      description:
+        "Click any citation to jump directly to the original page. Verify and explore the full context instantly.",
       component: (
         <div className="w-full h-full flex items-center justify-center p-8">
           <PDFViewer />
@@ -249,9 +255,7 @@ const HowItWorksSection = () => {
             {/* Header Row - Only for first step */}
             {index === 0 && (
               <div className="px-8 py-4 border-b border-gray-200 border-t border-gray-200 text-center">
-                <span className="text-sm font-semibold text-gray-600 tracking-widest uppercase">
-                  HOW IT WORKS
-                </span>
+                <span className="text-sm font-semibold text-gray-600 tracking-widest uppercase">HOW IT WORKS</span>
               </div>
             )}
 
@@ -260,15 +264,9 @@ const HowItWorksSection = () => {
               {/* Left Column - Text */}
               <div className="px-8 md:px-12 py-12 md:py-16 border-r border-gray-200 flex flex-col justify-center">
                 <div className="space-y-4">
-                  <div className="text-sm font-mono text-gray-400">
-                    {step.number}
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
-                    {step.title}
-                  </h3>
-                  <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-md">
-                    {step.description}
-                  </p>
+                  <div className="text-sm font-mono text-gray-400">{step.number}</div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">{step.title}</h3>
+                  <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-md">{step.description}</p>
                 </div>
               </div>
 
@@ -279,9 +277,7 @@ const HowItWorksSection = () => {
                 ) : step.component ? (
                   step.component
                 ) : (
-                  <div className="text-gray-300 text-8xl font-thin">
-                    {step.number}
-                  </div>
+                  <div className="text-gray-300 text-8xl font-thin">{step.number}</div>
                 )}
               </div>
             </div>
@@ -356,9 +352,7 @@ const Features = () => {
               <Lock className="w-6 h-6 text-[#111]" />
             </div>
             <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">100% Offline</h3>
-            <p className="text-[#666] leading-relaxed">
-              Runs entirely on your computer. No internet required.
-            </p>
+            <p className="text-[#666] leading-relaxed">Runs entirely on your computer. No internet required.</p>
           </div>
 
           {/* Small Card */}
@@ -367,9 +361,7 @@ const Features = () => {
               <Shield className="w-6 h-6 text-[#111]" />
             </div>
             <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Zero Data Leaks</h3>
-            <p className="text-[#666] leading-relaxed">
-              Your documents never leave your device. Complete privacy.
-            </p>
+            <p className="text-[#666] leading-relaxed">Your documents never leave your device. Complete privacy.</p>
           </div>
 
           {/* Medium Card */}
@@ -378,9 +370,7 @@ const Features = () => {
               <FileText className="w-6 h-6 text-[#111]" />
             </div>
             <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Source Citations</h3>
-            <p className="text-[#666] leading-relaxed">
-              Every answer includes the exact document and page number.
-            </p>
+            <p className="text-[#666] leading-relaxed">Every answer includes the exact document and page number.</p>
           </div>
 
           {/* Medium Card */}
@@ -389,9 +379,7 @@ const Features = () => {
               <Search className="w-6 h-6 text-[#111]" />
             </div>
             <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Table Analysis</h3>
-            <p className="text-[#666] leading-relaxed">
-              Accurately reads tables, charts, and financial data.
-            </p>
+            <p className="text-[#666] leading-relaxed">Accurately reads tables, charts, and financial data.</p>
           </div>
         </div>
       </div>
@@ -484,141 +472,156 @@ const Security = () => {
   );
 };
 
-const Pricing = () => <section id="pricing" className="section" aria-labelledby="pricing-heading">
-  <div className="container">
-    <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4 text-center">Choose the plan that works for you</h2>
-    <div className="grid md:grid-cols-3 gap-6 pt-8">
+const Pricing = () => (
+  <section id="pricing" className="section" aria-labelledby="pricing-heading">
+    <div className="container">
+      <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4 text-center">
+        Choose the plan that works for you
+      </h2>
+      <div className="grid md:grid-cols-3 gap-6 pt-8">
+        {/* Free Plan */}
+        <div className="pricing-card h-full flex flex-col border border-gray-200 rounded-lg p-6 bg-white">
+          <div className="text-center mb-6">
+            <h3 className="text-xl font-semibold mb-2">Free</h3>
+            <div className="text-3xl font-bold mb-2">Free</div>
+            <div className="text-sm text-muted-foreground h-5"></div>
+          </div>
+          <ul className="space-y-3 flex-1 text-sm">
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Upload PDF & Chat</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Create 1 Folder</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Up to 3 PDFs per folder</span>
+            </li>
 
-      {/* Free Plan */}
-      <div className="pricing-card h-full flex flex-col border border-gray-200 rounded-lg p-6 bg-white">
-        <div className="text-center mb-6">
-          <h3 className="text-xl font-semibold mb-2">Free</h3>
-          <div className="text-3xl font-bold mb-2">Free</div>
-          <div className="text-sm text-muted-foreground h-5"></div>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Full support for tables & formulas</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Email Support</span>
+            </li>
+          </ul>
+          <div className="mt-6">
+            <a href="#cta" className="w-full">
+              <Button variant="outline" className="w-full">
+                Download for Mac
+              </Button>
+            </a>
+          </div>
         </div>
-        <ul className="space-y-3 flex-1 text-sm">
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Upload PDF & Chat</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Create 1 Folder</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Up to 3 PDFs per folder</span>
-          </li>
 
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Full support for tables & formulas</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Email Support</span>
-          </li>
-        </ul>
-        <div className="mt-6">
-          <a href="#cta" className="w-full">
-            <Button variant="outline" className="w-full">Download for Mac</Button>
-          </a>
+        {/* Pro Plan */}
+        <div className="pricing-card h-full flex flex-col border-2 border-primary rounded-lg p-6 bg-white relative">
+          <div className="text-center mb-6">
+            <h3 className="text-xl font-semibold mb-2 flex items-center justify-center gap-2">
+              Pro
+              <span className="bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium">
+                Recommended
+              </span>
+            </h3>
+            <div className="text-3xl font-bold mb-2">
+              $29<span className="text-lg font-normal">/mo</span>
+            </div>
+            <div className="text-sm text-primary font-semibold">
+              1 Month Free Trial of Pro Plan during closed beta period
+            </div>
+          </div>
+          <ul className="space-y-3 flex-1 text-sm">
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Everything in Free</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Unlimited Folders</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Up to 50 PDFs per folder</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>HWPX·PPTX·XLSX (Coming Soon)</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Export Results (Coming Soon)</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Priority Email Support</span>
+            </li>
+          </ul>
+          <div className="mt-6">
+            <a href="#cta" className="w-full">
+              <Button variant="hero" className="w-full">
+                Download for Mac
+              </Button>
+            </a>
+          </div>
         </div>
-      </div>
 
-      {/* Pro Plan */}
-      <div className="pricing-card h-full flex flex-col border-2 border-primary rounded-lg p-6 bg-white relative">
-        <div className="text-center mb-6">
-          <h3 className="text-xl font-semibold mb-2 flex items-center justify-center gap-2">
-            Pro
-            <span className="bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-medium">Recommended</span>
-          </h3>
-          <div className="text-3xl font-bold mb-2">$29<span className="text-lg font-normal">/mo</span></div>
-          <div className="text-sm text-primary font-semibold">1 Month Free Trial of Pro Plan during closed beta period</div>
-        </div>
-        <ul className="space-y-3 flex-1 text-sm">
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Everything in Free</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Unlimited Folders</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Up to 50 PDFs per folder</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>HWPX·PPTX·XLSX (Coming Soon)</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Export Results (Coming Soon)</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Priority Email Support</span>
-          </li>
-        </ul>
-        <div className="mt-6">
-          <a href="#cta" className="w-full">
-            <Button variant="hero" className="w-full">Download for Mac</Button>
-          </a>
-        </div>
-      </div>
-
-      {/* Enterprise Plan */}
-      <div className="pricing-card h-full flex flex-col border border-gray-200 rounded-lg p-6 bg-white">
-        <div className="text-center mb-6">
-          <h3 className="text-xl font-semibold mb-2">Enterprise</h3>
-          <div className="text-3xl font-bold mb-2">Contact Us</div>
-          <div className="text-sm text-muted-foreground h-5"></div>
-        </div>
-        <ul className="space-y-3 flex-1 text-sm">
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Everything in Pro</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Internal System Integration</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Folder Sharing</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Custom AI trained on company data</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Admin Dashboard (License Management)</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Enhanced Security (SSO, etc.)</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Enterprise RAG Package Support</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            <span>Dedicated Support & Onboarding</span>
-          </li>
-        </ul>
-        <div className="mt-6">
-          <a href="#cta" className="w-full">
-            <Button variant="outline" className="w-full">Download for Mac</Button>
-          </a>
+        {/* Enterprise Plan */}
+        <div className="pricing-card h-full flex flex-col border border-gray-200 rounded-lg p-6 bg-white">
+          <div className="text-center mb-6">
+            <h3 className="text-xl font-semibold mb-2">Enterprise</h3>
+            <div className="text-3xl font-bold mb-2">Contact Us</div>
+            <div className="text-sm text-muted-foreground h-5"></div>
+          </div>
+          <ul className="space-y-3 flex-1 text-sm">
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Everything in Pro</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Internal System Integration</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Folder Sharing</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Custom AI trained on company data</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Admin Dashboard (License Management)</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Enhanced Security (SSO, etc.)</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Enterprise RAG Package Support</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <span>Dedicated Support & Onboarding</span>
+            </li>
+          </ul>
+          <div className="mt-6">
+            <a href="#cta" className="w-full">
+              <Button variant="outline" className="w-full">
+                Download for Mac
+              </Button>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>;
+  </section>
+);
 
 // FAQ Section
 const FAQ = () => {
@@ -627,7 +630,10 @@ const FAQ = () => {
     { q: "What file formats are supported?", a: "Currently PDF. HWP, PPTX, and XLSX coming soon." },
     { q: "Can it read tables and charts?", a: "Yes, it accurately analyzes tables and financial data." },
     { q: "Are sources provided?", a: "Yes, every answer includes document name and page number." },
-    { q: "Is it secure for sensitive documents?", a: "Yes, 100% local processing means no data ever leaves your device." },
+    {
+      q: "Is it secure for sensitive documents?",
+      a: "Yes, 100% local processing means no data ever leaves your device.",
+    },
   ];
 
   const faqJsonLd = {
@@ -713,7 +719,7 @@ const CTA = () => {
       }
       const { error } = await supabase.from("email_signups").insert([{
         email: values.email,
-
+        consent: values.consent,
         page_source: "/en",
         utm_source: values.utm_source || null,
         utm_campaign_id: values.utm_campaign_id || null,
@@ -742,9 +748,7 @@ const CTA = () => {
   return (
     <section id="cta" className="bg-[#111] py-20 md:py-32">
       <div className="px-8 max-w-xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white tracking-[-0.02em] mb-4">
-          Try it now!
-        </h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-white tracking-[-0.02em] mb-4">Try it now!</h2>
         <p className="text-lg text-gray-400 mb-8">
           It’s currently in closed beta. Enter your email
           <br></br>to get a 1-month free Pro plan.
@@ -761,7 +765,14 @@ const CTA = () => {
             {errors.email && <p className="text-sm text-red-400 mt-2 text-left">{errors.email.message}</p>}
           </div>
 
-          <input type="text" {...register("honeypot")} className="absolute -left-[9999px] w-px h-px" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+          <input
+            type="text"
+            {...register("honeypot")}
+            className="absolute -left-[9999px] w-px h-px"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
           <input type="hidden" {...register("utm_source")} />
           <input type="hidden" {...register("utm_campaign_id")} />
           <input type="hidden" {...register("utm_medium")} />
@@ -777,7 +788,13 @@ const CTA = () => {
           <input type="hidden" {...register("linkedin_campaign_id")} />
           <input type="hidden" {...register("linkedin_ad_name")} />
 
-
+          <div className="flex items-start gap-3">
+            <Checkbox id="consent" {...register("consent")} className="mt-1 border-gray-600 data-[state=checked]:bg-white data-[state=checked]:text-[#111]" />
+            <Label htmlFor="consent" className="text-sm text-gray-400 text-left leading-relaxed cursor-pointer">
+              I agree to receive product updates and marketing emails.
+            </Label>
+          </div>
+          {errors.consent && <p className="text-sm text-red-400 text-left">{errors.consent.message}</p>}
 
           <button
             type="submit"
@@ -792,26 +809,31 @@ const CTA = () => {
   );
 };
 
-const Footer = () => <footer className="border-t">
-  <div className="container py-8 text-sm">
-    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-      <div className="text-muted-foreground">© PeekabooLabs. All rights reserved. 2025</div>
-      <div className="flex items-center gap-4">
-        <a href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
-          Terms of Service
-        </a>
-        <span className="text-muted-foreground">|</span>
-        <a href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
-          Privacy Policy
-        </a>
-        <span className="text-muted-foreground hidden md:inline">|</span>
-        <a href="mailto:contact@peekaboolabs.ai" className="text-muted-foreground hover:text-foreground transition-colors">
-          contact@peekaboolabs.ai
-        </a>
+const Footer = () => (
+  <footer className="border-t">
+    <div className="container py-8 text-sm">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="text-muted-foreground">© PeekabooLabs. All rights reserved. 2025</div>
+        <div className="flex items-center gap-4">
+          <a href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
+            Terms of Service
+          </a>
+          <span className="text-muted-foreground">|</span>
+          <a href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
+            Privacy Policy
+          </a>
+          <span className="text-muted-foreground hidden md:inline">|</span>
+          <a
+            href="mailto:contact@peekaboolabs.ai"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            contact@peekaboolabs.ai
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</footer>;
+  </footer>
+);
 
 // Section Divider with Plus Icons
 const SectionDivider = () => (
@@ -833,7 +855,7 @@ const TechnicalGridBackground = ({ children }: { children: React.ReactNode }) =>
     className="min-h-screen relative"
     style={{
       fontFamily: "'Inter', sans-serif",
-      backgroundColor: '#ffffff'
+      backgroundColor: "#ffffff",
     }}
   >
     {/* High-Density Dot Pattern */}
@@ -841,17 +863,15 @@ const TechnicalGridBackground = ({ children }: { children: React.ReactNode }) =>
       className="fixed inset-0 pointer-events-none"
       style={{
         backgroundImage: `radial-gradient(circle, rgba(148, 163, 184, 0.15) 1px, transparent 1px)`,
-        backgroundSize: '14px 14px',
-        maskImage: 'radial-gradient(ellipse at center, transparent 40%, black 100%)',
-        WebkitMaskImage: 'radial-gradient(ellipse at center, transparent 40%, black 100%)',
+        backgroundSize: "14px 14px",
+        maskImage: "radial-gradient(ellipse at center, transparent 40%, black 100%)",
+        WebkitMaskImage: "radial-gradient(ellipse at center, transparent 40%, black 100%)",
       }}
     />
 
     {/* Main Content Container */}
     {/* [수정] border-dashed 삭제 -> 실선(기본값) 적용 / 색상은 gray-200 유지 */}
-    <div className="relative max-w-6xl mx-auto bg-transparent min-h-screen border-x border-gray-200">
-      {children}
-    </div>
+    <div className="relative max-w-6xl mx-auto bg-transparent min-h-screen border-x border-gray-200">{children}</div>
   </div>
 );
 

@@ -1,8 +1,4 @@
-import { SearchInput } from "@/components/ui/search-input";
-import { CitationDemo } from "@/components/demo/citation-demo";
-import { PDFViewer } from "@/components/demo/pdf-viewer";
-import { AutoCycleFiles } from "@/components/demo/auto-cycle-files";
-import { DifferentiationSection } from "@/components/sections/differentiation-section";
+import { lazy, Suspense, memo, useEffect, useState } from "react";
 import { HighlightText } from "@/components/ui/highlight-text";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,8 +10,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import {
-  ShieldCheck,
-  WifiOff,
   FileText,
   Lock,
   CheckCircle,
@@ -25,19 +19,24 @@ import {
   X,
   ArrowRight,
   Search,
-  FileSearch,
   Shield,
-  Upload,
-  Quote,
   Layers,
 } from "lucide-react";
-import { Files, FolderItem, FolderTrigger, FolderPanel, SubFiles, FileItem } from "@/components/ui/files";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { usePageTracking } from "@/hooks/useAnalytics";
 import { trackLead } from "@/lib/facebook-pixel";
 import { motion } from "framer-motion";
+
+// Lazy load heavy demo components
+const SearchInput = lazy(() => import("@/components/ui/search-input").then(m => ({ default: m.SearchInput })));
+const CitationDemo = lazy(() => import("@/components/demo/citation-demo").then(m => ({ default: m.CitationDemo })));
+const PDFViewer = lazy(() => import("@/components/demo/pdf-viewer").then(m => ({ default: m.PDFViewer })));
+const AutoCycleFiles = lazy(() => import("@/components/demo/auto-cycle-files").then(m => ({ default: m.AutoCycleFiles })));
+const DifferentiationSection = lazy(() => import("@/components/sections/differentiation-section").then(m => ({ default: m.DifferentiationSection })));
+
+// Simple loading placeholder
+const DemoLoader = () => <div className="w-full h-full flex items-center justify-center"><div className="w-6 h-6 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin" /></div>;
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address.").max(255, "Email must be less than 255 characters."),
@@ -266,7 +265,9 @@ const HowItWorksSection = () => {
       ),
       component: (
         <div className="w-full h-full flex items-center justify-center p-8">
-          <SearchInput />
+          <Suspense fallback={<DemoLoader />}>
+            <SearchInput />
+          </Suspense>
         </div>
       ),
     },
@@ -282,7 +283,9 @@ const HowItWorksSection = () => {
       ),
       component: (
         <div className="w-full h-full flex items-center justify-center p-8">
-          <CitationDemo />
+          <Suspense fallback={<DemoLoader />}>
+            <CitationDemo />
+          </Suspense>
         </div>
       ),
     },
@@ -298,7 +301,9 @@ const HowItWorksSection = () => {
       ),
       component: (
         <div className="w-full h-full flex items-center justify-center p-8">
-          <PDFViewer />
+          <Suspense fallback={<DemoLoader />}>
+            <PDFViewer />
+          </Suspense>
         </div>
       ),
     },
@@ -330,7 +335,9 @@ const HowItWorksSection = () => {
               {/* Right Column - Graphic */}
               <div className="bg-gray-50 px-8 md:px-12 py-12 md:py-16 flex items-center justify-center h-full overflow-hidden">
                 {index === 0 ? (
-                  <AutoCycleFiles />
+                  <Suspense fallback={<DemoLoader />}>
+                    <AutoCycleFiles />
+                  </Suspense>
                 ) : step.component ? (
                   step.component
                 ) : (
@@ -973,7 +980,9 @@ const IndexEn = () => {
       <SectionDivider />
       <HowItWorksSection />
 
-      <DifferentiationSection />
+      <Suspense fallback={<DemoLoader />}>
+        <DifferentiationSection />
+      </Suspense>
       <SectionDivider />
       <Features />
       <SectionDivider />

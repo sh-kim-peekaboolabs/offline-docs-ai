@@ -1,8 +1,4 @@
-import { SearchInputKr } from "@/components/ui/search-input-kr";
-import { CitationDemoKr } from "@/components/demo/citation-demo-kr";
-import { PDFViewerKr } from "@/components/demo/pdf-viewer-kr";
-import { AutoCycleFilesKr } from "@/components/demo/auto-cycle-files-kr";
-import { DifferentiationSectionKr } from "@/components/sections/differentiation-section-kr";
+import { lazy, Suspense, memo, useEffect, useState, useRef } from "react";
 import { HighlightText } from "@/components/ui/highlight-text";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,8 +10,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import {
-    ShieldCheck,
-    WifiOff,
     FileText,
     Lock,
     CheckCircle,
@@ -25,19 +19,24 @@ import {
     X,
     ArrowRight,
     Search,
-    FileSearch,
     Shield,
-    Upload,
-    Quote,
     Layers,
 } from "lucide-react";
-import { Files, FolderItem, FolderTrigger, FolderPanel, SubFiles, FileItem } from "@/components/ui/files";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
-import { useEffect, useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { usePageTracking } from "@/hooks/useAnalytics";
 import { trackLead } from "@/lib/facebook-pixel";
 import { motion } from "framer-motion";
+
+// Lazy load heavy demo components
+const SearchInputKr = lazy(() => import("@/components/ui/search-input-kr").then(m => ({ default: m.SearchInputKr })));
+const CitationDemoKr = lazy(() => import("@/components/demo/citation-demo-kr").then(m => ({ default: m.CitationDemoKr })));
+const PDFViewerKr = lazy(() => import("@/components/demo/pdf-viewer-kr").then(m => ({ default: m.PDFViewerKr })));
+const AutoCycleFilesKr = lazy(() => import("@/components/demo/auto-cycle-files-kr").then(m => ({ default: m.AutoCycleFilesKr })));
+const DifferentiationSectionKr = lazy(() => import("@/components/sections/differentiation-section-kr").then(m => ({ default: m.DifferentiationSectionKr })));
+
+// Simple loading placeholder
+const DemoLoader = () => <div className="w-full h-full flex items-center justify-center"><div className="w-6 h-6 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin" /></div>;
 
 const formSchema = z.object({
     email: z.string().email("유효한 이메일 주소를 입력해주세요.").max(255, "이메일은 255자를 초과할 수 없습니다."),
@@ -302,7 +301,9 @@ const HowItWorksSection = () => {
             ),
             component: (
                 <div className="w-full h-full flex items-center justify-center p-8">
-                    <SearchInputKr />
+                    <Suspense fallback={<DemoLoader />}>
+                        <SearchInputKr />
+                    </Suspense>
                 </div>
             ),
         },
@@ -318,7 +319,9 @@ const HowItWorksSection = () => {
             ),
             component: (
                 <div className="w-full h-full flex items-center justify-center p-8">
-                    <CitationDemoKr />
+                    <Suspense fallback={<DemoLoader />}>
+                        <CitationDemoKr />
+                    </Suspense>
                 </div>
             ),
         },
@@ -334,7 +337,9 @@ const HowItWorksSection = () => {
             ),
             component: (
                 <div className="w-full h-full flex items-center justify-center p-8">
-                    <PDFViewerKr />
+                    <Suspense fallback={<DemoLoader />}>
+                        <PDFViewerKr />
+                    </Suspense>
                 </div>
             ),
         },
@@ -366,7 +371,9 @@ const HowItWorksSection = () => {
                             {/* Right Column - Graphic */}
                             <div className="bg-gray-50 px-8 md:px-12 py-12 md:py-16 flex items-center justify-center h-full overflow-hidden">
                                 {index === 0 ? (
-                                    <AutoCycleFilesKr />
+                                    <Suspense fallback={<DemoLoader />}>
+                                        <AutoCycleFilesKr />
+                                    </Suspense>
                                 ) : step.component ? (
                                     step.component
                                 ) : (
@@ -968,7 +975,9 @@ const IndexNew = () => {
             <Nav />
             <Hero />
             <HowItWorksSection />
-            <DifferentiationSectionKr />
+            <Suspense fallback={<DemoLoader />}>
+                <DifferentiationSectionKr />
+            </Suspense>
             <Features />
             <UseCases />
             <Security />

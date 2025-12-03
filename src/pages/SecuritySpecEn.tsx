@@ -73,7 +73,7 @@ const SecuritySpecEn = () => {
 
                         {/* 2. Core Security Architecture */}
                         <section className="mb-16">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-8">2. Core Security Architecture (Enterprise Edition)</h2>
+                            <h2 className="text-2xl font-bold text-gray-900 mb-8">2. Core Security Architecture</h2>
 
                             <h3 className="text-xl font-semibold text-gray-900 mb-5">2.1. Zero Data Egress (Physical Isolation)</h3>
                             <p className="text-gray-700 leading-relaxed mb-6">

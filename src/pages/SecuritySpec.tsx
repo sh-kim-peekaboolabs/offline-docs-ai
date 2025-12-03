@@ -73,7 +73,7 @@ const SecuritySpec = () => {
                         </section>
                         {/* 2. 핵심 보안 아키텍처 */}
                         <section className="mb-16">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-8">2. 핵심 보안 아키텍처 (엔터프라이즈 에디션 기준)</h2>
+                            <h2 className="text-2xl font-bold text-gray-900 mb-8">2. 핵심 보안 아키텍처</h2>
 
                             <h3 className="text-xl font-semibold text-gray-900 mb-5">2.1. 데이터 유출 제로 (물리적 격리)</h3>
                             <p className="text-gray-700 leading-relaxed mb-6">

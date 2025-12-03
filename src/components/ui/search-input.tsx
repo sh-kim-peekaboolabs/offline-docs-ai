@@ -87,10 +87,10 @@ export const SearchInput = () => {
     }, [phase, displayText, currentScenario.text, scenarios.length]);
 
     return (
-        <div className="w-full max-w-sm mx-auto max-h-[350px] overflow-auto">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="w-full max-w-sm mx-auto">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 h-[350px] flex flex-col">
                 {/* Search Bar Area */}
-                <div className="space-y-4">
+                <div className="space-y-4 flex-shrink-0">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center border border-gray-200 hover:bg-gray-100 transition-colors cursor-pointer">
@@ -129,51 +129,53 @@ export const SearchInput = () => {
                 </div>
 
                 {/* Result Area (Expands when needed) */}
-                <AnimatePresence mode="wait">
-                    {phase === "searching" && (
-                        <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
-                            className="border-t border-gray-200 pt-4 mt-4 overflow-hidden"
-                        >
-                            <div className="flex items-start gap-3">
-                                <img src={logo} alt="LocalDocs" className="w-8 h-8 flex-shrink-0" />
-                                <div className="flex-1 space-y-2">
-                                    <p className="text-xs text-gray-500">Searching...</p>
-                                    <div className="space-y-2">
-                                        <div className="h-3 bg-gray-200 rounded animate-pulse" />
-                                        <div className="h-3 bg-gray-200 rounded animate-pulse w-5/6" />
-                                        <div className="h-3 bg-gray-200 rounded animate-pulse w-4/6" />
+                <div className="flex-1 overflow-auto">
+                    <AnimatePresence mode="wait">
+                        {phase === "searching" && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                                className="border-t border-gray-200 pt-4 mt-4 overflow-hidden"
+                            >
+                                <div className="flex items-start gap-3">
+                                    <img src={logo} alt="LocalDocs" className="w-8 h-8 flex-shrink-0" />
+                                    <div className="flex-1 space-y-2">
+                                        <p className="text-xs text-gray-500">Searching...</p>
+                                        <div className="space-y-2">
+                                            <div className="h-3 bg-gray-200 rounded animate-pulse" />
+                                            <div className="h-3 bg-gray-200 rounded animate-pulse w-5/6" />
+                                            <div className="h-3 bg-gray-200 rounded animate-pulse w-4/6" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </motion.div>
-                    )}
-                    {phase === "result" && (
-                        <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
-                            className="border-t border-gray-200 pt-4 mt-4 overflow-hidden"
-                        >
-                            <div className="flex items-start gap-3">
-                                <img src={logo} alt="LocalDocs" className="w-8 h-8 flex-shrink-0" />
-                                <div className="flex-1 space-y-2">
-                                    <p className="text-sm text-gray-700 leading-relaxed">
-                                        {currentScenario.result}
-                                    </p>
-                                    <div className="flex items-center gap-2 mt-3 text-xs text-blue-500 font-medium cursor-pointer hover:text-blue-600 transition-colors">
-                                        <span>{currentScenario.source}</span>
-                                        <ArrowRight className="w-3 h-3" />
+                            </motion.div>
+                        )}
+                        {phase === "result" && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                                className="border-t border-gray-200 pt-4 mt-4 overflow-hidden"
+                            >
+                                <div className="flex items-start gap-3">
+                                    <img src={logo} alt="LocalDocs" className="w-8 h-8 flex-shrink-0" />
+                                    <div className="flex-1 space-y-2">
+                                        <p className="text-sm text-gray-700 leading-relaxed">
+                                            {currentScenario.result}
+                                        </p>
+                                        <div className="flex items-center gap-2 mt-3 text-xs text-blue-500 font-medium cursor-pointer hover:text-blue-600 transition-colors">
+                                            <span>{currentScenario.source}</span>
+                                            <ArrowRight className="w-3 h-3" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
             </div>
         </div>
     );

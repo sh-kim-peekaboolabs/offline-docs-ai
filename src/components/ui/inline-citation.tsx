@@ -27,14 +27,22 @@ export type InlineCitationCardTriggerProps = {
 export const InlineCitationCardTrigger = ({ source, className }: InlineCitationCardTriggerProps) => (
     <HoverCardTrigger asChild>
         <button
+            style={{
+                width: '16px',
+                height: '16px',
+                fontSize: '9px',
+                padding: 0,
+                minWidth: '16px',
+                minHeight: '16px'
+            }}
             className={cn(
-                'ml-1 inline-flex items-center rounded-full border border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 px-2.5 py-0.5 text-xs font-semibold transition-colors cursor-pointer',
+                'ml-0.5 inline-flex items-center justify-center rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 md:!w-5 md:!h-5 md:!text-[11px] font-bold transition-colors cursor-pointer',
                 className
             )}
         >
             {source}
         </button>
-    </HoverCardTrigger>
+    </HoverCardTrigger >
 );
 
 export type InlineCitationCardBodyProps = ComponentProps<'div'>;

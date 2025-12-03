@@ -2,6 +2,7 @@ import { SearchInput } from "@/components/ui/search-input";
 import { CitationDemo } from "@/components/demo/citation-demo";
 import { PDFViewer } from "@/components/demo/pdf-viewer";
 import { AutoCycleFiles } from "@/components/demo/auto-cycle-files";
+import { DifferentiationSection } from "@/components/sections/differentiation-section";
 import { HighlightText } from "@/components/ui/highlight-text";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -216,13 +217,24 @@ const HowItWorksSection = () => {
     {
       number: "01",
       title: "Set a source",
-      description:
-        "Drag and drop PDF files or select them from your PC. All embedding and vectorization happen locally.",
+      description: (
+        <>
+          Drag and drop PDF files or select them from your PC.
+          <br />
+          All embedding and vectorization happen locally.
+        </>
+      ),
     },
     {
       number: "02",
       title: "Ask anything",
-      description: "Type your question in natural language. No need to remember exact keywords or page numbers.",
+      description: (
+        <>
+          Type your question in natural language.
+          <br />
+          No need to remember exact keywords or page numbers.
+        </>
+      ),
       component: (
         <div className="w-full h-full flex items-center justify-center p-8">
           <SearchInput />
@@ -232,7 +244,13 @@ const HowItWorksSection = () => {
     {
       number: "03",
       title: "Get answers with citation",
-      description: "Get answers with sentence-level citations. Every claim is backed by the exact source.",
+      description: (
+        <>
+          Get answers with sentence-level citations.
+          <br />
+          Every claim is backed by the exact source.
+        </>
+      ),
       component: (
         <div className="w-full h-full flex items-center justify-center p-8">
           <CitationDemo />
@@ -242,8 +260,13 @@ const HowItWorksSection = () => {
     {
       number: "04",
       title: "Verify it from original content",
-      description:
-        "Click any citation to jump directly to the original page. Verify and explore the full context instantly.",
+      description: (
+        <>
+          Click any citation to jump directly to the original page.
+          <br />
+          Verify and explore the full context instantly.
+        </>
+      ),
       component: (
         <div className="w-full h-full flex items-center justify-center p-8">
           <PDFViewer />
@@ -265,18 +288,18 @@ const HowItWorksSection = () => {
             )}
 
             {/* Content Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 h-[800px] md:h-[550px]">
               {/* Left Column - Text */}
-              <div className="px-8 md:px-12 py-12 md:py-16 border-r border-gray-200 flex flex-col justify-center">
+              <div className="px-8 md:px-10 py-12 md:py-16 border-r border-gray-200 flex flex-col justify-center h-full">
                 <div className="space-y-4">
                   <div className="text-sm font-mono text-gray-400">{step.number}</div>
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">{step.title}</h3>
-                  <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-md">{step.description}</p>
+                  <p className="text-base lg:text-lg text-gray-600 leading-relaxed tracking-tight">{step.description}</p>
                 </div>
               </div>
 
               {/* Right Column - Graphic */}
-              <div className="bg-gray-50 px-8 md:px-12 py-12 md:py-16 flex items-center justify-center h-[400px]">
+              <div className="bg-gray-50 px-8 md:px-12 py-12 md:py-16 flex items-center justify-center h-full overflow-hidden">
                 {index === 0 ? (
                   <AutoCycleFiles />
                 ) : step.component ? (
@@ -884,6 +907,8 @@ const IndexEn = () => {
       <Hero />
       <SectionDivider />
       <HowItWorksSection />
+
+      <DifferentiationSection />
       <SectionDivider />
       <Features />
       <SectionDivider />

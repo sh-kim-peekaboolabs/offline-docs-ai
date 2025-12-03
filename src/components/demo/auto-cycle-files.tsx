@@ -52,10 +52,18 @@ export const AutoCycleFiles = () => {
 
     const handleValueChange = (value: string[]) => {
         setUserInteracted(true);
+        if (value.length > 0) {
+            // Always take the last selected item to switch to it
+            const lastSelected = value[value.length - 1];
+            const index = folders.indexOf(lastSelected);
+            if (index !== -1) {
+                setCurrentFolder(index);
+            }
+        }
     };
 
     return (
-        <div className="w-full max-w-sm bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="w-full max-w-sm bg-white rounded-xl shadow-sm border border-gray-200 p-4 h-[280px] overflow-auto">
             <Files
                 type="multiple"
                 className="w-full"

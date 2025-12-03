@@ -854,49 +854,68 @@ const CTA = () => {
 };
 
 const Footer = () => (
-  <footer className="border-t">
-    <div className="container py-8 text-sm">
-      <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="text-muted-foreground">© PeekabooLabs. All rights reserved. 2025</div>
-        <div className="flex items-center gap-4">
-          {/* Language Dropdown */}
-          <div className="relative group">
-            <button className="flex items-center gap-1.5 px-3 py-1.5 text-muted-foreground hover:text-foreground transition-colors">
-              <span>English</span>
-              <ChevronDown className="w-3.5 h-3.5" />
-            </button>
-            <div className="absolute bottom-full mb-2 right-0 w-32 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-              <a
-                href="/"
-                className="block px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-gray-50 rounded-t-lg transition-colors"
-              >
-                한국어
-              </a>
-              <span className="block px-4 py-2.5 text-sm text-foreground bg-gray-50 rounded-b-lg font-medium">
-                English
-              </span>
-            </div>
+  <footer className="border-t bg-white">
+    <div className="max-w-7xl mx-auto px-8 py-16 border-x border-gray-200">
+      {/* Main Footer Content */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        {/* Company Info */}
+        <div className="col-span-2 md:col-span-1">
+          <div className="flex flex-col items-start gap-2 mb-3">
+            <img src={logo} alt="LocalDocs" width={24} height={24} />
+            <h3 className="text-base font-semibold">LocalDocs</h3>
           </div>
+          <p className="text-sm text-muted-foreground">
+            Private AI document search
+          </p>
+        </div>
 
-          <span className="text-muted-foreground hidden md:inline">|</span>
-          <a href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
-            Terms of Service
-          </a>
-          <span className="text-muted-foreground">|</span>
-          <a href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
-            Privacy Policy
-          </a>
-          <span className="text-muted-foreground">|</span>
-          <Link to="/en/security-spec" state={{ from: 'footer' }} className="text-muted-foreground hover:text-foreground transition-colors">
-            Security Spec
-          </Link>
-          <span className="text-muted-foreground hidden md:inline">|</span>
-          <a
-            href="mailto:contact@peekaboolabs.ai"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            contact@peekaboolabs.ai
-          </a>
+        {/* Legal */}
+        <div>
+          <h3 className="text-sm font-semibold mb-4">Legal</h3>
+          <div className="flex flex-col gap-3">
+            <a href="/en/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Terms of Service
+            </a>
+            <a href="/en/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Privacy Policy
+            </a>
+            <Link to="/en/security-spec" state={{ from: 'footer' }} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Security Spec
+            </Link>
+          </div>
+        </div>
+
+        {/* Language */}
+        <div>
+          <h3 className="text-sm font-semibold mb-4">Language</h3>
+          <div className="flex flex-col gap-3">
+            <span className="text-sm text-foreground font-medium">
+              English
+            </span>
+            <a href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              한국어
+            </a>
+          </div>
+        </div>
+
+        {/* Social */}
+        <div>
+          <h3 className="text-sm font-semibold mb-4">Social</h3>
+          <div className="flex flex-col gap-3">
+            <a href="https://www.linkedin.com/company/peekaboolabs/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              LinkedIn
+            </a>
+            <a href="https://x.com/PeekabooLabsInc" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              X
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="pt-8 border-t border-gray-200">
+        <div className="text-left text-sm text-muted-foreground">
+          © 2025 PeekabooLabs. All rights reserved.
         </div>
       </div>
     </div>

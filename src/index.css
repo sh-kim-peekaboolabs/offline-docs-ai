@@ -346,3 +346,35 @@
   background-size: 400% 400%;
   animation: gradient-xy 15s ease infinite;
 }
+
+@keyframes float-subtle {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.animate-float-subtle {
+  animation: float-subtle 3s ease-in-out infinite;
+}
+
+@keyframes scale-subtle {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.animate-scale-subtle {
+  animation: scale-subtle 3s ease-in-out infinite;
+}

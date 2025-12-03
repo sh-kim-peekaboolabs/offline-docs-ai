@@ -282,21 +282,44 @@ const SecuritySpec = () => {
 
                         {/* Founders Photos */}
                         <div className="flex items-center gap-2 mb-8">
-                            <img
-                                src="/team/junghwan.jpg"
-                                alt="서정환"
-                                className="w-12 h-12 rounded-full object-cover border-2 border-gray-300"
-                            />
-                            <img
-                                src="/team/hansol.jpg"
-                                alt="남한솔"
-                                className="w-12 h-12 rounded-full object-cover border-2 border-gray-300"
-                            />
-                            <img
-                                src="/team/seunghwan.jpg"
-                                alt="김승환"
-                                className="w-12 h-12 rounded-full object-cover border-2 border-gray-300"
-                            />
+                            <a
+                                href="https://www.linkedin.com/in/junghwanseo/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative animate-float-subtle"
+                            >
+                                <img
+                                    src="/team/junghwan.jpg"
+                                    alt="서정환"
+                                    className="w-12 h-12 rounded-full object-cover border-2 border-gray-300 transition-all duration-300 group-hover:border-gray-400 group-hover:scale-110 group-hover:shadow-xl group-hover:brightness-110 cursor-pointer"
+                                />
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/in/hansol-nam/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative animate-float-subtle"
+                                style={{ animationDelay: '0.5s' } as React.CSSProperties}
+                            >
+                                <img
+                                    src="/team/hansol.jpg"
+                                    alt="남한솔"
+                                    className="w-12 h-12 rounded-full object-cover border-2 border-gray-300 transition-all duration-300 group-hover:border-gray-400 group-hover:scale-110 group-hover:shadow-xl group-hover:brightness-110 cursor-pointer"
+                                />
+                            </a>
+                            <a
+                                href="https://www.linkedin.com/in/kim-seunghwan"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative animate-float-subtle"
+                                style={{ animationDelay: '1s' } as React.CSSProperties}
+                            >
+                                <img
+                                    src="/team/seunghwan.jpg"
+                                    alt="김승환"
+                                    className="w-12 h-12 rounded-full object-cover border-2 border-gray-300 transition-all duration-300 group-hover:border-gray-400 group-hover:scale-110 group-hover:shadow-xl group-hover:brightness-110 cursor-pointer"
+                                />
+                            </a>
                         </div>
 
                         {/* Company Info */}

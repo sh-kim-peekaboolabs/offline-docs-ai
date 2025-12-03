@@ -6,6 +6,7 @@ import { DifferentiationSection } from "@/components/sections/differentiation-se
 import { HighlightText } from "@/components/ui/highlight-text";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -28,12 +29,14 @@ import {
   Shield,
   Upload,
   Quote,
+  Layers,
 } from "lucide-react";
 import { Files, FolderItem, FolderTrigger, FolderPanel, SubFiles, FileItem } from "@/components/ui/files";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { useEffect, useState } from "react";
 import { usePageTracking } from "@/hooks/useAnalytics";
 import { trackLead } from "@/lib/facebook-pixel";
+import { motion } from "framer-motion";
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address.").max(255, "Email must be less than 255 characters."),
@@ -168,7 +171,7 @@ const Hero = () => {
         </div>
 
         {/* Massive H1 */}
-        <h1 className="text-4xl sm:text-4xl md:text-6xl lg:text-5xl font-extrabold text-[#111] tracking-tighter leading-[1.2] mb-7">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl font-extrabold text-[#111] tracking-tighter leading-[1.2] mb-7">
           Search confidential PDFs with AI.
           <span className="block mt-3 sm:mt-2">
             <HighlightText className="text-[#111]" color="#fef08a">
@@ -320,40 +323,72 @@ const HowItWorksSection = () => {
 const Features = () => {
   const features = [
     {
-      icon: Zap,
-      title: "Instant Search",
-      description: "Find information across hundreds of pages in milliseconds. No more manual searching.",
-      size: "large",
+      Icon: Zap,
+      name: "Instant Search",
+      description: "Search 1000+ pages within seconds. No more Ctrl+F through dozens of PDFs.",
+      className: "col-span-3 lg:col-span-2",
+      background: (
+        <motion.div
+          className="absolute inset-0 opacity-10"
+          animate={{ scale: [1, 1.05, 1] }}
+          transition={{ duration: 5, repeat: Infinity }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50" />
+        </motion.div>
+      ),
     },
     {
-      icon: Lock,
-      title: "100% Offline",
-      description: "Runs entirely on your computer. No internet required after installation.",
-      size: "small",
+      Icon: Lock,
+      name: "100% Offline",
+      description: "Runs entirely on your computer. No internet required.",
+      className: "col-span-3 lg:col-span-1",
+      background: (
+        <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-emerald-50 opacity-50" />
+      ),
     },
     {
-      icon: Shield,
-      title: "Zero Data Leaks",
-      description: "Your documents never leave your device. Complete privacy guaranteed.",
-      size: "small",
+      Icon: Shield,
+      name: "Zero Data Leaks",
+      description: "Your documents never leave your device. Complete privacy.",
+      className: "col-span-3 lg:col-span-1",
+      background: (
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 opacity-50" />
+      ),
     },
     {
-      icon: FileText,
-      title: "Source Citations",
-      description: "Every answer includes the exact document and page number for verification.",
-      size: "medium",
+      Icon: FileText,
+      name: "Source Citations",
+      description: "Every answer includes exact page numbers and sentence-level citations. Verify information instantly.",
+      className: "col-span-3 lg:col-span-2",
+      background: (
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-50 to-orange-50 opacity-50" />
+      ),
     },
     {
-      icon: Search,
-      title: "Table Analysis",
-      description: "Accurately reads and analyzes tables, charts, and financial data from PDFs.",
-      size: "medium",
+      Icon: Search,
+      name: "Reads Tables & Formulas",
+      description: "Reads tables, formulas, and financial statements perfectly. No more manual data extraction.",
+      className: "col-span-3 lg:col-span-2",
+      background: (
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 to-blue-50 opacity-50" />
+      ),
+    },
+    {
+      Icon: Layers,
+      name: "Handle 1000+ Pages",
+      description: "Process massive documents instantly. No file size limits or cloud upload wait times.",
+      className: "col-span-3 lg:col-span-1",
+      background: (
+        <div className="absolute inset-0 flex items-center justify-center opacity-20">
+          <span className="text-7xl font-bold text-indigo-600">1247</span>
+        </div>
+      ),
     },
   ];
 
   return (
     <section id="features" className="bg-white py-20 md:py-32">
-      <div className="px-8">
+      <div className="px-8 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">Features</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] tracking-[-0.02em]">
@@ -361,55 +396,11 @@ const Features = () => {
           </h2>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {/* Large Card */}
-          <div className="md:col-span-2 lg:col-span-2 bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-8 hover:border-gray-300 hover:bg-white/80 transition-all">
-            <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
-              <Zap className="w-6 h-6 text-[#111]" />
-            </div>
-            <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Instant Search</h3>
-            <p className="text-[#666] leading-relaxed">
-              Find information across hundreds of pages in milliseconds. No more manual searching through documents.
-            </p>
-          </div>
-
-          {/* Small Card */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-8 hover:border-gray-300 hover:bg-white/80 transition-all">
-            <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
-              <Lock className="w-6 h-6 text-[#111]" />
-            </div>
-            <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">100% Offline</h3>
-            <p className="text-[#666] leading-relaxed">Runs entirely on your computer. No internet required.</p>
-          </div>
-
-          {/* Small Card */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-8 hover:border-gray-300 hover:bg-white/80 transition-all">
-            <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
-              <Shield className="w-6 h-6 text-[#111]" />
-            </div>
-            <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Zero Data Leaks</h3>
-            <p className="text-[#666] leading-relaxed">Your documents never leave your device. Complete privacy.</p>
-          </div>
-
-          {/* Medium Card */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-8 hover:border-gray-300 hover:bg-white/80 transition-all">
-            <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
-              <FileText className="w-6 h-6 text-[#111]" />
-            </div>
-            <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Source Citations</h3>
-            <p className="text-[#666] leading-relaxed">Every answer includes the exact document and page number.</p>
-          </div>
-
-          {/* Medium Card */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-8 hover:border-gray-300 hover:bg-white/80 transition-all">
-            <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
-              <Search className="w-6 h-6 text-[#111]" />
-            </div>
-            <h3 className="text-xl font-semibold text-[#111] tracking-tight mb-2">Table Analysis</h3>
-            <p className="text-[#666] leading-relaxed">Accurately reads tables, charts, and financial data.</p>
-          </div>
-        </div>
+        <BentoGrid>
+          {features.map((feature, idx) => (
+            <BentoCard key={idx} {...feature} />
+          ))}
+        </BentoGrid>
       </div>
     </section>
   );

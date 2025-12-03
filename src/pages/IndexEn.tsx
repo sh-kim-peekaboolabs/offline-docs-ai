@@ -828,6 +828,26 @@ const Footer = () => (
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="text-muted-foreground">© PeekabooLabs. All rights reserved. 2025</div>
         <div className="flex items-center gap-4">
+          {/* Language Dropdown */}
+          <div className="relative group">
+            <button className="flex items-center gap-1.5 px-3 py-1.5 text-muted-foreground hover:text-foreground transition-colors">
+              <span>English</span>
+              <ChevronDown className="w-3.5 h-3.5" />
+            </button>
+            <div className="absolute bottom-full mb-2 right-0 w-32 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+              <a
+                href="/"
+                className="block px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-gray-50 rounded-t-lg transition-colors"
+              >
+                한국어
+              </a>
+              <span className="block px-4 py-2.5 text-sm text-foreground bg-gray-50 rounded-b-lg font-medium">
+                English
+              </span>
+            </div>
+          </div>
+
+          <span className="text-muted-foreground hidden md:inline">|</span>
           <a href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
             Terms of Service
           </a>

@@ -14,6 +14,8 @@ import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import TermsEn from "./pages/TermsEn";
 import PrivacyEn from "./pages/PrivacyEn";
+import SecuritySpec from "./pages/SecuritySpec";
+import SecuritySpecEn from "./pages/SecuritySpecEn";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,8 +36,10 @@ const App = () => (
               <Route path="/defense" element={<Defense />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/privacy" element={<Privacy />} />
+              <Route path="/security-spec" element={<SecuritySpec />} />
               <Route path="/en/terms" element={<TermsEn />} />
               <Route path="/en/privacy" element={<PrivacyEn />} />
+              <Route path="/en/security-spec" element={<SecuritySpecEn />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

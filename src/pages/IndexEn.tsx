@@ -34,6 +34,7 @@ import {
 import { Files, FolderItem, FolderTrigger, FolderPanel, SubFiles, FileItem } from "@/components/ui/files";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { usePageTracking } from "@/hooks/useAnalytics";
 import { trackLead } from "@/lib/facebook-pixel";
 import { motion } from "framer-motion";
@@ -82,14 +83,25 @@ const Nav = () => {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
-            {["How It Works", "Features", "Pricing"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace(/ /g, "-")}`}
-                className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors"
-              >
-                {item}
-              </a>
+            {["How It Works", "Features", "Security", "Pricing"].map((item) => (
+              item === "Security" ? (
+                <Link
+                  key={item}
+                  to="/en/security-spec"
+                  state={{ from: 'nav' }}
+                  className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors"
+                >
+                  {item}
+                </Link>
+              ) : (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase().replace(/ /g, "-")}`}
+                  className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors"
+                >
+                  {item}
+                </a>
+              )
             ))}
           </nav>
 
@@ -127,15 +139,27 @@ const Nav = () => {
               </button>
             </div>
             <div className="flex flex-col gap-1">
-              {["How It Works", "Features", "Pricing"].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase().replace(/ /g, "-")}`}
-                  className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item}
-                </a>
+              {["How It Works", "Features", "Security", "Pricing"].map((item) => (
+                item === "Security" ? (
+                  <Link
+                    key={item}
+                    to="/en/security-spec"
+                    state={{ from: 'nav' }}
+                    className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item}
+                  </Link>
+                ) : (
+                  <a
+                    key={item}
+                    href={`#${item.toLowerCase().replace(/ /g, "-")}`}
+                    className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item}
+                  </a>
+                )
               ))}
               <a
                 href="https://cal.com/seunghwan/15min"
@@ -467,9 +491,16 @@ const Security = () => {
       <div className="px-8">
         <div className="text-center mb-16">
           <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">Security</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] tracking-[-0.02em]">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] tracking-[-0.02em] mb-4">
             Your data never leaves your computer
           </h2>
+          <Link
+            to="/en/security-spec"
+            state={{ from: 'security' }}
+            className="inline-block text-sm font-medium text-[#666] hover:text-[#111] transition-colors border-b border-[#666] hover:border-[#111]"
+          >
+            Security Spec
+          </Link>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -855,6 +886,10 @@ const Footer = () => (
           <a href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
             Privacy Policy
           </a>
+          <span className="text-muted-foreground">|</span>
+          <Link to="/en/security-spec" state={{ from: 'footer' }} className="text-muted-foreground hover:text-foreground transition-colors">
+            Security Spec
+          </Link>
           <span className="text-muted-foreground hidden md:inline">|</span>
           <a
             href="mailto:contact@peekaboolabs.ai"

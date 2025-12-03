@@ -34,6 +34,7 @@ import {
 import { Files, FolderItem, FolderTrigger, FolderPanel, SubFiles, FileItem } from "@/components/ui/files";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { useEffect, useState, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { usePageTracking } from "@/hooks/useAnalytics";
 import { trackLead } from "@/lib/facebook-pixel";
 import { motion } from "framer-motion";
@@ -70,9 +71,10 @@ const Nav = () => {
     };
 
     const menuItems = [
-        { name: "사용법", id: "how-it-works" },
-        { name: "기능", id: "features" },
-        { name: "요금제", id: "pricing" },
+        { name: "사용법", href: "#how-it-works" },
+        { name: "기능", href: "#features" },
+        { name: "보안", href: "/security-spec" },
+        { name: "요금제", href: "#pricing" },
     ];
 
     return (
@@ -88,13 +90,24 @@ const Nav = () => {
                     {/* Desktop Nav */}
                     <nav className="hidden md:flex items-center gap-6">
                         {menuItems.map((item) => (
-                            <a
-                                key={item.name}
-                                href={`#${item.id}`}
-                                className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors"
-                            >
-                                {item.name}
-                            </a>
+                            item.href.startsWith('/') ? (
+                                <Link
+                                    key={item.name}
+                                    to={item.href}
+                                    state={{ from: 'nav' }}
+                                    className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors"
+                                >
+                                    {item.name}
+                                </Link>
+                            ) : (
+                                <a
+                                    key={item.name}
+                                    href={item.href}
+                                    className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors"
+                                >
+                                    {item.name}
+                                </a>
+                            )
                         ))}
                     </nav>
 
@@ -133,14 +146,26 @@ const Nav = () => {
                         </div>
                         <div className="flex flex-col gap-1">
                             {menuItems.map((item) => (
-                                <a
-                                    key={item.name}
-                                    href={`#${item.id}`}
-                                    className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
-                                    onClick={() => setMobileMenuOpen(false)}
-                                >
-                                    {item.name}
-                                </a>
+                                item.href.startsWith('/') ? (
+                                    <Link
+                                        key={item.name}
+                                        to={item.href}
+                                        state={{ from: 'nav' }}
+                                        className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                ) : (
+                                    <a
+                                        key={item.name}
+                                        href={item.href}
+                                        className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                    >
+                                        {item.name}
+                                    </a>
+                                )
                             ))}
                             <a
                                 href="https://cal.com/localdocs/15min"
@@ -502,9 +527,16 @@ const Security = () => {
             <div className="max-w-7xl mx-auto px-8 border-x border-gray-200 py-20 md:py-32">
                 <div className="text-center mb-16">
                     <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">보안</p>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] tracking-[-0.02em]">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] tracking-[-0.02em] mb-4">
                         데이터는 절대 외부로 나가지 않습니다
                     </h2>
+                    <Link
+                        to="/security-spec"
+                        state={{ from: 'security' }}
+                        className="inline-block text-sm font-medium text-[#666] hover:text-[#111] transition-colors border-b border-[#666] hover:border-[#111]"
+                    >
+                        Security Spec
+                    </Link>
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -892,6 +924,10 @@ const Footer = () => (
                     <a href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
                         개인정보처리방침
                     </a>
+                    <span className="text-muted-foreground">|</span>
+                    <Link to="/security-spec" state={{ from: 'footer' }} className="text-muted-foreground hover:text-foreground transition-colors">
+                        Security Spec
+                    </Link>
                     <span className="text-muted-foreground hidden md:inline">|</span>
                     <a
                         href="mailto:contact@peekaboolabs.ai"

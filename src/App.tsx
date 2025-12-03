@@ -7,6 +7,7 @@ import { AnalyticsProvider } from "@/components/AnalyticsProvider";
 import { FacebookPixelProvider } from "@/components/FacebookPixelProvider";
 import Index from "./pages/Index";
 import IndexEn from "./pages/IndexEn";
+import IndexNew from "./pages/IndexNew";
 import Financial from "./pages/Financial";
 import Defense from "./pages/Defense";
 import Terms from "./pages/Terms";
@@ -27,6 +28,7 @@ const App = () => (
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/new" element={<IndexNew />} />
               <Route path="/en" element={<IndexEn />} />
               <Route path="/financial" element={<Financial />} />
               <Route path="/defense" element={<Defense />} />

@@ -379,9 +379,7 @@ const Features = () => {
       description: "Process massive documents instantly. No file size limits or cloud upload wait times.",
       className: "col-span-3 lg:col-span-1",
       background: (
-        <div className="absolute inset-0 flex items-center justify-center opacity-20">
-          <span className="text-7xl font-bold text-indigo-600">1247</span>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-gray-50 opacity-50" />
       ),
     },
   ];
@@ -769,8 +767,8 @@ const CTA = () => {
       <div className="px-8 max-w-xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-white tracking-[-0.02em] mb-4">Try it now!</h2>
         <p className="text-lg text-gray-400 mb-8">
-          It’s currently in closed beta. Enter your email
-          <br></br>to get a 1-month free Pro plan.
+          It’s currently in closed beta.
+          <br></br>Enter your email to get a 1-month free Pro plan.
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

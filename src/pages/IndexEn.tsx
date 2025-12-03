@@ -72,18 +72,20 @@ const Nav = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-white/10">
-        <div className="px-6 flex items-center justify-between h-16">
+      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200">
+        <div className="px-6 flex items-center justify-between h-16 max-w-7xl mx-auto">
+          {/* Logo */}
           <div className="flex items-center gap-3 cursor-pointer" onClick={scrollToTop}>
             <img src={logo} alt="Localdocs logo" width={32} height={32} loading="eager" />
             <span className="text-lg font-semibold text-[#111] tracking-[-0.02em]">LocalDocs</span>
           </div>
 
-          <nav className="hidden md:flex items-center gap-8">
-            {["Features", "Use Cases", "Security", "Pricing", "FAQ"].map((item) => (
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-6">
+            {["How It Works", "Features", "Pricing"].map((item) => (
               <a
                 key={item}
-                href={`#${item.toLowerCase().replace(" ", "-")}`}
+                href={`#${item.toLowerCase().replace(/ /g, "-")}`}
                 className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors"
               >
                 {item}
@@ -91,25 +93,16 @@ const Nav = () => {
             ))}
           </nav>
 
-          <div className="flex items-center gap-4">
-            <div className="relative group">
-              <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-[#666] hover:bg-gray-50 transition-colors">
-                <span className="hidden sm:inline">EN</span>
-                <ChevronDown className="w-4 h-4" />
+          {/* CTA */}
+          <div className="flex items-center gap-3">
+            <a href="https://cal.com/localdocs/15min" target="_blank" rel="noopener noreferrer" className="hidden md:block">
+              <button className="px-4 py-2 text-sm font-medium text-[#666] hover:text-[#111] transition-colors">
+                Contact
               </button>
-              <div className="absolute right-0 top-full mt-2 w-32 bg-white border border-white/10 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                <a href="/" className="block px-4 py-2.5 text-sm text-[#666] hover:bg-gray-50 rounded-t-xl">
-                  한국어
-                </a>
-                <span className="block px-4 py-2.5 text-sm text-[#111] bg-gray-50 rounded-b-xl font-medium">
-                  English
-                </span>
-              </div>
-            </div>
-
+            </a>
             <a href="#cta" className="hidden md:block">
               <button className="px-5 py-2 bg-[#111] text-white text-sm font-medium rounded-lg hover:bg-[#333] transition-colors">
-                Download for Mac
+                Download
               </button>
             </a>
 
@@ -134,19 +127,28 @@ const Nav = () => {
               </button>
             </div>
             <div className="flex flex-col gap-1">
-              {["Features", "Use Cases", "Security", "Pricing", "FAQ"].map((item) => (
+              {["How It Works", "Features", "Pricing"].map((item) => (
                 <a
                   key={item}
-                  href={`#${item.toLowerCase().replace(" ", "-")}`}
+                  href={`#${item.toLowerCase().replace(/ /g, "-")}`}
                   className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item}
                 </a>
               ))}
+              <a
+                href="https://cal.com/seunghwan/15min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </a>
               <a href="#cta" onClick={() => setMobileMenuOpen(false)} className="mt-4">
                 <button className="w-full px-5 py-3 bg-[#111] text-white text-base font-medium rounded-lg">
-                  Download for Mac
+                  Download
                 </button>
               </a>
             </div>
@@ -279,7 +281,7 @@ const HowItWorksSection = () => {
   ];
 
   return (
-    <section className="w-full bg-white">
+    <section id="how-it-works" className="w-full bg-white scroll-mt-24">
       <div className="max-w-7xl mx-auto">
         {steps.map((step, index) => (
           <div key={index} className="border-b border-gray-200">
@@ -628,9 +630,9 @@ const Pricing = () => (
             </li>
           </ul>
           <div className="mt-6">
-            <a href="#cta" className="w-full">
+            <a href="https://cal.com/seunghwan/15min" target="_blank" rel="noopener noreferrer" className="w-full">
               <Button variant="outline" className="w-full">
-                Download for Mac
+                Contact Us
               </Button>
             </a>
           </div>
@@ -669,7 +671,7 @@ const FAQ = () => {
         <div className="text-center mb-16">
           <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">FAQ</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] tracking-[-0.02em]">
-            Frequently asked questions
+            Any questions?
           </h2>
         </div>
 

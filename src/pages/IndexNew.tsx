@@ -775,6 +775,7 @@ const CTA = () => {
             }
             const { error } = await supabase.from("email_signups").insert([{
                 email: values.email,
+                consent: true,
 
                 page_source: "/kr",
                 utm_source: values.utm_source || null,

@@ -29,14 +29,22 @@ import { trackLead } from "@/lib/facebook-pixel";
 import { motion } from "framer-motion";
 
 // Lazy load heavy demo components
-const SearchInput = lazy(() => import("@/components/ui/search-input").then(m => ({ default: m.SearchInput })));
-const CitationDemo = lazy(() => import("@/components/demo/citation-demo").then(m => ({ default: m.CitationDemo })));
-const PDFViewer = lazy(() => import("@/components/demo/pdf-viewer").then(m => ({ default: m.PDFViewer })));
-const AutoCycleFiles = lazy(() => import("@/components/demo/auto-cycle-files").then(m => ({ default: m.AutoCycleFiles })));
-const DifferentiationSection = lazy(() => import("@/components/sections/differentiation-section").then(m => ({ default: m.DifferentiationSection })));
+const SearchInput = lazy(() => import("@/components/ui/search-input").then((m) => ({ default: m.SearchInput })));
+const CitationDemo = lazy(() => import("@/components/demo/citation-demo").then((m) => ({ default: m.CitationDemo })));
+const PDFViewer = lazy(() => import("@/components/demo/pdf-viewer").then((m) => ({ default: m.PDFViewer })));
+const AutoCycleFiles = lazy(() =>
+  import("@/components/demo/auto-cycle-files").then((m) => ({ default: m.AutoCycleFiles })),
+);
+const DifferentiationSection = lazy(() =>
+  import("@/components/sections/differentiation-section").then((m) => ({ default: m.DifferentiationSection })),
+);
 
 // Simple loading placeholder
-const DemoLoader = () => <div className="w-full h-full flex items-center justify-center"><div className="w-6 h-6 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin" /></div>;
+const DemoLoader = () => (
+  <div className="w-full h-full flex items-center justify-center">
+    <div className="w-6 h-6 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin" />
+  </div>
+);
 
 const formSchema = z.object({
   email: z.string().email("Please enter a valid email address.").max(255, "Email must be less than 255 characters."),
@@ -82,12 +90,12 @@ const Nav = () => {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
-            {["How It Works", "Features", "Security", "Pricing"].map((item) => (
+            {["How It Works", "Features", "Security", "Pricing"].map((item) =>
               item === "Security" ? (
                 <Link
                   key={item}
                   to="/en/security-spec"
-                  state={{ from: 'nav' }}
+                  state={{ from: "nav" }}
                   className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors"
                 >
                   {item}
@@ -100,13 +108,18 @@ const Nav = () => {
                 >
                   {item}
                 </a>
-              )
-            ))}
+              ),
+            )}
           </nav>
 
           {/* CTA */}
           <div className="flex items-center gap-3">
-            <a href="https://cal.com/localdocs/15min" target="_blank" rel="noopener noreferrer" className="hidden md:block">
+            <a
+              href="https://cal.com/localdocs/15min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:block"
+            >
               <button className="px-4 py-2 text-sm font-medium text-[#666] hover:text-[#111] transition-colors">
                 Contact
               </button>
@@ -138,12 +151,12 @@ const Nav = () => {
               </button>
             </div>
             <div className="flex flex-col gap-1">
-              {["How It Works", "Features", "Security", "Pricing"].map((item) => (
+              {["How It Works", "Features", "Security", "Pricing"].map((item) =>
                 item === "Security" ? (
                   <Link
                     key={item}
                     to="/en/security-spec"
-                    state={{ from: 'nav' }}
+                    state={{ from: "nav" }}
                     className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
@@ -158,10 +171,10 @@ const Nav = () => {
                   >
                     {item}
                   </a>
-                )
-              ))}
+                ),
+              )}
               <a
-                href="https://cal.com/seunghwan/15min"
+                href="https://cal.com/localdocs/15min"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
@@ -328,7 +341,9 @@ const HowItWorksSection = () => {
                 <div className="space-y-4">
                   <div className="text-sm font-mono text-gray-400">{step.number}</div>
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight">{step.title}</h3>
-                  <p className="text-base lg:text-lg text-gray-600 leading-relaxed tracking-tight">{step.description}</p>
+                  <p className="text-base lg:text-lg text-gray-600 leading-relaxed tracking-tight">
+                    {step.description}
+                  </p>
                 </div>
               </div>
 
@@ -375,45 +390,36 @@ const Features = () => {
       name: "100% Offline",
       description: "Runs entirely on your computer. No internet required.",
       className: "col-span-3 lg:col-span-1",
-      background: (
-        <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-emerald-50 opacity-50" />
-      ),
+      background: <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-emerald-50 opacity-50" />,
     },
     {
       Icon: Shield,
       name: "Zero Data Leaks",
       description: "Your documents never leave your device. Complete privacy.",
       className: "col-span-3 lg:col-span-1",
-      background: (
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 opacity-50" />
-      ),
+      background: <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 opacity-50" />,
     },
     {
       Icon: FileText,
       name: "Source Citations",
-      description: "Every answer includes exact page numbers and sentence-level citations. Verify information instantly.",
+      description:
+        "Every answer includes exact page numbers and sentence-level citations. Verify information instantly.",
       className: "col-span-3 lg:col-span-2",
-      background: (
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-50 to-orange-50 opacity-50" />
-      ),
+      background: <div className="absolute inset-0 bg-gradient-to-br from-amber-50 to-orange-50 opacity-50" />,
     },
     {
       Icon: Search,
       name: "Reads Tables & Formulas",
       description: "Reads tables, formulas, and financial statements perfectly. No more manual data extraction.",
       className: "col-span-3 lg:col-span-2",
-      background: (
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 to-blue-50 opacity-50" />
-      ),
+      background: <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 to-blue-50 opacity-50" />,
     },
     {
       Icon: Layers,
       name: "Handle 1000+ Pages",
       description: "Process massive documents instantly. No file size limits or cloud upload wait times.",
       className: "col-span-3 lg:col-span-1",
-      background: (
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-gray-50 opacity-50" />
-      ),
+      background: <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-gray-50 opacity-50" />,
     },
   ];
 
@@ -503,7 +509,7 @@ const Security = () => {
           </h2>
           <Link
             to="/en/security-spec"
-            state={{ from: 'security' }}
+            state={{ from: "security" }}
             className="inline-block text-sm font-medium text-[#666] hover:text-[#111] transition-colors border-b border-[#666] hover:border-[#111]"
           >
             Security Spec
@@ -668,7 +674,7 @@ const Pricing = () => (
             </li>
           </ul>
           <div className="mt-6">
-            <a href="https://cal.com/seunghwan/15min" target="_blank" rel="noopener noreferrer" className="w-full">
+            <a href="https://cal.com/localdocs/15min" target="_blank" rel="noopener noreferrer" className="w-full">
               <Button variant="outline" className="w-full">
                 Contact Us
               </Button>
@@ -708,9 +714,7 @@ const FAQ = () => {
       <div className="px-8 max-w-3xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">FAQ</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] tracking-[-0.02em]">
-            Any questions?
-          </h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] tracking-[-0.02em]">Any questions?</h2>
         </div>
 
         <div className="space-y-4">
@@ -774,26 +778,28 @@ const CTA = () => {
         toast.error("Invalid request.");
         return;
       }
-      const { error } = await supabase.from("email_signups").insert([{
-        email: values.email,
-        consent: true,
+      const { error } = await supabase.from("email_signups").insert([
+        {
+          email: values.email,
+          consent: true,
 
-        page_source: "/en",
-        utm_source: values.utm_source || null,
-        utm_campaign_id: values.utm_campaign_id || null,
-        utm_medium: values.utm_medium || null,
-        utm_campaign_name: values.utm_campaign_name || null,
-        utm_adset_id: values.utm_adset_id || null,
-        utm_adset_name: values.utm_adset_name || null,
-        utm_ad_id: values.utm_ad_id || null,
-        utm_ad_name: values.utm_ad_name || null,
-        linkedin_campaign_name: values.linkedin_campaign_name || null,
-        linkedin_ad_id: values.linkedin_ad_id || null,
-        linkedin_campaign_group_id: values.linkedin_campaign_group_id || null,
-        linkedin_campaign_group_name: values.linkedin_campaign_group_name || null,
-        linkedin_campaign_id: values.linkedin_campaign_id || null,
-        linkedin_ad_name: values.linkedin_ad_name || null,
-      }]);
+          page_source: "/en",
+          utm_source: values.utm_source || null,
+          utm_campaign_id: values.utm_campaign_id || null,
+          utm_medium: values.utm_medium || null,
+          utm_campaign_name: values.utm_campaign_name || null,
+          utm_adset_id: values.utm_adset_id || null,
+          utm_adset_name: values.utm_adset_name || null,
+          utm_ad_id: values.utm_ad_id || null,
+          utm_ad_name: values.utm_ad_name || null,
+          linkedin_campaign_name: values.linkedin_campaign_name || null,
+          linkedin_ad_id: values.linkedin_ad_id || null,
+          linkedin_campaign_group_id: values.linkedin_campaign_group_id || null,
+          linkedin_campaign_group_name: values.linkedin_campaign_group_name || null,
+          linkedin_campaign_id: values.linkedin_campaign_id || null,
+          linkedin_ad_name: values.linkedin_ad_name || null,
+        },
+      ]);
       if (error) throw error;
       trackLead(values.email);
       toast.success("Successfully joined Early Access!");
@@ -846,8 +852,6 @@ const CTA = () => {
           <input type="hidden" {...register("linkedin_campaign_id")} />
           <input type="hidden" {...register("linkedin_ad_name")} />
 
-
-
           <button
             type="submit"
             disabled={isSubmitting}
@@ -872,9 +876,7 @@ const Footer = () => (
             <img src={logo} alt="LocalDocs" width={24} height={24} />
             <h3 className="text-base font-semibold">LocalDocs</h3>
           </div>
-          <p className="text-sm text-muted-foreground">
-            Private AI document search
-          </p>
+          <p className="text-sm text-muted-foreground">Private AI document search</p>
         </div>
 
         {/* Legal */}
@@ -887,7 +889,11 @@ const Footer = () => (
             <a href="/en/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Privacy Policy
             </a>
-            <Link to="/en/security-spec" state={{ from: 'footer' }} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              to="/en/security-spec"
+              state={{ from: "footer" }}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               Security Spec
             </Link>
           </div>
@@ -897,9 +903,7 @@ const Footer = () => (
         <div>
           <h3 className="text-sm font-semibold mb-4">Language</h3>
           <div className="flex flex-col gap-3">
-            <span className="text-sm text-foreground font-medium">
-              English
-            </span>
+            <span className="text-sm text-foreground font-medium">English</span>
             <a href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               한국어
             </a>
@@ -910,10 +914,20 @@ const Footer = () => (
         <div>
           <h3 className="text-sm font-semibold mb-4">Social</h3>
           <div className="flex flex-col gap-3">
-            <a href="https://www.linkedin.com/company/peekaboolabs/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a
+              href="https://www.linkedin.com/company/peekaboolabs/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               LinkedIn
             </a>
-            <a href="https://x.com/PeekabooLabsInc" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a
+              href="https://x.com/PeekabooLabsInc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               X
             </a>
           </div>
@@ -922,9 +936,7 @@ const Footer = () => (
 
       {/* Bottom Bar */}
       <div className="pt-8 border-t border-gray-200">
-        <div className="text-left text-sm text-muted-foreground">
-          © 2025 PeekabooLabs. All rights reserved.
-        </div>
+        <div className="text-left text-sm text-muted-foreground">© 2025 PeekabooLabs. All rights reserved.</div>
       </div>
     </div>
   </footer>

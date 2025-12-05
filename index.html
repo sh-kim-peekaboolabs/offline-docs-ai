@@ -64,5 +64,26 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // 네비게이션 클릭 감지 (Features, Security, Pricing, How it works)
+        document.body.addEventListener('click', function(e) {
+          var clickedText = (e.target.innerText || "").trim().toLowerCase();
+
+          if (clickedText === 'how it works') {
+            fbq('track', 'ViewContent', { content_name: 'Nav_HowItWorks' });
+          }
+          else if (clickedText === 'features') {
+            fbq('track', 'ViewContent', { content_name: 'Nav_Features' });
+          }
+          else if (clickedText === 'security') {
+            fbq('track', 'ViewContent', { content_name: 'Nav_Security' });
+          }
+          else if (clickedText === 'pricing') {
+            fbq('track', 'ViewContent', { content_name: 'Nav_Pricing' });
+          }
+        });
+      });
+    </script>
   </body>
 </html>

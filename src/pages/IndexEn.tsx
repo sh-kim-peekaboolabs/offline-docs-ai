@@ -777,7 +777,7 @@ const CTA = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-white tracking-[-0.02em] mb-4">Try it now!</h2>
         <p className="text-lg text-gray-400 mb-8">
           It’s currently in closed beta.
-          <br></br>Get 1 month of Pro plan for free when you log in to the app.
+          <br></br>Get 1 month of Pro plan for free when you login to the app.
         </p>
 
         <div className="flex justify-center">

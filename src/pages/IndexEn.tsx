@@ -1,14 +1,10 @@
 import { lazy, Suspense, memo, useEffect, useState } from "react";
 import { HighlightText } from "@/components/ui/highlight-text";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+
 import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+
 import {
   FileText,
   Lock,
@@ -25,7 +21,7 @@ import {
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { Link } from "react-router-dom";
 import { usePageTracking } from "@/hooks/useAnalytics";
-import { trackLead } from "@/lib/facebook-pixel";
+
 import { motion } from "framer-motion";
 
 // Lazy load heavy demo components
@@ -46,28 +42,7 @@ const DemoLoader = () => (
   </div>
 );
 
-const formSchema = z.object({
-  email: z.string().email("Please enter a valid email address.").max(255, "Email must be less than 255 characters."),
 
-  honeypot: z.string().max(0).optional(),
-  page_source: z.string().optional(),
-  utm_source: z.string().max(100).optional(),
-  utm_campaign_id: z.string().max(100).optional(),
-  utm_medium: z.string().max(100).optional(),
-  utm_campaign_name: z.string().max(200).optional(),
-  utm_adset_id: z.string().max(100).optional(),
-  utm_adset_name: z.string().max(200).optional(),
-  utm_ad_id: z.string().max(100).optional(),
-  utm_ad_name: z.string().max(200).optional(),
-  linkedin_campaign_name: z.string().max(200).optional(),
-  linkedin_ad_id: z.string().max(100).optional(),
-  linkedin_campaign_group_id: z.string().max(100).optional(),
-  linkedin_campaign_group_name: z.string().max(200).optional(),
-  linkedin_campaign_id: z.string().max(100).optional(),
-  linkedin_ad_name: z.string().max(200).optional(),
-});
-
-type FormValues = z.infer<typeof formSchema>;
 
 // Linear-style Nav
 const Nav = () => {
@@ -124,7 +99,7 @@ const Nav = () => {
                 Contact
               </button>
             </a>
-            <a href="#cta" className="hidden md:block">
+            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="hidden md:block">
               <button className="px-5 py-2 bg-[#111] text-white text-sm font-medium rounded-lg hover:bg-[#333] transition-colors">
                 Download
               </button>
@@ -182,7 +157,7 @@ const Nav = () => {
               >
                 Contact
               </a>
-              <a href="#cta" onClick={() => setMobileMenuOpen(false)} className="mt-4">
+              <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => setMobileMenuOpen(false)} className="mt-4">
                 <button className="w-full px-5 py-3 bg-[#111] text-white text-base font-medium rounded-lg">
                   Download
                 </button>
@@ -226,12 +201,32 @@ const Hero = () => {
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-          <a href="#cta">
+        <div className="flex flex-col items-center justify-center gap-4 mb-16">
+          <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg">
             <button className="px-8 py-3.5 bg-[#111] text-white text-base font-medium rounded-lg hover:bg-[#333] transition-colors flex items-center gap-2 shadow-lg shadow-black/10">
               Download for Mac
               <ArrowRight className="w-4 h-4" />
             </button>
+          </a>
+          <a
+            href="#faq-compatibility"
+            className="text-sm text-gray-500 hover:text-gray-900 underline underline-offset-4"
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById('faq-compatibility');
+              if (el) {
+                el.setAttribute('open', 'true');
+                const offset = 100;
+                const elementPosition = el.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - offset;
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: "smooth"
+                });
+              }
+            }}
+          >
+            Device Compatibility
           </a>
         </div>
 
@@ -573,7 +568,7 @@ const Pricing = () => (
             </li>
           </ul>
           <div className="mt-6">
-            <a href="#cta" className="w-full">
+            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="w-full">
               <Button variant="outline" className="w-full">
                 Download for Mac
               </Button>
@@ -624,7 +619,7 @@ const Pricing = () => (
             </li>
           </ul>
           <div className="mt-6">
-            <a href="#cta" className="w-full">
+            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="w-full">
               <Button variant="hero" className="w-full">
                 Download for Mac
               </Button>
@@ -689,13 +684,46 @@ const Pricing = () => (
 // FAQ Section
 const FAQ = () => {
   const faqs = [
-    { q: "Can I use it without internet?", a: "Yes, all features work completely offline after installation." },
-    { q: "What file formats are supported?", a: "Currently PDF. HWP, PPTX, and XLSX coming soon." },
-    { q: "Can it read tables and charts?", a: "Yes, it accurately analyzes tables and financial data." },
-    { q: "Are sources provided?", a: "Yes, every answer includes document name and page number." },
+    { q: "Can I use it without internet?", answer: "Yes, all features work completely offline after installation." },
+    { q: "What file formats are supported?", answer: "Currently PDF. HWP, PPTX, and XLSX coming soon." },
+    { q: "Can it read tables and charts?", answer: "Yes, it accurately analyzes tables and financial data." },
+    { q: "Are sources provided?", answer: "Yes, every answer includes document name and page number." },
     {
       q: "Is it secure for sensitive documents?",
-      a: "Yes, 100% local processing means no data ever leaves your device.",
+      answer: "Yes, 100% local processing means no data ever leaves your device.",
+    },
+    {
+      id: "faq-compatibility",
+      q: "Can my device run LocalDocs?",
+      answer: "Mac with Apple Silicon (M-series chips, 16GB RAM) is fully supported. Windows PC (Intel iGPU) support is coming soon.",
+      content: (
+        <div className="overflow-x-auto mt-4">
+          <table className="w-full text-sm text-left text-gray-600 border-collapse">
+            <thead className="bg-gray-50 text-gray-700 font-medium">
+              <tr>
+                <th className="px-4 py-2 border border-gray-200">Device Type</th>
+                <th className="px-4 py-2 border border-gray-200">GPU/Processor</th>
+                <th className="px-4 py-2 border border-gray-200">System RAM</th>
+                <th className="px-4 py-2 border border-gray-200">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="px-4 py-2 border border-gray-200">Mac</td>
+                <td className="px-4 py-2 border border-gray-200">M-series chips</td>
+                <td className="px-4 py-2 border border-gray-200">16GB</td>
+                <td className="px-4 py-2 border border-gray-200">✅ Full support</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2 border border-gray-200">Windows PC <br></br>(Intel iGPU)</td>
+                <td className="px-4 py-2 border border-gray-200">Intel integrated graphics</td>
+                <td className="px-4 py-2 border border-gray-200">16GB</td>
+                <td className="px-4 py-2 border border-gray-200">⏳ Coming soon</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      ),
     },
   ];
 
@@ -705,7 +733,7 @@ const FAQ = () => {
     mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.q,
-      acceptedAnswer: { "@type": "Answer", text: faq.a },
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
     })),
   };
 
@@ -721,13 +749,16 @@ const FAQ = () => {
           {faqs.map((faq, index) => (
             <details
               key={index}
+              id={faq.id}
               className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-6 group hover:border-gray-300 hover:bg-white/80 transition-all"
             >
               <summary className="font-medium text-[#111] cursor-pointer list-none flex items-center justify-between">
                 {faq.q}
                 <ChevronDown className="w-5 h-5 text-[#9ca3af] group-open:rotate-180 transition-transform" />
               </summary>
-              <p className="mt-4 text-[#666] leading-relaxed">{faq.a}</p>
+              <div className="mt-4 text-[#666] leading-relaxed">
+                {faq.content || faq.answer}
+              </div>
             </details>
           ))}
         </div>
@@ -740,126 +771,22 @@ const FAQ = () => {
 
 // CTA Section
 const CTA = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset,
-    setValue,
-  } = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {},
-  });
-
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const params = {
-      utm_source: urlParams.get("utm_source"),
-      utm_campaign_id: urlParams.get("utm_campaign_id") || urlParams.get("campaignid") || urlParams.get("utm_content"),
-      utm_medium: urlParams.get("utm_medium"),
-      utm_campaign_name: urlParams.get("utm_campaign_name") || urlParams.get("utm_campaign"),
-      utm_adset_id: urlParams.get("utm_adset_id") || urlParams.get("adsetid"),
-      utm_adset_name: urlParams.get("utm_adset_name") || urlParams.get("adsetname"),
-      utm_ad_id: urlParams.get("utm_ad_id") || urlParams.get("adid"),
-      utm_ad_name: urlParams.get("utm_ad_name") || urlParams.get("adname"),
-      linkedin_campaign_group_id: urlParams.get("campaign_group_id"),
-      linkedin_campaign_group_name: urlParams.get("campaign_group_name"),
-      linkedin_campaign_id: urlParams.get("campaign_id"),
-      linkedin_ad_name: urlParams.get("creative_name"),
-    };
-    Object.entries(params).forEach(([key, value]) => {
-      if (value) setValue(key as keyof FormValues, value);
-    });
-  }, [setValue]);
-
-  const onSubmit = async (values: FormValues) => {
-    try {
-      if (values.honeypot) {
-        toast.error("Invalid request.");
-        return;
-      }
-      const { error } = await supabase.from("email_signups").insert([
-        {
-          email: values.email,
-          consent: true,
-
-          page_source: "/en",
-          utm_source: values.utm_source || null,
-          utm_campaign_id: values.utm_campaign_id || null,
-          utm_medium: values.utm_medium || null,
-          utm_campaign_name: values.utm_campaign_name || null,
-          utm_adset_id: values.utm_adset_id || null,
-          utm_adset_name: values.utm_adset_name || null,
-          utm_ad_id: values.utm_ad_id || null,
-          utm_ad_name: values.utm_ad_name || null,
-          linkedin_campaign_name: values.linkedin_campaign_name || null,
-          linkedin_ad_id: values.linkedin_ad_id || null,
-          linkedin_campaign_group_id: values.linkedin_campaign_group_id || null,
-          linkedin_campaign_group_name: values.linkedin_campaign_group_name || null,
-          linkedin_campaign_id: values.linkedin_campaign_id || null,
-          linkedin_ad_name: values.linkedin_ad_name || null,
-        },
-      ]);
-      if (error) throw error;
-      trackLead(values.email);
-      toast.success("Successfully joined Early Access!");
-      reset();
-    } catch (error) {
-      toast.error("An error occurred. Please try again.");
-    }
-  };
-
   return (
     <section id="cta" className="bg-[#111] py-20 md:py-32">
       <div className="px-8 max-w-xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-white tracking-[-0.02em] mb-4">Try it now!</h2>
         <p className="text-lg text-gray-400 mb-8">
           It’s currently in closed beta.
-          <br></br>Enter your email to get a 1-month free Pro plan.
+          <br></br>Get 1 month of Pro plan for free when you log in to the app.
         </p>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              {...register("email")}
-              className="w-full h-12 px-4 bg-white rounded-lg text-[#111] placeholder:text-gray-400 text-base focus:outline-none focus:ring-2 focus:ring-white/20"
-            />
-            {errors.email && <p className="text-sm text-red-400 mt-2 text-left">{errors.email.message}</p>}
-          </div>
-
-          <input
-            type="text"
-            {...register("honeypot")}
-            className="absolute -left-[9999px] w-px h-px"
-            tabIndex={-1}
-            autoComplete="off"
-            aria-hidden="true"
-          />
-          <input type="hidden" {...register("utm_source")} />
-          <input type="hidden" {...register("utm_campaign_id")} />
-          <input type="hidden" {...register("utm_medium")} />
-          <input type="hidden" {...register("utm_campaign_name")} />
-          <input type="hidden" {...register("utm_adset_id")} />
-          <input type="hidden" {...register("utm_adset_name")} />
-          <input type="hidden" {...register("utm_ad_id")} />
-          <input type="hidden" {...register("utm_ad_name")} />
-          <input type="hidden" {...register("linkedin_campaign_name")} />
-          <input type="hidden" {...register("linkedin_ad_id")} />
-          <input type="hidden" {...register("linkedin_campaign_group_id")} />
-          <input type="hidden" {...register("linkedin_campaign_group_name")} />
-          <input type="hidden" {...register("linkedin_campaign_id")} />
-          <input type="hidden" {...register("linkedin_ad_name")} />
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full py-3 bg-white text-[#111] font-medium rounded-lg hover:bg-gray-100 transition-colors disabled:opacity-50"
-          >
-            {isSubmitting ? "Joining..." : "Download for Mac"}
-          </button>
-        </form>
+        <div className="flex justify-center">
+          <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg">
+            <button className="w-full md:w-auto px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors">
+              Download for Mac
+            </button>
+          </a>
+        </div>
       </div>
     </section>
   );

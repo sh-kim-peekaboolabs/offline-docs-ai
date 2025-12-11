@@ -1,14 +1,10 @@
 import { lazy, Suspense, memo, useEffect, useState, useRef } from "react";
 import { HighlightText } from "@/components/ui/highlight-text";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+
 import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+
 import {
     FileText,
     Lock,
@@ -25,7 +21,7 @@ import {
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { Link } from "react-router-dom";
 import { usePageTracking } from "@/hooks/useAnalytics";
-import { trackLead } from "@/lib/facebook-pixel";
+
 import { motion } from "framer-motion";
 
 // Lazy load heavy demo components
@@ -38,28 +34,7 @@ const DifferentiationSectionKr = lazy(() => import("@/components/sections/differ
 // Simple loading placeholder
 const DemoLoader = () => <div className="w-full h-full flex items-center justify-center"><div className="w-6 h-6 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin" /></div>;
 
-const formSchema = z.object({
-    email: z.string().email("유효한 이메일 주소를 입력해주세요.").max(255, "이메일은 255자를 초과할 수 없습니다."),
 
-    honeypot: z.string().max(0).optional(),
-    page_source: z.string().optional(),
-    utm_source: z.string().max(100).optional(),
-    utm_campaign_id: z.string().max(100).optional(),
-    utm_medium: z.string().max(100).optional(),
-    utm_campaign_name: z.string().max(200).optional(),
-    utm_adset_id: z.string().max(100).optional(),
-    utm_adset_name: z.string().max(200).optional(),
-    utm_ad_id: z.string().max(100).optional(),
-    utm_ad_name: z.string().max(200).optional(),
-    linkedin_campaign_name: z.string().max(200).optional(),
-    linkedin_ad_id: z.string().max(100).optional(),
-    linkedin_campaign_group_id: z.string().max(100).optional(),
-    linkedin_campaign_group_name: z.string().max(200).optional(),
-    linkedin_campaign_id: z.string().max(100).optional(),
-    linkedin_ad_name: z.string().max(200).optional(),
-});
-
-type FormValues = z.infer<typeof formSchema>;
 
 const Nav = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -117,7 +92,7 @@ const Nav = () => {
                                 문의하기
                             </button>
                         </a>
-                        <a href="#cta" className="hidden md:block">
+                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="hidden md:block">
                             <button className="px-5 py-2 bg-[#111] text-white text-sm font-medium rounded-lg hover:bg-[#333] transition-colors">
                                 다운로드
                             </button>
@@ -175,7 +150,7 @@ const Nav = () => {
                             >
                                 문의하기
                             </a>
-                            <a href="#cta" onClick={() => setMobileMenuOpen(false)} className="mt-4">
+                            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => setMobileMenuOpen(false)} className="mt-4">
                                 <button className="w-full px-5 py-3 bg-[#111] text-white text-base font-medium rounded-lg">
                                     다운로드
                                 </button>
@@ -239,12 +214,32 @@ const Hero = () => {
                     </p>
 
                     {/* CTA Buttons */}
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-                        <a href="#cta">
+                    <div className="flex flex-col items-center justify-center gap-4 mb-16">
+                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg">
                             <button className="px-8 py-3.5 bg-[#111] text-white text-base font-medium rounded-lg hover:bg-[#333] transition-colors flex items-center gap-2 shadow-lg shadow-black/10">
                                 Mac용 다운로드
                                 <ArrowRight className="w-4 h-4" />
                             </button>
+                        </a>
+                        <a
+                            href="#faq-compatibility"
+                            className="text-sm text-gray-500 hover:text-gray-900 underline underline-offset-4"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                const el = document.getElementById('faq-compatibility');
+                                if (el) {
+                                    el.setAttribute('open', 'true');
+                                    const offset = 100;
+                                    const elementPosition = el.getBoundingClientRect().top;
+                                    const offsetPosition = elementPosition + window.scrollY - offset;
+                                    window.scrollTo({
+                                        top: offsetPosition,
+                                        behavior: "smooth"
+                                    });
+                                }
+                            }}
+                        >
+                            기기 최소사양
                         </a>
                     </div>
                 </div>
@@ -603,7 +598,7 @@ const Pricing = () => (
                         </li>
                     </ul>
                     <div className="mt-6">
-                        <a href="#cta" className="w-full">
+                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="w-full">
                             <Button variant="outline" className="w-full">
                                 Mac용 다운로드
                             </Button>
@@ -654,7 +649,7 @@ const Pricing = () => (
                         </li>
                     </ul>
                     <div className="mt-6">
-                        <a href="#cta" className="w-full">
+                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="w-full">
                             <Button variant="hero" className="w-full">
                                 Mac용 다운로드
                             </Button>
@@ -719,13 +714,46 @@ const Pricing = () => (
 // FAQ Section
 const FAQ = () => {
     const faqs = [
-        { q: "인터넷 없이 사용할 수 있나요?", a: "네, 설치 후 모든 기능이 완전히 오프라인에서 작동합니다." },
-        { q: "어떤 파일 형식을 지원하나요?", a: "현재는 PDF를 지원합니다. HWP, PPTX, XLSX도 곧 지원될 예정입니다." },
-        { q: "표와 차트도 읽을 수 있나요?", a: "네, 표와 재무 데이터를 정확하게 분석합니다." },
-        { q: "출처가 제공되나요?", a: "네, 모든 답변에는 문서 이름과 페이지 번호가 포함됩니다." },
+        { q: "인터넷 없이 사용할 수 있나요?", answer: "네, 설치 후 모든 기능이 완전히 오프라인에서 작동합니다." },
+        { q: "어떤 파일 형식을 지원하나요?", answer: "현재는 PDF를 지원합니다. HWP, PPTX, XLSX도 곧 지원될 예정입니다." },
+        { q: "표와 차트도 읽을 수 있나요?", answer: "네, 표와 재무 데이터를 정확하게 분석합니다." },
+        { q: "출처가 제공되나요?", answer: "네, 모든 답변에는 문서 이름과 페이지 번호가 포함됩니다." },
         {
             q: "민감한 문서에도 안전한가요?",
-            a: "네, 100% 로컬 처리로 데이터가 기기를 절대 떠나지 않습니다.",
+            answer: "네, 100% 로컬 처리로 데이터가 기기를 절대 떠나지 않습니다.",
+        },
+        {
+            id: "faq-compatibility",
+            q: "내 컴퓨터에서 앱 실행 가능한가요?",
+            answer: "Mac with Apple Silicon (M-series chips, 16GB RAM)은 완벽하게 지원합니다. Windows PC (Intel iGPU)는 곧 지원 예정입니다.",
+            content: (
+                <div className="overflow-x-auto mt-4">
+                    <table className="w-full text-sm text-left text-gray-600 border-collapse">
+                        <thead className="bg-gray-50 text-gray-700 font-medium">
+                            <tr>
+                                <th className="px-4 py-2 border border-gray-200">디바이스 종류</th>
+                                <th className="px-4 py-2 border border-gray-200">GPU/Processor</th>
+                                <th className="px-4 py-2 border border-gray-200">메모리(RAM)</th>
+                                <th className="px-4 py-2 border border-gray-200">지원 여부</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className="px-4 py-2 border border-gray-200">Mac</td>
+                                <td className="px-4 py-2 border border-gray-200">M-series chips</td>
+                                <td className="px-4 py-2 border border-gray-200">16GB</td>
+                                <td className="px-4 py-2 border border-gray-200">✅ 완벽 지원</td>
+                            </tr>
+                            <tr>
+                                <td className="px-4 py-2 border border-gray-200">Windows PC (Intel iGPU)</td>
+                                <td className="px-4 py-2 border border-gray-200">Intel integrated graphics</td>
+                                <td className="px-4 py-2 border border-gray-200">16GB</td>
+                                <td className="px-4 py-2 border border-gray-200">⏳ 12월 출시 예정</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            ),
         },
     ];
 
@@ -735,7 +763,7 @@ const FAQ = () => {
         mainEntity: faqs.map((faq) => ({
             "@type": "Question",
             name: faq.q,
-            acceptedAnswer: { "@type": "Answer", text: faq.a },
+            acceptedAnswer: { "@type": "Answer", text: faq.answer },
         })),
     };
 
@@ -754,13 +782,16 @@ const FAQ = () => {
                         {faqs.map((faq, index) => (
                             <details
                                 key={index}
+                                id={faq.id}
                                 className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-6 group hover:border-gray-300 hover:bg-white/80 transition-all"
                             >
                                 <summary className="font-medium text-[#111] cursor-pointer list-none flex items-center justify-between">
                                     {faq.q}
                                     <ChevronDown className="w-5 h-5 text-[#9ca3af] group-open:rotate-180 transition-transform" />
                                 </summary>
-                                <p className="mt-4 text-[#666] leading-relaxed">{faq.a}</p>
+                                <div className="mt-4 text-[#666] leading-relaxed">
+                                    {faq.content || faq.answer}
+                                </div>
                             </details>
                         ))}
                     </div>
@@ -774,73 +805,6 @@ const FAQ = () => {
 
 // CTA Section
 const CTA = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors, isSubmitting },
-        reset,
-        setValue,
-    } = useForm<FormValues>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {},
-    });
-
-    useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const params = {
-            utm_source: urlParams.get("utm_source"),
-            utm_campaign_id: urlParams.get("utm_campaign_id") || urlParams.get("campaignid") || urlParams.get("utm_content"),
-            utm_medium: urlParams.get("utm_medium"),
-            utm_campaign_name: urlParams.get("utm_campaign_name") || urlParams.get("utm_campaign"),
-            utm_adset_id: urlParams.get("utm_adset_id") || urlParams.get("adsetid"),
-            utm_adset_name: urlParams.get("utm_adset_name") || urlParams.get("adsetname"),
-            utm_ad_id: urlParams.get("utm_ad_id") || urlParams.get("adid"),
-            utm_ad_name: urlParams.get("utm_ad_name") || urlParams.get("adname"),
-            linkedin_campaign_group_id: urlParams.get("campaign_group_id"),
-            linkedin_campaign_group_name: urlParams.get("campaign_group_name"),
-            linkedin_campaign_id: urlParams.get("campaign_id"),
-            linkedin_ad_name: urlParams.get("creative_name"),
-        };
-        Object.entries(params).forEach(([key, value]) => {
-            if (value) setValue(key as keyof FormValues, value);
-        });
-    }, [setValue]);
-
-    const onSubmit = async (values: FormValues) => {
-        try {
-            if (values.honeypot) {
-                toast.error("잘못된 요청입니다.");
-                return;
-            }
-            const { error } = await supabase.from("email_signups").insert([{
-                email: values.email,
-                consent: true,
-
-                page_source: "/kr",
-                utm_source: values.utm_source || null,
-                utm_campaign_id: values.utm_campaign_id || null,
-                utm_medium: values.utm_medium || null,
-                utm_campaign_name: values.utm_campaign_name || null,
-                utm_adset_id: values.utm_adset_id || null,
-                utm_adset_name: values.utm_adset_name || null,
-                utm_ad_id: values.utm_ad_id || null,
-                utm_ad_name: values.utm_ad_name || null,
-                linkedin_campaign_name: values.linkedin_campaign_name || null,
-                linkedin_ad_id: values.linkedin_ad_id || null,
-                linkedin_campaign_group_id: values.linkedin_campaign_group_id || null,
-                linkedin_campaign_group_name: values.linkedin_campaign_group_name || null,
-                linkedin_campaign_id: values.linkedin_campaign_id || null,
-                linkedin_ad_name: values.linkedin_ad_name || null,
-            }]);
-            if (error) throw error;
-            trackLead(values.email);
-            toast.success("사전 신청이 완료되었습니다!");
-            reset();
-        } catch (error) {
-            toast.error("오류가 발생했습니다. 다시 시도해주세요.");
-        }
-    };
-
     return (
         <section id="cta" className="bg-white">
             <div className="max-w-7xl mx-auto border-x border-gray-800 py-20 md:py-32 bg-[#111]">
@@ -848,52 +812,16 @@ const CTA = () => {
                     <h2 className="text-3xl md:text-4xl font-bold text-white tracking-[-0.02em] mb-4">지금 바로 시작하세요!</h2>
                     <p className="text-lg text-gray-400 mb-8">
                         현재 클로즈 베타 기간입니다.
-                        <br />이메일을 입력하면 앱 다운로드 링크를 드립니다.
-                        <br />Pro 플랜도 1개월 무료로 써볼 수 있어요.
+                        <br />앱 로그인 시 Pro 플랜 무료 1개월 제공해드려요.
                     </p>
 
-                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                        <div>
-                            <input
-                                type="email"
-                                placeholder="이메일 주소를 입력하세요"
-                                {...register("email")}
-                                className="w-full h-12 px-4 bg-white rounded-lg text-[#111] placeholder:text-gray-400 text-base focus:outline-none focus:ring-2 focus:ring-white/20"
-                            />
-                            {errors.email && <p className="text-sm text-red-400 mt-2 text-left">{errors.email.message}</p>}
-                        </div>
-
-                        <input
-                            type="text"
-                            {...register("honeypot")}
-                            className="absolute -left-[9999px] w-px h-px"
-                            tabIndex={-1}
-                            autoComplete="off"
-                            aria-hidden="true"
-                        />
-                        <input type="hidden" {...register("utm_source")} />
-                        <input type="hidden" {...register("utm_campaign_id")} />
-                        <input type="hidden" {...register("utm_medium")} />
-                        <input type="hidden" {...register("utm_campaign_name")} />
-                        <input type="hidden" {...register("utm_adset_id")} />
-                        <input type="hidden" {...register("utm_adset_name")} />
-                        <input type="hidden" {...register("utm_ad_id")} />
-                        <input type="hidden" {...register("utm_ad_name")} />
-                        <input type="hidden" {...register("linkedin_campaign_name")} />
-                        <input type="hidden" {...register("linkedin_ad_id")} />
-                        <input type="hidden" {...register("linkedin_campaign_group_id")} />
-                        <input type="hidden" {...register("linkedin_campaign_group_name")} />
-                        <input type="hidden" {...register("linkedin_campaign_id")} />
-                        <input type="hidden" {...register("linkedin_ad_name")} />
-
-                        <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className="w-full h-12 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                            {isSubmitting ? "신청 중..." : "무료 체험 신청하기"}
-                        </button>
-                    </form>
+                    <div className="flex justify-center">
+                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg">
+                            <button className="w-full md:w-auto px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors">
+                                Mac용 다운로드
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>

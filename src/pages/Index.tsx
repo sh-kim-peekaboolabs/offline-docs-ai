@@ -21,6 +21,7 @@ import {
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { Link } from "react-router-dom";
 import { usePageTracking } from "@/hooks/useAnalytics";
+import { analytics } from "@/lib/analytics";
 
 import { motion } from "framer-motion";
 
@@ -87,12 +88,12 @@ const Nav = () => {
 
                     {/* CTA */}
                     <div className="flex items-center gap-3">
-                        <a href="https://calendar.app.google/LD81XjYtbptocMKw8" target="_blank" rel="noopener noreferrer" className="hidden md:block">
+                        <a href="https://calendar.app.google/LD81XjYtbptocMKw8" target="_blank" rel="noopener noreferrer" className="hidden md:block" onClick={() => analytics.trackButtonClick('contact', 'navbar_kr')}>
                             <button className="px-4 py-2 text-sm font-medium text-[#666] hover:text-[#111] transition-colors">
                                 문의하기
                             </button>
                         </a>
-                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="hidden md:block">
+                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="hidden md:block" onClick={() => analytics.trackButtonClick('download', 'navbar_kr')}>
                             <button className="px-5 py-2 bg-[#111] text-white text-sm font-medium rounded-lg hover:bg-[#333] transition-colors">
                                 다운로드
                             </button>
@@ -146,11 +147,11 @@ const Nav = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
-                                onClick={() => setMobileMenuOpen(false)}
+                                onClick={() => { setMobileMenuOpen(false); analytics.trackButtonClick('contact', 'navbar_mobile_kr'); }}
                             >
                                 문의하기
                             </a>
-                            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => setMobileMenuOpen(false)} className="mt-4">
+                            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => { setMobileMenuOpen(false); analytics.trackButtonClick('download', 'navbar_mobile_kr'); }} className="mt-4">
                                 <button className="w-full px-5 py-3 bg-[#111] text-white text-base font-medium rounded-lg">
                                     다운로드
                                 </button>
@@ -215,7 +216,7 @@ const Hero = () => {
 
                     {/* CTA Buttons */}
                     <div className="flex flex-col items-center justify-center gap-4 mb-16">
-                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg">
+                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => analytics.trackButtonClick('download', 'hero_kr')}>
                             <button className="px-8 py-3.5 bg-[#111] text-white text-base font-medium rounded-lg hover:bg-[#333] transition-colors flex items-center gap-2 shadow-lg shadow-black/10">
                                 Mac용 다운로드
                                 <ArrowRight className="w-4 h-4" />
@@ -598,7 +599,7 @@ const Pricing = () => (
                         </li>
                     </ul>
                     <div className="mt-6">
-                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="w-full">
+                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="w-full" onClick={() => analytics.trackButtonClick('download', 'pricing_free_kr')}>
                             <Button variant="outline" className="w-full">
                                 Mac용 다운로드
                             </Button>
@@ -649,7 +650,7 @@ const Pricing = () => (
                         </li>
                     </ul>
                     <div className="mt-6">
-                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="w-full">
+                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="w-full" onClick={() => analytics.trackButtonClick('download', 'pricing_pro_kr')}>
                             <Button variant="hero" className="w-full">
                                 Mac용 다운로드
                             </Button>
@@ -699,7 +700,7 @@ const Pricing = () => (
                         </li>
                     </ul>
                     <div className="mt-6">
-                        <a href="https://calendar.app.google/LD81XjYtbptocMKw8" target="_blank" rel="noopener noreferrer" className="w-full">
+                        <a href="https://calendar.app.google/LD81XjYtbptocMKw8" target="_blank" rel="noopener noreferrer" className="w-full" onClick={() => analytics.trackButtonClick('contact', 'pricing_enterprise_kr')}>
                             <Button variant="outline" className="w-full">
                                 문의하기
                             </Button>
@@ -816,7 +817,7 @@ const CTA = () => {
                     </p>
 
                     <div className="flex justify-center">
-                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg">
+                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => analytics.trackButtonClick('download', 'cta_kr')}>
                             <button className="w-full md:w-auto px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors">
                                 Mac용 다운로드
                             </button>

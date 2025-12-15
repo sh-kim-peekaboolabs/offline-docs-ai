@@ -201,7 +201,7 @@ const SecuritySpec = () => {
                             </p>
                             <ul className="list-disc pl-6 mb-8 space-y-4 text-gray-700">
                                 <li><strong>데이터 주권:</strong> 데이터가 물리적 장치를 떠나지 않으므로 GDPR 데이터 거주 요건을 자동으로 충족합니다.</li>
-                                <li><strong>개인정보 보호 규칙:</strong> 공급업체에 PHI(보호 대상 건강 정보)가 전송되지 않으므로 소프트웨어 사용을 위해 기술적으로 BAA(사업 제휴 계약)가 필요하지 않습니다.</li>
+                                <li><strong>개인정보 보호 규칙:</strong> 데이터가 외부로 전송되지 않으므로 일반적인 SaaS 벤더와 달리 BAA 체결 절차를 간소화하거나 생략할 수 있는 구조입니다(단, 최종 판단은 귀사의 컴플라이언스 팀과 상의하십시오).</li>
                             </ul>
                         </section>
 

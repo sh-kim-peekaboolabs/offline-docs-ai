@@ -189,7 +189,7 @@ const SecuritySpec = () => {
                                 엄격한 온프레미스/로컬 소프트웨어 공급업체로서 피카부랩스는 자체 서버에서 고객 데이터를 처리, 저장 또는 전송하지 않습니다.
                             </p>
                             <p className="text-gray-700 leading-relaxed mb-6">
-                                따라서 로컬독스(LocalDocs)는 데이터 처리와 관련된 SOC 2 Type II 또는 ISO 27001 인증의 <strong>적용 범위 밖(Out of Scope)</strong>에 있습니다.
+                                따라서 로컬독스(LocalDocs)는 고객의 인프라 내에서만 작동하므로, 고객사가 보유한 기존의 SOC 2 / ISO 27001 통제 환경을 그대로 승계합니다.
                             </p>
                             <p className="text-gray-700 leading-relaxed">
                                 당사는 고객이 인프라 보안에 대한 완전한 소유권과 책임을 유지하는 <strong>공동 책임 모델(Shared Responsibility Model)</strong>하에 운영됩니다.

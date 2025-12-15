@@ -182,7 +182,7 @@ const SecuritySpecEn = () => {
                                 <ul className="list-disc pl-6 space-y-2 text-gray-700">
                                     <li>Authentication: accounts.google.com (one-time on login)</li>
                                     <li>Payment: lemonsqueezy.com (subscription status check)</li>
-                                    <li>Updates: api.peekaboolabs.ai (latest version check)</li>
+                                    <li>Updates: localdocs-prod.peekaboolabs.ai (latest version check)</li>
                                 </ul>
                             </div>
                         </section>

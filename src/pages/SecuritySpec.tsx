@@ -175,7 +175,7 @@ const SecuritySpec = () => {
                                 <ul className="list-disc pl-6 space-y-2 text-gray-700">
                                     <li>인증: accounts.google.com (로그인 시 1회)</li>
                                     <li>결제: lemonsqueezy.com (구독 상태 확인)</li>
-                                    <li>업데이트: api.peekaboolabs.ai (최신 버전 확인)</li>
+                                    <li>업데이트: localdocs-prod.peekaboolabs.ai (최신 버전 확인)</li>
                                 </ul>
                             </div>
                         </section>

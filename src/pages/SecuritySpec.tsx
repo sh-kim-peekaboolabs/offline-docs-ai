@@ -1,48 +1,44 @@
-
 import { Card } from "@/components/ui/card";
 import { usePageTracking } from "@/hooks/useAnalytics";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-
 const SecuritySpec = () => {
-    usePageTracking();
-    const navigate = useNavigate();
-    const location = useLocation();
+  usePageTracking();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    // Scroll to top on mount
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  const handleBackClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const from = location.state?.from;
+    navigate("/");
 
-    const handleBackClick = (e: React.MouseEvent) => {
-        e.preventDefault();
-        const from = location.state?.from;
-        navigate("/");
-
-        // Wait for navigation to complete, then scroll instantly to entry point
-        setTimeout(() => {
-            if (from === 'security') {
-                const securitySection = document.getElementById("security");
-                if (securitySection) {
-                    securitySection.scrollIntoView();
-                }
-            } else if (from === 'footer') {
-                window.scrollTo({ top: document.body.scrollHeight });
-            } else {
-                window.scrollTo({ top: 0 });
-            }
-        }, 100);
-    };
-
-    return (
-        <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    // Wait for navigation to complete, then scroll instantly to entry point
+    setTimeout(() => {
+      if (from === 'security') {
+        const securitySection = document.getElementById("security");
+        if (securitySection) {
+          securitySection.scrollIntoView();
+        }
+      } else if (from === 'footer') {
+        window.scrollTo({
+          top: document.body.scrollHeight
+        });
+      } else {
+        window.scrollTo({
+          top: 0
+        });
+      }
+    }, 100);
+  };
+  return <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto">
                 {/* Back Button */}
-                <button
-                    onClick={handleBackClick}
-                    className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-8 transition-colors cursor-pointer"
-                >
+                <button onClick={handleBackClick} className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-8 transition-colors cursor-pointer">
                     <ArrowLeft className="w-4 h-4" />
                     <span>홈으로 돌아가기</span>
                 </button>
@@ -80,7 +76,7 @@ const SecuritySpec = () => {
                                 로컬독스 엔터프라이즈 에디션은 완전한 오프라인 환경을 위해 설계되었습니다.
                             </p>
                             <ul className="list-disc pl-6 mb-8 space-y-4 text-gray-700">
-                                <li><strong>클라우드 추론 없음:</strong> 모든 AI 처리(임베딩 및 생성)는 양자화된 LLM을 사용하여 로컬 CPU/GPU에서 실행됩니다.</li>
+                                <li><strong>클라우드 추론 없음:</strong>클라우드 추론 없음: 모든 AI 처리(임베딩 및 생성)는 양자화된 AI 모델을 사용하여 로컬 CPU/GPU에서 실행됩니다.</li>
                                 <li><strong>핵심 데이터 외부 API 차단:</strong> 애플리케이션은 OpenAI, Anthropic, Google 등 어떠한 타사 AI 제공업체에도 문서 데이터 처리, 임베딩, 질의 응답을 위한 API 호출을 하지 않습니다.</li>
                                 <li><strong>네트워크 활동 (엔터프라이즈):</strong> 라이선스 키 방식을 사용하여 오프라인 인증이 가능하거나, 초기 1회 인증 외에는 네트워크가 필요 없습니다. 어떠한 문서 데이터, 임베딩 또는 쿼리도 네트워크를 통해 전송되지 않습니다.</li>
                             </ul>
@@ -245,13 +241,10 @@ const SecuritySpec = () => {
                     </div>
 
                     {/* Subtle Grid Pattern */}
-                    <div
-                        className="absolute inset-0 opacity-[0.02]"
-                        style={{
-                            backgroundImage: `linear - gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px), linear - gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px)`,
-                            backgroundSize: '40px 40px'
-                        }}
-                    ></div>
+                    <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: `linear - gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px), linear - gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }}></div>
 
                     <div className="relative z-10">
                         {/* Header */}
@@ -282,43 +275,18 @@ const SecuritySpec = () => {
 
                         {/* Founders Photos */}
                         <div className="flex items-center gap-2 mb-8">
-                            <a
-                                href="https://www.linkedin.com/in/junghwanseo/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group relative animate-float-subtle"
-                            >
-                                <img
-                                    src="/team/junghwan.jpg"
-                                    alt="서정환"
-                                    className="w-12 h-12 rounded-full object-cover border-2 border-gray-300 transition-all duration-300 group-hover:border-gray-400 group-hover:scale-110 group-hover:shadow-xl group-hover:brightness-110 cursor-pointer"
-                                />
+                            <a href="https://www.linkedin.com/in/junghwanseo/" target="_blank" rel="noopener noreferrer" className="group relative animate-float-subtle">
+                                <img src="/team/junghwan.jpg" alt="서정환" className="w-12 h-12 rounded-full object-cover border-2 border-gray-300 transition-all duration-300 group-hover:border-gray-400 group-hover:scale-110 group-hover:shadow-xl group-hover:brightness-110 cursor-pointer" />
                             </a>
-                            <a
-                                href="https://www.linkedin.com/in/hansol-nam/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group relative animate-float-subtle"
-                                style={{ animationDelay: '0.5s' } as React.CSSProperties}
-                            >
-                                <img
-                                    src="/team/hansol.jpg"
-                                    alt="남한솔"
-                                    className="w-12 h-12 rounded-full object-cover border-2 border-gray-300 transition-all duration-300 group-hover:border-gray-400 group-hover:scale-110 group-hover:shadow-xl group-hover:brightness-110 cursor-pointer"
-                                />
+                            <a href="https://www.linkedin.com/in/hansol-nam/" target="_blank" rel="noopener noreferrer" className="group relative animate-float-subtle" style={{
+              animationDelay: '0.5s'
+            } as React.CSSProperties}>
+                                <img src="/team/hansol.jpg" alt="남한솔" className="w-12 h-12 rounded-full object-cover border-2 border-gray-300 transition-all duration-300 group-hover:border-gray-400 group-hover:scale-110 group-hover:shadow-xl group-hover:brightness-110 cursor-pointer" />
                             </a>
-                            <a
-                                href="https://www.linkedin.com/in/kim-seunghwan"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group relative animate-float-subtle"
-                                style={{ animationDelay: '1s' } as React.CSSProperties}
-                            >
-                                <img
-                                    src="/team/seunghwan.jpg"
-                                    alt="김승환"
-                                    className="w-12 h-12 rounded-full object-cover border-2 border-gray-300 transition-all duration-300 group-hover:border-gray-400 group-hover:scale-110 group-hover:shadow-xl group-hover:brightness-110 cursor-pointer"
-                                />
+                            <a href="https://www.linkedin.com/in/kim-seunghwan" target="_blank" rel="noopener noreferrer" className="group relative animate-float-subtle" style={{
+              animationDelay: '1s'
+            } as React.CSSProperties}>
+                                <img src="/team/seunghwan.jpg" alt="김승환" className="w-12 h-12 rounded-full object-cover border-2 border-gray-300 transition-all duration-300 group-hover:border-gray-400 group-hover:scale-110 group-hover:shadow-xl group-hover:brightness-110 cursor-pointer" />
                             </a>
                         </div>
 
@@ -336,8 +304,6 @@ const SecuritySpec = () => {
                     </div>
                 </Card>
             </div>
-        </div>
-    );
+        </div>;
 };
-
 export default SecuritySpec;

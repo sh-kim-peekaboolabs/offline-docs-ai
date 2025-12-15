@@ -83,7 +83,7 @@ const SecuritySpec = () => {
 
                             <h3 className="text-xl font-semibold text-gray-900 mb-5">2.2. 로컬 벡터 저장소</h3>
                             <ul className="list-disc pl-6 mb-8 space-y-4 text-gray-700">
-                                <li><strong>저장 위치:</strong> 모든 문서 인덱스 및 벡터 임베딩은 애플리케이션 샌드박스 내 로컬에 저장됩니다(예: macOS의 경우 ~/Library/Application Support/PeekabooLabs/LocalDocs).</li>
+                                <li><strong>저장 위치:</strong> OS가 제공하는 표준 샌드박스 디렉토리에 저장되며, 해당 영역은 사용자 권한 없이는 접근이 불가능합니다.</li>
                                 <li><strong>암호화:</strong> 저장 데이터(Data at rest)는 호스트 운영 체제의 파일 시스템 암호화(예: Apple FileVault, Windows BitLocker)로 보호됩니다.</li>
                                 <li><strong>데이터 제어:</strong> 사용자는 절대적인 제어 권한을 유지합니다. 애플리케이션 또는 로컬 데이터베이스 폴더를 삭제하면 인덱싱된 모든 데이터가 영구적으로 삭제됩니다.</li>
                             </ul>

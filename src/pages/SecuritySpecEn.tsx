@@ -90,7 +90,7 @@ const SecuritySpecEn = () => {
                                 All vector indices generated from documents are stored only on the device's local storage.
                             </p>
                             <ul className="list-disc pl-6 mb-8 space-y-4 text-gray-700">
-                                <li><strong>Storage Location:</strong> SQLite database or file-based vector store (macOS: ~/Library/Application Support, Windows: %APPDATA%)</li>
+                                <li><strong>Storage Location:</strong> Stored in the OS-provided standard sandbox directory, which is inaccessible without user permissions.</li>
                                 <li><strong>Cross-Device Sync:</strong> Not supported (to prevent unintended external transmission)</li>
                             </ul>
 
@@ -196,7 +196,7 @@ const SecuritySpecEn = () => {
                                 As a strict on-premise/local software provider, PeekabooLabs does not process, store, or transmit customer data on its own servers.
                             </p>
                             <p className="text-gray-700 leading-relaxed mb-6">
-                                Therefore, LocalDocs is <strong>Out of Scope</strong> for SOC 2 Type II or ISO 27001 certification related to data processing.
+                                Therefore, LocalDocs operates exclusively within the customer's infrastructure, inheriting the customer's existing SOC 2 / ISO 27001 control environment.
                             </p>
                             <p className="text-gray-700 leading-relaxed">
                                 We operate under a <strong>Shared Responsibility Model</strong> where customers maintain full ownership and responsibility for infrastructure security.
@@ -208,7 +208,7 @@ const SecuritySpecEn = () => {
                             </p>
                             <ul className="list-disc pl-6 mb-8 space-y-4 text-gray-700">
                                 <li><strong>GDPR:</strong> No data transmission to third parties → Not applicable to Article 28 "Data Processing Agreement"</li>
-                                <li><strong>HIPAA:</strong> Operates 100% locally, can handle PHI (Protected Health Information) without HIPAA Business Associate Agreement (BAA)</li>
+                                <li><strong>HIPAA:</strong> Since data is not transmitted externally, unlike typical SaaS vendors, BAA procedures can be simplified or omitted (however, please consult with your compliance team for final determination).</li>
                             </ul>
                         </section>
 

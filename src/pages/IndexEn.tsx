@@ -17,11 +17,15 @@ import {
   Search,
   Shield,
   Layers,
+  Apple,
 } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { Link } from "react-router-dom";
 import { usePageTracking } from "@/hooks/useAnalytics";
 import { analytics } from "@/lib/analytics";
+import { DownloadDropdown } from "@/components/ui/download-dropdown";
+import { WindowsIcon } from "@/components/icons/WindowsIcon";
+import { AppleIcon } from "@/components/icons/AppleIcon";
 
 import { motion } from "framer-motion";
 
@@ -66,11 +70,11 @@ const Nav = () => {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
-            {["How It Works", "Features", "Security", "Pricing"].map((item) =>
-              item === "Security" ? (
+            {["How It Works", "Features", "Security", "Pricing", "Enterprise"].map((item) =>
+              (item === "Security" || item === "Enterprise") ? (
                 <Link
                   key={item}
-                  to="/en/security-spec"
+                  to={item === "Security" ? "/en/security-spec" : "/en/enterprise"}
                   state={{ from: "nav" }}
                   className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors"
                 >
@@ -101,11 +105,7 @@ const Nav = () => {
                 Contact
               </button>
             </a>
-            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="hidden md:block" onClick={() => analytics.trackButtonClick('download', 'navbar_en')}>
-              <button className="px-5 py-2 bg-[#111] text-white text-sm font-medium rounded-lg hover:bg-[#333] transition-colors">
-                Download
-              </button>
-            </a>
+            <DownloadDropdown lang="en" place="navbar" className="hidden md:block" />
 
             <button
               className="md:hidden p-2 hover:bg-gray-50 rounded-lg transition-colors"
@@ -128,11 +128,11 @@ const Nav = () => {
               </button>
             </div>
             <div className="flex flex-col gap-1">
-              {["How It Works", "Features", "Security", "Pricing"].map((item) =>
-                item === "Security" ? (
+              {["How It Works", "Features", "Security", "Pricing", "Enterprise"].map((item) =>
+                (item === "Security" || item === "Enterprise") ? (
                   <Link
                     key={item}
-                    to="/en/security-spec"
+                    to={item === "Security" ? "/en/security-spec" : "/en/enterprise"}
                     state={{ from: "nav" }}
                     className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
@@ -203,13 +203,21 @@ const Hero = () => {
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col items-center justify-center gap-4 mb-16">
-          <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => analytics.trackButtonClick('download', 'hero_en')}>
-            <button className="px-8 py-3.5 bg-[#111] text-white text-base font-medium rounded-lg hover:bg-[#333] transition-colors flex items-center gap-2 shadow-lg shadow-black/10">
-              Download for Mac
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </a>
+        <div className="flex flex-col items-center gap-6 mb-16">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => analytics.trackButtonClick('download_mac', 'hero_en')}>
+              <button className="w-64 sm:w-auto px-8 py-3.5 bg-[#111] text-white text-base font-medium rounded-lg hover:bg-[#333] transition-colors flex items-center justify-center gap-2 shadow-lg shadow-black/10 whitespace-nowrap">
+                <AppleIcon className="w-5 h-5 mb-0.5" />
+                Download for Mac
+              </button>
+            </a>
+            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/latest/LocalDocsSetup-latest.exe" onClick={() => analytics.trackButtonClick('download_win', 'hero_en')}>
+              <button className="w-64 sm:w-auto px-8 py-3.5 bg-[#111] text-white text-base font-medium rounded-lg hover:bg-[#333] transition-colors flex items-center justify-center gap-2 shadow-lg shadow-black/10 whitespace-nowrap">
+                <WindowsIcon className="w-4 h-4" />
+                Download for Windows
+              </button>
+            </a>
+          </div>
           <a
             href="#faq-compatibility"
             className="text-sm text-gray-500 hover:text-gray-900 underline underline-offset-4"
@@ -782,10 +790,17 @@ const CTA = () => {
           <br></br>Get 1 month of Pro plan for free when you login to the app.
         </p>
 
-        <div className="flex justify-center">
-          <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => analytics.trackButtonClick('download', 'cta_en')}>
-            <button className="w-full md:w-auto px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors">
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => analytics.trackButtonClick('download_mac', 'cta_en')}>
+            <button className="w-64 sm:w-auto px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
+              <AppleIcon className="w-5 h-5 mb-0.5" />
               Download for Mac
+            </button>
+          </a>
+          <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/latest/LocalDocsSetup-latest.exe" onClick={() => analytics.trackButtonClick('download_win', 'cta_en')}>
+            <button className="w-64 sm:w-auto px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-white/90 transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
+              <WindowsIcon className="w-4 h-4" />
+              Download for Windows
             </button>
           </a>
         </div>
@@ -798,16 +813,33 @@ const Footer = () => (
   <footer className="border-t bg-white">
     <div className="max-w-7xl mx-auto px-8 py-16 border-x border-gray-200">
       {/* Main Footer Content */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12 items-start">
         {/* Company Info */}
-        <div className="col-span-2 md:col-span-1">
+        <div className="col-span-2 md:col-span-1 flex flex-col items-start">
           <div className="flex flex-col items-start gap-2 mb-3">
             <img src={logo} alt="LocalDocs" width={24} height={24} />
             <h3 className="text-base font-semibold">LocalDocs</h3>
           </div>
-          <p className="text-sm text-muted-foreground">Private AI document search</p>
+          <p className="text-sm text-muted-foreground mb-4">
+            On-device AI document search & summary solution
+          </p>
+          <p className="text-sm text-muted-foreground">
+            contact@peekaboolabs.ai
+          </p>
         </div>
 
+        {/* Product */}
+        <div>
+          <h3 className="text-sm font-semibold mb-4">Product</h3>
+          <div className="flex flex-col gap-3">
+            <Link to="/en" className="text-sm text-muted-foreground hover:text-foreground transition-colors" onClick={() => window.scrollTo(0, 0)}>
+              Personal
+            </Link>
+            <Link to="/en/enterprise" className="text-sm text-muted-foreground hover:text-foreground transition-colors" onClick={() => window.scrollTo(0, 0)}>
+              Enterprise
+            </Link>
+          </div>
+        </div>
         {/* Legal */}
         <div>
           <h3 className="text-sm font-semibold mb-4">Legal</h3>

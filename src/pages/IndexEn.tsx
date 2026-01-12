@@ -1,24 +1,8 @@
 import { lazy, Suspense, memo, useEffect, useState } from "react";
 import { HighlightText } from "@/components/ui/highlight-text";
 import { Button } from "@/components/ui/button";
-
 import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
-
-
-import {
-  FileText,
-  Lock,
-  CheckCircle,
-  Zap,
-  ChevronDown,
-  Menu,
-  X,
-  ArrowRight,
-  Search,
-  Shield,
-  Layers,
-  Apple,
-} from "lucide-react";
+import { FileText, Lock, CheckCircle, Zap, ChevronDown, Menu, X, ArrowRight, Search, Shield, Layers, Apple } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { Link } from "react-router-dom";
 import { usePageTracking } from "@/hooks/useAnalytics";
@@ -26,40 +10,41 @@ import { analytics } from "@/lib/analytics";
 import { DownloadDropdown } from "@/components/ui/download-dropdown";
 import { WindowsIcon } from "@/components/icons/WindowsIcon";
 import { AppleIcon } from "@/components/icons/AppleIcon";
-
 import { motion } from "framer-motion";
 
 // Lazy load heavy demo components
-const SearchInput = lazy(() => import("@/components/ui/search-input").then((m) => ({ default: m.SearchInput })));
-const CitationDemo = lazy(() => import("@/components/demo/citation-demo").then((m) => ({ default: m.CitationDemo })));
-const PDFViewer = lazy(() => import("@/components/demo/pdf-viewer").then((m) => ({ default: m.PDFViewer })));
-const AutoCycleFiles = lazy(() =>
-  import("@/components/demo/auto-cycle-files").then((m) => ({ default: m.AutoCycleFiles })),
-);
-const DifferentiationSection = lazy(() =>
-  import("@/components/sections/differentiation-section").then((m) => ({ default: m.DifferentiationSection })),
-);
+const SearchInput = lazy(() => import("@/components/ui/search-input").then(m => ({
+  default: m.SearchInput
+})));
+const CitationDemo = lazy(() => import("@/components/demo/citation-demo").then(m => ({
+  default: m.CitationDemo
+})));
+const PDFViewer = lazy(() => import("@/components/demo/pdf-viewer").then(m => ({
+  default: m.PDFViewer
+})));
+const AutoCycleFiles = lazy(() => import("@/components/demo/auto-cycle-files").then(m => ({
+  default: m.AutoCycleFiles
+})));
+const DifferentiationSection = lazy(() => import("@/components/sections/differentiation-section").then(m => ({
+  default: m.DifferentiationSection
+})));
 
 // Simple loading placeholder
-const DemoLoader = () => (
-  <div className="w-full h-full flex items-center justify-center">
+const DemoLoader = () => <div className="w-full h-full flex items-center justify-center">
     <div className="w-6 h-6 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin" />
-  </div>
-);
-
-
+  </div>;
 
 // Linear-style Nav
 const Nav = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
     setMobileMenuOpen(false);
   };
-
-  return (
-    <>
+  return <>
       <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200">
         <div className="px-6 flex items-center justify-between h-16 max-w-7xl mx-auto">
           {/* Logo */}
@@ -70,47 +55,25 @@ const Nav = () => {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
-            {["How It Works", "Features", "Security", "Pricing", "Enterprise"].map((item) =>
-              (item === "Security" || item === "Enterprise") ? (
-                <Link
-                  key={item}
-                  to={item === "Security" ? "/en/security-spec" : "/en/enterprise"}
-                  state={{ from: "nav" }}
-                  className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors"
-                >
+            {["How It Works", "Features", "Security", "Pricing", "Enterprise"].map(item => item === "Security" || item === "Enterprise" ? <Link key={item} to={item === "Security" ? "/en/security-spec" : "/en/enterprise"} state={{
+            from: "nav"
+          }} className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors">
                   {item}
-                </Link>
-              ) : (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase().replace(/ /g, "-")}`}
-                  className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors"
-                >
+                </Link> : <a key={item} href={`#${item.toLowerCase().replace(/ /g, "-")}`} className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors">
                   {item}
-                </a>
-              ),
-            )}
+                </a>)}
           </nav>
 
           {/* CTA */}
           <div className="flex items-center gap-3">
-            <a
-              href="https://cal.com/localdocs/15min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:block"
-              onClick={() => analytics.trackButtonClick('contact', 'navbar_en')}
-            >
+            <a href="https://cal.com/localdocs/15min" target="_blank" rel="noopener noreferrer" className="hidden md:block" onClick={() => analytics.trackButtonClick('contact', 'navbar_en')}>
               <button className="px-4 py-2 text-sm font-medium text-[#666] hover:text-[#111] transition-colors">
                 Contact
               </button>
             </a>
             <DownloadDropdown lang="en" place="navbar" className="hidden md:block" />
 
-            <button
-              className="md:hidden p-2 hover:bg-gray-50 rounded-lg transition-colors"
-              onClick={() => setMobileMenuOpen(true)}
-            >
+            <button className="md:hidden p-2 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(true)}>
               <Menu className="w-5 h-5 text-[#111]" />
             </button>
           </div>
@@ -118,8 +81,7 @@ const Nav = () => {
       </header>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 md:hidden">
+      {mobileMenuOpen && <div className="fixed inset-0 z-50 md:hidden">
           <div className="fixed inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
           <nav className="fixed top-0 right-0 bottom-0 w-72 bg-white shadow-2xl p-6">
             <div className="flex justify-end mb-8">
@@ -128,54 +90,36 @@ const Nav = () => {
               </button>
             </div>
             <div className="flex flex-col gap-1">
-              {["How It Works", "Features", "Security", "Pricing", "Enterprise"].map((item) =>
-                (item === "Security" || item === "Enterprise") ? (
-                  <Link
-                    key={item}
-                    to={item === "Security" ? "/en/security-spec" : "/en/enterprise"}
-                    state={{ from: "nav" }}
-                    className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
+              {["How It Works", "Features", "Security", "Pricing", "Enterprise"].map(item => item === "Security" || item === "Enterprise" ? <Link key={item} to={item === "Security" ? "/en/security-spec" : "/en/enterprise"} state={{
+            from: "nav"
+          }} className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>
                     {item}
-                  </Link>
-                ) : (
-                  <a
-                    key={item}
-                    href={`#${item.toLowerCase().replace(/ /g, "-")}`}
-                    className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
+                  </Link> : <a key={item} href={`#${item.toLowerCase().replace(/ /g, "-")}`} className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>
                     {item}
-                  </a>
-                ),
-              )}
-              <a
-                href="https://cal.com/localdocs/15min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
-                onClick={() => { setMobileMenuOpen(false); analytics.trackButtonClick('contact', 'navbar_mobile_en'); }}
-              >
+                  </a>)}
+              <a href="https://cal.com/localdocs/15min" target="_blank" rel="noopener noreferrer" className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors" onClick={() => {
+            setMobileMenuOpen(false);
+            analytics.trackButtonClick('contact', 'navbar_mobile_en');
+          }}>
                 Contact
               </a>
-              <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => { setMobileMenuOpen(false); analytics.trackButtonClick('download', 'navbar_mobile_en'); }} className="mt-4">
+              <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => {
+            setMobileMenuOpen(false);
+            analytics.trackButtonClick('download', 'navbar_mobile_en');
+          }} className="mt-4">
                 <button className="w-full px-5 py-3 bg-[#111] text-white text-base font-medium rounded-lg">
                   Download
                 </button>
               </a>
             </div>
           </nav>
-        </div>
-      )}
-    </>
-  );
+        </div>}
+    </>;
 };
 
 // Linear-style Hero (Glow Removed)
 const Hero = () => {
-  return (
-    <section className="relative bg-transparent pt-12 pb-24 md:pt-20 md:pb-32 overflow-hidden">
+  return <section className="relative bg-transparent pt-12 pb-24 md:pt-20 md:pb-32 overflow-hidden">
       {/* Ambient Glow 제거됨 (깨끗한 흰색 배경) */}
 
       <div className="relative max-w-4xl mx-auto px-8 text-center">
@@ -218,30 +162,26 @@ const Hero = () => {
               </button>
             </a>
           </div>
-          <a
-            href="#faq-compatibility"
-            className="text-sm text-gray-500 hover:text-gray-900 underline underline-offset-4"
-            onClick={(e) => {
-              e.preventDefault();
-              const el = document.getElementById('faq-compatibility');
-              if (el) {
-                el.setAttribute('open', 'true');
-                const offset = 100;
-                const elementPosition = el.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.scrollY - offset;
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: "smooth"
-                });
-              }
-            }}
-          >
+          <a href="#faq-compatibility" className="text-sm text-gray-500 hover:text-gray-900 underline underline-offset-4" onClick={e => {
+          e.preventDefault();
+          const el = document.getElementById('faq-compatibility');
+          if (el) {
+            el.setAttribute('open', 'true');
+            const offset = 100;
+            const elementPosition = el.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.scrollY - offset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth"
+            });
+          }
+        }}>
             Device Compatibility
           </a>
         </div>
 
         {/* App Screenshot Placeholder
-        <div className="max-w-4xl mx-auto">
+         <div className="max-w-4xl mx-auto">
           <div className="relative rounded-xl border border-gray-200 shadow-2xl overflow-hidden bg-white aspect-[16/10]">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center">
@@ -252,92 +192,66 @@ const Hero = () => {
               </div>
             </div>
           </div>
-        </div> */}
+         </div> */}
       </div>
-    </section>
-  );
+    </section>;
 };
-
 const HowItWorksSection = () => {
-  const steps = [
-    {
-      number: "01",
-      title: "Set a source",
-      description: (
-        <>
+  const steps = [{
+    number: "01",
+    title: "Set a source",
+    description: <>
           Drag and drop PDF files or select them from your PC.
           <br />
           All embedding and vectorization happen locally.
         </>
-      ),
-    },
-    {
-      number: "02",
-      title: "Ask anything",
-      description: (
-        <>
+  }, {
+    number: "02",
+    title: "Ask anything",
+    description: <>
           Type your question in natural language.
           <br />
           No need to remember exact keywords or page numbers.
-        </>
-      ),
-      component: (
-        <div className="w-full h-full flex items-center justify-center p-8">
+        </>,
+    component: <div className="w-full h-full flex items-center justify-center p-8">
           <Suspense fallback={<DemoLoader />}>
             <SearchInput />
           </Suspense>
         </div>
-      ),
-    },
-    {
-      number: "03",
-      title: "Get answers with citation",
-      description: (
-        <>
+  }, {
+    number: "03",
+    title: "Get answers with citation",
+    description: <>
           Get answers with sentence-level citations.
           <br />
           Every claim is backed by the exact source.
-        </>
-      ),
-      component: (
-        <div className="w-full h-full flex items-center justify-center p-8">
+        </>,
+    component: <div className="w-full h-full flex items-center justify-center p-8">
           <Suspense fallback={<DemoLoader />}>
             <CitationDemo />
           </Suspense>
         </div>
-      ),
-    },
-    {
-      number: "04",
-      title: "Verify it from original content",
-      description: (
-        <>
+  }, {
+    number: "04",
+    title: "Verify it from original content",
+    description: <>
           Click any citation to jump directly to the original page.
           <br />
           Verify and explore the full context instantly.
-        </>
-      ),
-      component: (
-        <div className="w-full h-full flex items-center justify-center p-8">
+        </>,
+    component: <div className="w-full h-full flex items-center justify-center p-8">
           <Suspense fallback={<DemoLoader />}>
             <PDFViewer />
           </Suspense>
         </div>
-      ),
-    },
-  ];
-
-  return (
-    <section id="how-it-works" className="w-full bg-white scroll-mt-24">
+  }];
+  return <section id="how-it-works" className="w-full bg-white scroll-mt-24">
       <div className="max-w-7xl mx-auto">
-        {steps.map((step, index) => (
-          <div key={index} className="border-b border-gray-200">
+        {steps.map((step, index) => <div key={index} className="border-b border-gray-200">
             {/* Header Row - Only for first step */}
-            {index === 0 && (
-              <div className="px-8 py-4 border-b border-gray-200 border-t border-gray-200 text-center">
+            {index === 0 && <div className="px-8 py-4 border-b border-gray-200 border-t border-gray-200 text-center">
                 <span className="text-sm font-semibold text-gray-600 tracking-widest uppercase">HOW IT WORKS</span>
-              </div>
-            )}
+              </div>}
 
             {/* Content Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 h-[800px] md:h-[550px]">
@@ -354,82 +268,63 @@ const HowItWorksSection = () => {
 
               {/* Right Column - Graphic */}
               <div className="bg-gray-50 px-8 md:px-12 py-12 md:py-16 flex items-center justify-center h-full overflow-hidden">
-                {index === 0 ? (
-                  <Suspense fallback={<DemoLoader />}>
+                {index === 0 ? <Suspense fallback={<DemoLoader />}>
                     <AutoCycleFiles />
-                  </Suspense>
-                ) : step.component ? (
-                  step.component
-                ) : (
-                  <div className="text-gray-300 text-8xl font-thin">{step.number}</div>
-                )}
+                  </Suspense> : step.component ? step.component : <div className="text-gray-300 text-8xl font-thin">{step.number}</div>}
               </div>
             </div>
-          </div>
-        ))}
+          </div>)}
       </div>
-    </section>
-  );
+    </section>;
 };
 
 // Bento Grid Features
 const Features = () => {
-  const features = [
-    {
-      Icon: Zap,
-      name: "Instant Search",
-      description: "Search 1000+ pages within seconds. No more Ctrl+F through dozens of PDFs.",
-      className: "col-span-3 lg:col-span-2",
-      background: (
-        <motion.div
-          className="absolute inset-0 opacity-10"
-          animate={{ scale: [1, 1.05, 1] }}
-          transition={{ duration: 5, repeat: Infinity }}
-        >
+  const features = [{
+    Icon: Zap,
+    name: "Instant Search",
+    description: "Search 1000+ pages within seconds. No more Ctrl+F through dozens of PDFs.",
+    className: "col-span-3 lg:col-span-2",
+    background: <motion.div className="absolute inset-0 opacity-10" animate={{
+      scale: [1, 1.05, 1]
+    }} transition={{
+      duration: 5,
+      repeat: Infinity
+    }}>
           <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50" />
         </motion.div>
-      ),
-    },
-    {
-      Icon: Lock,
-      name: "100% Offline",
-      description: "Runs entirely on your computer. No internet required.",
-      className: "col-span-3 lg:col-span-1",
-      background: <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-emerald-50 opacity-50" />,
-    },
-    {
-      Icon: Shield,
-      name: "Zero Data Leaks",
-      description: "Your documents never leave your device. Complete privacy.",
-      className: "col-span-3 lg:col-span-1",
-      background: <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 opacity-50" />,
-    },
-    {
-      Icon: FileText,
-      name: "Source Citations",
-      description:
-        "Every answer includes exact page numbers and sentence-level citations. Verify information instantly.",
-      className: "col-span-3 lg:col-span-2",
-      background: <div className="absolute inset-0 bg-gradient-to-br from-amber-50 to-orange-50 opacity-50" />,
-    },
-    {
-      Icon: Search,
-      name: "Reads Tables & Formulas",
-      description: "Reads tables, formulas, and financial statements perfectly. No more manual data extraction.",
-      className: "col-span-3 lg:col-span-2",
-      background: <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 to-blue-50 opacity-50" />,
-    },
-    {
-      Icon: Layers,
-      name: "Handle 1000+ Pages",
-      description: "Process massive documents instantly. No file size limits or cloud upload wait times.",
-      className: "col-span-3 lg:col-span-1",
-      background: <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-gray-50 opacity-50" />,
-    },
-  ];
-
-  return (
-    <section id="features" className="bg-white py-20 md:py-32">
+  }, {
+    Icon: Lock,
+    name: "100% Offline",
+    description: "Runs entirely on your computer. No internet required.",
+    className: "col-span-3 lg:col-span-1",
+    background: <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-emerald-50 opacity-50" />
+  }, {
+    Icon: Shield,
+    name: "Zero Data Leaks",
+    description: "Your documents never leave your device. Complete privacy.",
+    className: "col-span-3 lg:col-span-1",
+    background: <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 opacity-50" />
+  }, {
+    Icon: FileText,
+    name: "Source Citations",
+    description: "Every answer includes exact page numbers and sentence-level citations. Verify information instantly.",
+    className: "col-span-3 lg:col-span-2",
+    background: <div className="absolute inset-0 bg-gradient-to-br from-amber-50 to-orange-50 opacity-50" />
+  }, {
+    Icon: Search,
+    name: "Reads Tables & Formulas",
+    description: "Reads tables, formulas, and financial statements perfectly. No more manual data extraction.",
+    className: "col-span-3 lg:col-span-2",
+    background: <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 to-blue-50 opacity-50" />
+  }, {
+    Icon: Layers,
+    name: "Handle 1000+ Pages",
+    description: "Process massive documents instantly. No file size limits or cloud upload wait times.",
+    className: "col-span-3 lg:col-span-1",
+    background: <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-gray-50 opacity-50" />
+  }];
+  return <section id="features" className="bg-white py-20 md:py-32">
       <div className="px-8 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">Features</p>
@@ -439,38 +334,28 @@ const Features = () => {
         </div>
 
         <BentoGrid>
-          {features.map((feature, idx) => (
-            <BentoCard key={idx} {...feature} />
-          ))}
+          {features.map((feature, idx) => <BentoCard key={idx} {...feature} />)}
         </BentoGrid>
       </div>
-    </section>
-  );
+    </section>;
 };
 
 // Use Cases Section
 const UseCases = () => {
-  const cases = [
-    {
-      title: "Legal Teams",
-      description: "Search through contracts and legal documents instantly. Find specific clauses and references.",
-    },
-    {
-      title: "Financial Analysts",
-      description: "Extract data from annual reports and financial statements. Analyze tables with precision.",
-    },
-    {
-      title: "Research Teams",
-      description: "Cross-reference multiple papers and documents. Find citations and sources quickly.",
-    },
-    {
-      title: "Engineering",
-      description: "Search technical specifications and manuals. Find exact parameters in seconds.",
-    },
-  ];
-
-  return (
-    <section id="use-cases" className="bg-[#fafafa] py-20 md:py-32">
+  const cases = [{
+    title: "Legal Teams",
+    description: "Search through contracts and legal documents instantly. Find specific clauses and references."
+  }, {
+    title: "Financial Analysts",
+    description: "Extract data from annual reports and financial statements. Analyze tables with precision."
+  }, {
+    title: "Research Teams",
+    description: "Cross-reference multiple papers and documents. Find citations and sources quickly."
+  }, {
+    title: "Engineering",
+    description: "Search technical specifications and manuals. Find exact parameters in seconds."
+  }];
+  return <section id="use-cases" className="bg-[#fafafa] py-20 md:py-32">
       <div className="px-8">
         <div className="text-center mb-16">
           <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">Use Cases</p>
@@ -480,68 +365,57 @@ const UseCases = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-4">
-          {cases.map((item, index) => (
-            <div
-              key={index}
-              className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-8 hover:border-gray-300 hover:bg-white/80 transition-all"
-            >
+          {cases.map((item, index) => <div key={index} className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-8 hover:border-gray-300 hover:bg-white/80 transition-all">
               <h3 className="text-lg font-semibold text-[#111] tracking-tight mb-2">{item.title}</h3>
               <p className="text-[#666] leading-relaxed">{item.description}</p>
-            </div>
-          ))}
+            </div>)}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
 
 // Security Section
 const Security = () => {
-  const points = [
-    { title: "Local Processing", description: "All AI processing happens on your PC. Nothing transmitted externally." },
-    { title: "Air-Gapped Ready", description: "Works in secure environments with no internet connection." },
-    { title: "No Cloud Storage", description: "Documents are never uploaded to any server." },
-    { title: "Enterprise Ready", description: "Designed for compliance-heavy industries." },
-  ];
-
-  return (
-    <section id="security" className="bg-white py-20 md:py-32">
+  const points = [{
+    title: "Local Processing",
+    description: "All AI processing happens on your PC. Nothing transmitted externally."
+  }, {
+    title: "Air-Gapped Ready",
+    description: "Works in secure environments with no internet connection."
+  }, {
+    title: "No Cloud Storage",
+    description: "Documents are never uploaded to any server."
+  }, {
+    title: "Enterprise Ready",
+    description: "Designed for compliance-heavy industries."
+  }];
+  return <section id="security" className="bg-white py-20 md:py-32">
       <div className="px-8">
         <div className="text-center mb-16">
           <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">Security</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] tracking-[-0.02em] mb-4">
             Your data never leaves your computer
           </h2>
-          <Link
-            to="/en/security-spec"
-            state={{ from: "security" }}
-            className="inline-block text-sm font-medium text-[#666] hover:text-[#111] transition-colors border-b border-[#666] hover:border-[#111]"
-          >
+          <Link to="/en/security-spec" state={{
+          from: "security"
+        }} className="inline-block text-sm font-medium text-[#666] hover:text-[#111] transition-colors border-b border-[#666] hover:border-[#111]">
             Security Spec
           </Link>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {points.map((point, index) => (
-            <div
-              key={index}
-              className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-6 hover:border-gray-300 hover:bg-white/80 transition-all"
-            >
+          {points.map((point, index) => <div key={index} className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-6 hover:border-gray-300 hover:bg-white/80 transition-all">
               <div className="w-10 h-10 bg-green-50/80 rounded-lg flex items-center justify-center mb-4">
                 <CheckCircle className="w-5 h-5 text-green-600" />
               </div>
               <h3 className="text-base font-semibold text-[#111] tracking-tight mb-1">{point.title}</h3>
               <p className="text-sm text-[#666] leading-relaxed">{point.description}</p>
-            </div>
-          ))}
+            </div>)}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
-const Pricing = () => (
-  <section id="pricing" className="section" aria-labelledby="pricing-heading">
+const Pricing = () => <section id="pricing" className="section" aria-labelledby="pricing-heading">
     <div className="container">
       <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4 text-center">
         Choose the plan that works for you
@@ -688,26 +562,30 @@ const Pricing = () => (
         </div>
       </div>
     </div>
-  </section>
-);
+  </section>;
 
 // FAQ Section
 const FAQ = () => {
-  const faqs = [
-    { q: "Can I use it without internet?", answer: "Yes, all features work completely offline after installation." },
-    { q: "What file formats are supported?", answer: "Currently PDF. HWP, PPTX, and XLSX coming soon." },
-    { q: "Can it read tables and charts?", answer: "Yes, it accurately analyzes tables and financial data." },
-    { q: "Are sources provided?", answer: "Yes, every answer includes document name and page number." },
-    {
-      q: "Is it secure for sensitive documents?",
-      answer: "Yes, 100% local processing means no data ever leaves your device.",
-    },
-    {
-      id: "faq-compatibility",
-      q: "Can my device run LocalDocs?",
-      answer: "Mac with Apple Silicon (M-series chips, 16GB RAM) is fully supported. Windows PC (Intel iGPU) support is coming soon.",
-      content: (
-        <div className="overflow-x-auto mt-4">
+  const faqs = [{
+    q: "Can I use it without internet?",
+    answer: "Yes, all features work completely offline after installation."
+  }, {
+    q: "What file formats are supported?",
+    answer: "Currently PDF. HWP, PPTX, and XLSX coming soon."
+  }, {
+    q: "Can it read tables and charts?",
+    answer: "Yes, it accurately analyzes tables and financial data."
+  }, {
+    q: "Are sources provided?",
+    answer: "Yes, every answer includes document name and page number."
+  }, {
+    q: "Is it secure for sensitive documents?",
+    answer: "Yes, 100% local processing means no data ever leaves your device."
+  }, {
+    id: "faq-compatibility",
+    q: "Can my device run LocalDocs?",
+    answer: "Mac with Apple Silicon (M-series chips, 16GB RAM) is fully supported. Windows PC (Intel iGPU) support is coming soon.",
+    content: <div className="overflow-x-auto mt-4">
           <table className="w-full text-sm text-left text-gray-600 border-collapse">
             <thead className="bg-gray-50 text-gray-700 font-medium">
               <tr>
@@ -728,27 +606,25 @@ const FAQ = () => {
                 <td className="px-4 py-2 border border-gray-200">Windows PC <br></br>(Intel iGPU)</td>
                 <td className="px-4 py-2 border border-gray-200">Intel integrated graphics</td>
                 <td className="px-4 py-2 border border-gray-200">16GB</td>
-                <td className="px-4 py-2 border border-gray-200">⏳ Coming soon</td>
+                <td className="px-4 py-2 border border-gray-200">✅ Full support</td>
               </tr>
             </tbody>
           </table>
         </div>
-      ),
-    },
-  ];
-
+  }];
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
+    mainEntity: faqs.map(faq => ({
       "@type": "Question",
       name: faq.q,
-      acceptedAnswer: { "@type": "Answer", text: faq.answer },
-    })),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer
+      }
+    }))
   };
-
-  return (
-    <section id="faq" className="bg-white py-20 md:py-32">
+  return <section id="faq" className="bg-white py-20 md:py-32">
       <div className="px-8 max-w-3xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">FAQ</p>
@@ -756,12 +632,7 @@ const FAQ = () => {
         </div>
 
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <details
-              key={index}
-              id={faq.id}
-              className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-6 group hover:border-gray-300 hover:bg-white/80 transition-all"
-            >
+          {faqs.map((faq, index) => <details key={index} id={faq.id} className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-6 group hover:border-gray-300 hover:bg-white/80 transition-all">
               <summary className="font-medium text-[#111] cursor-pointer list-none flex items-center justify-between">
                 {faq.q}
                 <ChevronDown className="w-5 h-5 text-[#9ca3af] group-open:rotate-180 transition-transform" />
@@ -769,20 +640,19 @@ const FAQ = () => {
               <div className="mt-4 text-[#666] leading-relaxed">
                 {faq.content || faq.answer}
               </div>
-            </details>
-          ))}
+            </details>)}
         </div>
 
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify(faqJsonLd)
+      }} />
       </div>
-    </section>
-  );
+    </section>;
 };
 
 // CTA Section
 const CTA = () => {
-  return (
-    <section id="cta" className="bg-[#111] py-20 md:py-32">
+  return <section id="cta" className="bg-[#111] py-20 md:py-32">
       <div className="px-8 max-w-xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-white tracking-[-0.02em] mb-4">Try it now!</h2>
         <p className="text-lg text-gray-400 mb-8">
@@ -805,12 +675,9 @@ const CTA = () => {
           </a>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
-const Footer = () => (
-  <footer className="border-t bg-white">
+const Footer = () => <footer className="border-t bg-white">
     <div className="max-w-7xl mx-auto px-8 py-16 border-x border-gray-200">
       {/* Main Footer Content */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12 items-start">
@@ -850,11 +717,9 @@ const Footer = () => (
             <a href="/en/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Privacy Policy
             </a>
-            <Link
-              to="/en/security-spec"
-              state={{ from: "footer" }}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
+            <Link to="/en/security-spec" state={{
+            from: "footer"
+          }} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Security Spec
             </Link>
           </div>
@@ -875,20 +740,10 @@ const Footer = () => (
         <div>
           <h3 className="text-sm font-semibold mb-4">Social</h3>
           <div className="flex flex-col gap-3">
-            <a
-              href="https://www.linkedin.com/company/peekaboolabs/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
+            <a href="https://www.linkedin.com/company/peekaboolabs/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               LinkedIn
             </a>
-            <a
-              href="https://x.com/PeekabooLabsInc"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
+            <a href="https://x.com/PeekabooLabsInc" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               X
             </a>
           </div>
@@ -900,12 +755,10 @@ const Footer = () => (
         <div className="text-left text-sm text-muted-foreground">© 2025 PeekabooLabs. All rights reserved.</div>
       </div>
     </div>
-  </footer>
-);
+  </footer>;
 
 // Section Divider with Plus Icons
-const SectionDivider = () => (
-  <div className="relative w-full border-b border-white/10">
+const SectionDivider = () => <div className="relative w-full border-b border-white/10">
     {/* Left Plus Icon */}
     <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 flex items-center justify-center">
       <span className="text-gray-200 text-lg font-light">+</span>
@@ -914,41 +767,34 @@ const SectionDivider = () => (
     <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-4 h-4 flex items-center justify-center">
       <span className="text-gray-200 text-lg font-light">+</span>
     </div>
-  </div>
-);
+  </div>;
 
 // Technical Grid Background (Solid Border)
-const TechnicalGridBackground = ({ children }: { children: React.ReactNode }) => (
-  <div
-    className="min-h-screen relative"
-    style={{
-      fontFamily: "'Inter', sans-serif",
-      backgroundColor: "#ffffff",
-    }}
-  >
+const TechnicalGridBackground = ({
+  children
+}: {
+  children: React.ReactNode;
+}) => <div className="min-h-screen relative" style={{
+  fontFamily: "'Inter', sans-serif",
+  backgroundColor: "#ffffff"
+}}>
     {/* High-Density Dot Pattern */}
-    <div
-      className="fixed inset-0 pointer-events-none"
-      style={{
-        backgroundImage: `radial-gradient(circle, rgba(148, 163, 184, 0.15) 1px, transparent 1px)`,
-        backgroundSize: "14px 14px",
-        maskImage: "radial-gradient(ellipse at center, transparent 40%, black 100%)",
-        WebkitMaskImage: "radial-gradient(ellipse at center, transparent 40%, black 100%)",
-      }}
-    />
+    <div className="fixed inset-0 pointer-events-none" style={{
+    backgroundImage: `radial-gradient(circle, rgba(148, 163, 184, 0.15) 1px, transparent 1px)`,
+    backgroundSize: "14px 14px",
+    maskImage: "radial-gradient(ellipse at center, transparent 40%, black 100%)",
+    WebkitMaskImage: "radial-gradient(ellipse at center, transparent 40%, black 100%)"
+  }} />
 
     {/* Main Content Container */}
     {/* [수정] border-dashed 삭제 -> 실선(기본값) 적용 / 색상은 gray-200 유지 */}
     <div className="relative max-w-6xl mx-auto bg-transparent min-h-screen border-x border-gray-200">{children}</div>
-  </div>
-);
+  </div>;
 
 // Main Page Component
 const IndexEn = () => {
   usePageTracking();
-
-  return (
-    <TechnicalGridBackground>
+  return <TechnicalGridBackground>
       <Nav />
       <Hero />
       <SectionDivider />
@@ -974,8 +820,6 @@ const IndexEn = () => {
       {/* Bottom Corner Dots */}
       <div className="absolute left-0 bottom-0 -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-gray-300 rounded-full" />
       <div className="absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2 w-2 h-2 bg-gray-300 rounded-full" />
-    </TechnicalGridBackground>
-  );
+    </TechnicalGridBackground>;
 };
-
 export default IndexEn;

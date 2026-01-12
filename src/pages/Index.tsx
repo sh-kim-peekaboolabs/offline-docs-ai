@@ -1,24 +1,10 @@
 import { lazy, Suspense, memo, useEffect, useState, useRef } from "react";
 import { HighlightText } from "@/components/ui/highlight-text";
 import { Button } from "@/components/ui/button";
-
 import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
-
-
-import {
-    FileText,
-    Lock,
-    CheckCircle,
-    Zap,
-    ChevronDown,
-    Menu,
-    X,
-    ArrowRight,
-    Search,
-    Shield,
-    Layers,
-    Monitor, // Added Monitor icon
-    Apple,   // Added Apple icon for Hero/CTA buttons if needed, though Hero uses ArrowRight currently. I will replace ArrowRight with Apple for Mac and Monitor for Windows to be explicit.
+import { FileText, Lock, CheckCircle, Zap, ChevronDown, Menu, X, ArrowRight, Search, Shield, Layers, Monitor,
+// Added Monitor icon
+Apple // Added Apple icon for Hero/CTA buttons if needed, though Hero uses ArrowRight currently. I will replace ArrowRight with Apple for Mac and Monitor for Windows to be explicit.
 } from "lucide-react";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
 import { Link } from "react-router-dom";
@@ -27,39 +13,53 @@ import { analytics } from "@/lib/analytics";
 import { DownloadDropdown } from "@/components/ui/download-dropdown";
 import { WindowsIcon } from "@/components/icons/WindowsIcon";
 import { AppleIcon } from "@/components/icons/AppleIcon";
-
 import { motion } from "framer-motion";
 
 // Lazy load heavy demo components
-const SearchInputKr = lazy(() => import("@/components/ui/search-input-kr").then(m => ({ default: m.SearchInputKr })));
-const CitationDemoKr = lazy(() => import("@/components/demo/citation-demo-kr").then(m => ({ default: m.CitationDemoKr })));
-const PDFViewerKr = lazy(() => import("@/components/demo/pdf-viewer-kr").then(m => ({ default: m.PDFViewerKr })));
-const AutoCycleFilesKr = lazy(() => import("@/components/demo/auto-cycle-files-kr").then(m => ({ default: m.AutoCycleFilesKr })));
-const DifferentiationSectionKr = lazy(() => import("@/components/sections/differentiation-section-kr").then(m => ({ default: m.DifferentiationSectionKr })));
+const SearchInputKr = lazy(() => import("@/components/ui/search-input-kr").then(m => ({
+  default: m.SearchInputKr
+})));
+const CitationDemoKr = lazy(() => import("@/components/demo/citation-demo-kr").then(m => ({
+  default: m.CitationDemoKr
+})));
+const PDFViewerKr = lazy(() => import("@/components/demo/pdf-viewer-kr").then(m => ({
+  default: m.PDFViewerKr
+})));
+const AutoCycleFilesKr = lazy(() => import("@/components/demo/auto-cycle-files-kr").then(m => ({
+  default: m.AutoCycleFilesKr
+})));
+const DifferentiationSectionKr = lazy(() => import("@/components/sections/differentiation-section-kr").then(m => ({
+  default: m.DifferentiationSectionKr
+})));
 
 // Simple loading placeholder
 const DemoLoader = () => <div className="w-full h-full flex items-center justify-center"><div className="w-6 h-6 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin" /></div>;
-
-
-
 const Nav = () => {
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        setMobileMenuOpen(false);
-    };
-
-    const menuItems = [
-        { name: "사용법", href: "#how-it-works" },
-        { name: "기능", href: "#features" },
-        { name: "보안", href: "/security-spec" },
-        { name: "요금제", href: "#pricing" },
-        { name: "엔터프라이즈", href: "/enterprise" },
-    ];
-
-    return (
-        <>
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+    setMobileMenuOpen(false);
+  };
+  const menuItems = [{
+    name: "사용법",
+    href: "#how-it-works"
+  }, {
+    name: "기능",
+    href: "#features"
+  }, {
+    name: "보안",
+    href: "/security-spec"
+  }, {
+    name: "요금제",
+    href: "#pricing"
+  }, {
+    name: "엔터프라이즈",
+    href: "/enterprise"
+  }];
+  return <>
             <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200">
                 <div className="px-6 flex items-center justify-between h-16 max-w-7xl mx-auto">
                     {/* Logo */}
@@ -70,26 +70,13 @@ const Nav = () => {
 
                     {/* Desktop Nav */}
                     <nav className="hidden md:flex items-center gap-6">
-                        {menuItems.map((item) => (
-                            item.href.startsWith('/') ? (
-                                <Link
-                                    key={item.name}
-                                    to={item.href}
-                                    state={{ from: 'nav' }}
-                                    className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors"
-                                >
+                        {menuItems.map(item => item.href.startsWith('/') ? <Link key={item.name} to={item.href} state={{
+            from: 'nav'
+          }} className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors">
                                     {item.name}
-                                </Link>
-                            ) : (
-                                <a
-                                    key={item.name}
-                                    href={item.href}
-                                    className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors"
-                                >
+                                </Link> : <a key={item.name} href={item.href} className="text-sm font-medium text-[#666] hover:text-[#111] transition-colors">
                                     {item.name}
-                                </a>
-                            )
-                        ))}
+                                </a>)}
                     </nav>
 
                     {/* CTA */}
@@ -101,10 +88,7 @@ const Nav = () => {
                         </a>
                         <DownloadDropdown lang="kr" place="navbar" className="hidden md:block" />
 
-                        <button
-                            className="md:hidden p-2 hover:bg-gray-50 rounded-lg transition-colors"
-                            onClick={() => setMobileMenuOpen(true)}
-                        >
+                        <button className="md:hidden p-2 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(true)}>
                             <Menu className="w-5 h-5 text-[#111]" />
                         </button>
                     </div>
@@ -112,8 +96,7 @@ const Nav = () => {
             </header>
 
             {/* Mobile Menu */}
-            {mobileMenuOpen && (
-                <div className="fixed inset-0 z-50 md:hidden">
+            {mobileMenuOpen && <div className="fixed inset-0 z-50 md:hidden">
                     <div className="fixed inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
                     <nav className="fixed top-0 right-0 bottom-0 w-72 bg-white shadow-2xl p-6">
                         <div className="flex justify-end mb-8">
@@ -122,75 +105,52 @@ const Nav = () => {
                             </button>
                         </div>
                         <div className="flex flex-col gap-1">
-                            {menuItems.map((item) => (
-                                item.href.startsWith('/') ? (
-                                    <Link
-                                        key={item.name}
-                                        to={item.href}
-                                        state={{ from: 'nav' }}
-                                        className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                    >
+                            {menuItems.map(item => item.href.startsWith('/') ? <Link key={item.name} to={item.href} state={{
+            from: 'nav'
+          }} className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>
                                         {item.name}
-                                    </Link>
-                                ) : (
-                                    <a
-                                        key={item.name}
-                                        href={item.href}
-                                        className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                    >
+                                    </Link> : <a key={item.name} href={item.href} className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>
                                         {item.name}
-                                    </a>
-                                )
-                            ))}
-                            <a
-                                href="https://cal.com/localdocs/15min"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors"
-                                onClick={() => { setMobileMenuOpen(false); analytics.trackButtonClick('contact', 'navbar_mobile_kr'); }}
-                            >
+                                    </a>)}
+                            <a href="https://cal.com/localdocs/15min" target="_blank" rel="noopener noreferrer" className="px-4 py-3 text-base font-medium text-[#666] hover:text-[#111] hover:bg-gray-50 rounded-lg transition-colors" onClick={() => {
+            setMobileMenuOpen(false);
+            analytics.trackButtonClick('contact', 'navbar_mobile_kr');
+          }}>
                                 문의하기
                             </a>
-                            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => { setMobileMenuOpen(false); analytics.trackButtonClick('download', 'navbar_mobile_kr'); }} className="mt-4">
+                            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => {
+            setMobileMenuOpen(false);
+            analytics.trackButtonClick('download', 'navbar_mobile_kr');
+          }} className="mt-4">
                                 <button className="w-full px-5 py-3 bg-[#111] text-white text-base font-medium rounded-lg">
                                     다운로드
                                 </button>
                             </a>
                         </div>
                     </nav>
-                </div>
-            )}
-        </>
-    );
+                </div>}
+        </>;
 };
 
 // Linear-style Hero (Glow Removed)
 const Hero = () => {
-    const videoRef = useRef<HTMLVideoElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (entries[0].isIntersecting) {
-                    setIsVisible(true);
-                    observer.disconnect();
-                }
-            },
-            { rootMargin: "500px" }
-        );
-
-        if (videoRef.current) {
-            observer.observe(videoRef.current);
-        }
-
-        return () => observer.disconnect();
-    }, []);
-
-    return (
-        <section className="relative bg-white overflow-hidden">
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        setIsVisible(true);
+        observer.disconnect();
+      }
+    }, {
+      rootMargin: "500px"
+    });
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+  return <section className="relative bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto border-x border-gray-200 pt-12 md:pt-20 pb-20">
                 <div className="relative max-w-4xl mx-auto px-8 text-center mb-12">
                     {/* Badge */}
@@ -232,24 +192,20 @@ const Hero = () => {
                                 </button>
                             </a>
                         </div>
-                        <a
-                            href="#faq-compatibility"
-                            className="text-sm text-gray-500 hover:text-gray-900 underline underline-offset-4"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                const el = document.getElementById('faq-compatibility');
-                                if (el) {
-                                    el.setAttribute('open', 'true');
-                                    const offset = 100;
-                                    const elementPosition = el.getBoundingClientRect().top;
-                                    const offsetPosition = elementPosition + window.scrollY - offset;
-                                    window.scrollTo({
-                                        top: offsetPosition,
-                                        behavior: "smooth"
-                                    });
-                                }
-                            }}
-                        >
+                        <a href="#faq-compatibility" className="text-sm text-gray-500 hover:text-gray-900 underline underline-offset-4" onClick={e => {
+            e.preventDefault();
+            const el = document.getElementById('faq-compatibility');
+            if (el) {
+              el.setAttribute('open', 'true');
+              const offset = 100;
+              const elementPosition = el.getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.scrollY - offset;
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+              });
+            }
+          }}>
                             기기 최소사양
                         </a>
                     </div>
@@ -259,16 +215,7 @@ const Hero = () => {
                 <div className="px-6">
                     <div className="max-w-4xl mx-auto">
                         <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-                            <video
-                                ref={videoRef}
-                                className="w-full h-auto"
-                                controls
-                                autoPlay
-                                muted
-                                loop
-                                playsInline
-                                poster="/videos/demo-poster.png"
-                            >
+                            <video ref={videoRef} className="w-full h-auto" controls autoPlay muted loop playsInline poster="/videos/demo-poster.png">
                                 {isVisible && <source src="/videos/localdocs-demo.mp4" type="video/mp4" />}
                                 <p className="text-muted-foreground p-8">
                                     브라우저가 비디오 재생을 지원하지 않습니다.
@@ -278,90 +225,64 @@ const Hero = () => {
                     </div>
                 </div>
             </div>
-        </section>
-    );
+        </section>;
 };
-
 const HowItWorksSection = () => {
-    const steps = [
-        {
-            number: "01",
-            title: "소스 설정",
-            description: (
-                <>
+  const steps = [{
+    number: "01",
+    title: "소스 설정",
+    description: <>
                     PDF 파일을 드래그 앤 드롭하거나 선택하세요.
                     <br />
                     모든 RAG 임베딩과 벡터화는 로컬에서 안전하게 처리됩니다.
                 </>
-            ),
-        },
-        {
-            number: "02",
-            title: "질문하기",
-            description: (
-                <>
+  }, {
+    number: "02",
+    title: "질문하기",
+    description: <>
                     자연어로 자유롭게 질문하세요.
                     <br />
                     정확한 키워드나 페이지 번호를 기억할 필요가 없습니다.
-                </>
-            ),
-            component: (
-                <div className="w-full h-full flex items-center justify-center p-8">
+                </>,
+    component: <div className="w-full h-full flex items-center justify-center p-8">
                     <Suspense fallback={<DemoLoader />}>
                         <SearchInputKr />
                     </Suspense>
                 </div>
-            ),
-        },
-        {
-            number: "03",
-            title: "출처와 함께 답변 확인",
-            description: (
-                <>
+  }, {
+    number: "03",
+    title: "출처와 함께 답변 확인",
+    description: <>
                     문장 단위의 출처와 함께 답변을 확인하세요.
                     <br />
                     모든 주장은 정확한 출처를 바탕으로 합니다.
-                </>
-            ),
-            component: (
-                <div className="w-full h-full flex items-center justify-center p-8">
+                </>,
+    component: <div className="w-full h-full flex items-center justify-center p-8">
                     <Suspense fallback={<DemoLoader />}>
                         <CitationDemoKr />
                     </Suspense>
                 </div>
-            ),
-        },
-        {
-            number: "04",
-            title: "원문에서 즉시 검증",
-            description: (
-                <>
+  }, {
+    number: "04",
+    title: "원문에서 즉시 검증",
+    description: <>
                     인용을 클릭하면 원문의 해당 페이지로 바로 이동합니다.
                     <br />
                     전체 맥락을 즉시 확인하고 검증하세요.
-                </>
-            ),
-            component: (
-                <div className="w-full h-full flex items-center justify-center p-8">
+                </>,
+    component: <div className="w-full h-full flex items-center justify-center p-8">
                     <Suspense fallback={<DemoLoader />}>
                         <PDFViewerKr />
                     </Suspense>
                 </div>
-            ),
-        },
-    ];
-
-    return (
-        <section id="how-it-works" className="w-full bg-white scroll-mt-24">
+  }];
+  return <section id="how-it-works" className="w-full bg-white scroll-mt-24">
             <div className="max-w-7xl mx-auto border-x border-gray-200">
-                {steps.map((step, index) => (
-                    <div key={index} className="border-b border-gray-200">
+                {steps.map((step, index) => <div key={index} className="border-b border-gray-200">
                         {/* Header Row - Only for first step */}
-                        {index === 0 && (
-                            <div className="px-8 py-4 border-b border-gray-200 border-t border-gray-200 text-center">
+                        {index === 0 && <div className="px-8 py-4 border-b border-gray-200 border-t border-gray-200 text-center">
                                 <span className="text-sm font-semibold text-gray-600 tracking-widest uppercase">사용법</span>
-                            </div>
-                        )}
+                            </div>}
 
                         {/* Content Row */}
                         <div className="grid grid-cols-1 md:grid-cols-2 h-[800px] md:h-[550px]">
@@ -376,91 +297,63 @@ const HowItWorksSection = () => {
 
                             {/* Right Column - Graphic */}
                             <div className="bg-gray-50 px-8 md:px-12 py-12 md:py-16 flex items-center justify-center h-full overflow-hidden">
-                                {index === 0 ? (
-                                    <Suspense fallback={<DemoLoader />}>
+                                {index === 0 ? <Suspense fallback={<DemoLoader />}>
                                         <AutoCycleFilesKr />
-                                    </Suspense>
-                                ) : step.component ? (
-                                    step.component
-                                ) : (
-                                    <div className="text-gray-300 text-8xl font-thin">{step.number}</div>
-                                )}
+                                    </Suspense> : step.component ? step.component : <div className="text-gray-300 text-8xl font-thin">{step.number}</div>}
                             </div>
                         </div>
-                    </div>
-                ))}
+                    </div>)}
             </div>
-        </section>
-    );
+        </section>;
 };
 
 // Bento Grid Features
 const Features = () => {
-    const features = [
-        {
-            Icon: Zap,
-            name: "즉시 검색",
-            description: "1000페이지가 넘는 문서도 몇 초 만에 검색하세요. 더 이상 수십 개의 PDF를 일일이 열어볼 필요가 없습니다.",
-            className: "col-span-3 lg:col-span-2",
-            background: (
-                <motion.div
-                    className="absolute inset-0 opacity-10"
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 5, repeat: Infinity }}
-                >
+  const features = [{
+    Icon: Zap,
+    name: "즉시 검색",
+    description: "1000페이지가 넘는 문서도 몇 초 만에 검색하세요. 더 이상 수십 개의 PDF를 일일이 열어볼 필요가 없습니다.",
+    className: "col-span-3 lg:col-span-2",
+    background: <motion.div className="absolute inset-0 opacity-10" animate={{
+      scale: [1, 1.05, 1]
+    }} transition={{
+      duration: 5,
+      repeat: Infinity
+    }}>
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50" />
                 </motion.div>
-            ),
-        },
-        {
-            Icon: Lock,
-            name: "100% 오프라인",
-            description: "내 컴퓨터에서만 작동합니다. 인터넷 연결이 필요 없습니다.",
-            className: "col-span-3 lg:col-span-1",
-            background: (
-                <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-emerald-50 opacity-50" />
-            ),
-        },
-        {
-            Icon: Shield,
-            name: "데이터 유출 제로",
-            description: "문서가 기기를 벗어나지 않습니다. 완벽한 프라이버시를 보장합니다.",
-            className: "col-span-3 lg:col-span-1",
-            background: (
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 opacity-50" />
-            ),
-        },
-        {
-            Icon: FileText,
-            name: "출처 인용",
-            description: "모든 답변에는 정확한 페이지 번호와 문장 단위의 출처가 포함됩니다. 즉시 검증하세요.",
-            className: "col-span-3 lg:col-span-2",
-            background: (
-                <div className="absolute inset-0 bg-gradient-to-br from-amber-50 to-orange-50 opacity-50" />
-            ),
-        },
-        {
-            Icon: Search,
-            name: "표와 수식 인식",
-            description: "표, 수식, 재무제표를 완벽하게 인식합니다. 더 이상 수동으로 데이터를 추출할 필요가 없습니다.",
-            className: "col-span-3 lg:col-span-2",
-            background: (
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 to-blue-50 opacity-50" />
-            ),
-        },
-        {
-            Icon: Layers,
-            name: "대용량 문서 처리",
-            description: "대용량 문서도 즉시 처리합니다. 파일 크기 제한이나 업로드 대기 시간이 없습니다.",
-            className: "col-span-3 lg:col-span-1",
-            background: (
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-gray-50 opacity-50" />
-            ),
-        },
-    ];
-
-    return (
-        <section id="features" className="bg-white">
+  }, {
+    Icon: Lock,
+    name: "100% 오프라인",
+    description: "내 컴퓨터에서만 작동합니다. 인터넷 연결이 필요 없습니다.",
+    className: "col-span-3 lg:col-span-1",
+    background: <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-emerald-50 opacity-50" />
+  }, {
+    Icon: Shield,
+    name: "데이터 유출 제로",
+    description: "문서가 기기를 벗어나지 않습니다. 완벽한 프라이버시를 보장합니다.",
+    className: "col-span-3 lg:col-span-1",
+    background: <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 opacity-50" />
+  }, {
+    Icon: FileText,
+    name: "출처 인용",
+    description: "모든 답변에는 정확한 페이지 번호와 문장 단위의 출처가 포함됩니다. 즉시 검증하세요.",
+    className: "col-span-3 lg:col-span-2",
+    background: <div className="absolute inset-0 bg-gradient-to-br from-amber-50 to-orange-50 opacity-50" />
+  }, {
+    Icon: Search,
+    name: "표와 수식 인식",
+    description: "표, 수식, 재무제표를 완벽하게 인식합니다. 더 이상 수동으로 데이터를 추출할 필요가 없습니다.",
+    className: "col-span-3 lg:col-span-2",
+    background: <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 to-blue-50 opacity-50" />
+  }, {
+    Icon: Layers,
+    name: "대용량 문서 처리",
+    description: "대용량 문서도 즉시 처리합니다. 파일 크기 제한이나 업로드 대기 시간이 없습니다.",
+    className: "col-span-3 lg:col-span-1",
+    background: <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-gray-50 opacity-50" />
+  }];
+  return <section id="features" className="bg-white">
             <div className="px-8 max-w-7xl mx-auto border-x border-gray-200 py-20 md:py-32">
                 <div className="text-center mb-16">
                     <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">기능</p>
@@ -470,38 +363,28 @@ const Features = () => {
                 </div>
 
                 <BentoGrid>
-                    {features.map((feature, idx) => (
-                        <BentoCard key={idx} {...feature} />
-                    ))}
+                    {features.map((feature, idx) => <BentoCard key={idx} {...feature} />)}
                 </BentoGrid>
             </div>
-        </section>
-    );
+        </section>;
 };
 
 // Use Cases Section
 const UseCases = () => {
-    const cases = [
-        {
-            title: "법무팀",
-            description: "계약서와 법률 문서를 즉시 검색하세요. 특정 조항과 참조를 빠르게 찾을 수 있습니다.",
-        },
-        {
-            title: "금융 분석가",
-            description: "연례 보고서와 재무제표에서 데이터를 추출하세요. 표 데이터를 정밀하게 분석합니다.",
-        },
-        {
-            title: "연구팀",
-            description: "여러 논문과 문서를 교차 참조하세요. 인용과 출처를 빠르게 찾을 수 있습니다.",
-        },
-        {
-            title: "엔지니어링",
-            description: "기술 사양서와 매뉴얼을 검색하세요. 정확한 파라미터를 몇 초 만에 찾을 수 있습니다.",
-        },
-    ];
-
-    return (
-        <section id="use-cases" className="bg-white">
+  const cases = [{
+    title: "법무팀",
+    description: "계약서와 법률 문서를 즉시 검색하세요. 특정 조항과 참조를 빠르게 찾을 수 있습니다."
+  }, {
+    title: "금융 분석가",
+    description: "연례 보고서와 재무제표에서 데이터를 추출하세요. 표 데이터를 정밀하게 분석합니다."
+  }, {
+    title: "연구팀",
+    description: "여러 논문과 문서를 교차 참조하세요. 인용과 출처를 빠르게 찾을 수 있습니다."
+  }, {
+    title: "엔지니어링",
+    description: "기술 사양서와 매뉴얼을 검색하세요. 정확한 파라미터를 몇 초 만에 찾을 수 있습니다."
+  }];
+  return <section id="use-cases" className="bg-white">
             <div className="max-w-7xl mx-auto px-8 border-x border-gray-200 py-20 md:py-32 bg-[#fafafa]">
                 <div className="text-center mb-16">
                     <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">활용 사례</p>
@@ -511,68 +394,57 @@ const UseCases = () => {
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-4">
-                    {cases.map((item, index) => (
-                        <div
-                            key={index}
-                            className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-8 hover:border-gray-300 hover:bg-white/80 transition-all"
-                        >
+                    {cases.map((item, index) => <div key={index} className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-8 hover:border-gray-300 hover:bg-white/80 transition-all">
                             <h3 className="text-lg font-semibold text-[#111] tracking-tight mb-2">{item.title}</h3>
                             <p className="text-base text-[#666] leading-relaxed">{item.description}</p>
-                        </div>
-                    ))}
+                        </div>)}
                 </div>
             </div>
-        </section>
-    );
+        </section>;
 };
 
 // Security Section
 const Security = () => {
-    const points = [
-        { title: "로컬 처리", description: "모든 AI 처리는 PC에서 이루어집니다. 외부로 전송되지 않습니다." },
-        { title: "폐쇄망 환경 지원", description: "인터넷 연결이 없는 보안 환경에서도 작동합니다." },
-        { title: "클라우드 저장 없음", description: "문서는 어떤 서버에도 업로드되지 않습니다." },
-        { title: "엔터프라이즈 전용", description: "규정이 중요한 산업을 위해 설계되었습니다." },
-    ];
-
-    return (
-        <section id="security" className="bg-white">
+  const points = [{
+    title: "로컬 처리",
+    description: "모든 AI 처리는 PC에서 이루어집니다. 외부로 전송되지 않습니다."
+  }, {
+    title: "폐쇄망 환경 지원",
+    description: "인터넷 연결이 없는 보안 환경에서도 작동합니다."
+  }, {
+    title: "클라우드 저장 없음",
+    description: "문서는 어떤 서버에도 업로드되지 않습니다."
+  }, {
+    title: "엔터프라이즈 전용",
+    description: "규정이 중요한 산업을 위해 설계되었습니다."
+  }];
+  return <section id="security" className="bg-white">
             <div className="max-w-7xl mx-auto px-8 border-x border-gray-200 py-20 md:py-32">
                 <div className="text-center mb-16">
                     <p className="text-sm font-medium text-[#666] uppercase tracking-wider mb-4">보안</p>
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#111] tracking-[-0.02em] mb-4">
                         데이터는 절대 외부로 나가지 않습니다
                     </h2>
-                    <Link
-                        to="/security-spec"
-                        state={{ from: 'security' }}
-                        className="inline-block text-sm font-medium text-[#666] hover:text-[#111] transition-colors border-b border-[#666] hover:border-[#111]"
-                    >
+                    <Link to="/security-spec" state={{
+          from: 'security'
+        }} className="inline-block text-sm font-medium text-[#666] hover:text-[#111] transition-colors border-b border-[#666] hover:border-[#111]">
                         Security Spec
                     </Link>
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {points.map((point, index) => (
-                        <div
-                            key={index}
-                            className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-6 hover:border-gray-300 hover:bg-white/80 transition-all"
-                        >
+                    {points.map((point, index) => <div key={index} className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-6 hover:border-gray-300 hover:bg-white/80 transition-all">
                             <div className="w-10 h-10 bg-green-50/80 rounded-lg flex items-center justify-center mb-4">
                                 <CheckCircle className="w-5 h-5 text-green-600" />
                             </div>
                             <h3 className="text-base font-semibold text-[#111] tracking-tight mb-1">{point.title}</h3>
                             <p className="text-sm text-[#666] leading-relaxed">{point.description}</p>
-                        </div>
-                    ))}
+                        </div>)}
                 </div>
             </div>
-        </section>
-    );
+        </section>;
 };
-
-const Pricing = () => (
-    <section id="pricing" className="bg-white" aria-labelledby="pricing-heading">
+const Pricing = () => <section id="pricing" className="bg-white" aria-labelledby="pricing-heading">
         <div className="max-w-7xl mx-auto px-8 border-x border-gray-200 py-20 md:py-32">
             <h2 id="pricing-heading" className="text-2xl md:text-3xl font-semibold mb-4 text-center">
                 나에게 맞는 요금제를 선택하세요
@@ -719,26 +591,30 @@ const Pricing = () => (
                 </div>
             </div>
         </div>
-    </section>
-);
+    </section>;
 
 // FAQ Section
 const FAQ = () => {
-    const faqs = [
-        { q: "인터넷 없이 사용할 수 있나요?", answer: "네, 설치 후 모든 기능이 완전히 오프라인에서 작동합니다." },
-        { q: "어떤 파일 형식을 지원하나요?", answer: "현재는 PDF를 지원합니다. HWP, PPTX, XLSX도 곧 지원될 예정입니다." },
-        { q: "표와 차트도 읽을 수 있나요?", answer: "네, 표와 재무 데이터를 정확하게 분석합니다." },
-        { q: "출처가 제공되나요?", answer: "네, 모든 답변에는 문서 이름과 페이지 번호가 포함됩니다." },
-        {
-            q: "민감한 문서에도 안전한가요?",
-            answer: "네, 100% 로컬 처리로 데이터가 기기를 절대 떠나지 않습니다.",
-        },
-        {
-            id: "faq-compatibility",
-            q: "내 컴퓨터에서 앱 실행 가능한가요?",
-            answer: "Mac with Apple Silicon (M-series chips, 16GB RAM)은 완벽하게 지원합니다. Windows PC (Intel iGPU)는 곧 지원 예정입니다.",
-            content: (
-                <div className="overflow-x-auto mt-4">
+  const faqs = [{
+    q: "인터넷 없이 사용할 수 있나요?",
+    answer: "네, 설치 후 모든 기능이 완전히 오프라인에서 작동합니다."
+  }, {
+    q: "어떤 파일 형식을 지원하나요?",
+    answer: "현재는 PDF를 지원합니다. HWP, PPTX, XLSX도 곧 지원될 예정입니다."
+  }, {
+    q: "표와 차트도 읽을 수 있나요?",
+    answer: "네, 표와 재무 데이터를 정확하게 분석합니다."
+  }, {
+    q: "출처가 제공되나요?",
+    answer: "네, 모든 답변에는 문서 이름과 페이지 번호가 포함됩니다."
+  }, {
+    q: "민감한 문서에도 안전한가요?",
+    answer: "네, 100% 로컬 처리로 데이터가 기기를 절대 떠나지 않습니다."
+  }, {
+    id: "faq-compatibility",
+    q: "내 컴퓨터에서 앱 실행 가능한가요?",
+    answer: "Mac with Apple Silicon (M-series chips, 16GB RAM)은 완벽하게 지원합니다. Windows PC (Intel iGPU)는 곧 지원 예정입니다.",
+    content: <div className="overflow-x-auto mt-4">
                     <table className="w-full text-sm text-left text-gray-600 border-collapse">
                         <thead className="bg-gray-50 text-gray-700 font-medium">
                             <tr>
@@ -759,27 +635,25 @@ const FAQ = () => {
                                 <td className="px-4 py-2 border border-gray-200">Windows PC (Intel iGPU)</td>
                                 <td className="px-4 py-2 border border-gray-200">Intel integrated graphics</td>
                                 <td className="px-4 py-2 border border-gray-200">16GB</td>
-                                <td className="px-4 py-2 border border-gray-200">⏳ 12월 출시 예정</td>
+                                <td className="px-4 py-2 border border-gray-200">✅ 완벽 지원</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-            ),
-        },
-    ];
-
-    const faqJsonLd = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: faqs.map((faq) => ({
-            "@type": "Question",
-            name: faq.q,
-            acceptedAnswer: { "@type": "Answer", text: faq.answer },
-        })),
-    };
-
-    return (
-        <section id="faq" className="bg-white">
+  }];
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(faq => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer
+      }
+    }))
+  };
+  return <section id="faq" className="bg-white">
             <div className="max-w-7xl mx-auto px-8 border-x border-gray-200 py-20 md:py-32">
                 <div className="max-w-3xl mx-auto">
                     <div className="text-center mb-16">
@@ -790,12 +664,7 @@ const FAQ = () => {
                     </div>
 
                     <div className="space-y-4">
-                        {faqs.map((faq, index) => (
-                            <details
-                                key={index}
-                                id={faq.id}
-                                className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-6 group hover:border-gray-300 hover:bg-white/80 transition-all"
-                            >
+                        {faqs.map((faq, index) => <details key={index} id={faq.id} className="bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200 p-6 group hover:border-gray-300 hover:bg-white/80 transition-all">
                                 <summary className="font-medium text-[#111] cursor-pointer list-none flex items-center justify-between">
                                     {faq.q}
                                     <ChevronDown className="w-5 h-5 text-[#9ca3af] group-open:rotate-180 transition-transform" />
@@ -803,21 +672,20 @@ const FAQ = () => {
                                 <div className="mt-4 text-[#666] leading-relaxed">
                                     {faq.content || faq.answer}
                                 </div>
-                            </details>
-                        ))}
+                            </details>)}
                     </div>
 
-                    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+                    <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqJsonLd)
+        }} />
                 </div>
             </div>
-        </section>
-    );
+        </section>;
 };
 
 // CTA Section
 const CTA = () => {
-    return (
-        <section id="cta" className="bg-white">
+  return <section id="cta" className="bg-white">
             <div className="max-w-7xl mx-auto border-x border-gray-800 py-20 md:py-32 bg-[#111]">
                 <div className="px-8 max-w-xl mx-auto text-center">
                     <h2 className="text-3xl md:text-4xl font-bold text-white tracking-[-0.02em] mb-4">지금 바로 시작하세요!</h2>
@@ -842,12 +710,9 @@ const CTA = () => {
                     </div>
                 </div>
             </div>
-        </section>
-    );
+        </section>;
 };
-
-const Footer = () => (
-    <footer className="border-t bg-white">
+const Footer = () => <footer className="border-t bg-white">
         <div className="max-w-7xl mx-auto px-8 py-16 border-x border-gray-200">
             {/* Main Footer Content */}
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12 items-start">
@@ -888,7 +753,9 @@ const Footer = () => (
                         <a href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                             개인정보처리방침
                         </a>
-                        <Link to="/security-spec" state={{ from: 'footer' }} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                        <Link to="/security-spec" state={{
+            from: 'footer'
+          }} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                             Security Spec
                         </Link>
                     </div>
@@ -928,14 +795,10 @@ const Footer = () => (
                 </div>
             </div>
         </div>
-    </footer>
-);
-
+    </footer>;
 const IndexNew = () => {
-    usePageTracking();
-
-    return (
-        <div className="min-h-screen bg-white font-sans text-[#111]">
+  usePageTracking();
+  return <div className="min-h-screen bg-white font-sans text-[#111]">
             <Nav />
             <Hero />
             <HowItWorksSection />
@@ -949,8 +812,6 @@ const IndexNew = () => {
             <FAQ />
             <CTA />
             <Footer />
-        </div>
-    );
+        </div>;
 };
-
 export default IndexNew;

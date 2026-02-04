@@ -157,7 +157,7 @@ const SecuritySpec = () => {
                                 사용자의 편의성과 AI 성능을 극대화하기 위해 제한적인 네트워크 통신을 수행합니다.
                             </p>
                             <ul className="list-disc pl-6 mb-8 space-y-4 text-gray-700">
-                                <li><strong>LLM API 통신:</strong> 질문에 대한 답변 생성을 위해 암호화된 텍스트 조각(Context)을 전송합니다. 이 데이터는 답변 생성 직후 휘발됩니다.</li>
+                                <li><strong>LLM API 통신:</strong> 질문에 대한 답변 생성을 위해 암호화된 텍스트 조각(Context)을 프록시 서버를 통해 통신합니다. 그래서 데이터는 누구도 볼 수 없고, 저장되지 않습니다.</li>
                                 <li><strong>인증 및 결제:</strong> 사용자 식별(Google OAuth) 및 구독 상태 확인을 위한 최소한의 HTTPS 통신만 수행합니다. 구글이나 결제 대행사는 귀하의 문서 내용에 접근할 수 없습니다.</li>
                             </ul>
 
@@ -166,7 +166,7 @@ const SecuritySpec = () => {
                                 최고 수준의 보안이 요구되는 환경을 위해 설계되었습니다.
                             </p>
                             <ul className="list-disc pl-6 mb-8 space-y-4 text-gray-700">
-                                <li><strong>Complete Offline:</strong> 설치 및 초기 인증 후 랜선(LAN)을 뽑아도 완벽하게 동작합니다.</li>
+                                <li><strong>100% 오프라인:</strong> 설치 및 초기 인증 후 랜선(LAN)을 뽑아도 완벽하게 동작합니다.</li>
                                 <li><strong>No API Calls:</strong> OpenAI, Google, Anthropic 등 외부 AI 서버로 향하는 트래픽이 원천 차단되어 있습니다.</li>
                             </ul>
                         </section>
@@ -184,7 +184,7 @@ const SecuritySpec = () => {
                             <h3 className="text-xl font-semibold text-gray-900 mb-5">4.2. 기업 규정 준수 (GDPR & ISO)</h3>
                             <ul className="list-disc pl-6 mb-8 space-y-4 text-gray-700">
                                 <li><strong>Enterprise:</strong> 고객의 인프라 내에서만 작동하므로, 고객사가 보유한 기존의 SOC 2 / ISO 27001 통제 환경을 그대로 승계합니다. 데이터 이동이 없으므로 GDPR 데이터 거주 요건을 자동으로 충족합니다.</li>
-                                <li><strong>Free/Pro:</strong> 전송되는 데이터는 익명화 및 암호화 처리되며, 저장되지 않고 즉시 폐기되므로 개인정보 보호 규정 준수에 유리한 구조를 갖추고 있습니다.</li>
+                                <li><strong>Free/Pro:</strong> 전송되는 데이터는 암호화 처리되며, 프록시 서버를 통해 데이터를 주고받기 때문에 어디에도 저장되지 않으므로 개인정보 보호 규정 준수에 유리한 구조를 갖추고 있습니다.</li>
                             </ul>
                         </section>
 
@@ -200,7 +200,7 @@ const SecuritySpec = () => {
 
                             <h3 className="text-xl font-semibold text-gray-900 mb-5">5.2. 공급망 보안</h3>
                             <p className="text-gray-700 leading-relaxed">
-                                오픈소스 라이브러리(LangChain, ChromaDB 등)는 엄격한 보안 검수(CVE Scan)를 거친 특정 버전만 빌드에 포함되며, 임의의 외부 코드 실행을 방지합니다.
+                                오픈소스 라이브러리(LangChain, LanceDB 등)는 엄격한 보안 검수(CVE Scan)를 거친 특정 버전만 빌드에 포함되며, 임의의 외부 코드 실행을 방지합니다.
                             </p>
                         </section>
 

@@ -13,7 +13,7 @@ const useCases = [
         id: "finance",
         label: "금융",
         prompt: "A사 3분기 실적이 예상보다 안 좋은데, 증권사 리포트에서는 원인을 뭐라고 분석하고 있어? 리스크 요인 위주로 요약해 줘.",
-        response: "주요 원인은 **'원자재 가격 상승(23.4Q_Report.pdf, p.5)'**과 **'환율 변동성(Goldman_Analyst_Note.pdf, p.3)'**으로 분석됩니다. 두 리포트 모두 4분기까지는 보수적인 접근을 권장하고 있습니다."
+        response: "주요 원인은 '원자재 가격 상승(23.4Q_Report.pdf, p.5)'과 '환율 변동성(Goldman_Analyst_Note.pdf, p.3)'으로 분석됩니다. 두 리포트 모두 4분기까지는 보수적인 접근을 권장하고 있습니다."
     },
     {
         id: "automotive",
@@ -25,7 +25,7 @@ const useCases = [
         id: "chem",
         label: "화학/바이오",
         prompt: "과산화수소(H2O2) 취급할 때 절대 섞으면 안 되는 물질이 뭐야? 사내 MSDS 데이터베이스에서 찾아서 알려줘.",
-        response: "검색된 MSDS(CAS No. 77-22-3)에 따르면, **'강산화제' 및 '가연성 물질'**과 혼합 시 폭발 위험이 있습니다. 취급 시에는 반드시 **니트릴 계열 장갑(Safety_Manual_v3.pdf, p.12)**을 착용해야 합니다."
+        response: "검색된 MSDS(CAS No. 77-22-3)에 따르면, '강산화제' 및 '가연성 물질'과 혼합 시 폭발 위험이 있습니다. 취급 시에는 반드시 니트릴 계열 장갑(Safety_Manual_v3.pdf, p.12)을 착용해야 합니다."
     },
     {
         id: "construction",
@@ -99,28 +99,28 @@ export const UseCasesTabs = () => {
                                         activeTab !== useCase.id && "lg:hidden"
                                     )}>
                                         {/* User Prompt */}
-                                        <div className="flex gap-4 mb-8">
-                                            <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-                                                <span className="font-bold text-blue-600">Q</span>
+                                        <div className="flex gap-3 sm:gap-4 mb-6 sm:mb-8">
+                                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                                                <span className="font-bold text-blue-600 text-sm sm:text-base">Q</span>
                                             </div>
-                                            <div className="bg-gray-50 rounded-2xl p-5 text-gray-800 text-lg leading-relaxed border border-gray-100">
+                                            <div className="bg-gray-50 rounded-2xl p-4 sm:p-5 text-gray-800 text-base sm:text-lg leading-relaxed border border-gray-100 italic">
                                                 "{useCase.prompt}"
                                             </div>
                                         </div>
 
                                         {/* AI Response */}
-                                        <div className="flex gap-4">
-                                            <div className="w-10 h-10 rounded-full bg-[#111] flex items-center justify-center flex-shrink-0 text-white">
-                                                <span className="font-bold">A</span>
+                                        <div className="flex gap-3 sm:gap-4">
+                                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#111] flex items-center justify-center flex-shrink-0 text-white">
+                                                <span className="font-bold text-sm sm:text-base">A</span>
                                             </div>
                                             <div className="flex-1">
-                                                <div className="text-[#111] text-lg leading-relaxed mb-3">
+                                                <div className="text-[#111] text-base sm:text-lg leading-relaxed mb-3">
                                                     {useCase.response}
                                                 </div>
                                                 <div className="flex gap-2">
-                                                    <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 text-xs font-medium rounded-full border border-green-100">
-                                                        <FileText className="w-3 h-3" />
-                                                        Source Verified (p.14)
+                                                    <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 text-[10px] sm:text-xs font-medium rounded-full border border-green-100">
+                                                        <FileText className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                                                        Source Verified
                                                     </div>
                                                 </div>
                                             </div>

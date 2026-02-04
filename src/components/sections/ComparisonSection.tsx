@@ -11,30 +11,30 @@ export const ComparisonSection = () => {
                     </h2>
                 </div>
 
-                <div className="overflow-x-auto">
-                    <table className="w-full border-collapse text-left">
+                <div className="overflow-x-auto -mx-6 px-6">
+                    <table className="w-full border-collapse text-left min-w-[640px]">
                         <thead>
                             <tr className="border-b border-gray-100">
-                                <th className="py-4 px-4 text-sm font-medium text-gray-500 w-[20%]">비교 항목</th>
-                                <th className="py-4 px-4 text-lg font-bold text-[#111] w-[25%] bg-blue-50/30 border-t-2 border-blue-600">
+                                <th className="py-4 px-4 text-xs sm:text-sm font-medium text-gray-500 w-[20%]">비교 항목</th>
+                                <th className="py-4 px-4 text-base sm:text-lg font-bold text-[#111] w-[25%] bg-blue-50/30 border-t-2 border-blue-600">
                                     로컬독스
                                 </th>
-                                <th className="py-4 px-4 text-sm font-medium text-gray-500 w-[18%]">
-                                    <div className="flex items-center gap-2">
-                                        <img src="/images/logos/chatgpt_logo.png" alt="ChatGPT" className="h-5 w-auto object-contain opacity-60" />
-                                        ChatGPT
+                                <th className="py-4 px-4 text-xs sm:text-sm font-medium text-gray-500 w-[18%]">
+                                    <div className="flex items-center gap-1.5 sm:gap-2">
+                                        <img src="/images/logos/chatgpt_logo.png" alt="ChatGPT" className="h-4 sm:h-5 w-auto object-contain opacity-60" />
+                                        <span>ChatGPT</span>
                                     </div>
                                 </th>
-                                <th className="py-4 px-4 text-sm font-medium text-gray-500 w-[18%]">
-                                    <div className="flex items-center gap-2">
-                                        <img src="/images/logos/gemini_logo.png" alt="Gemini" className="h-5 w-auto object-contain opacity-60" />
-                                        Gemini
+                                <th className="py-4 px-4 text-xs sm:text-sm font-medium text-gray-500 w-[18%]">
+                                    <div className="flex items-center gap-1.5 sm:gap-2">
+                                        <img src="/images/logos/gemini_logo.png" alt="Gemini" className="h-4 sm:h-5 w-auto object-contain opacity-60" />
+                                        <span>Gemini</span>
                                     </div>
                                 </th>
-                                <th className="py-4 px-4 text-sm font-medium text-gray-500 w-[19%]">
-                                    <div className="flex items-center gap-2">
-                                        <img src="/images/logos/notebooklm_logo.png" alt="NotebookLM" className="h-5 w-auto object-contain opacity-60" />
-                                        NotebookLM
+                                <th className="py-4 px-4 text-xs sm:text-sm font-medium text-gray-500 w-[19%]">
+                                    <div className="flex items-center gap-1.5 sm:gap-2">
+                                        <img src="/images/logos/notebooklm_logo.png" alt="NotebookLM" className="h-4 sm:h-5 w-auto object-contain opacity-60" />
+                                        <span>NotebookLM</span>
                                     </div>
                                 </th>
                             </tr>

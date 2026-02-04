@@ -7,12 +7,12 @@ export const PricingNew = () => {
         <section id="pricing" className="bg-white py-24 md:py-32 border-t border-gray-100">
             <div className="max-w-7xl mx-auto px-6 md:px-8">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#111] mb-4">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#111] mb-4 break-keep px-4 sm:px-0">
                         나에게 맞는 요금제를 선택하세요.
                     </h2>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {/* Free Plan */}
                     <div className="flex flex-col border border-gray-200 rounded-2xl p-8 bg-white hover:border-gray-300 transition-colors">
                         <div className="mb-6">

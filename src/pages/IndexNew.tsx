@@ -45,25 +45,25 @@ const FAQNew = () => {
             content: <div className="overflow-x-auto mt-4">
                 <table className="w-full text-sm text-left text-gray-600 border-collapse">
                     <thead className="bg-gray-50 text-gray-700 font-medium">
-                        <tr>
-                            <th className="px-4 py-2 border border-gray-200">디바이스 종류</th>
-                            <th className="px-4 py-2 border border-gray-200">GPU/Processor</th>
-                            <th className="px-4 py-2 border border-gray-200">메모리(RAM)</th>
-                            <th className="px-4 py-2 border border-gray-200">지원 여부</th>
+                        <tr className="text-[11px] sm:text-sm">
+                            <th className="px-2 sm:px-4 py-2 border border-gray-200">디바이스</th>
+                            <th className="px-2 sm:px-4 py-2 border border-gray-200">GPU/Processor</th>
+                            <th className="px-2 sm:px-4 py-2 border border-gray-200">메모리</th>
+                            <th className="px-2 sm:px-4 py-2 border border-gray-200">지원</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td className="px-4 py-2 border border-gray-200">Mac</td>
-                            <td className="px-4 py-2 border border-gray-200">M-series chips</td>
-                            <td className="px-4 py-2 border border-gray-200">16GB</td>
-                            <td className="px-4 py-2 border border-gray-200">✅ 완벽 지원</td>
+                        <tr className="text-[11px] sm:text-sm">
+                            <td className="px-2 sm:px-4 py-2 border border-gray-200">Mac</td>
+                            <td className="px-2 sm:px-4 py-2 border border-gray-200">M-series chips</td>
+                            <td className="px-2 sm:px-4 py-2 border border-gray-200">16GB</td>
+                            <td className="px-2 sm:px-4 py-2 border border-gray-200">✅ 지원</td>
                         </tr>
-                        <tr>
-                            <td className="px-4 py-2 border border-gray-200">Windows PC (Intel iGPU)</td>
-                            <td className="px-4 py-2 border border-gray-200">Intel integrated graphics</td>
-                            <td className="px-4 py-2 border border-gray-200">16GB</td>
-                            <td className="px-4 py-2 border border-gray-200">✅ 완벽 지원</td>
+                        <tr className="text-[11px] sm:text-sm">
+                            <td className="px-2 sm:px-4 py-2 border border-gray-200">Windows</td>
+                            <td className="px-2 sm:px-4 py-2 border border-gray-200">Intel iGPU</td>
+                            <td className="px-2 sm:px-4 py-2 border border-gray-200">16GB</td>
+                            <td className="px-2 sm:px-4 py-2 border border-gray-200">✅ 지원</td>
                         </tr>
                     </tbody>
                 </table>
@@ -108,15 +108,15 @@ const CTANew = () => {
                         지금 로컬독스를 경험하세요.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => analytics.trackButtonClick('download_mac', 'cta_new')}>
-                            <button className="w-64 sm:w-auto px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => analytics.trackButtonClick('download_mac', 'cta_new')} className="w-full sm:w-auto">
+                            <button className="w-full sm:px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
                                 <AppleIcon className="w-5 h-5 mb-0.5" />
                                 Mac용 다운로드
                             </button>
                         </a>
-                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/latest/LocalDocsSetup-latest.exe" onClick={() => analytics.trackButtonClick('download_win', 'cta_new')}>
-                            <button className="w-64 sm:w-auto px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
+                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/latest/LocalDocsSetup-latest.exe" onClick={() => analytics.trackButtonClick('download_win', 'cta_new')} className="w-full sm:w-auto">
+                            <button className="w-full sm:px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
                                 <WindowsIcon className="w-4 h-4" />
                                 Windows용 다운로드
                             </button>
@@ -269,14 +269,26 @@ const NavNew = () => {
                                 </a>
                             ))}
 
-                            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => {
-                                setMobileMenuOpen(false);
-                                analytics.trackButtonClick('download', 'navbar_mobile_new');
-                            }} className="mt-4">
-                                <button className="w-full px-5 py-3 bg-[#111] text-white text-base font-medium rounded-lg">
-                                    다운로드
-                                </button>
-                            </a>
+                            <div className="mt-4 flex flex-col gap-2">
+                                <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => {
+                                    setMobileMenuOpen(false);
+                                    analytics.trackButtonClick('download_mac', 'navbar_mobile_new');
+                                }}>
+                                    <button className="w-full px-5 py-3 bg-[#111] text-white text-base font-medium rounded-lg flex items-center justify-center gap-2">
+                                        <AppleIcon className="w-5 h-5 mb-0.5" />
+                                        Mac 버전 다운로드
+                                    </button>
+                                </a>
+                                <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/latest/LocalDocsSetup-latest.exe" onClick={() => {
+                                    setMobileMenuOpen(false);
+                                    analytics.trackButtonClick('download_win', 'navbar_mobile_new');
+                                }}>
+                                    <button className="w-full px-5 py-3 bg-white border border-gray-200 text-[#111] text-base font-medium rounded-lg flex items-center justify-center gap-2">
+                                        <WindowsIcon className="w-4 h-4" />
+                                        Windows 버전 다운로드
+                                    </button>
+                                </a>
+                            </div>
                         </div>
                     </nav>
                 </div>

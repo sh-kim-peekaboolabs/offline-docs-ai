@@ -10,7 +10,7 @@ export const HowItWorksNew = () => {
                     </h2>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 relative">
                     {/* Connecting Line (Desktop) */}
                     <div className="hidden lg:block absolute top-12 left-[12%] right-[12%] h-0.5 bg-gray-200 -z-10"></div>
 

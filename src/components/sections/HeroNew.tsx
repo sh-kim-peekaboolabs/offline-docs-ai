@@ -11,19 +11,26 @@ export const HeroNew = () => {
                     {/* Text Content */}
                     <div className="max-w-4xl mx-auto w-full">
                         {/* H1 */}
-                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#111] tracking-tighter leading-[1.3] mb-6">
-                            GPT도 못 읽는 대용량 문서,<br />
-                            <span className="block mt-4">
-                                <HighlightText className="text-[#111] inline-block whitespace-nowrap" color="#fef08a" thickness="30%">
+                        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#111] tracking-tighter leading-[1.2] sm:leading-[1.3] mb-6">
+                            GPT도 못 읽는 대용량 문서,<br className="hidden sm:block" />
+                            <span className="block mt-2 sm:mt-4">
+                                <HighlightText className="text-[#111] inline-block" color="#fef08a" thickness="30%">
                                     유출 걱정 없이 마음껏 물어보세요.
                                 </HighlightText>
                             </span>
                         </h1>
 
                         {/* H2/Subhead */}
-                        <div className="text-lg sm:text-xl text-[#666] leading-relaxed mb-10 space-y-1 mx-auto max-w-2xl">
-                            <p>내 PC에 있는 <strong>10,000개의 파일</strong>, <strong>1GB가 넘는 전공 서적</strong>도 문제없습니다.</p>
-                            <p>문서는 내 컴퓨터에 안전하게 두고, AI의 똑똑한 두뇌만 빌려 쓰세요.</p>
+                        {/* Unified Subhead for Mobile/Desktop */}
+                        <div className="text-base sm:text-lg lg:text-xl text-[#666] leading-relaxed mb-10 mx-auto max-w-2xl px-4 sm:px-0">
+                            <p className="hidden sm:block">
+                                내 PC에 있는 <strong>10,000개의 파일</strong>, <strong>1GB가 넘는 전공 서적</strong>도 문제없습니다.<br />
+                                문서는 내 컴퓨터에 안전하게 두고, AI의 똑똑한 두뇌만 빌려 쓰세요.
+                            </p>
+                            <p className="sm:hidden text-base">
+                                내 PC에 있는 대용량 문서와 수만 개의 파일들,<br />
+                                이제 유출 걱정 없이 로컬에서 안전하게 대화하세요.
+                            </p>
                         </div>
 
                         {/* Buttons */}

@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,6 +9,7 @@ import { FacebookPixelProvider } from "@/components/FacebookPixelProvider";
 import Index from "./pages/Index";
 import IndexEn from "./pages/IndexEn";
 import IndexNew from "./pages/IndexNew";
+const SecuritySpecNew = lazy(() => import("@/pages/SecuritySpecNew"));
 import Financial from "./pages/Financial";
 import Defense from "./pages/Defense";
 import Terms from "./pages/Terms";
@@ -30,23 +32,30 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/new" element={<IndexNew />} />
-              <Route path="/en" element={<IndexEn />} />
-              <Route path="/financial" element={<Financial />} />
-              <Route path="/defense" element={<Defense />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route path="/security-spec" element={<SecuritySpec />} />
-              <Route path="/en/terms" element={<TermsEn />} />
-              <Route path="/en/privacy" element={<PrivacyEn />} />
-              <Route path="/en/security-spec" element={<SecuritySpecEn />} />
-              <Route path="/enterprise" element={<Enterprise />} />
-              <Route path="/en/enterprise" element={<EnterpriseEn />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <Suspense fallback={
+              <div className="flex h-screen items-center justify-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
+              </div>
+            }>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/new" element={<IndexNew />} />
+                <Route path="/new/security-spec" element={<SecuritySpecNew />} />
+                <Route path="/en" element={<IndexEn />} />
+                <Route path="/financial" element={<Financial />} />
+                <Route path="/defense" element={<Defense />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/security-spec" element={<SecuritySpec />} />
+                <Route path="/en/terms" element={<TermsEn />} />
+                <Route path="/en/privacy" element={<PrivacyEn />} />
+                <Route path="/en/security-spec" element={<SecuritySpecEn />} />
+                <Route path="/enterprise" element={<Enterprise />} />
+                <Route path="/en/enterprise" element={<EnterpriseEn />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
           </BrowserRouter>
         </TooltipProvider>
       </FacebookPixelProvider>

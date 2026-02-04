@@ -8,20 +8,22 @@ interface HighlightTextProps {
     children: React.ReactNode;
     className?: string;
     color?: string;
+    thickness?: string;
 }
 
 export const HighlightText = ({
     children,
     className,
-    color = "#fbbf24" // amber-400 default
+    color = "#fbbf24", // amber-400 default
+    thickness = "50%"
 }: HighlightTextProps) => {
     return (
         <motion.span
             initial={{
-                backgroundSize: "0% 50%",
+                backgroundSize: `0% ${thickness}`,
             }}
             animate={{
-                backgroundSize: "100% 50%",
+                backgroundSize: `100% ${thickness}`,
             }}
             transition={{
                 duration: 0.8,

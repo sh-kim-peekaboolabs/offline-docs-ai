@@ -28,7 +28,7 @@ const FAQNew = () => {
         },
         {
             q: "Are my files really not stored on any server?",
-            answer: "Yes, never. LocalDocs uses a hybrid security approach: originals stay on your PC, and only the minimum text snippets needed are encrypted and discarded immediately after use."
+            answer: "Absolutely not. With our 'Hybrid Security,' your files stay on your device. Only the specific text fragments needed for context are encrypted and sent via a proxy server. Your content remains completely private."
         },
         {
             q: "Does it understand complex data like tables or charts?",
@@ -110,17 +110,17 @@ const CTANew = () => {
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                         <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => analytics.trackButtonClick('download_mac', 'cta_new')} className="w-full sm:w-auto">
-                                <button className="w-full sm:px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
-                                    <AppleIcon className="w-5 h-5 mb-0.5" />
-                                    Download for Mac
-                                </button>
-                            </a>
-                            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/latest/LocalDocsSetup-latest.exe" onClick={() => analytics.trackButtonClick('download_win', 'cta_new')} className="w-full sm:w-auto">
-                                <button className="w-full sm:px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
-                                    <WindowsIcon className="w-4 h-4" />
-                                    Download for Windows
-                                </button>
-                            </a>
+                            <button className="w-full sm:px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
+                                <AppleIcon className="w-5 h-5 mb-0.5" />
+                                Download for Mac
+                            </button>
+                        </a>
+                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/latest/LocalDocsSetup-latest.exe" onClick={() => analytics.trackButtonClick('download_win', 'cta_new')} className="w-full sm:w-auto">
+                            <button className="w-full sm:px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
+                                <WindowsIcon className="w-4 h-4" />
+                                Download for Windows
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>

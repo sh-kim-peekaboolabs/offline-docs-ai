@@ -59,7 +59,7 @@ export const PricingNew = () => {
                             <div className="text-4xl font-bold mb-2 flex items-baseline gap-1">
                                 $9 <span className="text-lg font-normal text-gray-500">/ 월</span>
                             </div>
-                            <p className="text-sm text-blue-600 font-medium">연 결제 시 $90 (1개월 무료)</p>
+                            <p className="text-sm text-blue-600 font-medium">연 결제 시 $99 (1개월 무료)</p>
                         </div>
                         <ul className="space-y-4 flex-1 text-sm text-gray-600 mb-8">
                             <li className="flex items-start gap-3">

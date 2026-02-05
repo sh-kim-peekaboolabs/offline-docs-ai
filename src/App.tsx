@@ -9,7 +9,9 @@ import { FacebookPixelProvider } from "@/components/FacebookPixelProvider";
 import Index from "./pages/Index";
 import IndexEn from "./pages/IndexEn";
 import IndexNew from "./pages/IndexNew";
+import IndexNewEn from "./pages/IndexNewEn";
 const SecuritySpecNew = lazy(() => import("@/pages/SecuritySpecNew"));
+const SecuritySpecNewEn = lazy(() => import("@/pages/SecuritySpecNewEn"));
 import Financial from "./pages/Financial";
 import Defense from "./pages/Defense";
 import Terms from "./pages/Terms";
@@ -41,6 +43,8 @@ const App = () => (
                 <Route path="/" element={<Index />} />
                 <Route path="/new" element={<IndexNew />} />
                 <Route path="/new/security-spec" element={<SecuritySpecNew />} />
+                <Route path="/new/en" element={<IndexNewEn />} />
+                <Route path="/new/en/security-spec" element={<SecuritySpecNewEn />} />
                 <Route path="/en" element={<IndexEn />} />
                 <Route path="/financial" element={<Financial />} />
                 <Route path="/defense" element={<Defense />} />

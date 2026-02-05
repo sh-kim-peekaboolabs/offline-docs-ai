@@ -9,7 +9,7 @@ export const AfterVisionEn = () => {
             <div className="relative w-full max-w-[500px] mb-6">
                 <div className="relative rounded-xl overflow-hidden border border-gray-100 shadow-sm bg-gray-50 aspect-video">
                     <img
-                        src="/images/uploaded-regulation-image.png"
+                        src="/images/vision-demo-en.png"
                         alt="Regulation Image"
                         className="w-full h-full object-contain"
                     />

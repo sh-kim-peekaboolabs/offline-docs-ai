@@ -182,7 +182,7 @@ const Hero = () => {
 
         <div className="max-w-4xl mx-auto w-full">
           <div className="relative rounded-xl border border-gray-200 shadow-2xl overflow-hidden bg-white aspect-video">
-            <video className="w-full h-full object-contain" autoPlay muted loop playsInline controls poster="/videos/demo-poster.png">
+            <video className="w-full h-full object-contain" autoPlay muted loop playsInline controls preload="auto" poster="/videos/demo-poster.png">
               <source src="/videos/localdocs-demo-en.mp4" type="video/mp4" />
             </video>
           </div>

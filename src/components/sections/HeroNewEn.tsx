@@ -52,7 +52,7 @@ export const HeroNewEn = () => {
                     <div className="w-full max-w-[1000px] mx-auto">
                         <div className="relative aspect-[16/9] rounded-2xl bg-gray-50 border border-gray-200 overflow-hidden shadow-2xl">
                             <video className="w-full h-full object-cover" autoPlay muted loop playsInline controls poster="/videos/demo-poster.png">
-                                <source src="/videos/localdocs-demo.mp4" type="video/mp4" />
+                                <source src="/videos/localdocs-demo-en.mp4" type="video/mp4" />
                             </video>
                         </div>
                     </div>

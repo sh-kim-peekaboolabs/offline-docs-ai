@@ -180,19 +180,13 @@ const Hero = () => {
           </a>
         </div>
 
-        {/* App Screenshot Placeholder
-         <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto w-full">
           <div className="relative rounded-xl border border-gray-200 shadow-2xl overflow-hidden bg-white aspect-[16/10]">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <FileSearch className="w-8 h-8 text-gray-300" />
-                </div>
-                <p className="text-gray-400 font-medium">Product Demo Coming Soon</p>
-              </div>
-            </div>
+            <video className="w-full h-full object-cover" autoPlay muted loop playsInline controls poster="/videos/demo-poster.png">
+              <source src="/videos/localdocs-demo-en.mp4" type="video/mp4" />
+            </video>
           </div>
-         </div> */}
+        </div>
       </div>
     </section>;
 };

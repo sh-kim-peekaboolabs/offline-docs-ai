@@ -86,7 +86,13 @@ const Nav = () => {
                                 문의하기
                             </button>
                         </a>
-                        <DownloadDropdown lang="kr" place="navbar" className="hidden md:block" />
+                        <DownloadDropdown
+                            lang="kr"
+                            place="navbar"
+                            className="hidden md:block"
+                            macLink="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/v0.4.2/LocalDocs-0.4.2.dmg"
+                            winLink="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/v0.4.2/LocalDocs-Setup-0.4.2.exe"
+                        />
 
                         <button className="md:hidden p-2 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(true)}>
                             <Menu className="w-5 h-5 text-[#111]" />
@@ -118,14 +124,26 @@ const Nav = () => {
           }}>
                                 문의하기
                             </a>
-                            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => {
-            setMobileMenuOpen(false);
-            analytics.trackButtonClick('download', 'navbar_mobile_kr');
-          }} className="mt-4">
-                                <button className="w-full px-5 py-3 bg-[#111] text-white text-base font-medium rounded-lg">
-                                    다운로드
-                                </button>
-                            </a>
+                            <div className="mt-4 flex flex-col gap-2">
+                                <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/v0.4.2/LocalDocs-0.4.2.dmg" onClick={() => {
+              setMobileMenuOpen(false);
+              analytics.trackButtonClick('download_mac', 'navbar_mobile_kr');
+            }}>
+                                    <button className="w-full px-5 py-3 bg-[#111] text-white text-base font-medium rounded-lg flex items-center justify-center gap-2">
+                                        <AppleIcon className="w-5 h-5 mb-0.5" />
+                                        Mac 버전 다운로드
+                                    </button>
+                                </a>
+                                <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/v0.4.2/LocalDocs-Setup-0.4.2.exe" onClick={() => {
+              setMobileMenuOpen(false);
+              analytics.trackButtonClick('download_win', 'navbar_mobile_kr');
+            }}>
+                                    <button className="w-full px-5 py-3 bg-white border border-gray-200 text-[#111] text-base font-medium rounded-lg flex items-center justify-center gap-2">
+                                        <WindowsIcon className="w-4 h-4" />
+                                        Windows 버전 다운로드
+                                    </button>
+                                </a>
+                            </div>
                         </div>
                     </nav>
                 </div>}
@@ -179,13 +197,13 @@ const Hero = () => {
                     {/* CTA Buttons */}
                     <div className="flex flex-col items-center gap-6 mb-16">
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => analytics.trackButtonClick('download_mac', 'hero_kr')}>
+                            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/v0.4.2/LocalDocs-0.4.2.dmg" onClick={() => analytics.trackButtonClick('download_mac', 'hero_kr')}>
                                 <button className="w-64 sm:w-auto px-8 py-3.5 bg-[#111] text-white text-base font-medium rounded-lg hover:bg-[#333] transition-colors flex items-center justify-center gap-2 shadow-lg shadow-black/10 whitespace-nowrap">
                                     <AppleIcon className="w-5 h-5 mb-0.5" />
                                     Mac용 다운로드
                                 </button>
                             </a>
-                            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/latest/LocalDocsSetup-latest.exe" onClick={() => analytics.trackButtonClick('download_win', 'hero_kr')}>
+                            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/v0.4.2/LocalDocs-Setup-0.4.2.exe" onClick={() => analytics.trackButtonClick('download_win', 'hero_kr')}>
                                 <button className="w-64 sm:w-auto px-8 py-3.5 bg-[#111] text-white text-base font-medium rounded-lg hover:bg-[#333] transition-colors flex items-center justify-center gap-2 shadow-lg shadow-black/10 whitespace-nowrap">
                                     <WindowsIcon className="w-4 h-4" />
                                     Windows용 다운로드
@@ -481,9 +499,9 @@ const Pricing = () => <section id="pricing" className="bg-white" aria-labelledby
                         </li>
                     </ul>
                     <div className="mt-6">
-                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="w-full" onClick={() => analytics.trackButtonClick('download', 'pricing_free_kr')}>
+                        <a href="#cta" className="w-full" onClick={() => analytics.trackButtonClick('download', 'pricing_free_kr')}>
                             <Button variant="outline" className="w-full">
-                                Mac용 다운로드
+                                바로 시작하기
                             </Button>
                         </a>
                     </div>
@@ -532,9 +550,9 @@ const Pricing = () => <section id="pricing" className="bg-white" aria-labelledby
                         </li>
                     </ul>
                     <div className="mt-6">
-                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="w-full" onClick={() => analytics.trackButtonClick('download', 'pricing_pro_kr')}>
+                        <a href="#cta" className="w-full" onClick={() => analytics.trackButtonClick('download', 'pricing_pro_kr')}>
                             <Button variant="hero" className="w-full">
-                                Mac용 다운로드
+                                바로 시작하기
                             </Button>
                         </a>
                     </div>
@@ -695,13 +713,13 @@ const CTA = () => {
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => analytics.trackButtonClick('download_mac', 'cta_kr')}>
+                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/v0.4.2/LocalDocs-0.4.2.dmg" onClick={() => analytics.trackButtonClick('download_mac', 'cta_kr')}>
                             <button className="w-64 sm:w-auto px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
                                 <AppleIcon className="w-5 h-5 mb-0.5" />
                                 Mac용 다운로드
                             </button>
                         </a>
-                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/latest/LocalDocsSetup-latest.exe" onClick={() => analytics.trackButtonClick('download_win', 'cta_kr')}>
+                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/v0.4.2/LocalDocs-Setup-0.4.2.exe" onClick={() => analytics.trackButtonClick('download_win', 'cta_kr')}>
                             <button className="w-64 sm:w-auto px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
                                 <WindowsIcon className="w-4 h-4" />
                                 Windows용 다운로드

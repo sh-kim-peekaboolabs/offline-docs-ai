@@ -72,7 +72,13 @@ const Nav = () => {
                 Contact
               </button>
             </a>
-            <DownloadDropdown lang="en" place="navbar" className="hidden md:block" />
+            <DownloadDropdown
+              lang="en"
+              place="navbar"
+              className="hidden md:block"
+              macLink="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/v0.4.2/LocalDocs-0.4.2.dmg"
+              winLink="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/v0.4.2/LocalDocs-Setup-0.4.2.exe"
+            />
 
             <button className="md:hidden p-2 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(true)}>
               <Menu className="w-5 h-5 text-[#111]" />
@@ -104,14 +110,26 @@ const Nav = () => {
           }}>
                 Contact
               </a>
-              <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => {
-            setMobileMenuOpen(false);
-            analytics.trackButtonClick('download', 'navbar_mobile_en');
-          }} className="mt-4">
-                <button className="w-full px-5 py-3 bg-[#111] text-white text-base font-medium rounded-lg">
-                  Download
-                </button>
-              </a>
+              <div className="mt-4 flex flex-col gap-2">
+                <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/v0.4.2/LocalDocs-0.4.2.dmg" onClick={() => {
+              setMobileMenuOpen(false);
+              analytics.trackButtonClick('download_mac', 'navbar_mobile_en');
+            }}>
+                  <button className="w-full px-5 py-3 bg-[#111] text-white text-base font-medium rounded-lg flex items-center justify-center gap-2">
+                    <AppleIcon className="w-5 h-5 mb-0.5" />
+                    Download for Mac
+                  </button>
+                </a>
+                <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/v0.4.2/LocalDocs-Setup-0.4.2.exe" onClick={() => {
+              setMobileMenuOpen(false);
+              analytics.trackButtonClick('download_win', 'navbar_mobile_en');
+            }}>
+                  <button className="w-full px-5 py-3 bg-white border border-gray-200 text-[#111] text-sm font-medium rounded-lg flex items-center justify-center gap-2 whitespace-nowrap">
+                    <WindowsIcon className="w-4 h-4 flex-shrink-0" />
+                    Download for Windows
+                  </button>
+                </a>
+              </div>
             </div>
           </nav>
         </div>}
@@ -150,15 +168,15 @@ const Hero = () => {
         {/* CTA Buttons */}
         <div className="flex flex-col items-center gap-6 mb-16">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => analytics.trackButtonClick('download_mac', 'hero_en')}>
+            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/v0.4.2/LocalDocs-0.4.2.dmg" onClick={() => analytics.trackButtonClick('download_mac', 'hero_en')}>
               <button className="w-64 sm:w-auto px-8 py-3.5 bg-[#111] text-white text-base font-medium rounded-lg hover:bg-[#333] transition-colors flex items-center justify-center gap-2 shadow-lg shadow-black/10 whitespace-nowrap">
                 <AppleIcon className="w-5 h-5 mb-0.5" />
                 Download for Mac
               </button>
             </a>
-            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/latest/LocalDocsSetup-latest.exe" onClick={() => analytics.trackButtonClick('download_win', 'hero_en')}>
-              <button className="w-64 sm:w-auto px-8 py-3.5 bg-[#111] text-white text-base font-medium rounded-lg hover:bg-[#333] transition-colors flex items-center justify-center gap-2 shadow-lg shadow-black/10 whitespace-nowrap">
-                <WindowsIcon className="w-4 h-4" />
+            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/v0.4.2/LocalDocs-Setup-0.4.2.exe" onClick={() => analytics.trackButtonClick('download_win', 'hero_en')}>
+              <button className="w-64 sm:w-auto px-8 py-3.5 bg-[#111] text-white text-sm sm:text-base font-medium rounded-lg hover:bg-[#333] transition-colors flex items-center justify-center gap-2 shadow-lg shadow-black/10 whitespace-nowrap">
+                <WindowsIcon className="w-4 h-4 flex-shrink-0" />
                 Download for Windows
               </button>
             </a>
@@ -455,9 +473,9 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             </li>
           </ul>
           <div className="mt-6">
-            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="w-full" onClick={() => analytics.trackButtonClick('download', 'pricing_free_en')}>
+            <a href="#cta" className="w-full" onClick={() => analytics.trackButtonClick('download', 'pricing_free_en')}>
               <Button variant="outline" className="w-full">
-                Download for Mac
+                Get Started
               </Button>
             </a>
           </div>
@@ -506,9 +524,9 @@ const Pricing = () => <section id="pricing" className="section" aria-labelledby=
             </li>
           </ul>
           <div className="mt-6">
-            <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" className="w-full" onClick={() => analytics.trackButtonClick('download', 'pricing_pro_en')}>
+            <a href="#cta" className="w-full" onClick={() => analytics.trackButtonClick('download', 'pricing_pro_en')}>
               <Button variant="hero" className="w-full">
-                Download for Mac
+                Get Started
               </Button>
             </a>
           </div>
@@ -664,13 +682,13 @@ const CTA = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => analytics.trackButtonClick('download_mac', 'cta_en')}>
+          <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/v0.4.2/LocalDocs-0.4.2.dmg" onClick={() => analytics.trackButtonClick('download_mac', 'cta_en')}>
             <button className="w-64 sm:w-auto px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
               <AppleIcon className="w-5 h-5 mb-0.5" />
               Download for Mac
             </button>
           </a>
-          <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/latest/LocalDocsSetup-latest.exe" onClick={() => analytics.trackButtonClick('download_win', 'cta_en')}>
+          <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/v0.4.2/LocalDocs-Setup-0.4.2.exe" onClick={() => analytics.trackButtonClick('download_win', 'cta_en')}>
             <button className="w-64 sm:w-auto px-8 py-3.5 bg-white text-[#111] font-semibold rounded-lg hover:bg-white/90 transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
               <WindowsIcon className="w-4 h-4" />
               Download for Windows

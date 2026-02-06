@@ -215,7 +215,7 @@ const Hero = () => {
                 <div className="px-6">
                     <div className="max-w-4xl mx-auto">
                         <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-                            <video ref={videoRef} className="w-full h-auto" controls autoPlay muted loop playsInline poster="/videos/demo-poster.png">
+                            <video ref={videoRef} className="w-full h-auto" autoPlay muted loop playsInline poster="/videos/demo-poster.png">
                                 {isVisible && <source src="/videos/localdocs-demo.mp4" type="video/mp4" />}
                                 <p className="text-muted-foreground p-8">
                                     브라우저가 비디오 재생을 지원하지 않습니다.

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>LocalDocs — AI search for PDFs, in seconds, locally.</title>
+    <meta name="description" content="Offline AI search for PDFs Your data never leaves your device." />
+    <meta name="author" content="PeekabooLabs" />
+    <link rel="canonical" href="/" />
+
+    <!-- Preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Async font loading with display=swap for non-blocking render -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript
+      ><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"
+    /></noscript>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png?v=1"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png?v=1"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png?v=1" />
+    <link rel="shortcut icon" href="/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png?v=1" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:image:alt" content="localdocs — 오프라인에서 작동하는 한국어 특화 요약 AI" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:image:alt" content="localdocs — 오프라인에서 작동하는 한국어 특화 요약 AI" />
+
+    <!-- Preload critical CSS to reduce render-blocking -->
+    <link rel="preload" as="style" href="/src/index.css" />
+
+    <!-- Critical CSS inlined to prevent render-blocking -->
+    <style>
+      /* Critical above-the-fold styles */
+      body { margin: 0; font-family: system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+      .min-h-screen { min-height: 100vh; }
+      .bg-background { background-color: hsl(210 20% 98%); }
+      .text-foreground { color: hsl(222.2 47.4% 11.2%); }
+      /* Prevent layout shift */
+      img { height: auto; }
+    </style>
+
+    <meta property="og:title" content="LocalDocs — AI search for PDFs, in seconds, locally." />
+    <meta name="twitter:title" content="LocalDocs — AI search for PDFs, in seconds, locally." />
+    <meta property="og:description" content="Offline AI search for PDFs Your data never leaves your device." />
+    <meta name="twitter:description" content="Offline AI search for PDFs Your data never leaves your device." />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+
+        // 1. 클릭 이벤트 (네비게이션 메뉴)
+        document.body.addEventListener('click', function(e) {
+          var clickedText = (e.target.innerText || "").trim().toLowerCase();
+
+          // 네비게이션 메뉴들
+          if (clickedText === 'how it works') {
+            fbq('track', 'ViewContent', { content_name: 'Nav_HowItWorks' });
+          }
+          else if (clickedText === 'features') {
+            fbq('track', 'ViewContent', { content_name: 'Nav_Features' });
+          }
+          else if (clickedText === 'security') {
+            fbq('track', 'ViewContent', { content_name: 'Nav_Security' });
+          }
+          else if (clickedText === 'pricing') {
+            fbq('track', 'ViewContent', { content_name: 'Nav_Pricing' });
+          }
+          // (참고) 다운로드 버튼은 이미 다른 설정으로 Lead를 잡고 계시다면 이 부분은 없어도 됩니다.
+          // 혹시 몰라 안전장치로 두셔도 상관없습니다. (중복 방지 로직이 픽셀에 내장됨)
+        });
+
+        // 2. 이메일 폼 제출 (수정된 부분 ⭐)
+        document.body.addEventListener('submit', function(e) {
+          // 이제 Lead가 아니라 '등록 완료'로 잡힙니다!
+          fbq('track', 'CompleteRegistration', { content_name: 'Email_Submit' });
+          console.log('Pixel Fired: CompleteRegistration (Email)');
+        });
+
+      });
+    </script>
+  </body>
+</html>

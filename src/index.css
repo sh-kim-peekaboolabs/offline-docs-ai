@@ -1,0 +1,380 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design System - HSL only */
+/* Fonts - Using system fonts + Inter for maximum performance */
+/* Pretendard removed - was causing render-blocking @import */
+
+@layer base {
+  :root {
+    /* Core palette */
+    --background: 210 20% 98%;
+    /* #F9FAFB */
+    --foreground: 222.2 47.4% 11.2%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --primary: 221.2 83.2% 53.3%;
+    /* #2563EB */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 214.3 94.1% 92.2%;
+    /* blue-100 for soft badges */
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+
+    --radius: 0.5rem;
+
+    /* Sidebar (kept for shadcn) */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Brand additions */
+    --brand-purple: 309 23% 57%;
+    /* #a575af */
+    --brand-pink: 329 67% 55%;
+    /* #d84190 */
+    --brand-gold: 43 78% 54%;
+    /* #D4AF37 */
+
+    /* Defense page colors */
+    --navy-dark: 220 90% 6%;
+    /* #0f1419 */
+    --navy: 216 56% 25%;
+    /* #1a365d */
+    --navy-light: 215 54% 34%;
+    /* #2c5282 */
+    --teal: 178 39% 39%;
+    /* #319795 */
+    --teal-light: 177 44% 55%;
+    /* #4fd1c5 */
+    --teal-dark: 180 39% 23%;
+    /* #234e52 */
+
+    /* Gradients & shadows */
+    --gradient-primary: linear-gradient(135deg, hsl(226.5 72.7% 40.2%) 0%, hsl(221.2 83.2% 53.3%) 100%);
+    --gradient-subtle: linear-gradient(135deg, hsl(214.3 94.1% 92.2%) 0%, hsl(210 20% 98%) 100%);
+
+    --shadow-elegant: 0 10px 30px -10px hsl(221.2 83.2% 53.3% / 0.25);
+    --shadow-glow: 0 0 40px hsl(221.2 83.2% 53.3% / 0.35);
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+
+  .bg-gradient-subtle {
+    background-image: var(--gradient-subtle);
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--shadow-elegant);
+  }
+
+  /* Performance optimizations */
+  .gpu-optimized {
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .gpu-scale {
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  .gpu-scale:hover {
+    transform: scale3d(1.05, 1.05, 1) translate3d(0, 0, 0);
+  }
+
+  /* Interactive underline */
+  .story-link {
+    position: relative;
+    display: inline-block;
+  }
+
+  .story-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: hsl(var(--primary));
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform .3s;
+  }
+
+  .story-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  /* Sections - responsive */
+  .section {
+    padding: 60px 0;
+  }
+
+  .section-sm {
+    padding: 40px 0;
+  }
+
+  .section-lg {
+    padding: 80px 0;
+  }
+
+  @media (min-width: 768px) {
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-sm {
+      padding: 60px 0;
+    }
+
+    .section-lg {
+      padding: 120px 0;
+    }
+  }
+
+  /* Cards - GPU optimized */
+  .feature-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px hsl(var(--foreground) / 0.05);
+    transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow .3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    contain: layout style paint;
+  }
+
+  .feature-card:hover {
+    transform: translate3d(0, -8px, 0);
+    box-shadow: 0 10px 25px hsl(var(--foreground) / 0.08);
+  }
+
+  .pricing-card {
+    background: hsl(var(--card));
+    border: 2px solid hsl(var(--border));
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+    transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow .3s cubic-bezier(0.4, 0, 0.2, 1), border-color .3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    contain: layout style paint;
+  }
+
+  .pricing-card.featured {
+    border-color: hsl(var(--primary));
+    box-shadow: 0 10px 40px hsl(var(--primary) / 0.10);
+  }
+
+  /* .pricing-card.featured::before { content: "인기"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); padding: 6px 16px; border-radius: 12px; font-size: 12px; font-weight: 600; white-space: nowrap; z-index: 10; } */
+
+  /* Comparison table */
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: hsl(var(--card));
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px hsl(var(--foreground) / 0.05);
+  }
+
+  .comparison-table th {
+    background: hsl(var(--secondary));
+    padding: 20px;
+    text-align: left;
+    font-weight: 600;
+    color: hsl(var(--foreground));
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  .comparison-table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid hsl(var(--border));
+    vertical-align: middle;
+  }
+
+  /* Logo interactions - GPU optimized */
+  .logo-interactive {
+    transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), filter .3s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 4px 8px hsl(var(--primary) / 0.25));
+    will-change: transform;
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+
+  .logo-interactive:hover {
+    transform: translate3d(0, -2px, 0) scale3d(1.02, 1.02, 1);
+    filter: drop-shadow(0 12px 24px hsl(var(--primary) / 0.25));
+  }
+
+  .logo-interactive:active {
+    transform: translate3d(0, 0, 0) scale3d(0.98, 0.98, 1);
+    filter: drop-shadow(0 4px 8px hsl(var(--primary) / 0.25));
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 767px) {
+
+    /* Increase touch targets */
+    button,
+    a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    /* Better mobile spacing */
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    /* Prevent horizontal scroll */
+    body {
+      overflow-x: hidden;
+    }
+
+    /* Optimize mobile text */
+    h1 {
+      font-size: 1.875rem;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+@keyframes gradient-xy {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-xy {
+  background-size: 400% 400%;
+  animation: gradient-xy 15s ease infinite;
+}
+
+@keyframes float-subtle {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.animate-float-subtle {
+  animation: float-subtle 3s ease-in-out infinite;
+}
+
+@keyframes scale-subtle {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.animate-scale-subtle {
+  animation: scale-subtle 3s ease-in-out infinite;
+}

@@ -15,15 +15,17 @@ interface DownloadDropdownProps {
     lang?: 'kr' | 'en';
     place?: string;
     className?: string;
+    macLink?: string;
+    winLink?: string;
 }
 
-export const DownloadDropdown = ({ lang = 'kr', place = 'navbar', className }: DownloadDropdownProps) => {
+export const DownloadDropdown = ({ lang = 'kr', place = 'navbar', className, macLink, winLink }: DownloadDropdownProps) => {
     const [open, setOpen] = useState(false);
     const isKr = lang === 'kr';
 
     const downloadLinks = {
-        mac: "https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg",
-        win: "https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/latest/LocalDocsSetup-latest.exe",
+        mac: macLink ?? "https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg",
+        win: winLink ?? "https://localdocs-download-prod.peekaboolabs.ai/localdocs/win/latest/LocalDocsSetup-latest.exe",
     };
 
     const labels = {

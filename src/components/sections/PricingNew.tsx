@@ -42,7 +42,7 @@ export const PricingNew = () => {
                                 <span>적정 사용량 (일 50개 쿼리)</span>
                             </li>
                         </ul>
-                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => analytics.trackButtonClick('download', 'pricing_free_new')}>
+                        <a href="#cta" onClick={() => analytics.trackButtonClick('download', 'pricing_free_new')}>
                             <Button variant="outline" className="w-full h-12 text-base border-gray-300 hover:bg-gray-50 text-gray-900">
                                 바로 시작하기
                             </Button>
@@ -83,7 +83,7 @@ export const PricingNew = () => {
                                 <span>우선 고객 지원</span>
                             </li>
                         </ul>
-                        <a href="https://localdocs-download-prod.peekaboolabs.ai/localdocs/mac/latest/LocalDocs-latest.dmg" onClick={() => analytics.trackButtonClick('download', 'pricing_pro_new')}>
+                        <a href="#cta" onClick={() => analytics.trackButtonClick('download', 'pricing_pro_new')}>
                             <Button className="w-full h-12 text-base bg-[#111] hover:bg-[#333] text-white">
                                 바로 시작하기
                             </Button>

@@ -123,7 +123,7 @@ export const PricingNew = () => {
                                 <span>온프레미스/전용 모델 지원</span>
                             </li>
                         </ul>
-                        <a href="https://calendar.app.google/LD81XjYtbptocMKw8" target="_blank" rel="noopener noreferrer" onClick={() => analytics.trackButtonClick('contact', 'pricing_enterprise_new')}>
+                        <a href="https://calendar.app.google/WvUp8jzgeLHgP9jm9" target="_blank" rel="noopener noreferrer" onClick={() => analytics.trackButtonClick('contact', 'pricing_enterprise_new')}>
                             <Button variant="outline" className="w-full h-12 text-base bg-white border-gray-300 hover:bg-gray-50 text-gray-900">
                                 도입 문의하기
                             </Button>

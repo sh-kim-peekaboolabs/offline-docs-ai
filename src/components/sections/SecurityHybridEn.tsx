@@ -62,7 +62,7 @@ export const SecurityHybridEn = () => {
                             If you need a fully offline (air-gapped) environment or on-premise LLM integration,<br />
                             check out the Enterprise plan. It runs perfectly without an internet connection.
                         </p>
-                        <a href="https://calendar.app.google/LD81XjYtbptocMKw8" target="_blank" className="inline-block px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors">
+                        <a href="https://calendar.app.google/LRqBPq8yAeZ7Bxwu7" target="_blank" className="inline-block px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors">
                             Contact Sales
                         </a>
                     </div>

@@ -62,7 +62,7 @@ export const SecurityHybrid = () => {
                             완전한 오프라인 환경(Air-gapped)이나 온프레미스 LLM 연동이 필요하다면<br />
                             Enterprise 플랜을 확인해보세요. 인터넷 연결 없이도 완벽하게 동작합니다.
                         </p>
-                        <a href="https://calendar.app.google/LD81XjYtbptocMKw8" target="_blank" className="inline-block px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors">
+                        <a href="https://calendar.app.google/WvUp8jzgeLHgP9jm9" target="_blank" className="inline-block px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors">
                             도입 문의하기
                         </a>
                     </div>

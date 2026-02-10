@@ -123,7 +123,7 @@ export const PricingNewEn = () => {
                                 <span>On-premise/dedicated model support</span>
                             </li>
                         </ul>
-                        <a href="https://calendar.app.google/LD81XjYtbptocMKw8" target="_blank" rel="noopener noreferrer" onClick={() => analytics.trackButtonClick('contact', 'pricing_enterprise_new')}>
+                        <a href="https://calendar.app.google/LRqBPq8yAeZ7Bxwu7" target="_blank" rel="noopener noreferrer" onClick={() => analytics.trackButtonClick('contact', 'pricing_enterprise_new')}>
                             <Button variant="outline" className="w-full h-12 text-base bg-white border-gray-300 hover:bg-gray-50 text-gray-900">
                                 Contact sales
                             </Button>

@@ -252,6 +252,17 @@ const NavNew = () => {
 
                     {/* CTA */}
                     <div className="flex items-center gap-3">
+                        <a
+                            href="https://calendar.app.google/LRqBPq8yAeZ7Bxwu7"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hidden md:block"
+                            onClick={() => analytics.trackButtonClick('contact', 'navbar_new_en')}
+                        >
+                            <button className="px-4 py-2 text-sm font-medium text-[#666] hover:text-[#111] transition-colors">
+                                Contact
+                            </button>
+                        </a>
                         <DownloadDropdown lang="en" place="navbar" className="hidden md:block" />
                         <button className="md:hidden p-2 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(true)}>
                             <Menu className="w-5 h-5 text-[#111]" />

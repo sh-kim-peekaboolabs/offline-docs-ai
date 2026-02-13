@@ -1,6 +1,6 @@
 import { usePageTracking } from "@/hooks/useAnalytics";
 import logo from "/lovable-uploads/75c3651a-8841-4499-a0d1-21386ed685d3.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { HeroNew } from "@/components/sections/HeroNew";
 import { HowItWorksNew } from "@/components/sections/HowItWorksNew";
 import { ComparisonSection } from "@/components/sections/ComparisonSection";
@@ -12,8 +12,12 @@ import { AppleIcon } from "@/components/icons/AppleIcon";
 import { WindowsIcon } from "@/components/icons/WindowsIcon";
 import { analytics } from "@/lib/analytics";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DownloadDropdown } from "@/components/ui/download-dropdown";
+
+type BannerNavigationState = {
+    fromMigrationBanner?: boolean;
+};
 
 // FAQ Section
 const FAQNew = () => {
@@ -313,9 +317,43 @@ const NavNew = () => {
 
 const IndexNew = () => {
     usePageTracking();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [showMigrationNotice, setShowMigrationNotice] = useState(false);
+
+    useEffect(() => {
+        const state = location.state as BannerNavigationState | null;
+
+        if (!state?.fromMigrationBanner) {
+            return;
+        }
+
+        setShowMigrationNotice(true);
+
+        const timer = window.setTimeout(() => {
+            setShowMigrationNotice(false);
+            navigate(
+                {
+                    pathname: location.pathname,
+                    search: location.search,
+                    hash: location.hash,
+                },
+                { replace: true, state: {} },
+            );
+        }, 2200);
+
+        return () => window.clearTimeout(timer);
+    }, [location.hash, location.pathname, location.search, location.state, navigate]);
 
     return (
         <div className="min-h-screen relative font-sans bg-white selection:bg-blue-100">
+            {showMigrationNotice && (
+                <div className="pointer-events-none fixed inset-x-0 top-20 z-[60] flex justify-center px-4">
+                    <div className="rounded-full border border-sky-400 bg-sky-500 px-5 py-2 text-sm font-semibold text-white">
+                        고성능 로컬독스 페이지로 이동했어요.
+                    </div>
+                </div>
+            )}
             <NavNew />
             <HeroNew />
             <HowItWorksNew />

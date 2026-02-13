@@ -12,6 +12,7 @@ import { WindowsIcon } from "@/components/icons/WindowsIcon";
 import { AppleIcon } from "@/components/icons/AppleIcon";
 import { motion } from "framer-motion";
 import { PreloadedVideo } from "@/components/ui/preloaded-video";
+import { TopMigrationBanner } from "@/components/TopMigrationBanner";
 
 // Lazy load heavy demo components
 const SearchInput = lazy(() => import("@/components/ui/search-input").then(m => ({
@@ -46,7 +47,8 @@ const Nav = () => {
     setMobileMenuOpen(false);
   };
   return <>
-      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200">
+      <TopMigrationBanner locale="en" />
+      <header className="sticky top-10 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200">
         <div className="px-6 flex items-center justify-between h-16 max-w-7xl mx-auto">
           {/* Logo */}
           <div className="flex items-center gap-3 cursor-pointer" onClick={scrollToTop}>

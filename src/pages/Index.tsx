@@ -14,6 +14,7 @@ import { DownloadDropdown } from "@/components/ui/download-dropdown";
 import { WindowsIcon } from "@/components/icons/WindowsIcon";
 import { AppleIcon } from "@/components/icons/AppleIcon";
 import { motion } from "framer-motion";
+import { TopMigrationBanner } from "@/components/TopMigrationBanner";
 
 // Lazy load heavy demo components
 const SearchInputKr = lazy(() => import("@/components/ui/search-input-kr").then(m => ({
@@ -60,7 +61,8 @@ const Nav = () => {
     href: "/enterprise"
   }];
   return <>
-            <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200">
+            <TopMigrationBanner locale="kr" />
+            <header className="sticky top-10 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200">
                 <div className="px-6 flex items-center justify-between h-16 max-w-7xl mx-auto">
                     {/* Logo */}
                     <div className="flex items-center gap-3 cursor-pointer" onClick={scrollToTop}>
